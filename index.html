@@ -109,9 +109,86 @@
             font-size: 0.82rem;
             opacity: 0.35;
         }
+        /* Login gate */
+        .login-gate {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 24px;
+        }
+        .login-box {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 18px;
+            padding: 48px 40px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        .login-box h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 8px; }
+        .login-box p { font-size: 0.88rem; opacity: 0.5; margin-bottom: 28px; }
+        .login-input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1.5px solid rgba(255,255,255,0.12);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.06);
+            color: #fff;
+            font-size: 1rem;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s;
+            margin-bottom: 16px;
+        }
+        .login-input:focus { border-color: var(--color-primary); }
+        .login-input::placeholder { color: rgba(255,255,255,0.3); }
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(70,182,70,0.35);
+            transition: all 0.2s;
+        }
+        .login-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(70,182,70,0.45); }
+        .login-error {
+            color: #E74C3C;
+            font-size: 0.82rem;
+            margin-top: 12px;
+            display: none;
+        }
+        .content-area { display: none; }
+        body.authed .login-gate { display: none; }
+        body.authed .content-area { display: block; }
+        body.authed { padding: 60px 24px 80px; }
+        body:not(.authed) { padding: 0; }
     </style>
 </head>
 <body>
+
+<!-- Login Gate -->
+<div class="login-gate">
+    <div class="login-box">
+        <div class="badge" style="margin-bottom:24px">Hype Insight</div>
+        <h2>Resources Portal</h2>
+        <p>Enter the password to access lead magnets and guides.</p>
+        <form id="loginForm" onsubmit="return false;">
+            <input class="login-input" type="password" id="pwInput" placeholder="Password" autocomplete="off" autofocus>
+            <button class="login-btn" type="submit" id="loginBtn">Access Guides</button>
+        </form>
+        <div class="login-error" id="loginError">Incorrect password. Please try again.</div>
+    </div>
+</div>
+
+<!-- Protected Content -->
+<div class="content-area">
 <div class="container">
     <div class="header">
         <div class="badge">Hype Insight Resources</div>
@@ -163,5 +240,17 @@
 
     <div class="footer">Hype Insight &mdash; hypeinsight.com</div>
 </div>
+</div><!-- /content-area -->
+
+<script>
+var HASH='1b2a7bbb3e52bcd3ec07c4285640f85687b9af5aaeabbaf5391a11930212091f';
+async function sha256(m){var e=new TextEncoder().encode(m);var h=await crypto.subtle.digest('SHA-256',e);return Array.from(new Uint8Array(h)).map(function(b){return b.toString(16).padStart(2,'0')}).join('');}
+function unlock(){document.body.classList.add('authed');sessionStorage.setItem('hi_auth','1');}
+if(sessionStorage.getItem('hi_auth')==='1') unlock();
+document.getElementById('loginForm').addEventListener('submit',async function(){
+    var v=document.getElementById('pwInput').value;
+    if(await sha256(v)===HASH){unlock();}else{document.getElementById('loginError').style.display='block';document.getElementById('pwInput').value='';document.getElementById('pwInput').focus();}
+});
+</script>
 </body>
 </html>
