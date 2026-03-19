@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="googlebot" content="noindex, nofollow">
+    <title>Security Self-Assessment Quiz | Hacked Website Survival Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #46B646;
+            --color-primary-dark: #3a9a3a;
+            --color-dark: #02202E;
+            --color-white: #FFFFFF;
+            --color-secondary: #00A9BA;
+            --color-accent: #FFCB2B;
+            --color-red: #E74C3C;
+            --color-orange: #E67E22;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--color-dark);
+            color: var(--color-white);
+            line-height: 1.6;
+        }
+
+        /* ── Sticky Header ── */
+        .page-header {
+            background: rgba(2, 32, 46, 0.96);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding: 16px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .header-left { display: flex; align-items: center; gap: 20px; }
+        .header-title-wrap {}
+        .header-eyebrow {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-primary);
+            margin-bottom: 1px;
+        }
+        .header-title { font-size: 1rem; font-weight: 700; }
+
+        .header-score-pill {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: 50px;
+            padding: 8px 20px;
+            white-space: nowrap;
+        }
+        .hsp-label { font-size: 0.78rem; color: rgba(255,255,255,0.45); font-weight: 500; }
+        .hsp-score { font-size: 1.5rem; font-weight: 800; color: rgba(255,255,255,0.25); transition: color 0.3s; min-width: 26px; text-align: right; }
+        .hsp-max { font-size: 0.78rem; color: rgba(255,255,255,0.25); }
+        .hsp-rating { font-size: 0.85rem; font-weight: 700; color: rgba(255,255,255,0.25); transition: color 0.3s; }
+
+        /* ── Page wrapper ── */
+        .page-wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 48px 40px 80px;
+        }
+
+        /* ── Intro banner ── */
+        .intro-banner {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            background: linear-gradient(135deg, rgba(70,182,70,0.1), rgba(0,169,186,0.07));
+            border: 1px solid rgba(70,182,70,0.2);
+            border-radius: 18px;
+            padding: 32px 36px;
+            margin-bottom: 44px;
+        }
+
+        .intro-body { flex: 1; }
+        .intro-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            color: white;
+            padding: 5px 16px;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            box-shadow: 0 3px 12px rgba(70,182,70,0.35);
+        }
+        .intro-heading {
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+        .intro-desc {
+            font-size: 1rem;
+            line-height: 1.75;
+            opacity: 0.82;
+            margin-bottom: 18px;
+        }
+        .intro-desc strong { color: var(--color-primary); font-weight: 600; }
+        .score-legend {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+        .sl-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.84rem;
+            font-weight: 600;
+        }
+        .sl-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+
+        /* Score implications */
+        .implications-block { display: flex; flex-direction: column; gap: 8px; }
+        .impl-row {
+            font-size: 0.9rem;
+            line-height: 1.65;
+            padding: 10px 14px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 9px;
+            border: 1px solid rgba(255,255,255,0.07);
+        }
+
+        /* Gauge */
+        .gauge-panel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 190px;
+        }
+        .gauge-svg { width: 100%; max-width: 210px; }
+        .gauge-rating { font-size: 1.15rem; font-weight: 800; color: rgba(255,255,255,0.25); margin-top: -2px; transition: color 0.4s; text-align: center; }
+        .gauge-hint { font-size: 0.72rem; opacity: 0.38; margin-top: 5px; text-align: center; }
+
+        /* ── Section grid ── */
+        .sections-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 860px) { .sections-grid { grid-template-columns: 1fr; } }
+
+        .section-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 26px;
+            transition: border-color 0.3s;
+        }
+        .section-card:hover { border-color: rgba(70,182,70,0.22); }
+
+        .sc-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        .sc-title { font-size: 1.05rem; font-weight: 700; color: var(--color-primary); }
+        .sc-max { font-size: 0.75rem; opacity: 0.4; }
+
+        /* Questions */
+        .diag-q { padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .diag-q:last-of-type { border-bottom: none; }
+        .diag-q-text { font-size: 0.97rem; line-height: 1.55; margin-bottom: 11px; }
+        .diag-q-text strong {
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-secondary);
+            margin-right: 5px;
+        }
+
+        /* Score buttons */
+        .score-row { display: flex; gap: 8px; flex-wrap: wrap; }
+        .score-btn {
+            padding: 8px 18px;
+            border-radius: 50px;
+            border: 1.5px solid;
+            font-size: 0.84rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.18s ease;
+            font-family: inherit;
+            letter-spacing: 0.3px;
+            background: transparent;
+        }
+        .btn-yes  { border-color: rgba(70,182,70,0.35); color: rgba(70,182,70,0.85); background: rgba(70,182,70,0.07); }
+        .btn-yes:hover, .btn-yes.btn-active   { background: var(--color-primary); border-color: var(--color-primary); color: white; box-shadow: 0 2px 8px rgba(70,182,70,0.4); }
+        .btn-unsure { border-color: rgba(230,126,34,0.35); color: rgba(230,126,34,0.85); background: rgba(230,126,34,0.07); }
+        .btn-unsure:hover, .btn-unsure.btn-active { background: #E67E22; border-color: #E67E22; color: white; box-shadow: 0 2px 8px rgba(230,126,34,0.4); }
+        .btn-no   { border-color: rgba(231,76,60,0.35); color: rgba(231,76,60,0.85); background: rgba(231,76,60,0.07); }
+        .btn-no:hover, .btn-no.btn-active     { background: #E74C3C; border-color: #E74C3C; color: white; box-shadow: 0 2px 8px rgba(231,76,60,0.4); }
+
+        /* Section footer bar */
+        .sec-score-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 16px;
+            padding: 10px 14px;
+            background: rgba(70,182,70,0.07);
+            border: 1px solid rgba(70,182,70,0.14);
+            border-radius: 8px;
+        }
+        .ssb-label { font-size: 0.84rem; font-weight: 700; color: var(--color-primary); min-width: 72px; white-space: nowrap; }
+        .ssb-track { flex: 1; height: 6px; background: rgba(255,255,255,0.09); border-radius: 3px; overflow: hidden; min-width: 30px; }
+        .ssb-fill  { height: 100%; background: var(--color-primary); border-radius: 3px; width: 0%; transition: width 0.4s ease, background 0.3s ease; }
+        .ssb-count { font-size: 0.9rem; font-weight: 700; color: var(--color-primary); white-space: nowrap; }
+        .ssb-em    { font-style: normal; opacity: 0.38; }
+
+        /* ── Results panel ── */
+        .results-panel {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 26px;
+        }
+        .rp-title { font-size: 1.05rem; font-weight: 700; color: var(--color-primary); margin-bottom: 18px; }
+
+        .results-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+        .results-table th {
+            background: rgba(70,182,70,0.14);
+            color: var(--color-white);
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.72rem;
+            letter-spacing: 1px;
+        }
+        .results-table td { padding: 11px 14px; border-bottom: 1px solid rgba(255,255,255,0.06); vertical-align: middle; }
+        .results-table tr:last-child td { border-bottom: none; font-weight: 700; }
+        .results-table tbody tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+
+        .tier-legend { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+        .tier-chip {
+            font-size: 0.76rem;
+            font-weight: 600;
+            padding: 5px 13px;
+            border-radius: 50px;
+            border: 1px solid;
+        }
+
+        .callout {
+            margin-top: 18px;
+            padding: 14px 16px;
+            border-radius: 10px;
+        }
+        .callout-label {
+            font-size: 0.66rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 6px;
+            display: block;
+        }
+        .callout p { font-size: 0.92rem; line-height: 1.7; opacity: 0.85; }
+
+        .cta-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            margin-top: 18px;
+            padding: 13px 26px;
+            background: var(--color-secondary); color: white;
+            border: none; border-radius: 50px;
+            font-size: 0.95rem; font-weight: 700; cursor: pointer; font-family: inherit;
+            text-decoration: none; transition: all 0.2s;
+            box-shadow: 0 4px 16px rgba(0,169,186,0.35);
+        }
+        .cta-btn:hover { background: #009aaa; transform: translateY(-2px); box-shadow: 0 6px 22px rgba(0,169,186,0.45); }
+
+        .reset-btn {
+            margin-top: 18px;
+            background: none;
+            border: 1px solid rgba(255,255,255,0.13);
+            color: rgba(255,255,255,0.35);
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-family: inherit;
+            transition: all 0.2s;
+            display: block;
+        }
+        .reset-btn:hover { border-color: #E74C3C; color: #E74C3C; }
+
+        /* ── Full-width section E card ── */
+        .section-card--full { grid-column: 1 / -1; }
+
+        /* Bottom row layout: section E + results side by side */
+        .bottom-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 860px) { .bottom-grid { grid-template-columns: 1fr; } }
+
+        @media (max-width: 768px) {
+            .page-header { padding: 14px 20px; flex-wrap: wrap; gap: 10px; }
+            .page-wrap { padding: 28px 18px 60px; }
+            .intro-banner { flex-direction: column; gap: 24px; padding: 24px; }
+            .gauge-panel { min-width: unset; width: 160px; align-self: center; }
+            .score-btn { padding: 10px 20px; font-size: 0.88rem; }
+        }
+        @media (max-width: 500px) {
+            .intro-heading { font-size: 1.5rem; }
+            .diag-q-text { font-size: 1rem; }
+            .section-card { padding: 20px; }
+            .score-btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ══════════════ HEADER ══════════════ -->
+    <header class="page-header">
+        <div class="header-left">
+            <div class="header-title-wrap">
+                <div class="header-eyebrow">Interactive Quiz</div>
+                <div class="header-title">Website Security Self-Assessment</div>
+            </div>
+        </div>
+        <div class="header-score-pill">
+            <span class="hsp-label">Your Score</span>
+            <span class="hsp-score" id="headerScore">0</span>
+            <span class="hsp-max">/ 50</span>
+            <span class="hsp-rating" id="headerRating">—</span>
+        </div>
+    </header>
+
+    <!-- ══════════════ MAIN ══════════════ -->
+    <main class="page-wrap">
+
+        <!-- Intro with gauge -->
+        <div class="intro-banner">
+            <div class="intro-body">
+                <div class="intro-badge">Security Self-Assessment</div>
+                <h1 class="intro-heading">How Secure Is Your Website Right Now?</h1>
+                <p class="intro-desc">This quiz evaluates your website across <strong>5 security dimensions</strong>: software maintenance, hosting quality, access &amp; authentication controls, security configuration, and monitoring readiness. It's designed for business owners — no technical expertise needed. Score each statement: <strong>Yes = 2 pts &nbsp;·&nbsp; Unsure = 1 pt &nbsp;·&nbsp; No = 0 pts.</strong> Maximum 50 points. Results save automatically.</p>
+                <div class="score-legend">
+                    <div class="sl-item"><div class="sl-dot" style="background:#46B646"></div><span style="color:#46B646">40–50: Strong</span></div>
+                    <div class="sl-item"><div class="sl-dot" style="background:#FFCB2B"></div><span style="color:#FFCB2B">28–39: Moderate</span></div>
+                    <div class="sl-item"><div class="sl-dot" style="background:#E67E22"></div><span style="color:#E67E22">15–27: At Risk</span></div>
+                    <div class="sl-item"><div class="sl-dot" style="background:#E74C3C"></div><span style="color:#E74C3C">0–14: Critical</span></div>
+                </div>
+                <div class="implications-block">
+                    <div class="impl-row"><strong style="color:#46B646">Strong (40–50) &mdash;</strong> Your website has professional-grade protections in place. Maintain monthly software updates and review access credentials annually.</div>
+                    <div class="impl-row"><strong style="color:#FFCB2B">Moderate (28–39) &mdash;</strong> Core protections exist but meaningful gaps remain. One unpatched plugin or reused password is all a hacker needs to gain entry.</div>
+                    <div class="impl-row"><strong style="color:#E67E22">At Risk (15–27) &mdash;</strong> Your site is a realistic and attractive target. Automated scanners actively look for sites with this profile. Professional attention within 30 days is strongly advised.</div>
+                    <div class="impl-row"><strong style="color:#E74C3C">Critical (0–14) &mdash;</strong> Almost no active defences are in place. A breach may already be occurring silently. Immediate professional review is urgent &mdash; every day of inaction increases the risk.</div>
+                </div>
+            </div>
+            <div class="gauge-panel">
+                <svg class="gauge-svg" viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="secGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%"   stop-color="#E74C3C"/>
+                            <stop offset="28%"  stop-color="#E67E22"/>
+                            <stop offset="56%"  stop-color="#FFCB2B"/>
+                            <stop offset="80%"  stop-color="#46B646"/>
+                            <stop offset="100%" stop-color="#3aac3a"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M20 110 A80 80 0 0 1 180 110" stroke="rgba(255,255,255,0.09)" stroke-width="14" stroke-linecap="round" fill="none"/>
+                    <path id="secGaugeFill" d="M20 110 A80 80 0 0 1 180 110" stroke="url(#secGrad)" stroke-width="14" stroke-linecap="round" fill="none" stroke-dasharray="251.2" stroke-dashoffset="251.2"/>
+                    <text id="secGaugeScore" x="100" y="95" text-anchor="middle" font-family="Inter,sans-serif" font-size="28" font-weight="800" fill="white">0</text>
+                    <text x="100" y="113" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="rgba(255,255,255,0.38)">&#47; 50</text>
+                </svg>
+                <div class="gauge-rating" id="secRating">Answer to score</div>
+                <div class="gauge-hint">Updates as you answer</div>
+            </div>
+        </div>
+
+        <!-- Sections A & B -->
+        <div class="sections-grid">
+
+            <!-- Section A -->
+            <div class="section-card">
+                <div class="sc-header">
+                    <div class="sc-title">Section A &mdash; CMS &amp; Software</div>
+                    <div class="sc-max">max 10 pts</div>
+                </div>
+                <div class="diag-q"><div class="diag-q-text"><strong>Q A.1</strong> Is your CMS (WordPress, Joomla, etc.) running the latest version?</div><div class="score-row" data-qid="a-1"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                <div class="diag-q"><div class="diag-q-text"><strong>Q A.2</strong> Are all installed plugins up to date?</div><div class="score-row" data-qid="a-2"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                <div class="diag-q"><div class="diag-q-text"><strong>Q A.3</strong> Is your active theme updated to its latest version?</div><div class="score-row" data-qid="a-3"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                <div class="diag-q"><div class="diag-q-text"><strong>Q A.4</strong> Are all plugins actively maintained (updated within the last 12 months)?</div><div class="score-row" data-qid="a-4"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                <div class="diag-q"><div class="diag-q-text"><strong>Q A.5</strong> Have you removed all unused and deactivated plugins from your CMS?</div><div class="score-row" data-qid="a-5"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                <div class="sec-score-bar"><span class="ssb-label">Section A</span><div class="ssb-track"><div class="ssb-fill ssf-bar-sec-a"></div></div><span class="ssb-count ssf-val-sec-a">0</span><span class="ssb-count"><span class="ssb-em"> / 10</span></span></div>
+            </div>
+
+            <!-- Section B -->
+            <div class="section-card">
+                <div class="sc-header">
+                    <div class="sc-title">Section B &mdash; Hosting Environment</div>
+                    <div class="sc-max">max 10 pts</div>
+                </div>
+                <div class="diag-q"><div class="diag-q-text"><strong>Q B.1</strong> Is your website on quality (not cheapest-possible) managed hosting?</div><div class="score-row" data-qid="b-1"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                <div class="diag-q"><div class="diag-q-text"><strong>Q B.2</strong> Does your host offer server-level malware scanning?</div><div class="score-row" data-qid="b-2"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                <div class="diag-q"><div class="diag-q-text"><strong>Q B.3</strong> Does your host implement account isolation on shared servers?</div><div class="score-row" data-qid="b-3"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                <div class="diag-q"><div class="diag-q-text"><strong>Q B.4</strong> Does your host provide automated daily backups stored off-site?</div><div class="score-row" data-qid="b-4"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                <div class="diag-q"><div class="diag-q-text"><strong>Q B.5</strong> Does your host provide a staging environment for safe update testing?</div><div class="score-row" data-qid="b-5"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                <div class="sec-score-bar"><span class="ssb-label">Section B</span><div class="ssb-track"><div class="ssb-fill ssf-bar-sec-b"></div></div><span class="ssb-count ssf-val-sec-b">0</span><span class="ssb-count"><span class="ssb-em"> / 10</span></span></div>
+            </div>
+
+            <!-- Section C -->
+            <div class="section-card">
+                <div class="sc-header">
+                    <div class="sc-title">Section C &mdash; Access &amp; Authentication</div>
+                    <div class="sc-max">max 10 pts</div>
+                </div>
+                <div class="diag-q"><div class="diag-q-text"><strong>Q C.1</strong> Is your admin username something other than &ldquo;admin&rdquo;?</div><div class="score-row" data-qid="c-1"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                <div class="diag-q"><div class="diag-q-text"><strong>Q C.2</strong> Are all admin passwords 16+ characters and unique to this site?</div><div class="score-row" data-qid="c-2"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                <div class="diag-q"><div class="diag-q-text"><strong>Q C.3</strong> Is two-factor authentication (2FA) enabled on all admin accounts?</div><div class="score-row" data-qid="c-3"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                <div class="diag-q"><div class="diag-q-text"><strong>Q C.4</strong> Do you know exactly who currently has admin-level access to your site?</div><div class="score-row" data-qid="c-4"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                <div class="diag-q"><div class="diag-q-text"><strong>Q C.5</strong> Have all former staff and contractors had their access removed?</div><div class="score-row" data-qid="c-5"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                <div class="sec-score-bar"><span class="ssb-label">Section C</span><div class="ssb-track"><div class="ssb-fill ssf-bar-sec-c"></div></div><span class="ssb-count ssf-val-sec-c">0</span><span class="ssb-count"><span class="ssb-em"> / 10</span></span></div>
+            </div>
+
+            <!-- Section D -->
+            <div class="section-card">
+                <div class="sc-header">
+                    <div class="sc-title">Section D &mdash; Security Configuration</div>
+                    <div class="sc-max">max 10 pts</div>
+                </div>
+                <div class="diag-q"><div class="diag-q-text"><strong>Q D.1</strong> Does your website use HTTPS on every single page?</div><div class="score-row" data-qid="d-1"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                <div class="diag-q"><div class="diag-q-text"><strong>Q D.2</strong> Does it have a valid, auto-renewing SSL certificate?</div><div class="score-row" data-qid="d-2"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                <div class="diag-q"><div class="diag-q-text"><strong>Q D.3</strong> Have HTTP security headers been tested at securityheaders.com (grade B or better)?</div><div class="score-row" data-qid="d-3"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                <div class="diag-q"><div class="diag-q-text"><strong>Q D.4</strong> Is a Web Application Firewall (WAF) actively protecting your site?</div><div class="score-row" data-qid="d-4"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                <div class="diag-q"><div class="diag-q-text"><strong>Q D.5</strong> Is the login page protected against brute-force attacks?</div><div class="score-row" data-qid="d-5"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                <div class="sec-score-bar"><span class="ssb-label">Section D</span><div class="ssb-track"><div class="ssb-fill ssf-bar-sec-d"></div></div><span class="ssb-count ssf-val-sec-d">0</span><span class="ssb-count"><span class="ssb-em"> / 10</span></span></div>
+            </div>
+
+        </div>
+
+        <!-- Bottom row: Section E + Results -->
+        <div class="bottom-grid">
+
+            <!-- Section E -->
+            <div class="section-card">
+                <div class="sc-header">
+                    <div class="sc-title">Section E &mdash; Monitoring &amp; Recovery</div>
+                    <div class="sc-max">max 10 pts</div>
+                </div>
+                <div class="diag-q"><div class="diag-q-text"><strong>Q E.1</strong> Is your site scanned for malware automatically every day?</div><div class="score-row" data-qid="e-1"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                <div class="diag-q"><div class="diag-q-text"><strong>Q E.2</strong> Do you receive an immediate alert if your site goes down?</div><div class="score-row" data-qid="e-2"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                <div class="diag-q"><div class="diag-q-text"><strong>Q E.3</strong> Do you receive alerts if core or critical files are modified unexpectedly?</div><div class="score-row" data-qid="e-3"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                <div class="diag-q"><div class="diag-q-text"><strong>Q E.4</strong> Have you tested a full backup restore in the last 6 months?</div><div class="score-row" data-qid="e-4"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                <div class="diag-q"><div class="diag-q-text"><strong>Q E.5</strong> Do you have a written incident response plan for a website compromise?</div><div class="score-row" data-qid="e-5"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                <div class="sec-score-bar"><span class="ssb-label">Section E</span><div class="ssb-track"><div class="ssb-fill ssf-bar-sec-e"></div></div><span class="ssb-count ssf-val-sec-e">0</span><span class="ssb-count"><span class="ssb-em"> / 10</span></span></div>
+                <div class="callout" style="background:rgba(255,203,43,0.09);border:1px solid rgba(255,203,43,0.22);">
+                    <span class="callout-label" style="color:var(--color-accent)">If you answered &ldquo;Unsure&rdquo; frequently</span>
+                    <p>Unsure is itself a concern. The most valuable next step is a professional security audit &mdash; a thorough expert review of your code, configuration, hosting, and access controls.</p>
+                </div>
+            </div>
+
+            <!-- Results breakdown -->
+            <div class="results-panel">
+                <div class="rp-title">Your Score Breakdown</div>
+                <table class="results-table">
+                    <thead><tr><th>Section</th><th>Score</th><th>Rating</th></tr></thead>
+                    <tbody>
+                        <tr><td>A &mdash; CMS &amp; Software</td><td id="sec-score-a">—</td><td id="sec-rating-a" style="font-weight:600">—</td></tr>
+                        <tr><td>B &mdash; Hosting</td><td id="sec-score-b">—</td><td id="sec-rating-b" style="font-weight:600">—</td></tr>
+                        <tr><td>C &mdash; Access &amp; Auth</td><td id="sec-score-c">—</td><td id="sec-rating-c" style="font-weight:600">—</td></tr>
+                        <tr><td>D &mdash; Security Config</td><td id="sec-score-d">—</td><td id="sec-rating-d" style="font-weight:600">—</td></tr>
+                        <tr><td>E &mdash; Monitoring</td><td id="sec-score-e">—</td><td id="sec-rating-e" style="font-weight:600">—</td></tr>
+                        <tr><td><strong>Total</strong></td><td id="sec-score-total">—</td><td id="sec-rating-total">—</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="tier-legend">
+                    <div class="tier-chip" style="border-color:#46B646;color:#46B646">40–50: Strong</div>
+                    <div class="tier-chip" style="border-color:#FFCB2B;color:#FFCB2B">28–39: Moderate</div>
+                    <div class="tier-chip" style="border-color:#E67E22;color:#E67E22">15–27: At Risk</div>
+                    <div class="tier-chip" style="border-color:#E74C3C;color:#E74C3C">0–14: Critical</div>
+                </div>
+
+                <div class="callout" style="background:rgba(70,182,70,0.08);border:1px solid rgba(70,182,70,0.16);">
+                    <span class="callout-label" style="color:var(--color-primary)">Your Next Step</span>
+                    <p>Bring this score report to any conversation with a web professional. It gives them immediate, specific insight into exactly where your risk sits &mdash; making the conversation far more productive than starting from scratch. Focus on whichever sections scored lowest first.</p>
+                </div>
+
+                <a href="https://hypeinsight.com/website-emergency-contact-us/?utm_source=quiz&utm_medium=lead_magnet&utm_campaign=hacked-website-guide" target="_blank" rel="noopener" class="cta-btn">Get a Free Professional Review &nbsp;&#8594;</a>
+
+                <button class="reset-btn" id="resetBtn">&#8635; Reset all answers</button>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script>
+        const SA_MAX = 50;
+        const SA_ARC = 251.2;
+        const sa = {};
+
+        const SECTIONS = [
+            { id: 'a', qs: ['a-1','a-2','a-3','a-4','a-5'] },
+            { id: 'b', qs: ['b-1','b-2','b-3','b-4','b-5'] },
+            { id: 'c', qs: ['c-1','c-2','c-3','c-4','c-5'] },
+            { id: 'd', qs: ['d-1','d-2','d-3','d-4','d-5'] },
+            { id: 'e', qs: ['e-1','e-2','e-3','e-4','e-5'] },
+        ];
+
+        const tierColor = p => p >= 0.80 ? '#46B646' : p >= 0.56 ? '#FFCB2B' : p >= 0.30 ? '#E67E22' : '#E74C3C';
+        const tierLabel = p => p >= 0.80 ? 'Strong' : p >= 0.56 ? 'Moderate' : p >= 0.30 ? 'At Risk' : 'Critical';
+
+        function refreshScores() {
+            let total = 0, answered = 0;
+            SECTIONS.forEach(sec => {
+                let s = 0, secAnswered = 0;
+                sec.qs.forEach(qid => { if (sa[qid] !== undefined) { s += sa[qid]; secAnswered++; } });
+                total += s;
+                answered += secAnswered;
+                const p = s / 10;
+                const color = tierColor(p);
+
+                const fill = document.querySelector('.ssf-bar-sec-' + sec.id);
+                if (fill) { fill.style.width = (p * 100) + '%'; fill.style.background = color; }
+                const val = document.querySelector('.ssf-val-sec-' + sec.id);
+                if (val) val.textContent = s;
+
+                const scoreCell  = document.getElementById('sec-score-'  + sec.id);
+                const ratingCell = document.getElementById('sec-rating-' + sec.id);
+                if (scoreCell)  scoreCell.textContent  = secAnswered > 0 ? (s + ' / 10') : '\u2014';
+                if (ratingCell) { ratingCell.textContent = secAnswered > 0 ? tierLabel(p) : '\u2014'; ratingCell.style.color = secAnswered > 0 ? color : ''; }
+            });
+
+            const pTotal    = answered > 0 ? total / SA_MAX : 0;
+            const gaugeFill = document.getElementById('secGaugeFill');
+            const gaugeScore= document.getElementById('secGaugeScore');
+            const ratingEl  = document.getElementById('secRating');
+            if (gaugeFill)  gaugeFill.style.strokeDashoffset = (SA_ARC * (1 - pTotal)).toFixed(2);
+            if (gaugeScore) gaugeScore.textContent = answered > 0 ? total : 0;
+            if (ratingEl)   { ratingEl.textContent = answered > 0 ? tierLabel(pTotal) : 'Answer to score'; ratingEl.style.color = answered > 0 ? tierColor(pTotal) : ''; }
+
+            const totalScore  = document.getElementById('sec-score-total');
+            const totalRating = document.getElementById('sec-rating-total');
+            if (totalScore)  totalScore.textContent  = answered > 0 ? (total + ' / 50') : '\u2014';
+            if (totalRating) { totalRating.textContent = answered > 0 ? tierLabel(pTotal) : '\u2014'; totalRating.style.color = answered > 0 ? tierColor(pTotal) : ''; }
+
+            // Header pill
+            const hs = document.getElementById('headerScore');
+            const hr = document.getElementById('headerRating');
+            if (hs) { hs.textContent = answered > 0 ? total : 0; hs.style.color = answered > 0 ? tierColor(pTotal) : ''; }
+            if (hr) { hr.textContent = answered > 0 ? tierLabel(pTotal) : '\u2014'; hr.style.color = answered > 0 ? tierColor(pTotal) : ''; }
+        }
+
+        function saveScores() { try { localStorage.setItem('hwsg_v1', JSON.stringify(sa)); } catch(e) {} }
+
+        function loadScores() {
+            try {
+                const stored = JSON.parse(localStorage.getItem('hwsg_v1') || '{}');
+                Object.assign(sa, stored);
+                document.querySelectorAll('.score-row').forEach(function(row) {
+                    const qid = row.dataset.qid;
+                    if (qid && sa[qid] !== undefined) {
+                        row.querySelectorAll('.score-btn').forEach(function(btn) {
+                            btn.classList.toggle('btn-active', parseInt(btn.dataset.score) === sa[qid]);
+                        });
+                    }
+                });
+            } catch(e) {}
+            refreshScores();
+        }
+
+        document.addEventListener('click', function(e) {
+            const btn = e.target.closest('.score-btn');
+            if (!btn) return;
+            const row = btn.closest('.score-row');
+            if (!row) return;
+            const qid = row.dataset.qid;
+            if (!qid) return;
+            row.querySelectorAll('.score-btn').forEach(function(b) { b.classList.remove('btn-active'); });
+            btn.classList.add('btn-active');
+            sa[qid] = parseInt(btn.dataset.score);
+            saveScores();
+            refreshScores();
+        });
+
+        document.getElementById('resetBtn').addEventListener('click', function() {
+            if (!confirm('Reset all answers? This cannot be undone.')) return;
+            SECTIONS.forEach(function(sec) { sec.qs.forEach(function(qid) { delete sa[qid]; }); });
+            document.querySelectorAll('.score-btn').forEach(function(b) { b.classList.remove('btn-active'); });
+            saveScores();
+            refreshScores();
+        });
+
+        loadScores();
+    </script>
+</body>
+</html>
