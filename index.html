@@ -1,14 +1,167 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=https://hypeinsight.com">
-    <script>
-        window.location.href = "https://hypeinsight.com";
-    </script>
-    <title>Redirecting...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="googlebot" content="noindex, nofollow">
+    <title>Lead Magnets — Hype Insight</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #46B646;
+            --color-primary-dark: #3a9a3a;
+            --color-dark: #02202E;
+            --color-secondary: #00A9BA;
+            --color-accent: #FFCB2B;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--color-dark);
+            color: #fff;
+            min-height: 100vh;
+            padding: 60px 24px 80px;
+        }
+        .container { max-width: 960px; margin: 0 auto; }
+        .header { text-align: center; margin-bottom: 56px; }
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+            box-shadow: 0 4px 20px rgba(70,182,70,0.35);
+        }
+        h1 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 12px;
+        }
+        .subtitle { font-size: 1.05rem; opacity: 0.6; font-weight: 400; }
+        .section-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--color-secondary);
+            margin-bottom: 16px;
+            margin-top: 48px;
+        }
+        .section-label:first-of-type { margin-top: 0; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; }
+        .card {
+            display: flex;
+            flex-direction: column;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 14px;
+            padding: 26px 24px;
+            text-decoration: none;
+            color: #fff;
+            transition: all 0.25s ease;
+        }
+        .card:hover {
+            background: rgba(70,182,70,0.08);
+            border-color: var(--color-primary);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+        }
+        .card-tag {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 4px 10px;
+            border-radius: 50px;
+            margin-bottom: 14px;
+            width: fit-content;
+        }
+        .tag-guide { background: rgba(70,182,70,0.15); color: var(--color-primary); }
+        .tag-ecommerce { background: rgba(0,169,186,0.15); color: var(--color-secondary); }
+        .tag-event { background: rgba(255,203,43,0.15); color: var(--color-accent); }
+        .card-title { font-size: 1.08rem; font-weight: 700; line-height: 1.35; margin-bottom: 8px; }
+        .card-desc { font-size: 0.85rem; opacity: 0.6; line-height: 1.55; flex: 1; }
+        .card-arrow {
+            margin-top: 16px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .card:hover .card-arrow { gap: 10px; }
+        .footer {
+            text-align: center;
+            margin-top: 64px;
+            padding-top: 28px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            font-size: 0.82rem;
+            opacity: 0.35;
+        }
+    </style>
 </head>
 <body>
-    <p>If you are not redirected automatically, follow this <a href="https://hypeinsight.com">link to Hype Insight</a>.</p>
+<div class="container">
+    <div class="header">
+        <div class="badge">Hype Insight Resources</div>
+        <h1>Lead Magnets &amp; Guides</h1>
+        <p class="subtitle">Interactive resources for website owners and ecommerce stores</p>
+    </div>
+
+    <div class="section-label">General Website Guides</div>
+    <div class="grid">
+        <a class="card" href="complete-website-guide/">
+            <span class="card-tag tag-guide">Guide</span>
+            <div class="card-title">The Complete Website Performance &amp; Revenue Guide</div>
+            <div class="card-desc">27-point scored checklist and 10-section diagnostic workbook for any website. Identify revenue leaks and get a live health score.</div>
+            <div class="card-arrow">Open guide <span>&rarr;</span></div>
+        </a>
+        <a class="card" href="hacked-website-survival-guide/">
+            <span class="card-tag tag-guide">Guide</span>
+            <div class="card-title">The Hacked Website Survival Guide</div>
+            <div class="card-desc">Step-by-step recovery plan for compromised websites with an interactive security self-assessment and risk scoring.</div>
+            <div class="card-arrow">Open guide <span>&rarr;</span></div>
+        </a>
+    </div>
+
+    <div class="section-label">Ecommerce Guides</div>
+    <div class="grid">
+        <a class="card" href="ecommerce-website-guide/">
+            <span class="card-tag tag-ecommerce">Ecommerce</span>
+            <div class="card-title">The Complete Ecommerce Performance &amp; Revenue Guide</div>
+            <div class="card-desc">27-point ecommerce checklist and 10-section store health diagnostic. Covers product pages, checkout, cart abandonment, and retention.</div>
+            <div class="card-arrow">Open guide <span>&rarr;</span></div>
+        </a>
+        <a class="card" href="ecommerce-hacked-website-guide/">
+            <span class="card-tag tag-ecommerce">Ecommerce</span>
+            <div class="card-title">The Ecommerce Hacked Store Survival Guide</div>
+            <div class="card-desc">Recovery guide for compromised ecommerce stores — Magecart, payment skimming, customer data theft, PCI DSS, and payment gateway security.</div>
+            <div class="card-arrow">Open guide <span>&rarr;</span></div>
+        </a>
+    </div>
+
+    <div class="section-label">Event Marketing</div>
+    <div class="grid">
+        <a class="card" href="maximising-event-roi/">
+            <span class="card-tag tag-event">Event</span>
+            <div class="card-title">Maximising Event ROI</div>
+            <div class="card-desc">A comprehensive guide to getting the most out of business events, expos, and trade shows.</div>
+            <div class="card-arrow">Open guide <span>&rarr;</span></div>
+        </a>
+    </div>
+
+    <div class="footer">Hype Insight &mdash; hypeinsight.com</div>
+</div>
 </body>
 </html>

@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="googlebot" content="noindex, nofollow">
+    <title>The Hacked Ecommerce Store Survival Guide | What to Do When Your Online Store Gets Compromised</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #46B646;
+            --color-primary-dark: #3a9a3a;
+            --color-dark: #02202E;
+            --color-white: #FFFFFF;
+            --color-secondary: #00A9BA;
+            --color-accent: #FFCB2B;
+            --color-blue: #1372D3;
+            --color-red: #E74C3C;
+            --color-gray-50: #F8F8F8;
+            --color-gray-100: #F0F0F0;
+            --color-gray-200: #EEEEEE;
+            --color-gray-400: #CCCCCC;
+            --color-gray-600: #666666;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--color-dark);
+            color: var(--color-white);
+        }
+
+        .slider-container { height: 100vh; width: 100vw; overflow: hidden; position: relative; }
+        .slider-track { display: flex; height: 100%; transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+
+        .slide {
+            min-width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 80px 120px;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+            max-height: 100%;
+            overflow-y: auto;
+            padding-right: 20px;
+        }
+
+        .slide-content::-webkit-scrollbar { width: 6px; }
+        .slide-content::-webkit-scrollbar-track { background: rgba(255,255,255,0.1); border-radius: 3px; }
+        .slide-content::-webkit-scrollbar-thumb { background: var(--color-primary); border-radius: 3px; }
+
+        .slide--dark { background: var(--color-dark); }
+        .slide--light { background: var(--color-gray-50); color: var(--color-dark); }
+        .slide--gradient { background: linear-gradient(135deg, var(--color-dark) 0%, #0a3d4f 100%); }
+        .slide--accent {
+            background: linear-gradient(135deg, var(--color-dark) 0%, #0a3d4f 50%, var(--color-dark) 100%);
+            position: relative;
+        }
+        .slide--accent::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(70, 182, 70, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 169, 186, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .slide-chapter {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--color-white);
+            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            padding: 8px 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(70, 182, 70, 0.3);
+        }
+        .slide--light .slide-chapter { color: var(--color-white); background: linear-gradient(135deg, var(--color-secondary), #008a99); box-shadow: 0 4px 15px rgba(0, 169, 186, 0.3); }
+
+        .slide-title { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 24px; }
+        .slide-title--hero { font-size: clamp(2.5rem, 6vw, 4.5rem); }
+
+        .slide-subtitle { font-size: clamp(1.1rem, 2vw, 1.5rem); font-weight: 400; opacity: 0.9; margin-bottom: 32px; line-height: 1.6; }
+
+        .slide-text { font-size: 1.05rem; line-height: 1.8; margin-bottom: 24px; opacity: 0.95; }
+        .slide-text strong { color: var(--color-primary); font-weight: 600; }
+        .slide--light .slide-text strong { color: var(--color-dark); }
+
+        .highlight { color: var(--color-primary); }
+        .highlight-yellow { color: var(--color-accent); }
+        .highlight-cyan { color: var(--color-secondary); }
+        .highlight-red { color: var(--color-red); }
+
+        .slide-list { list-style: none; margin-bottom: 24px; }
+        .slide-list li { padding: 12px 0 12px 32px; position: relative; font-size: 1.05rem; line-height: 1.6; }
+        .slide-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 18px;
+            width: 12px;
+            height: 12px;
+            background: var(--color-primary);
+            border-radius: 50%;
+        }
+        .slide-list--numbered { counter-reset: list-counter; }
+        .slide-list--numbered li { counter-increment: list-counter; }
+        .slide-list--numbered li::before {
+            content: counter(list-counter);
+            background: var(--color-primary);
+            color: var(--color-white);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            top: 12px;
+        }
+
+        .slide-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            font-size: 0.95rem;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .slide-table th {
+            background: var(--color-dark);
+            color: var(--color-white);
+            padding: 16px 20px;
+            text-align: left;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+        .slide--dark .slide-table th { background: rgba(70, 182, 70, 0.2); }
+        .slide-table td { padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,0.1); vertical-align: top; }
+        .slide--light .slide-table td { border-bottom: 1px solid var(--color-gray-200); }
+        .slide-table tr:last-child td { border-bottom: none; }
+        .slide-table tbody tr:nth-child(even) { background: rgba(255,255,255,0.03); }
+        .slide--light .slide-table tbody tr:nth-child(even) { background: rgba(0,0,0,0.02); }
+
+        .quote-box {
+            background: rgba(70, 182, 70, 0.1);
+            border-left: 4px solid var(--color-primary);
+            padding: 24px 28px;
+            margin: 24px 0;
+            border-radius: 0 12px 12px 0;
+        }
+        .slide--light .quote-box { background: rgba(70, 182, 70, 0.08); }
+        .quote-box--cyan { background: rgba(0, 169, 186, 0.1); border-left-color: var(--color-secondary); }
+        .quote-box--yellow { background: rgba(255, 203, 43, 0.15); border-left-color: var(--color-accent); }
+        .quote-box--red { background: rgba(231, 76, 60, 0.1); border-left-color: var(--color-red); }
+        .quote-box-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-primary);
+            margin-bottom: 12px;
+            display: block;
+        }
+        .quote-box--cyan .quote-box-label { color: var(--color-secondary); }
+        .quote-box--yellow .quote-box-label { color: var(--color-accent); }
+        .quote-box--red .quote-box-label { color: var(--color-red); }
+        .quote-box p { font-size: 1rem; line-height: 1.7; margin: 0; }
+        .quote-box p + p { margin-top: 8px; }
+
+        .section-header { font-size: 1.4rem; font-weight: 700; margin: 32px 0 16px; color: var(--color-primary); }
+        .slide--light .section-header { color: var(--color-dark); }
+        .section-subheader { font-size: 1.15rem; font-weight: 600; margin: 24px 0 12px; }
+
+        .two-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin: 24px 0; }
+        @media (max-width: 900px) { .two-columns { grid-template-columns: 1fr; gap: 24px; } }
+
+        .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 24px; margin: 32px 0; }
+        .stat-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 28px 24px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .stat-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .slide--light .stat-card { background: var(--color-white); border: 1px solid var(--color-gray-200); box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .stat-number { font-size: 2.5rem; font-weight: 800; color: var(--color-primary); margin-bottom: 8px; }
+        .stat-label { font-size: 0.9rem; opacity: 0.8; line-height: 1.4; }
+
+        .progress-container { position: fixed; top: 0; left: 0; right: 0; height: 3px; background: rgba(255,255,255,0.08); z-index: 101; }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            transition: width 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            box-shadow: 0 0 12px rgba(70, 182, 70, 0.5);
+        }
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -1px;
+            width: 5px;
+            height: 5px;
+            background: var(--color-white);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--color-primary);
+        }
+
+        .nav-controls {
+            position: fixed;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 0;
+            z-index: 100;
+            background: rgba(2, 32, 46, 0.85);
+            padding: 6px;
+            border-radius: 16px;
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.04) inset;
+        }
+        .nav-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.8);
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            flex-shrink: 0;
+        }
+        .nav-btn:hover { background: rgba(255,255,255,0.15); color: var(--color-white); }
+        .nav-btn:active { transform: scale(0.92); }
+        .nav-btn:disabled { opacity: 0.25; cursor: not-allowed; transform: none; }
+        .nav-info { display: flex; align-items: center; gap: 12px; padding: 0 16px; min-width: 0; }
+        .nav-chapter { font-size: 0.8rem; font-weight: 600; color: var(--color-primary); white-space: nowrap; letter-spacing: 0.5px; }
+        .nav-divider { color: rgba(255,255,255,0.2); font-size: 0.7rem; user-select: none; }
+        .slide-counter { font-size: 0.8rem; color: rgba(255,255,255,0.5); white-space: nowrap; font-weight: 500; font-variant-numeric: tabular-nums; }
+
+        .hero-author { font-size: 1rem; opacity: 0.7; margin-top: 48px; }
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: var(--color-white);
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 20px rgba(70, 182, 70, 0.4);
+        }
+
+        .disclaimer-box {
+            background: rgba(255, 203, 43, 0.1);
+            border: 1px solid var(--color-accent);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin: 24px 0;
+        }
+        .disclaimer-box p { font-size: 0.9rem; line-height: 1.6; margin: 0; }
+
+        .icon-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin: 32px 0; }
+        @media (max-width: 900px) { .icon-grid { grid-template-columns: repeat(2, 1fr); } }
+        .icon-box {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 28px 20px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+        .icon-box:hover { background: rgba(70, 182, 70, 0.1); border-color: var(--color-primary); transform: translateY(-4px); }
+        .slide--light .icon-box { background: var(--color-white); border: 1px solid var(--color-gray-200); }
+        .slide--light .icon-box:hover { background: rgba(70, 182, 70, 0.05); border-color: var(--color-primary); }
+        .icon-box svg { width: 48px; height: 48px; margin-bottom: 16px; }
+        .icon-box-title { font-size: 1rem; font-weight: 700; margin-bottom: 8px; color: var(--color-primary); }
+        .icon-box-text { font-size: 0.85rem; opacity: 0.8; line-height: 1.5; }
+
+        .timeline { position: relative; padding-left: 40px; margin: 32px 0; }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--color-primary), var(--color-secondary), var(--color-accent));
+            border-radius: 2px;
+        }
+        .timeline-item { position: relative; padding-bottom: 32px; }
+        .timeline-item:last-child { padding-bottom: 0; }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 4px;
+            width: 16px;
+            height: 16px;
+            background: var(--color-primary);
+            border-radius: 50%;
+            border: 3px solid var(--color-dark);
+            box-shadow: 0 0 0 4px rgba(70, 182, 70, 0.3);
+        }
+        .slide--light .timeline-item::before { border-color: var(--color-gray-50); }
+        .timeline-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 8px; color: var(--color-primary); }
+        .timeline-text { font-size: 0.95rem; opacity: 0.9; line-height: 1.6; }
+
+        @media (max-width: 768px) {
+            .slide { padding: 60px 24px 110px; }
+            .nav-controls { padding: 5px; border-radius: 14px; }
+            .nav-btn { width: 36px; height: 36px; border-radius: 10px; }
+            .nav-info { padding: 0 10px; gap: 8px; }
+            .nav-chapter { font-size: 0.7rem; }
+            .slide-counter { font-size: 0.7rem; }
+            .slide-table { font-size: 0.85rem; }
+            .slide-table th, .slide-table td { padding: 12px; }
+            .icon-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+        }
+
+        .slide-content > * { opacity: 0; transform: translateY(16px); }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .slide.active .slide-content > * { animation: fadeInUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .slide.active .slide-content > *:nth-child(1) { animation-delay: 0.05s; }
+        .slide.active .slide-content > *:nth-child(2) { animation-delay: 0.1s; }
+        .slide.active .slide-content > *:nth-child(3) { animation-delay: 0.15s; }
+        .slide.active .slide-content > *:nth-child(4) { animation-delay: 0.2s; }
+        .slide.active .slide-content > *:nth-child(5) { animation-delay: 0.25s; }
+        .slide.active .slide-content > *:nth-child(6) { animation-delay: 0.3s; }
+        .slide.active .slide-content > *:nth-child(7) { animation-delay: 0.35s; }
+        .slide.active .slide-content > *:nth-child(8) { animation-delay: 0.4s; }
+        .slide.active .slide-content > *:nth-child(9) { animation-delay: 0.45s; }
+        .slide.active .slide-content > *:nth-child(10) { animation-delay: 0.5s; }
+
+        /* Score Buttons */
+        .score-row { display: flex; gap: 7px; margin-top: 10px; flex-wrap: wrap; }
+        .score-btn { padding: 5px 13px; border-radius: 50px; border: 1.5px solid; font-size: 0.76rem; font-weight: 600; cursor: pointer; transition: all 0.18s ease; font-family: inherit; letter-spacing: 0.3px; }
+        .btn-yes { border-color: rgba(70,182,70,0.35); color: rgba(70,182,70,0.85); background: rgba(70,182,70,0.08); }
+        .btn-yes:hover, .btn-yes.btn-active { background: var(--color-primary); border-color: var(--color-primary); color: white; box-shadow: 0 2px 8px rgba(70,182,70,0.4); }
+        .btn-unsure { border-color: rgba(230,126,34,0.35); color: rgba(230,126,34,0.85); background: rgba(230,126,34,0.08); }
+        .btn-unsure:hover, .btn-unsure.btn-active { background: #E67E22; border-color: #E67E22; color: white; box-shadow: 0 2px 8px rgba(230,126,34,0.4); }
+        .btn-no { border-color: rgba(231,76,60,0.35); color: rgba(231,76,60,0.85); background: rgba(231,76,60,0.08); }
+        .btn-no:hover, .btn-no.btn-active { background: #E74C3C; border-color: #E74C3C; color: white; box-shadow: 0 2px 8px rgba(231,76,60,0.4); }
+
+        /* Section Score Footer */
+        .ssf { display: none; align-items: center; gap: 11px; padding: 10px 16px; background: rgba(70,182,70,0.09); border-radius: 9px; border: 1px solid rgba(70,182,70,0.18); margin-top: 14px; }
+        .ssf.ssf-active { display: flex; }
+        .ssf-active + .ssf-active { margin-top: 7px; }
+        .ssf-label { font-size: 0.8rem; font-weight: 700; color: var(--color-primary); min-width: 90px; white-space: nowrap; }
+        .ssf-track { flex: 1; height: 6px; background: rgba(255,255,255,0.12); border-radius: 3px; overflow: hidden; min-width: 40px; }
+        .ssf-fill { height: 100%; background: var(--color-primary); border-radius: 3px; width: 0%; transition: width 0.4s ease, background 0.3s ease; }
+        .ssf-count { font-size: 0.82rem; font-weight: 700; color: var(--color-primary); white-space: nowrap; }
+        .ssf-count em { font-style: normal; opacity: 0.45; }
+
+        /* Gauge */
+        .gauge-wrap { display: flex; flex-direction: column; align-items: center; }
+        .gauge-svg { width: 100%; max-width: 220px; }
+        .gauge-rating { font-size: 1.35rem; font-weight: 800; letter-spacing: 0.5px; margin-top: -4px; transition: color 0.4s; color: rgba(255,255,255,0.3); }
+        .gauge-hint { font-size: 0.78rem; opacity: 0.45; margin-top: 4px; text-align: center; }
+
+        /* Diagnostic questions */
+        .diag-q { padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .diag-q:last-of-type { border-bottom: none; }
+        .slide--light .diag-q { border-bottom-color: rgba(0,0,0,0.07); }
+        .diag-q-text { font-size: 0.9rem; line-height: 1.5; margin-bottom: 6px; }
+        .diag-q-text strong { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--color-secondary); margin-right: 4px; }
+
+        /* Reset */
+        .reset-btn { background: none; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.4); padding: 5px 14px; border-radius: 50px; cursor: pointer; font-size: 0.72rem; font-family: inherit; transition: all 0.2s; margin-top: 10px; }
+        .reset-btn:hover { border-color: #E74C3C; color: #E74C3C; }
+    </style>
+</head>
+<body>
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="slider-container">
+        <div class="slider-track" id="sliderTrack">
+
+            <!-- Slide 1: Hero -->
+            <div class="slide slide--gradient active">
+                <div class="slide-content">
+                    <span class="hero-badge">Complete Guide for Australian Ecommerce Business Owners</span>
+                    <h1 class="slide-title slide-title--hero">The Hacked Ecommerce Store Survival Guide</h1>
+                    <p class="slide-subtitle">What to Do When Your Online Store Gets Compromised — And How to Protect Your Customers, Revenue &amp; Reputation</p>
+                    <p class="hero-author">Prepared by Ari Vivekanandarajah</p>
+                </div>
+            </div>
+
+            <!-- Slide 2: A Note Before You Begin -->
+            <div class="slide slide--dark">
+                <div class="slide-content">
+                    <span class="slide-chapter">Before You Begin</span>
+                    <h2 class="slide-title">Your Online Store Is Under Attack — Act Now</h2>
+                    <p class="slide-text">If you are reading this because your ecommerce store has been hacked, take a breath. You are not the first online retailer this has happened to. But with customer payment details, order histories, and personal information potentially exposed, the stakes for an ecommerce business are significantly higher than for a standard website.</p>
+                    <p class="slide-text">The decisions you make in the <strong>next 24 to 72 hours</strong> will determine whether this becomes a manageable incident or a catastrophic breach that costs you customers, revenue, and potentially your business.</p>
+                    <div class="stat-grid">
+                        <div class="stat-card"><div class="stat-number">$4.45M</div><div class="stat-label">Global average cost of a data breach in 2023 — retail among the hardest hit</div></div>
+                        <div class="stat-card"><div class="stat-number">43%</div><div class="stat-label">Of cyber attacks target small businesses, with ecommerce stores as prime targets</div></div>
+                        <div class="stat-card"><div class="stat-number">60%</div><div class="stat-label">Of small ecommerce businesses close within 6 months of a major data breach</div></div>
+                    </div>
+                    <p class="slide-text">This guide walks you through exactly what to do, in the right order, with plain-English explanations at every step — specifically tailored for ecommerce businesses where customer financial data is at risk.</p>
+                </div>
+            </div>
+
+            <!-- Slide 3: Chapter 1 - Warning Signs -->
+            <div class="slide slide--light">
+                <div class="slide-content">
+                    <span class="slide-chapter">Chapter 1</span>
+                    <h2 class="slide-title">Warning Signs Your Online Store Has Been Hacked</h2>
+                    <p class="slide-text">Ecommerce hacks are designed to be invisible — attackers want to silently harvest payment details and customer data for as long as possible. Even one of the following signs should be treated as a serious red flag.</p>
+                    <ul class="slide-list">
+                        <li><strong>Customers report unauthorised charges on their cards</strong> — the most alarming sign. If even one customer contacts you about fraudulent transactions after purchasing from your store, investigate immediately.</li>
+                        <li><strong>Your payment gateway flags unusual activity</strong> — Stripe, PayPal, or your bank contacts you about suspicious transaction patterns, chargebacks, or potential fraud originating from your store.</li>
+                        <li><strong>Checkout page behaves differently</strong> — extra form fields appear, the page redirects briefly before completing, or the checkout URL looks slightly different. These are signs of payment skimming code.</li>
+                        <li><strong>Google shows security warnings for your store</strong> — "This site may harm your computer" appearing in search results devastates buyer confidence instantly.</li>
+                        <li><strong>Unexplained admin accounts appear in your CMS</strong> — new user accounts with admin or shop manager privileges you did not create.</li>
+                        <li><strong>Order data discrepancies</strong> — orders appearing in your payment gateway but not in your store dashboard, or vice versa.</li>
+                        <li><strong>Unusual slowness during checkout</strong> — injected skimming scripts can slow down the payment process as data is exfiltrated to external servers.</li>
+                        <li><strong>Customer database exported without authorisation</strong> — check your store's export logs for any unexpected data exports.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Slide 4: Chapter 1 - 5 Types of Ecommerce Hacks -->
+            <div class="slide slide--dark">
+                <div class="slide-content">
+                    <span class="slide-chapter">Chapter 1</span>
+                    <h2 class="slide-title">The 5 Most Common Types of Ecommerce Hack</h2>
+                    <p class="slide-text">Ecommerce stores face targeted attacks specifically designed to steal financial data and exploit transaction processes. Understanding the type of attack is critical for your response.</p>
+                    <div class="icon-grid">
+                        <div class="icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                            <div class="icon-box-title">Magecart / Card Skimming</div>
+                            <div class="icon-box-text">Malicious JavaScript injected into your checkout page silently copies every customer's payment details to the attacker's server in real time.</div>
+                        </div>
+                        <div class="icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-secondary)" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            <div class="icon-box-title">Customer Data Theft</div>
+                            <div class="icon-box-text">Attackers steal your entire customer database — names, emails, addresses, order histories, and potentially stored payment tokens.</div>
+                        </div>
+                        <div class="icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                            <div class="icon-box-title">Admin Backdoor</div>
+                            <div class="icon-box-text">A hidden re-entry point giving attackers persistent access to your store's admin panel, order data, and customer records even after cleanup.</div>
+                        </div>
+                        <div class="icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-blue)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                            <div class="icon-box-title">SEO Spam / Pharma Hack</div>
+                            <div class="icon-box-text">Thousands of hidden spam pages injected into your store, destroying your search rankings and diverting your organic product traffic to competitors.</div>
+                        </div>
+                    </div>
+                    <div class="quote-box quote-box--yellow">
+                        <span class="quote-box-label">The 5th Type: Price &amp; Cart Manipulation</span>
+                        <p>Attackers exploit vulnerabilities to modify product prices, apply fake discount codes, or manipulate cart totals — allowing them to purchase products at a fraction of their real price. Often discovered only during inventory reconciliation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 5: Chapter 1 - Confirm a Hack -->
+            <div class="slide slide--accent">
+                <div class="slide-content">
+                    <span class="slide-chapter">Chapter 1</span>
+                    <h2 class="slide-title">How to Confirm a Hack — 5 Free Tools</h2>
+                    <p class="slide-text">If you are experiencing one or more warning signs, use these free tools to confirm whether your store has been compromised. If any tool confirms a problem, proceed immediately to Chapter 2. <strong>Every hour of delay means more customer payment details potentially stolen.</strong></p>
+                    <div class="two-columns">
+                        <div>
+                            <div class="quote-box">
+                                <span class="quote-box-label">Google Safe Browsing</span>
+                                <p>transparencyreport.google.com/safe-browsing/search — Enter your store URL. Google tells you immediately whether unsafe content has been detected on your shop.</p>
+                            </div>
+                            <div class="quote-box quote-box--cyan">
+                                <span class="quote-box-label">Sucuri SiteCheck</span>
+                                <p>sitecheck.sucuri.net — Checks for known malware, card skimming scripts, blacklisting, and obvious security issues. Specifically flags ecommerce-related threats.</p>
+                            </div>
+                            <div class="quote-box">
+                                <span class="quote-box-label">Google Search Console</span>
+                                <p>Navigate to the Security Issues section. Google alerts you to detected hacks, malware injections, or policy violations on your product and checkout pages.</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="quote-box quote-box--yellow">
+                                <span class="quote-box-label">VirusTotal</span>
+                                <p>virustotal.com — Checks your store against 70+ security databases. Particularly useful for identifying whether your checkout pages have been flagged for card skimming.</p>
+                            </div>
+                            <div class="quote-box quote-box--cyan">
+                                <span class="quote-box-label">Payment Gateway Dashboard</span>
+                                <p>Log into your Stripe, PayPal, or payment provider dashboard. Check for dispute/chargeback spikes, unusual transaction patterns, or security alerts flagged by the provider.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 6: Chapter 2 - Steps 1-3 -->
+            <div class="slide slide--light">
+                <div class="slide-content">
+                    <span class="slide-chapter">Chapter 2</span>
+                    <h2 class="slide-title">The 7 Immediate Steps — Every Minute Counts</h2>
+                    <p class="slide-text">When an ecommerce store is compromised, every minute the store remains live is a minute during which customer payment details may be stolen. The following seven steps should be completed as quickly as possible — ideally within the first 12 hours.</p>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-title">Step 1: Disable the Checkout Immediately</div>
+                            <div class="timeline-text">Your absolute first priority is to stop new payment details from being captured. Put your store into maintenance mode or disable the checkout/payment processing. Display a message: "Our store is temporarily undergoing maintenance. We'll be back shortly." The revenue lost during downtime is insignificant compared to the liability of continued card data theft.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-title">Step 2: Contact Your Payment Gateway Provider</div>
+                            <div class="timeline-text">Immediately notify Stripe, PayPal, Square, or your payment processor about the suspected breach. They can flag potentially compromised transactions, assist with fraud monitoring, and guide you on PCI compliance obligations. Request transaction logs for the past 60 days.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-title">Step 3: Change Every Password and Revoke API Keys</div>
+                            <div class="timeline-text">Change your CMS admin password, hosting control panel, FTP/SFTP, database password, payment gateway API keys, and all admin user accounts. Regenerate all API keys and webhook secrets. Use a minimum of 16 characters with a password manager. Revoke all existing user sessions.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 7: Chapter 2 - Steps 4-7 -->
+            <div class="slide slide--dark">
+                <div class="slide-content">
+                    <span class="slide-chapter">Chapter 2</span>
+                    <h2 class="slide-title">Steps 4 to 7</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-title">Step 4: Scan Your Store for Malware &amp; Skimming Code</div>
+                            <div class="timeline-text">Run a dedicated security scan using Wordfence/MalCare (WooCommerce) or Sansec/MageReport (Magento). Specifically look for injected JavaScript on checkout pages — Magecart-style attacks inject card-skimming code that is invisible to the store owner but captures every payment submission.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-title">Step 5: Remove Malware, Skimmers &amp; Restore Clean Files</div>
+                            <div class="timeline-text">Replace infected core files with clean versions. Pay special attention to checkout templates, payment processing files, and any JavaScript loaded on cart/checkout pages. A critical warning: DIY cleanup often misses secondary backdoors. Professional ecommerce security specialists are strongly recommended.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-title">Step 6: Identify and Close the Vulnerability</div>
+                            <div class="timeline-text">Common ecommerce entry points include outdated WooCommerce/Magento plugins, vulnerable payment gateway integrations, compromised third-party extensions, and weak admin credentials. Review server logs and the malware report to identify the specific exploit used.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-title">Step 7: Notify Affected Customers &amp; Payment Card Networks</div>
+                            <div class="timeline-text">If payment card data may have been compromised, you have obligations to notify affected customers, your payment processor, and potentially card networks (Visa, Mastercard). Provide customers with clear information about what happened, what data was affected, and what steps they should take (e.g., monitoring statements, requesting card replacement).</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 8: Chapter 2 - 72-Hour Timeline -->
+            <div class="slide slide--light">
+                <div class="slide-content">
+                    <span class="slide-chapter">Chapter 2</span>
+                    <h2 class="slide-title">The 72-Hour Response Timeline</h2>
+                    <p class="slide-text">Use this as a checklist to ensure nothing is missed in the critical first three days. For ecommerce, the timeline is accelerated because customer financial data may be actively at risk.</p>
+                    <table class="slide-table">
+                        <thead><tr><th>Timeframe</th><th>Priority Actions</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>First 2 hours</strong></td><td>Disable checkout/payment processing; contact payment gateway; change all passwords and API keys</td></tr>
+                            <tr><td><strong>Hours 2–6</strong></td><td>Run malware &amp; skimmer scans; review server logs; contact hosting provider; assess scope of data exposure</td></tr>
+                            <tr><td><strong>Hours 6–24</strong></td><td>Begin malware removal or engage ecommerce security specialist; identify the vulnerability; review transaction logs for anomalies</td></tr>
+                            <tr><td><strong>Hours 24–48</strong></td><td>Restore clean store; close the vulnerability; re-enable checkout with enhanced monitoring; submit Google review request</td></tr>
+                            <tr><td><strong>Hours 48–72</strong></td><td>Notify affected customers; notify OAIC if required; notify payment card networks if card data compromised; document the incident for PCI compliance</td></tr>
+                            <tr><td><strong>Week 2 onwards</strong></td><td>Conduct PCI compliance review; assess long-term security posture; implement ongoing transaction monitoring</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="quote-box quote-box--yellow">
+                        <span class="quote-box-label">Key Reminder</span>
+                        <p>For ecommerce, the financial and legal exposure is dramatically higher than for a standard website. Every compromised transaction is a potential chargeback, a potential lawsuit, and a customer lost permanently. Engage professional help early.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 9: Chapter 3 - Why Ecommerce Stores Are Targeted -->
+            <div class="slide slide--gradient">
+                <div class="slide-content">
+                    <span class="slide-chapter">Chapter 3</span>
+                    <h2 class="slide-title">Why Hackers Target Ecommerce Stores — You Have What They Want</h2>
+                    <p class="slide-text">Unlike standard websites, ecommerce stores are not hacked randomly. They are <em>deliberately</em> targeted because they process and store something extremely valuable: customer payment information. A hacked ecommerce store is a direct revenue source for criminals — stolen credit card details are sold on dark web marketplaces within hours.</p>
+                    <div class="quote-box quote-box--yellow">
+                        <span class="quote-box-label">The Uncomfortable Truth</span>
+                        <p>Your online store processes financial transactions. That makes it a <strong>high-value target by definition</strong>. The question is not whether attackers will try — it is whether your store is prepared to withstand them.</p>
+                    </div>
+                    <p class="slide-text">Understanding the specific reasons your store was vulnerable is the most important step in preventing future attacks. The following are the seven most common root causes — examine each honestly against your own situation.</p>
+                    <div class="stat-grid">
+                        <div class="stat-card"><div class="stat-number">$45</div><div class="stat-label">Average dark web price for a single stolen credit card with full details</div></div>
+                        <div class="stat-card"><div class="stat-number">Hours</div><div class="stat-label">Time between a vulnerability being published and ecommerce bots scanning for it</div></div>
+                        <div class="stat-card"><div class="stat-number">100%</div><div class="stat-label">Preventable — with the right ecommerce security foundation in place</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 10: Chapter 3 - Root Causes 1-3 -->
+            <div class="slide slide--light">
+                <div class="slide-content">
+                    <span class="slide-chapter">Chapter 3</span>
+                    <h2 class="slide-title">Root Causes 1–3: Platform, Extensions &amp; Hosting</h2>
+                    <h3 class="section-header">Root Cause 1: Outdated Ecommerce Platform</h3>
+                    <p class="slide-text">WooCommerce, Magento, Shopify apps, and other ecommerce platforms release frequent security patches. When those updates are not applied, known vulnerabilities remain open. Ecommerce platforms are higher-priority targets than standard CMS systems because they process payments — automated bots specifically scan for outdated WooCommerce and Magento installations.</p>
+                    <h3 class="section-header">Root Cause 2: Vulnerable or Abandoned Extensions</h3>
+                    <p class="slide-text">Ecommerce stores typically run more plugins than standard websites — payment gateways, shipping calculators, inventory management, product filters, discount engines. Each extension is an additional attack surface. <strong>Abandoned extensions</strong> — those not updated in 12+ months — are particularly dangerous. A single vulnerable product filter or discount code plugin can provide full admin access to your store.</p>
+                    <h3 class="section-header">Root Cause 3: Inadequate Hosting for Ecommerce</h3>
+                    <p class="slide-text">Ecommerce stores require hosting environments with PCI-compliant infrastructure, Web Application Firewalls (WAF), and account isolation. Cheap shared hosting where your store sits alongside hundreds of other websites is a significant risk. Ask your host: <strong>"Is your hosting environment PCI DSS compliant?"</strong> If they cannot answer specifically, your customer payment data may not be properly protected.</p>
+                </div>
+            </div>
+
+            <!-- Slide 11: Chapter 3 - Root Causes 4-7 -->
+            <div class="slide slide--dark">
+                <div class="slide-content">
+                    <span class="slide-chapter">Chapter 3</span>
+                    <h2 class="slide-title">Root Causes 4–7: Access, Code, Payment &amp; Monitoring</h2>
+                    <div class="two-columns">
+                        <div>
+                            <h3 class="section-subheader">Root Cause 4: Weak Admin Access Controls</h3>
+                            <p class="slide-text">Using default admin usernames, weak passwords, sharing login credentials with multiple staff, and failing to remove access for former employees or agencies. For an ecommerce store, compromised admin access means access to every customer record, every order, and every payment configuration.</p>
+                            <h3 class="section-subheader">Root Cause 5: Insecure Custom Code</h3>
+                            <p class="slide-text">Custom checkout modifications, bespoke product configurators, or custom integrations built without security best practices. <strong>SQL injection</strong> in product search, <strong>cross-site scripting (XSS)</strong> in product reviews, and <strong>insecure API endpoints</strong> for stock/order management are common vulnerabilities in custom ecommerce builds.</p>
+                        </div>
+                        <div>
+                            <h3 class="section-subheader">Root Cause 6: Insecure Payment Integration</h3>
+                            <p class="slide-text">Payment data should never touch your server — modern payment gateways use tokenisation and hosted payment fields specifically to prevent this. If your checkout form submits card details through your own server before passing them to the payment gateway, your store is in a fundamentally insecure configuration and likely not PCI compliant.</p>
+                            <h3 class="section-subheader">Root Cause 7: No Transaction or Security Monitoring</h3>
+                            <p class="slide-text">An ecommerce store without real-time transaction monitoring, daily malware scanning, file integrity monitoring, and login attempt monitoring will not detect a compromise until customers start reporting fraudulent charges — often weeks or months after the initial breach.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 12: Chapter 4 - Legal Obligations -->
+            <div class="slide slide--light">
+                <div class="slide-content">
+                    <span class="slide-chapter">Chapter 4</span>
+                    <h2 class="slide-title">Your Legal Obligations After an Ecommerce Breach</h2>
+                    <p class="slide-text">Ecommerce businesses face a <strong>dual compliance burden</strong>: both the Australian Notifiable Data Breaches (NDB) scheme and the Payment Card Industry Data Security Standard (PCI DSS). Non-compliance with either can result in severe financial penalties.</p>
+                    <h3 class="section-header">Australian NDB Scheme + PCI DSS</h3>
+                    <table class="slide-table">
+                        <thead><tr><th>Obligation</th><th>Details</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>NDB Scheme (Privacy Act)</strong></td><td>Businesses with &gt;$3M turnover must notify OAIC and affected individuals when an eligible data breach occurs likely to cause serious harm. Penalties up to $50M or 30% of adjusted turnover.</td></tr>
+                            <tr><td><strong>PCI DSS Compliance</strong></td><td>Any business that processes, stores, or transmits cardholder data must comply with PCI DSS. Non-compliance after a breach can result in fines of $5,000–$100,000 per month from payment card networks.</td></tr>
+                            <tr><td><strong>Payment processor obligations</strong></td><td>Your payment gateway agreement requires you to report security incidents. Failure to report can result in account termination — meaning you lose the ability to accept card payments entirely.</td></tr>
+                            <tr><td><strong>Customer notification</strong></td><td>If payment card data is compromised, affected customers must be notified promptly so they can request card replacements and monitor for fraud.</td></tr>
+                            <tr><td><strong>Chargeback liability</strong></td><td>You are financially liable for every fraudulent transaction made with card details stolen from your store. Chargebacks include the transaction amount plus fees of $15–$100 per dispute.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Slide 13: Chapter 4 - What to Do -->
+            <div class="slide slide--dark">
+                <div class="slide-content">
+                    <span class="slide-chapter">Chapter 4</span>
+                    <h2 class="slide-title">Breach Response Steps &amp; The Financial Cost</h2>
+                    <div class="two-columns">
+                        <div>
+                            <h3 class="section-subheader">The Required Process</h3>
+                            <ul class="slide-list slide-list--numbered">
+                                <li><strong>Assess the breach</strong> — What data was accessed? Payment cards, customer addresses, order history? How many customers? Over what timeframe?</li>
+                                <li><strong>Contain the breach</strong> — Disable checkout, change all credentials, remove malicious code, rotate API keys.</li>
+                                <li><strong>Notify your payment processor</strong> — Immediately. They will initiate their own incident response and may require a forensic investigation by a PCI-qualified assessor.</li>
+                                <li><strong>Notify the OAIC</strong> — Use the online form at oaic.gov.au if the breach meets the NDB threshold.</li>
+                                <li><strong>Notify affected customers</strong> — Direct email to every customer whose data may have been compromised, with specific guidance on steps they should take.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="section-subheader">What the Numbers Say</h3>
+                            <div class="stat-grid" style="grid-template-columns: 1fr 1fr;">
+                                <div class="stat-card"><div class="stat-number">$46K</div><div class="stat-label">Average self-reported cybercrime cost for small Australian business (ACSC)</div></div>
+                                <div class="stat-card"><div class="stat-number">$200K+</div><div class="stat-label">Typical ecommerce breach cost including chargebacks, forensics, legal &amp; lost revenue</div></div>
+                            </div>
+                            <div class="quote-box quote-box--yellow">
+                                <span class="quote-box-label">The Maths</span>
+                                <p>A properly secured ecommerce platform with professional maintenance costs a <strong>fraction</strong> of a single data breach. And unlike a breach, a secure store continues generating revenue every day.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 14: Chapter 5 - Patching vs Rebuilding -->
+            <div class="slide slide--accent">
+                <div class="slide-content">
+                    <span class="slide-chapter">Chapter 5</span>
+                    <h2 class="slide-title">Temporary Fixes vs. The Permanent Solution</h2>
+                    <p class="slide-text">When an ecommerce store owner discovers their store has been hacked, the instinct is to clean it up and get back to selling as quickly as possible. This is understandable — every hour offline is lost revenue. But rushing back online without addressing the root cause virtually guarantees a repeat breach.</p>
+                    <div class="quote-box">
+                        <span class="quote-box-label">The Analogy</span>
+                        <p>Imagine your physical store was robbed because the security system was faulty, the locks were old, and the safe was left open. You fix the broken window the thief came through — but you do not upgrade the security system, change the locks, or secure the safe. <strong>Cleaning malware is fixing the window. It does not address the systemic vulnerabilities in your ecommerce infrastructure.</strong></p>
+                    </div>
+                    <h3 class="section-header">What a Patching Exercise Misses</h3>
+                    <ul class="slide-list">
+                        <li><strong>It cannot fix insecure payment integrations</strong> — if card data touches your server, no amount of patching makes that PCI compliant.</li>
+                        <li><strong>It cannot guarantee all skimmers are found</strong> — sophisticated attackers inject card-skimming code in multiple locations. A significant proportion of cleaned stores are re-infected within 30 days.</li>
+                        <li><strong>It cannot address vulnerable ecommerce architecture</strong> — outdated WooCommerce/Magento installations with years of plugin debt cannot be secured with a patch exercise.</li>
+                        <li><strong>It cannot compensate for years of deferred maintenance</strong> — a store running outdated extensions, abandoned themes, and unpatched core files has accumulated technical debt that patches cannot clear.</li>
+                        <li><strong>It cannot restore customer trust</strong> — customers who learn their payment details were stolen from your store need to see demonstrable investment in security, not a quick fix.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Slide 15: Chapter 5 - Cost Comparison -->
+            <div class="slide slide--light">
+                <div class="slide-content">
+                    <span class="slide-chapter">Chapter 5</span>
+                    <h2 class="slide-title">The Honest Cost Comparison Over 3 Years</h2>
+                    <p class="slide-text">The resistance to rebuilding is usually based on comparing it against a single cleanup — not against the true total cost of operating an insecure ecommerce store over time.</p>
+                    <table class="slide-table">
+                        <thead><tr><th>Scenario</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>3-Year Total</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Patch and maintain old store</strong></td><td>$1,500–$3,000 (cleanup + updates)</td><td>$1,200–$2,500 (maintenance + likely re-infection)</td><td>$1,500–$3,000 (another breach + emergency fixes)</td><td><strong>$4,200–$8,500</strong></td></tr>
+                            <tr><td><strong>Professional rebuild + maintenance</strong></td><td>$10,000–$25,000 (rebuild) + $2,400/yr</td><td>$2,400 (maintenance)</td><td>$2,400 (maintenance)</td><td><strong>$14,800–$29,800</strong></td></tr>
+                            <tr><td><strong>Serious payment data breach</strong></td><td colspan="3">$100,000–$500,000+ (forensics, chargebacks, legal, PCI fines, lost customers, lost revenue)</td><td><strong>$100K–$500K+</strong></td></tr>
+                        </tbody>
+                    </table>
+                    <div class="quote-box">
+                        <span class="quote-box-label">The Bottom Line</span>
+                        <p>A professionally rebuilt ecommerce store with PCI-compliant infrastructure and ongoing security monitoring costs a fraction of a single payment data breach. And it generates more revenue through better performance, trust, and conversion rates.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 16: Chapter 6 - What a Secure Ecommerce Store Looks Like -->
+            <div class="slide slide--dark">
+                <div class="slide-content">
+                    <span class="slide-chapter">Chapter 6</span>
+                    <h2 class="slide-title">What a Secure Ecommerce Store Actually Looks Like</h2>
+                    <p class="slide-text">A well-built ecommerce store has a set of security characteristics that are invisible to the customer but absolutely critical to protecting their data and your business.</p>
+                    <div class="icon-grid">
+                        <div class="icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            <div class="icon-box-title">PCI-Compliant Payments</div>
+                            <div class="icon-box-text">Tokenised payment processing where card data never touches your server. Hosted payment fields from Stripe, Braintree, or equivalent.</div>
+                        </div>
+                        <div class="icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-secondary)" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><path d="M8 21h8M12 17v4"/></svg>
+                            <div class="icon-box-title">Ecommerce-Grade Hosting</div>
+                            <div class="icon-box-text">Managed hosting with WAF, account isolation, automated backups, malware scanning, and PCI-compliant infrastructure.</div>
+                        </div>
+                        <div class="icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <div class="icon-box-title">HTTPS + Security Headers</div>
+                            <div class="icon-box-text">Full HTTPS with EV or OV SSL certificate. Content Security Policy headers preventing injection of unauthorised JavaScript on checkout pages.</div>
+                        </div>
+                        <div class="icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-blue)" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                            <div class="icon-box-title">Transaction Monitoring</div>
+                            <div class="icon-box-text">Real-time fraud detection, daily malware scanning, file integrity monitoring, and automated alerts for suspicious checkout behaviour.</div>
+                        </div>
+                    </div>
+                    <div class="two-columns" style="margin-top: 8px;">
+                        <div class="quote-box">
+                            <span class="quote-box-label">Minimal Extension Stack</span>
+                            <p>Only essential, actively maintained ecommerce extensions. Every plugin is an attack surface — ecommerce stores should aim for the minimum viable extension set.</p>
+                        </div>
+                        <div class="quote-box quote-box--cyan">
+                            <span class="quote-box-label">Secure Access Management</span>
+                            <p>Role-based access (shop manager vs admin), strong unique passwords, 2FA on all admin accounts, and immediate revocation when staff or agencies change.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 17: Chapter 7 - Choosing the Right Developer -->
+            <div class="slide slide--light">
+                <div class="slide-content">
+                    <span class="slide-chapter">Chapter 7</span>
+                    <h2 class="slide-title">How to Choose the Right Ecommerce Developer</h2>
+                    <p class="slide-text">Ecommerce development requires specific expertise in payment security, PCI compliance, and transaction-handling that goes beyond standard web development. A developer who builds great brochure websites may not be qualified to build a secure online store.</p>
+                    <h3 class="section-header">Questions to Ask About Ecommerce Security</h3>
+                    <ul class="slide-list">
+                        <li><strong>"How do you handle payment processing and PCI compliance?"</strong> — They should explain tokenisation, hosted payment fields, and never storing card data on your server.</li>
+                        <li><strong>"What ecommerce hosting do you recommend, and why?"</strong> — They should name specific providers with PCI-compliant infrastructure and WAF protection.</li>
+                        <li><strong>"How do you secure the checkout process against card skimming?"</strong> — Look for specific answers about Content Security Policy headers, Subresource Integrity, and monitoring third-party scripts.</li>
+                        <li><strong>"How do you handle ecommerce platform updates and extension maintenance?"</strong> — "We build it and it's up to you" is a serious red flag for ecommerce.</li>
+                        <li><strong>"What happens if our store is breached under your maintenance?"</strong> — Professional agencies have incident response plans and can articulate exactly what happens next.</li>
+                    </ul>
+                    <h3 class="section-header">Questions About Ecommerce Track Record</h3>
+                    <ul class="slide-list">
+                        <li><strong>"How many ecommerce stores have you built, and on which platforms?"</strong> — Ecommerce experience is non-negotiable. Ask for specific examples.</li>
+                        <li><strong>"Can you provide references from current ecommerce clients?"</strong> — Speak to their ecommerce clients specifically about security, uptime, and support responsiveness.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Slide 18: Chapter 7 - Red Flags -->
+            <div class="slide slide--dark">
+                <div class="slide-content">
+                    <span class="slide-chapter">Chapter 7</span>
+                    <h2 class="slide-title">Red Flags — Ecommerce Developers to Walk Away From</h2>
+                    <p class="slide-text">These warning signs indicate a developer or agency does not have the expertise required to build and maintain a secure ecommerce store.</p>
+                    <table class="slide-table">
+                        <thead><tr><th>Red Flag</th><th>What It Signals</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Cannot explain PCI compliance or tokenised payments</strong></td><td>They do not have ecommerce security expertise</td></tr>
+                            <tr><td><strong>Recommends storing card details on your server</strong></td><td>A fundamental security and compliance violation</td></tr>
+                            <tr><td><strong>Uses the cheapest possible shared hosting</strong></td><td>Not thinking about PCI compliance or transaction security</td></tr>
+                            <tr><td><strong>Installs 30+ plugins for basic ecommerce functionality</strong></td><td>Creating a massive attack surface through plugin overload</td></tr>
+                            <tr><td><strong>Does not offer or recommend ongoing maintenance</strong></td><td>Ecommerce stores require continuous security updates — this is non-negotiable</td></tr>
+                            <tr><td><strong>Has never built a transactional ecommerce store</strong></td><td>Ecommerce is fundamentally different from brochure websites</td></tr>
+                            <tr><td><strong>Cannot name their recommended payment gateway</strong></td><td>They have not thought about the most critical component of your store</td></tr>
+                            <tr><td><strong>Promises a full ecommerce build for under $3,000</strong></td><td>Corners will be cut — particularly on security, which is invisible until it fails</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Slide 19: Chapter 8 - Sections A & B -->
+            <div class="slide slide--accent">
+                <div class="slide-content">
+                    <span class="slide-chapter">Chapter 8</span>
+                    <h2 class="slide-title">Ecommerce Security Self-Assessment: Sections A &amp; B</h2>
+                    <p class="slide-text">Score each question: <strong>Yes = 2 pts &nbsp;&middot;&nbsp; Unsure = 1 pt &nbsp;&middot;&nbsp; No = 0 pts</strong>. Maximum 50 points across all 5 sections.</p>
+                    <div class="two-columns">
+                        <div>
+                            <h3 class="section-subheader">Section A — Platform &amp; Extensions <em style="font-weight:400;font-size:0.85rem">(max 10)</em></h3>
+                            <div class="diag-q"><div class="diag-q-text"><strong>Q A.1</strong> Is your ecommerce platform (WooCommerce, Magento, etc.) running the latest version?</div><div class="score-row" data-qid="a-1"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                            <div class="diag-q"><div class="diag-q-text"><strong>Q A.2</strong> Are all ecommerce extensions and plugins up to date?</div><div class="score-row" data-qid="a-2"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                            <div class="diag-q"><div class="diag-q-text"><strong>Q A.3</strong> Are all extensions actively maintained (updated within the last 12 months)?</div><div class="score-row" data-qid="a-3"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                            <div class="diag-q"><div class="diag-q-text"><strong>Q A.4</strong> Have you removed all unused and deactivated plugins from your store?</div><div class="score-row" data-qid="a-4"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                            <div class="diag-q"><div class="diag-q-text"><strong>Q A.5</strong> Is your ecommerce theme actively maintained and compatible with the latest platform version?</div><div class="score-row" data-qid="a-5"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                            <div class="ssf ssf-sec-a"><span class="ssf-label">Section A</span><div class="ssf-track"><div class="ssf-fill ssf-bar-sec-a"></div></div><span class="ssf-count ssf-val-sec-a">0</span><span class="ssf-count"><em> / 10</em></span></div>
+                        </div>
+                        <div>
+                            <h3 class="section-subheader">Section B — Hosting &amp; Infrastructure <em style="font-weight:400;font-size:0.85rem">(max 10)</em></h3>
+                            <div class="diag-q"><div class="diag-q-text"><strong>Q B.1</strong> Is your store hosted on a managed, ecommerce-grade hosting provider?</div><div class="score-row" data-qid="b-1"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                            <div class="diag-q"><div class="diag-q-text"><strong>Q B.2</strong> Does your host provide a Web Application Firewall (WAF)?</div><div class="score-row" data-qid="b-2"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                            <div class="diag-q"><div class="diag-q-text"><strong>Q B.3</strong> Does your host provide PCI-compliant infrastructure?</div><div class="score-row" data-qid="b-3"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                            <div class="diag-q"><div class="diag-q-text"><strong>Q B.4</strong> Does your host provide automated daily backups stored off-site?</div><div class="score-row" data-qid="b-4"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                            <div class="diag-q"><div class="diag-q-text"><strong>Q B.5</strong> Does your host provide a staging environment for safe update testing?</div><div class="score-row" data-qid="b-5"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                            <div class="ssf ssf-sec-b"><span class="ssf-label">Section B</span><div class="ssf-track"><div class="ssf-fill ssf-bar-sec-b"></div></div><span class="ssf-count ssf-val-sec-b">0</span><span class="ssf-count"><em> / 10</em></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 20: Chapter 8 - Sections C & D -->
+            <div class="slide slide--dark">
+                <div class="slide-content">
+                    <span class="slide-chapter">Chapter 8</span>
+                    <h2 class="slide-title">Ecommerce Security Self-Assessment: Sections C &amp; D</h2>
+                    <p class="slide-text">Score each question: <strong>Yes = 2 pts &nbsp;&middot;&nbsp; Unsure = 1 pt &nbsp;&middot;&nbsp; No = 0 pts</strong>.</p>
+                    <div class="two-columns">
+                        <div>
+                            <h3 class="section-subheader">Section C &mdash; Payment &amp; Data Security <em style="font-weight:400;font-size:0.85rem">(max 10)</em></h3>
+                            <div class="diag-q"><div class="diag-q-text"><strong>Q C.1</strong> Does your store use tokenised payment processing (card data never touches your server)?</div><div class="score-row" data-qid="c-1"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                            <div class="diag-q"><div class="diag-q-text"><strong>Q C.2</strong> Is your store PCI DSS compliant (or using a PCI-compliant payment gateway)?</div><div class="score-row" data-qid="c-2"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                            <div class="diag-q"><div class="diag-q-text"><strong>Q C.3</strong> Is customer personal data encrypted at rest in your database?</div><div class="score-row" data-qid="c-3"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                            <div class="diag-q"><div class="diag-q-text"><strong>Q C.4</strong> Do you have a data retention policy (automatically purging old customer data you no longer need)?</div><div class="score-row" data-qid="c-4"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                            <div class="diag-q"><div class="diag-q-text"><strong>Q C.5</strong> Is HTTPS enforced on every page of your store (especially checkout)?</div><div class="score-row" data-qid="c-5"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                            <div class="ssf ssf-sec-c"><span class="ssf-label">Section C</span><div class="ssf-track"><div class="ssf-fill ssf-bar-sec-c"></div></div><span class="ssf-count ssf-val-sec-c">0</span><span class="ssf-count"><em> / 10</em></span></div>
+                        </div>
+                        <div>
+                            <h3 class="section-subheader">Section D &mdash; Access &amp; Authentication <em style="font-weight:400;font-size:0.85rem">(max 10)</em></h3>
+                            <div class="diag-q"><div class="diag-q-text"><strong>Q D.1</strong> Is two-factor authentication enabled on all admin and shop manager accounts?</div><div class="score-row" data-qid="d-1"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                            <div class="diag-q"><div class="diag-q-text"><strong>Q D.2</strong> Are all admin passwords 16+ characters and unique to this store?</div><div class="score-row" data-qid="d-2"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                            <div class="diag-q"><div class="diag-q-text"><strong>Q D.3</strong> Do you use role-based access (shop manager vs full admin)?</div><div class="score-row" data-qid="d-3"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                            <div class="diag-q"><div class="diag-q-text"><strong>Q D.4</strong> Have all former staff, contractors, and agencies had their access removed?</div><div class="score-row" data-qid="d-4"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                            <div class="diag-q"><div class="diag-q-text"><strong>Q D.5</strong> Is the admin login URL changed from the default and protected against brute-force attacks?</div><div class="score-row" data-qid="d-5"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                            <div class="ssf ssf-sec-d"><span class="ssf-label">Section D</span><div class="ssf-track"><div class="ssf-fill ssf-bar-sec-d"></div></div><span class="ssf-count ssf-val-sec-d">0</span><span class="ssf-count"><em> / 10</em></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 21: Chapter 8 - Section E & Your Security Score -->
+            <div class="slide slide--gradient">
+                <div class="slide-content">
+                    <span class="slide-chapter">Chapter 8</span>
+                    <h2 class="slide-title">Section E &amp; Your Ecommerce Security Score</h2>
+                    <div class="two-columns">
+                        <div>
+                            <h3 class="section-subheader">Section E &mdash; Monitoring &amp; Recovery <em style="font-weight:400;font-size:0.85rem">(max 10)</em></h3>
+                            <div class="diag-q"><div class="diag-q-text"><strong>Q E.1</strong> Is your store scanned for malware and skimming scripts automatically every day?</div><div class="score-row" data-qid="e-1"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                            <div class="diag-q"><div class="diag-q-text"><strong>Q E.2</strong> Do you have real-time transaction monitoring for suspicious patterns?</div><div class="score-row" data-qid="e-2"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                            <div class="diag-q"><div class="diag-q-text"><strong>Q E.3</strong> Do you receive alerts if checkout files or payment scripts are modified?</div><div class="score-row" data-qid="e-3"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                            <div class="diag-q"><div class="diag-q-text"><strong>Q E.4</strong> Have you tested a full store backup restore in the last 6 months?</div><div class="score-row" data-qid="e-4"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                            <div class="diag-q"><div class="diag-q-text"><strong>Q E.5</strong> Do you have a written incident response plan specifically for a payment data breach?</div><div class="score-row" data-qid="e-5"><button class="score-btn btn-yes" data-score="2">&#10003; Yes</button><button class="score-btn btn-unsure" data-score="1">~ Unsure</button><button class="score-btn btn-no" data-score="0">&#10007; No</button></div></div>
+                            <div class="ssf ssf-sec-e"><span class="ssf-label">Section E</span><div class="ssf-track"><div class="ssf-fill ssf-bar-sec-e"></div></div><span class="ssf-count ssf-val-sec-e">0</span><span class="ssf-count"><em> / 10</em></span></div>
+                            <div class="quote-box" style="margin-top:18px;">
+                                <span class="quote-box-label">If you answered &ldquo;Unsure&rdquo; frequently</span>
+                                <p>For an ecommerce store, "Unsure" on payment and security questions is itself a critical concern. A professional ecommerce security audit is strongly recommended.</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="gauge-wrap">
+                                <svg class="gauge-svg" viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <linearGradient id="secGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" stop-color="#E74C3C"/>
+                                            <stop offset="28%" stop-color="#E67E22"/>
+                                            <stop offset="56%" stop-color="#FFCB2B"/>
+                                            <stop offset="80%" stop-color="#46B646"/>
+                                            <stop offset="100%" stop-color="#3aac3a"/>
+                                        </linearGradient>
+                                    </defs>
+                                    <path d="M20 110 A80 80 0 0 1 180 110" stroke="rgba(255,255,255,0.1)" stroke-width="14" stroke-linecap="round" fill="none"/>
+                                    <path id="secGaugeFill" d="M20 110 A80 80 0 0 1 180 110" stroke="url(#secGrad)" stroke-width="14" stroke-linecap="round" fill="none" stroke-dasharray="251.2" stroke-dashoffset="251.2"/>
+                                    <text id="secGaugeScore" x="100" y="95" text-anchor="middle" font-family="Inter,sans-serif" font-size="28" font-weight="800" fill="white">0</text>
+                                    <text x="100" y="112" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="rgba(255,255,255,0.4)">&frasl; 50</text>
+                                </svg>
+                                <div class="gauge-rating" id="secRating">Answer questions to score</div>
+                                <div class="gauge-hint">Score updates as you answer</div>
+                            </div>
+                            <table class="slide-table" style="margin-top:20px;font-size:0.88rem;">
+                                <thead><tr><th>Section</th><th>Score</th><th>Rating</th></tr></thead>
+                                <tbody>
+                                    <tr><td>A — Platform &amp; Extensions</td><td id="sec-score-a">—</td><td id="sec-rating-a">—</td></tr>
+                                    <tr><td>B — Hosting &amp; Infrastructure</td><td id="sec-score-b">—</td><td id="sec-rating-b">—</td></tr>
+                                    <tr><td>C — Payment &amp; Data</td><td id="sec-score-c">—</td><td id="sec-rating-c">—</td></tr>
+                                    <tr><td>D — Access &amp; Auth</td><td id="sec-score-d">—</td><td id="sec-rating-d">—</td></tr>
+                                    <tr><td>E — Monitoring</td><td id="sec-score-e">—</td><td id="sec-rating-e">—</td></tr>
+                                    <tr style="font-weight:700;"><td>Total</td><td id="sec-score-total">—</td><td id="sec-rating-total">—</td></tr>
+                                </tbody>
+                            </table>
+                            <button class="reset-btn" id="resetSecBtn">&#8635; Reset all answers</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 22: Chapter 9 - Long-Term Security Plan -->
+            <div class="slide slide--dark">
+                <div class="slide-content">
+                    <span class="slide-chapter">Chapter 9</span>
+                    <h2 class="slide-title">The Long-Term Ecommerce Security Plan</h2>
+                    <p class="slide-text">Ecommerce security is not a one-time project — it is a continuous, managed process. New vulnerabilities in WooCommerce, Magento, payment gateways, and extensions are discovered every week. The only way to maintain a genuinely secure store is to treat security as an ongoing operational requirement.</p>
+                    <h3 class="section-header">The Four Pillars of Ecommerce Security</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-title">Pillar 1: Prevention</div>
+                            <div class="timeline-text">A secure foundation — PCI-compliant hosting, tokenised payments, minimal extensions, clean code, and proper configuration — dramatically reduces the attack surface. For ecommerce, prevention must specifically address payment processing, customer data handling, and checkout integrity.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-title">Pillar 2: Detection</div>
+                            <div class="timeline-text">Active monitoring — daily malware and skimmer scanning, file integrity monitoring on checkout files, transaction anomaly detection, and login attempt monitoring — ensures that if something goes wrong, it is detected in hours, not months.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-title">Pillar 3: Response</div>
+                            <div class="timeline-text">A documented incident response plan specific to ecommerce — covering checkout shutdown procedures, payment processor notification, customer communication templates, and PCI compliance steps — dramatically reduces the time and cost of recovery.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-title">Pillar 4: Recovery</div>
+                            <div class="timeline-text">Reliable, tested backups of your entire store — including the database, product data, order history, and customer records — are the ultimate safety net. <strong>Backups never tested are not reliable backups.</strong> For ecommerce, test restoring a full store including payment gateway reconnection.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 23: Chapter 9 - Maintenance Plan -->
+            <div class="slide slide--gradient">
+                <div class="slide-content">
+                    <span class="slide-chapter">Chapter 9</span>
+                    <h2 class="slide-title">What an Ecommerce Security Maintenance Plan Includes</h2>
+                    <p class="slide-text">An ecommerce maintenance plan goes beyond standard website maintenance — it must specifically address payment security, transaction monitoring, and compliance requirements.</p>
+                    <table class="slide-table">
+                        <thead><tr><th>Service</th><th>Frequency</th><th>Purpose</th></tr></thead>
+                        <tbody>
+                            <tr><td>Platform &amp; extension updates</td><td>Monthly (or as released)</td><td>Patch known security vulnerabilities in ecommerce core and plugins</td></tr>
+                            <tr><td>Malware &amp; skimmer scanning</td><td>Daily</td><td>Detect card-skimming scripts and malware injections early</td></tr>
+                            <tr><td>Checkout file integrity monitoring</td><td>Daily</td><td>Detect unauthorised modifications to payment processing files</td></tr>
+                            <tr><td>Transaction anomaly monitoring</td><td>Continuous</td><td>Flag unusual transaction patterns, chargeback spikes, or fraud indicators</td></tr>
+                            <tr><td>Uptime monitoring</td><td>Continuous</td><td>Detect store outages immediately — every minute offline is lost revenue</td></tr>
+                            <tr><td>Off-site backup (full store)</td><td>Daily</td><td>Enable fast recovery including product data, orders, and customer records</td></tr>
+                            <tr><td>PCI compliance review</td><td>Quarterly</td><td>Verify ongoing compliance with payment security standards</td></tr>
+                            <tr><td>Security report</td><td>Monthly</td><td>Keep you informed of your store's security status and any incidents</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="slide-text">An ecommerce maintenance plan of this scope typically costs <strong>$300–$800 per month</strong> depending on store complexity. This is a fraction of the average cost of a single ecommerce data breach — and it delivers compounding value through uptime, performance, and customer trust.</p>
+                </div>
+            </div>
+
+            <!-- Slide 24: Chapter 10 - The Deep Audit & Conclusion -->
+            <div class="slide slide--dark">
+                <div class="slide-content">
+                    <span class="slide-chapter">Chapter 10</span>
+                    <h2 class="slide-title">Your Next Step: The Deep Ecommerce Security Audit</h2>
+                    <p class="slide-text">You now understand the warning signs of an ecommerce breach, the immediate response steps, why your store was targeted, your legal and PCI obligations, the difference between patching and rebuilding, what a secure store looks like, how to choose the right developer, and what a long-term security plan involves.</p>
+                    <p class="slide-text"><strong>Knowledge without action does not protect your customers or your business.</strong> The single most valuable action you can take right now is to commission a professional ecommerce security audit.</p>
+                    <h3 class="section-header">What an Ecommerce Security Audit Covers</h3>
+                    <div class="two-columns">
+                        <ul class="slide-list">
+                            <li><strong>Payment Security Review</strong> — PCI compliance assessment, payment integration architecture, and checkout security</li>
+                            <li><strong>Malware &amp; Skimmer Scan</strong> — Comprehensive scan specifically targeting card-skimming code and ecommerce-specific threats</li>
+                            <li><strong>Customer Data Assessment</strong> — How customer data is stored, transmitted, and protected against theft</li>
+                        </ul>
+                        <ul class="slide-list">
+                            <li><strong>Platform &amp; Extension Review</strong> — Security audit of all ecommerce plugins, themes, and custom code</li>
+                            <li><strong>Hosting &amp; Infrastructure Assessment</strong> — PCI compliance, WAF, isolation, and backup capability</li>
+                            <li><strong>Compliance Assessment</strong> — PCI DSS and Australian Privacy Act obligations review</li>
+                        </ul>
+                    </div>
+                    <div class="quote-box quote-box--cyan">
+                        <span class="quote-box-label">What You Receive</span>
+                        <p>A comprehensive written report in plain English, a prioritised action plan specific to ecommerce security, and a 60-minute video walkthrough with our team. No obligation to proceed further — the report is yours to act on however you choose.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 25: About the Author -->
+            <div class="slide slide--dark">
+                <div class="slide-content" style="text-align: center;">
+                    <span class="slide-chapter">About the Author</span>
+                    <img src="../maximising-event-roi/ari.png" alt="Ari Vivekanandarajah" style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover; margin-bottom: 24px; border: 4px solid var(--color-primary); box-shadow: 0 8px 32px rgba(70, 182, 70, 0.3);">
+                    <h2 class="slide-title">Ari Vivekanandarajah</h2>
+                    <a href="https://www.linkedin.com/in/arisuthan/" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px; color: #0A66C2; text-decoration: none; font-size: 1rem; font-weight: 500; margin-bottom: 24px; padding: 10px 20px; background: rgba(10, 102, 194, 0.1); border-radius: 50px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(10, 102, 194, 0.2)'" onmouseout="this.style.background='rgba(10, 102, 194, 0.1)'">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        Connect on LinkedIn
+                    </a>
+                    <p class="slide-text" style="max-width: 700px; margin: 0 auto;">Ari Vivekanandarajah is a seasoned digital marketing and web strategy professional with over two decades of experience helping Australian businesses build ecommerce platforms that are secure, high-performing, and built to generate sustainable revenue. He specialises in protecting online retailers from the very real — and very costly — risks of ecommerce security vulnerabilities, and has guided hundreds of businesses through building digital storefronts they and their customers can trust.</p>
+                    <div style="margin-top: 48px;"><p style="opacity: 0.7; font-size: 0.9rem;">Ready to protect your online store permanently?</p></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="nav-controls">
+        <button class="nav-btn" id="prevBtn" aria-label="Previous slide"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+        <div class="nav-info">
+            <span class="nav-chapter" id="navChapter"></span>
+            <span class="nav-divider">·</span>
+            <span class="slide-counter" id="slideCounter">1 / 25</span>
+        </div>
+        <button class="nav-btn" id="nextBtn" aria-label="Next slide"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+    </div>
+
+    <script>
+        const sliderTrack = document.getElementById('sliderTrack');
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const navChapter = document.getElementById('navChapter');
+        const slideCounter = document.getElementById('slideCounter');
+        const progressBar = document.getElementById('progressBar');
+
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+
+        function getChapterName(slide) {
+            const ch = slide.querySelector('.slide-chapter');
+            return ch ? ch.textContent.trim() : '';
+        }
+
+        function updateSlider() {
+            sliderTrack.style.transform = `translateX(-${currentSlide * 100}vw)`;
+            slideCounter.textContent = `${currentSlide + 1} of ${totalSlides}`;
+            progressBar.style.width = `${((currentSlide + 1) / totalSlides) * 100}%`;
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1;
+            slides.forEach((slide, index) => slide.classList.toggle('active', index === currentSlide));
+            const chapter = getChapterName(slides[currentSlide]);
+            navChapter.textContent = chapter || 'Introduction';
+        }
+
+        function goToSlide(index) { currentSlide = Math.max(0, Math.min(index, totalSlides - 1)); updateSlider(); }
+        function nextSlide() { if (currentSlide < totalSlides - 1) { currentSlide++; updateSlider(); } }
+        function prevSlide() { if (currentSlide > 0) { currentSlide--; updateSlider(); } }
+
+        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', nextSlide);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+            else if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+        });
+
+        let touchStartX = 0, touchEndX = 0;
+        document.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+        document.addEventListener('touchend', (e) => { touchEndX = e.changedTouches[0].screenX; const diff = touchStartX - touchEndX; if (Math.abs(diff) > 50) { diff > 0 ? nextSlide() : prevSlide(); } }, { passive: true });
+
+        let isScrolling = false;
+        document.addEventListener('wheel', (e) => {
+            if (isScrolling) return;
+            const slideContent = slides[currentSlide].querySelector('.slide-content');
+            if (slideContent) {
+                const isAtTop = slideContent.scrollTop === 0;
+                const isAtBottom = slideContent.scrollTop + slideContent.clientHeight >= slideContent.scrollHeight - 1;
+                if ((e.deltaY > 0 && !isAtBottom) || (e.deltaY < 0 && !isAtTop)) return;
+            }
+            isScrolling = true;
+            e.deltaY > 0 || e.deltaX > 0 ? nextSlide() : prevSlide();
+            setTimeout(() => { isScrolling = false; }, 700);
+        }, { passive: true });
+
+        // ── Ecommerce Security Self-Assessment ─────────────────────────────
+        const SA_MAX = 50;
+        const SA_ARC = 251.2;
+        const sa = {};
+
+        const SECTIONS = [
+            { id: 'a', qs: ['a-1','a-2','a-3','a-4','a-5'] },
+            { id: 'b', qs: ['b-1','b-2','b-3','b-4','b-5'] },
+            { id: 'c', qs: ['c-1','c-2','c-3','c-4','c-5'] },
+            { id: 'd', qs: ['d-1','d-2','d-3','d-4','d-5'] },
+            { id: 'e', qs: ['e-1','e-2','e-3','e-4','e-5'] },
+        ];
+
+        const tierColor = p => p >= 0.80 ? '#46B646' : p >= 0.56 ? '#FFCB2B' : p >= 0.30 ? '#E67E22' : '#E74C3C';
+        const tierLabel = p => p >= 0.80 ? 'Strong' : p >= 0.56 ? 'Moderate' : p >= 0.30 ? 'At Risk' : 'Critical';
+
+        const refreshScores = () => {
+            let total = 0;
+            let answered = 0;
+            SECTIONS.forEach(sec => {
+                let s = 0;
+                let secAnswered = 0;
+                sec.qs.forEach(qid => { if (sa[qid] !== undefined) { s += sa[qid]; secAnswered++; } });
+                total += s;
+                answered += secAnswered;
+                const p = s / 10;
+                const color = tierColor(p);
+
+                const fill = document.querySelector(`.ssf-bar-sec-${sec.id}`);
+                if (fill) { fill.style.width = `${p * 100}%`; fill.style.background = color; }
+                const val = document.querySelector(`.ssf-val-sec-${sec.id}`);
+                if (val) val.textContent = s;
+                document.querySelectorAll(`.ssf-sec-${sec.id}`).forEach(el => el.classList.toggle('ssf-active', secAnswered > 0));
+
+                const scoreCell = document.getElementById(`sec-score-${sec.id}`);
+                const ratingCell = document.getElementById(`sec-rating-${sec.id}`);
+                if (scoreCell) scoreCell.textContent = secAnswered > 0 ? `${s} / 10` : '\u2014';
+                if (ratingCell) { ratingCell.textContent = secAnswered > 0 ? tierLabel(p) : '\u2014'; ratingCell.style.color = secAnswered > 0 ? color : ''; }
+            });
+
+            const pTotal = answered > 0 ? total / SA_MAX : 0;
+            const gaugeFill = document.getElementById('secGaugeFill');
+            const gaugeScore = document.getElementById('secGaugeScore');
+            const secRatingEl = document.getElementById('secRating');
+            if (gaugeFill) gaugeFill.style.strokeDashoffset = `${SA_ARC * (1 - pTotal)}`;
+            if (gaugeScore) gaugeScore.textContent = answered > 0 ? total : 0;
+            if (secRatingEl) { secRatingEl.textContent = answered > 0 ? tierLabel(pTotal) : 'Answer questions to score'; secRatingEl.style.color = answered > 0 ? tierColor(pTotal) : ''; }
+
+            const totalScore = document.getElementById('sec-score-total');
+            const totalRating = document.getElementById('sec-rating-total');
+            if (totalScore) totalScore.textContent = answered > 0 ? `${total} / 50` : '\u2014';
+            if (totalRating) { totalRating.textContent = answered > 0 ? tierLabel(pTotal) : '\u2014'; totalRating.style.color = answered > 0 ? tierColor(pTotal) : ''; }
+        };
+
+        const saveScores = () => localStorage.setItem('hwsg_ecom_v1', JSON.stringify(sa));
+
+        const loadScores = () => {
+            try {
+                const stored = JSON.parse(localStorage.getItem('hwsg_ecom_v1') || '{}');
+                Object.assign(sa, stored);
+                document.querySelectorAll('.score-row').forEach(row => {
+                    const qid = row.dataset.qid;
+                    if (qid && sa[qid] !== undefined) {
+                        row.querySelectorAll('.score-btn').forEach(btn => {
+                            btn.classList.toggle('btn-active', parseInt(btn.dataset.score) === sa[qid]);
+                        });
+                    }
+                });
+            } catch (e) { /* ignore */ }
+            refreshScores();
+            updateSlider();
+        };
+
+        document.addEventListener('click', e => {
+            const btn = e.target.closest('.score-btn');
+            if (!btn) return;
+            const row = btn.closest('.score-row');
+            if (!row) return;
+            const qid = row.dataset.qid;
+            if (!qid) return;
+            row.querySelectorAll('.score-btn').forEach(b => b.classList.remove('btn-active'));
+            btn.classList.add('btn-active');
+            sa[qid] = parseInt(btn.dataset.score);
+            saveScores();
+            refreshScores();
+        });
+
+        document.getElementById('resetSecBtn')?.addEventListener('click', () => {
+            SECTIONS.forEach(sec => sec.qs.forEach(qid => delete sa[qid]));
+            document.querySelectorAll('.score-btn').forEach(b => b.classList.remove('btn-active'));
+            saveScores();
+            refreshScores();
+        });
+
+        loadScores();
+    </script>
+</body>
+</html>
