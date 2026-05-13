@@ -1,0 +1,1820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W7QL5263');</script>
+<!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="googlebot" content="noindex, nofollow">
+    <title>AI Agent Playbook for Businesses: A Flip-Book Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #46B646;
+            --color-primary-dark: #3a9a3a;
+            --color-secondary: #00A9BA;
+            --color-accent: #FFCB2B;
+            --color-blue: #1372D3;
+            /* Flip-book palette */
+            --paper-cream: #F6EFDD;
+            --paper-cream-2: #EFE6CE;
+            --paper-edge: #D9CDA8;
+            --ink-dark: #0B1A24;
+            --ink-dark-2: #16283A;
+            --ink-mid: #2E3D4B;
+            --gold: #B68A3C;
+            --gold-light: #D9B45C;
+            --burgundy: #8B2E2E;
+            --rule: rgba(11,26,36,0.18);
+            --rule-dark: rgba(246,239,221,0.22);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; overflow: hidden; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #0a0f14; color: var(--ink-dark); }
+
+        /* ===== Book stage ===== */
+        .stage { height: 100vh; width: 100vw; overflow: hidden; position: relative; perspective: 2400px; background: radial-gradient(ellipse at center, #1a2530 0%, #050a10 100%); }
+        .slider-container { height: 100%; width: 100%; overflow: hidden; position: relative; transform-style: preserve-3d; }
+        .slider-track { display: flex; height: 100%; transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1); }
+        .slide { min-width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; padding: 70px 70px 110px; position: relative; overflow-y: auto; transform-style: preserve-3d; }
+
+        /* PAPER PAGES */
+        .slide--paper {
+            background:
+                radial-gradient(circle at 18% 8%, rgba(255,255,255,0.55) 0%, transparent 35%),
+                radial-gradient(circle at 88% 92%, rgba(180,150,90,0.07) 0%, transparent 40%),
+                linear-gradient(135deg, var(--paper-cream) 0%, var(--paper-cream-2) 100%);
+            color: var(--ink-dark);
+        }
+        .slide--paper::before {
+            /* Subtle grain via SVG noise data URI */
+            content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.45; mix-blend-mode: multiply;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.62  0 0 0 0 0.55  0 0 0 0 0.39  0 0 0 0.085 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+        }
+        .slide--paper::after {
+            /* Binding gutter shadow (left edge) + page-edge curl (right) */
+            content: ''; position: absolute; inset: 0; pointer-events: none;
+            background:
+                linear-gradient(90deg, rgba(80,60,30,0.20) 0%, rgba(80,60,30,0.06) 2.5%, transparent 7%),
+                linear-gradient(270deg, rgba(80,60,30,0.16) 0%, rgba(80,60,30,0.04) 2.5%, transparent 7%);
+        }
+
+        /* INK PAGES (dark) */
+        .slide--ink {
+            background:
+                radial-gradient(circle at 78% 18%, rgba(0,169,186,0.10) 0%, transparent 45%),
+                radial-gradient(circle at 12% 90%, rgba(70,182,70,0.10) 0%, transparent 45%),
+                linear-gradient(135deg, var(--ink-dark) 0%, var(--ink-dark-2) 100%);
+            color: var(--paper-cream);
+        }
+        .slide--ink::before {
+            content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.30; mix-blend-mode: overlay;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.95  0 0 0 0 0.82  0 0 0 0.10 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+        }
+        .slide--ink::after {
+            content: ''; position: absolute; inset: 0; pointer-events: none;
+            background:
+                linear-gradient(90deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.12) 2.5%, transparent 7%),
+                linear-gradient(270deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.10) 2.5%, transparent 7%);
+        }
+
+        /* Cover */
+        .slide--cover {
+            background:
+                radial-gradient(circle at 30% 25%, rgba(70,182,70,0.18) 0%, transparent 50%),
+                radial-gradient(circle at 75% 80%, rgba(0,169,186,0.18) 0%, transparent 55%),
+                linear-gradient(160deg, #0d2231 0%, #0b1a24 50%, #050b12 100%);
+            color: var(--paper-cream);
+        }
+        .slide--cover::after {
+            content: ''; position: absolute; inset: 24px; border: 1px solid rgba(246,239,221,0.18); pointer-events: none;
+        }
+        .slide--cover::before {
+            content: ''; position: absolute; inset: 36px; border: 1px solid rgba(246,239,221,0.10); pointer-events: none;
+        }
+
+        /* Slide content */
+        .slide-content { max-width: 1100px; width: 100%; max-height: 100%; overflow-y: auto; padding: 0 18px; position: relative; z-index: 2; }
+        .slide-content::-webkit-scrollbar { width: 5px; }
+        .slide-content::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+        /* ===== Typography (editorial) ===== */
+        .display-serif { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; letter-spacing: -0.01em; }
+        .slide-title { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; font-size: clamp(2rem, 4.6vw, 3.6rem); line-height: 1.06; margin-bottom: 18px; letter-spacing: -0.01em; }
+        .slide-title--hero { font-size: clamp(2.8rem, 6.4vw, 5.2rem); font-style: italic; font-weight: 500; line-height: 1.02; }
+        .slide-subtitle { font-size: clamp(0.95rem, 1.7vw, 1.2rem); font-weight: 400; opacity: 0.92; margin-bottom: 22px; line-height: 1.6; font-family: 'Cormorant Garamond', serif; font-style: italic; }
+        .slide-text { font-size: 1rem; line-height: 1.75; margin-bottom: 18px; opacity: 0.95; }
+        .slide--paper .slide-text strong { color: var(--burgundy); font-weight: 600; }
+        .slide--ink .slide-text strong { color: var(--gold-light); font-weight: 600; }
+
+        /* Drop cap */
+        .drop-cap::first-letter {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 4.6rem; font-weight: 700; float: left; line-height: 0.86; padding: 6px 12px 0 0; color: var(--burgundy);
+        }
+        .slide--ink .drop-cap::first-letter { color: var(--gold-light); }
+
+        /* Running header & footer (book chrome) */
+        .page-header { position: absolute; top: 28px; left: 70px; right: 70px; display: flex; justify-content: space-between; align-items: center; font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; opacity: 0.5; z-index: 3; }
+        .page-header .ph-left { font-family: 'Cormorant Garamond', serif; font-style: italic; letter-spacing: 1px; text-transform: none; font-size: 0.85rem; opacity: 0.7; }
+        .page-footer { position: absolute; bottom: 32px; left: 70px; right: 70px; display: flex; justify-content: center; align-items: center; gap: 22px; z-index: 3; pointer-events: none; }
+        .page-footer .pf-rule { flex: 0 0 70px; height: 1px; background: currentColor; opacity: 0.18; }
+        .page-footer .pf-num { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; opacity: 0.55; letter-spacing: 1px; font-variant-numeric: tabular-nums; }
+
+        /* Chapter ribbon (right edge tab) */
+        .chapter-ribbon { position: absolute; right: 0; top: 130px; padding: 9px 18px 9px 14px; background: var(--burgundy); color: var(--paper-cream); font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; box-shadow: -2px 4px 12px rgba(0,0,0,0.25); border-radius: 4px 0 0 4px; z-index: 4; }
+        .chapter-ribbon::before { content: ''; position: absolute; left: -8px; top: 0; bottom: 0; width: 8px; background: linear-gradient(135deg, var(--burgundy), #5d1f1f); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 50%); }
+        .slide--ink .chapter-ribbon { background: var(--gold); color: var(--ink-dark); }
+        .slide--ink .chapter-ribbon::before { background: linear-gradient(135deg, var(--gold), #8c6a2a); }
+
+        /* Chapter eyebrow */
+        .eyebrow { display: inline-flex; align-items: center; gap: 14px; font-size: 0.72rem; letter-spacing: 4px; text-transform: uppercase; font-weight: 700; margin-bottom: 14px; }
+        .eyebrow::before, .eyebrow::after { content: ''; width: 32px; height: 1px; background: currentColor; opacity: 0.4; }
+        .eyebrow .eyebrow-num { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; letter-spacing: 0.5px; text-transform: none; opacity: 0.7; }
+
+        /* ===== Part divider pages ===== */
+        .part-page { text-align: center; max-width: 720px; margin: 0 auto; }
+        .part-num { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.4rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 32px; opacity: 0.65; }
+        .part-ornament { display: flex; align-items: center; justify-content: center; gap: 18px; margin: 22px 0 28px; }
+        .part-ornament .po-rule { flex: 0 0 90px; height: 1px; background: currentColor; opacity: 0.45; }
+        .part-ornament .po-mark { width: 9px; height: 9px; border: 1px solid currentColor; transform: rotate(45deg); opacity: 0.7; }
+        .part-title { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-style: italic; font-size: clamp(2.4rem, 5.4vw, 4.4rem); line-height: 1.05; margin-bottom: 22px; }
+        .part-blurb { font-size: 1.05rem; line-height: 1.75; opacity: 0.86; max-width: 560px; margin: 0 auto; }
+
+        /* ===== Pull-quote / journal block ===== */
+        .pull-quote { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1.2rem, 1.9vw, 1.55rem); line-height: 1.5; padding: 20px 26px; border-left: 3px solid var(--burgundy); border-right: 3px solid var(--burgundy); margin: 22px 0; }
+        .slide--ink .pull-quote { border-color: var(--gold); }
+        .pull-quote cite { display: block; font-style: normal; font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.65; margin-top: 12px; font-family: 'Inter', sans-serif; }
+
+        /* Journal / margin-note */
+        .marginalia { font-family: 'Cormorant Garamond', serif; font-style: italic; padding: 16px 20px; background: rgba(182,138,60,0.08); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; margin: 18px 0; font-size: 1.05rem; line-height: 1.55; }
+        .slide--ink .marginalia { background: rgba(217,180,92,0.10); }
+        .marginalia .mar-label { display: block; font-family: 'Inter', sans-serif; font-style: normal; font-size: 0.68rem; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; color: var(--gold); margin-bottom: 6px; }
+
+        /* ===== Lists ===== */
+        .slide-list { list-style: none; margin: 14px 0 18px; }
+        .slide-list li { padding: 9px 0 9px 26px; position: relative; font-size: 0.98rem; line-height: 1.65; }
+        .slide-list li::before { content: '§'; position: absolute; left: 0; top: 10px; color: var(--gold); font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 1rem; }
+        .slide--ink .slide-list li::before { color: var(--gold-light); }
+
+        /* ===== Tables (book style) ===== */
+        .slide-table { width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 0.9rem; }
+        .slide-table th { padding: 12px 14px; text-align: left; font-weight: 700; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; border-bottom: 2px solid currentColor; opacity: 0.95; font-family: 'Inter', sans-serif; }
+        .slide-table td { padding: 13px 14px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+        .slide--ink .slide-table td { border-bottom-color: var(--rule-dark); }
+        .slide-table tr:last-child td { border-bottom: none; }
+
+        /* ===== Two columns ===== */
+        .two-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; margin: 20px 0; }
+        @media (max-width: 900px) { .two-columns { grid-template-columns: 1fr; gap: 20px; } }
+
+        /* Book spread divider (centered binding line) */
+        .spread-binding { position: relative; }
+        .spread-binding::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: linear-gradient(180deg, transparent, currentColor, transparent); opacity: 0.18; }
+        @media (max-width: 900px) { .spread-binding::before { display: none; } }
+
+        /* ===== Stat cards ===== */
+        .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 18px; margin: 22px 0; }
+        .stat-card { background: rgba(11,26,36,0.04); border: 1px solid var(--rule); border-radius: 4px; padding: 22px 18px; text-align: center; position: relative; }
+        .slide--ink .stat-card { background: rgba(246,239,221,0.04); border-color: var(--rule-dark); }
+        .stat-card::before { content: ''; position: absolute; top: -1px; left: 18px; right: 18px; height: 2px; background: var(--gold); }
+        .stat-number { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 700; line-height: 1; margin-bottom: 8px; color: var(--burgundy); }
+        .slide--ink .stat-number { color: var(--gold-light); }
+        .stat-label { font-size: 0.78rem; opacity: 0.78; line-height: 1.4; letter-spacing: 0.3px; }
+
+        /* ===== Buttons & inputs (activity) ===== */
+        .score-row { display: flex; gap: 7px; margin-top: 10px; flex-wrap: wrap; }
+        .score-btn { padding: 6px 14px; border-radius: 4px; border: 1px solid; font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease; font-family: inherit; letter-spacing: 0.3px; background: transparent; }
+        .btn-yes { border-color: rgba(70,182,70,0.45); color: rgba(40,140,40,0.95); }
+        .btn-yes:hover, .btn-yes.btn-active { background: var(--color-primary); border-color: var(--color-primary); color: white; box-shadow: 0 2px 8px rgba(70,182,70,0.35); }
+        .btn-maybe { border-color: rgba(230,126,34,0.45); color: rgba(180,90,15,0.95); }
+        .btn-maybe:hover, .btn-maybe.btn-active { background: #E67E22; border-color: #E67E22; color: white; box-shadow: 0 2px 8px rgba(230,126,34,0.35); }
+        .btn-no { border-color: rgba(231,76,60,0.45); color: rgba(180,50,40,0.95); }
+        .btn-no:hover, .btn-no.btn-active { background: #E74C3C; border-color: #E74C3C; color: white; box-shadow: 0 2px 8px rgba(231,76,60,0.35); }
+        .slide--ink .btn-yes { color: rgba(140,220,140,0.95); border-color: rgba(70,182,70,0.55); }
+        .slide--ink .btn-maybe { color: rgba(240,170,90,0.95); border-color: rgba(230,126,34,0.55); }
+        .slide--ink .btn-no { color: rgba(240,130,120,0.95); border-color: rgba(231,76,60,0.55); }
+
+        /* Worksheet item (book-style) */
+        .ws-item { padding: 14px 16px; background: rgba(11,26,36,0.03); border-left: 3px solid var(--gold); border-radius: 0 6px 6px 0; margin-bottom: 9px; position: relative; }
+        .slide--ink .ws-item { background: rgba(246,239,221,0.04); }
+        .ws-item .ws-num { display: inline-block; min-width: 28px; height: 28px; line-height: 28px; text-align: center; background: var(--ink-dark); color: var(--paper-cream); border-radius: 4px; font-weight: 700; font-size: 0.82rem; margin-right: 10px; font-family: 'Cormorant Garamond', serif; }
+        .slide--ink .ws-item .ws-num { background: var(--gold); color: var(--ink-dark); }
+        .ws-title { font-weight: 700; font-size: 0.98rem; display: inline-block; vertical-align: middle; }
+        .ws-text { font-size: 0.88rem; opacity: 0.82; line-height: 1.55; margin-top: 6px; padding-left: 38px; }
+
+        /* Section score footer */
+        .ssf { display: flex; align-items: center; gap: 11px; padding: 11px 16px; background: rgba(182,138,60,0.10); border-radius: 4px; border: 1px solid rgba(182,138,60,0.25); margin-top: 16px; }
+        .ssf-label { font-size: 0.78rem; font-weight: 700; color: var(--burgundy); min-width: 130px; white-space: nowrap; text-transform: uppercase; letter-spacing: 1px; }
+        .slide--ink .ssf-label { color: var(--gold-light); }
+        .ssf-track { flex: 1; height: 6px; background: rgba(11,26,36,0.10); border-radius: 3px; overflow: hidden; }
+        .slide--ink .ssf-track { background: rgba(246,239,221,0.10); }
+        .ssf-fill { height: 100%; background: var(--color-primary); border-radius: 3px; width: 0%; transition: width 0.5s ease, background 0.3s ease; }
+        .ssf-count { font-size: 0.85rem; font-weight: 700; color: var(--burgundy); white-space: nowrap; font-variant-numeric: tabular-nums; }
+        .slide--ink .ssf-count { color: var(--gold-light); }
+        .ssf-count em { font-style: normal; opacity: 0.5; }
+
+        /* ===== Gauge (readiness) ===== */
+        .gauge-wrap { display: flex; flex-direction: column; align-items: center; }
+        .gauge-svg { width: 100%; max-width: 280px; }
+        .gauge-rating { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 700; letter-spacing: 0.5px; margin-top: -10px; transition: color 0.4s; color: rgba(11,26,36,0.30); font-style: italic; }
+        .slide--ink .gauge-rating { color: rgba(246,239,221,0.30); }
+        .gauge-hint { font-size: 0.78rem; opacity: 0.55; margin-top: 6px; text-align: center; }
+
+        /* ROI Calculator */
+        .calc-box { background: rgba(11,26,36,0.04); border: 1px solid var(--rule); border-radius: 6px; padding: 22px 24px; margin: 18px 0; }
+        .slide--ink .calc-box { background: rgba(246,239,221,0.04); border-color: var(--rule-dark); }
+        .calc-row { display: grid; grid-template-columns: 1.3fr 1fr; gap: 14px; align-items: center; margin-bottom: 13px; }
+        .calc-row label { font-size: 0.92rem; font-weight: 500; line-height: 1.35; }
+        .calc-row label small { display: block; font-size: 0.78rem; opacity: 0.65; font-weight: 400; margin-top: 2px; font-family: 'Cormorant Garamond', serif; font-style: italic; }
+        .calc-input { width: 100%; padding: 9px 12px; border: 1px solid var(--rule); border-radius: 4px; background: rgba(255,255,255,0.5); color: inherit; font-family: inherit; font-size: 0.95rem; font-variant-numeric: tabular-nums; }
+        .slide--ink .calc-input { background: rgba(0,0,0,0.30); border-color: var(--rule-dark); color: var(--paper-cream); }
+        .calc-input:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
+        .calc-results { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin-top: 18px; padding-top: 18px; border-top: 1px dashed var(--rule); }
+        .slide--ink .calc-results { border-top-color: var(--rule-dark); }
+        .calc-result { text-align: center; padding: 14px 10px; background: rgba(70,182,70,0.08); border-radius: 4px; border: 1px solid rgba(70,182,70,0.18); }
+        .calc-result-value { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 700; color: var(--burgundy); line-height: 1; }
+        .slide--ink .calc-result-value { color: var(--gold-light); }
+        .calc-result-label { font-size: 0.72rem; opacity: 0.75; text-transform: uppercase; letter-spacing: 1.2px; margin-top: 6px; }
+
+        /* Timeline (rollout) */
+        .timeline { position: relative; padding-left: 38px; margin: 24px 0; }
+        .timeline::before { content: ''; position: absolute; left: 12px; top: 5px; bottom: 5px; width: 2px; background: linear-gradient(180deg, var(--gold), var(--burgundy)); border-radius: 2px; opacity: 0.85; }
+        .slide--ink .timeline::before { background: linear-gradient(180deg, var(--gold-light), var(--color-primary)); }
+        .timeline-item { position: relative; padding-bottom: 22px; }
+        .timeline-item:last-child { padding-bottom: 0; }
+        .timeline-item::before { content: ''; position: absolute; left: -32px; top: 8px; width: 12px; height: 12px; background: var(--paper-cream); border: 2px solid var(--gold); border-radius: 50%; box-shadow: 0 0 0 3px rgba(182,138,60,0.18); }
+        .slide--ink .timeline-item::before { background: var(--ink-dark); }
+        .timeline-item.done::before { background: var(--color-primary); border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(70,182,70,0.30); }
+        .timeline-title { font-weight: 700; font-size: 1.02rem; margin-bottom: 5px; color: var(--burgundy); font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; }
+        .slide--ink .timeline-title { color: var(--gold-light); }
+        .timeline-text { font-size: 0.9rem; opacity: 0.88; line-height: 1.55; }
+        .timeline-check { margin-top: 8px; }
+        .check-pill { display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border: 1px solid var(--rule); border-radius: 50px; font-size: 0.76rem; cursor: pointer; transition: all 0.2s; font-family: inherit; font-weight: 500; background: transparent; color: inherit; }
+        .slide--ink .check-pill { border-color: var(--rule-dark); }
+        .check-pill:hover { background: rgba(70,182,70,0.10); border-color: var(--color-primary); }
+        .check-pill.active { background: var(--color-primary); border-color: var(--color-primary); color: white; }
+        .check-pill svg { width: 12px; height: 12px; }
+
+        /* Industry tabs */
+        .industry-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 22px; }
+        .industry-tab { padding: 9px 18px; border: 1px solid var(--rule); border-radius: 4px; cursor: pointer; font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-style: italic; transition: all 0.2s; background: transparent; color: inherit; }
+        .slide--ink .industry-tab { border-color: var(--rule-dark); }
+        .industry-tab:hover { background: rgba(182,138,60,0.10); }
+        .industry-tab.active { background: var(--burgundy); color: var(--paper-cream); border-color: var(--burgundy); }
+        .slide--ink .industry-tab.active { background: var(--gold); color: var(--ink-dark); border-color: var(--gold); }
+        .industry-pane { display: none; }
+        .industry-pane.active { display: block; animation: fadePane 0.4s ease; }
+        @keyframes fadePane { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Sliders (Build vs Buy) */
+        .slider-row { display: grid; grid-template-columns: 1.1fr 2fr 0.5fr; gap: 14px; align-items: center; margin-bottom: 16px; }
+        .slider-row label { font-size: 0.92rem; font-weight: 600; }
+        .slider-row label small { display: block; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.85rem; opacity: 0.7; font-weight: 400; }
+        .range-input { -webkit-appearance: none; appearance: none; width: 100%; height: 5px; border-radius: 3px; background: rgba(182,138,60,0.30); outline: none; }
+        .slide--ink .range-input { background: rgba(217,180,92,0.30); }
+        .range-input::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 20px; height: 20px; border-radius: 50%; background: var(--burgundy); cursor: pointer; border: 3px solid var(--paper-cream); box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        .slide--ink .range-input::-webkit-slider-thumb { background: var(--gold); border-color: var(--ink-dark); }
+        .range-input::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: var(--burgundy); cursor: pointer; border: 3px solid var(--paper-cream); }
+        .range-val { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 1.2rem; text-align: center; color: var(--burgundy); font-variant-numeric: tabular-nums; }
+        .slide--ink .range-val { color: var(--gold-light); }
+        .verdict { padding: 18px 22px; margin-top: 18px; border-radius: 4px; border: 1px solid; text-align: center; transition: all 0.4s; }
+        .verdict-title { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-style: italic; font-size: 1.8rem; line-height: 1; margin-bottom: 8px; }
+        .verdict-text { font-size: 0.9rem; line-height: 1.55; opacity: 0.9; }
+        .verdict.v-buy { background: rgba(0,169,186,0.10); border-color: rgba(0,169,186,0.4); color: var(--color-secondary); }
+        .verdict.v-build { background: rgba(139,46,46,0.12); border-color: rgba(139,46,46,0.4); }
+        .slide--paper .verdict.v-build { color: var(--burgundy); }
+        .slide--ink .verdict.v-build { color: #e58a8a; }
+        .verdict.v-orch { background: rgba(70,182,70,0.10); border-color: rgba(70,182,70,0.4); }
+        .slide--paper .verdict.v-orch { color: var(--color-primary-dark); }
+        .slide--ink .verdict.v-orch { color: #88e088; }
+
+        /* Failure mode card */
+        .fm-card { padding: 16px 20px; background: rgba(11,26,36,0.04); border: 1px solid var(--rule); border-left: 4px solid var(--burgundy); border-radius: 0 6px 6px 0; margin-bottom: 14px; }
+        .slide--ink .fm-card { background: rgba(246,239,221,0.04); border-color: var(--rule-dark); border-left-color: var(--gold); }
+        .fm-title { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-style: italic; font-size: 1.25rem; margin-bottom: 4px; color: var(--burgundy); }
+        .slide--ink .fm-title { color: var(--gold-light); }
+        .fm-desc { font-size: 0.88rem; opacity: 0.85; line-height: 1.55; margin-bottom: 10px; }
+        .fm-question { font-size: 0.88rem; margin-bottom: 4px; font-weight: 500; }
+        .fm-risk { display: inline-block; padding: 4px 12px; border-radius: 50px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 8px; opacity: 0; transition: opacity 0.3s; }
+        .fm-risk.show { opacity: 1; }
+        .fm-risk.r-low { background: rgba(70,182,70,0.15); color: #2a8a2a; }
+        .fm-risk.r-med { background: rgba(230,126,34,0.15); color: #b06010; }
+        .fm-risk.r-high { background: rgba(231,76,60,0.15); color: #b03030; }
+        .slide--ink .fm-risk.r-low { color: #88e088; }
+        .slide--ink .fm-risk.r-med { color: #f0aa5a; }
+        .slide--ink .fm-risk.r-high { color: #f08278; }
+
+        /* Reset button */
+        .reset-btn { background: none; border: 1px solid currentColor; padding: 6px 14px; border-radius: 50px; cursor: pointer; font-size: 0.74rem; font-family: inherit; font-weight: 600; letter-spacing: 1px; opacity: 0.45; transition: all 0.2s; color: inherit; text-transform: uppercase; }
+        .reset-btn:hover { opacity: 1; border-color: #E74C3C; color: #E74C3C; }
+
+        /* Icon grid */
+        .icon-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 22px 0; }
+        .icon-box { background: rgba(11,26,36,0.04); border: 1px solid var(--rule); border-radius: 4px; padding: 22px 18px; position: relative; transition: all 0.3s; }
+        .slide--ink .icon-box { background: rgba(246,239,221,0.04); border-color: var(--rule-dark); }
+        .icon-box::before { content: ''; position: absolute; top: -1px; left: 18px; width: 36px; height: 2px; background: var(--gold); }
+        .icon-box:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(11,26,36,0.10); }
+        .icon-box svg { width: 32px; height: 32px; margin-bottom: 10px; }
+        .icon-box-title { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 1.2rem; margin-bottom: 6px; color: var(--burgundy); font-style: italic; }
+        .slide--ink .icon-box-title { color: var(--gold-light); }
+        .icon-box-text { font-size: 0.86rem; opacity: 0.82; line-height: 1.55; }
+
+        /* TOC */
+        .toc-list { list-style: none; margin: 24px 0; }
+        .toc-list li { display: flex; align-items: baseline; padding: 9px 0; border-bottom: 1px dotted var(--rule); font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; cursor: pointer; transition: padding 0.2s; }
+        .toc-list li:hover { padding-left: 8px; color: var(--burgundy); }
+        .slide--ink .toc-list li:hover { color: var(--gold-light); }
+        .slide--ink .toc-list li { border-bottom-color: var(--rule-dark); }
+        .toc-part { font-style: italic; font-weight: 600; font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; opacity: 0.55; min-width: 70px; font-family: 'Inter', sans-serif; }
+        .toc-title { flex: 1; padding: 0 12px; }
+        .toc-page { font-variant-numeric: tabular-nums; opacity: 0.5; }
+
+        /* Hero badge */
+        .cover-badge { display: inline-block; padding: 8px 22px; border: 1px solid var(--gold); color: var(--gold-light); font-size: 0.72rem; letter-spacing: 4px; text-transform: uppercase; font-weight: 700; margin-bottom: 32px; }
+        .cover-flourish { display: flex; align-items: center; justify-content: center; gap: 22px; margin: 30px 0; }
+        .cover-flourish .cf-rule { flex: 0 0 90px; height: 1px; background: var(--gold); opacity: 0.7; }
+        .cover-flourish .cf-mark { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--gold-light); font-size: 1.3rem; }
+
+        /* Nav */
+        .progress-container { position: fixed; top: 0; left: 0; right: 0; height: 2px; background: rgba(0,0,0,0.3); z-index: 101; }
+        .progress-bar { height: 100%; background: linear-gradient(90deg, var(--gold), var(--color-primary)); transition: width 0.8s cubic-bezier(0.22,1,0.36,1); position: relative; }
+        .progress-bar::after { content: ''; position: absolute; right: 0; top: -1px; width: 5px; height: 5px; background: var(--gold-light); border-radius: 50%; box-shadow: 0 0 12px var(--gold); }
+        .nav-controls { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 0; z-index: 100; background: rgba(11,26,36,0.92); padding: 6px; border-radius: 50px; backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid rgba(246,239,221,0.12); box-shadow: 0 8px 32px rgba(0,0,0,0.45); }
+        .nav-btn { width: 38px; height: 38px; border: none; background: rgba(246,239,221,0.06); color: rgba(246,239,221,0.85); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; }
+        .nav-btn:hover { background: rgba(246,239,221,0.15); color: var(--paper-cream); }
+        .nav-btn:active { transform: scale(0.92); }
+        .nav-btn:disabled { opacity: 0.22; cursor: not-allowed; transform: none; }
+        .nav-info { display: flex; align-items: center; gap: 10px; padding: 0 16px; color: var(--paper-cream); }
+        .nav-chapter { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.95rem; color: var(--gold-light); white-space: nowrap; }
+        .nav-divider { color: rgba(246,239,221,0.25); font-size: 0.7rem; }
+        .slide-counter { font-size: 0.78rem; color: rgba(246,239,221,0.55); white-space: nowrap; font-variant-numeric: tabular-nums; font-family: 'Cormorant Garamond', serif; }
+
+        /* Page-turn animation: gentle 3D entry on active */
+        .slide-content > * { opacity: 0; transform: translateY(12px); }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+        .slide.active .slide-content > * { animation: fadeInUp 0.55s cubic-bezier(0.22,1,0.36,1) forwards; }
+        .slide.active .slide-content > *:nth-child(1) { animation-delay: 0.10s; }
+        .slide.active .slide-content > *:nth-child(2) { animation-delay: 0.16s; }
+        .slide.active .slide-content > *:nth-child(3) { animation-delay: 0.22s; }
+        .slide.active .slide-content > *:nth-child(4) { animation-delay: 0.28s; }
+        .slide.active .slide-content > *:nth-child(5) { animation-delay: 0.34s; }
+        .slide.active .slide-content > *:nth-child(6) { animation-delay: 0.40s; }
+        .slide.active .slide-content > *:nth-child(7) { animation-delay: 0.46s; }
+        .slide.active .slide-content > *:nth-child(8) { animation-delay: 0.52s; }
+
+        /* While a turn is happening, give the slide a paper-flip 3D cue */
+        .slider-track.is-turning .slide { transition: filter 0.45s ease; }
+        .slider-track.is-turning .slide.active { filter: brightness(1); }
+
+        @media (max-width: 768px) {
+            .slide { padding: 60px 30px 100px; }
+            .page-header, .page-footer { left: 30px; right: 30px; }
+            .nav-btn { width: 34px; height: 34px; }
+            .nav-info { padding: 0 10px; gap: 7px; }
+            .calc-row { grid-template-columns: 1fr; }
+            .slider-row { grid-template-columns: 1fr; gap: 8px; }
+            .chapter-ribbon { font-size: 0.6rem; padding: 7px 12px; }
+        }
+    </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W7QL5263"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
+
+<div class="stage">
+<div class="slider-container">
+<div class="slider-track" id="sliderTrack">
+
+<!-- ========== 1. COVER ========== -->
+<div class="slide slide--cover active">
+    <div class="slide-content" style="text-align:center">
+        <span class="cover-badge">A Playbook for the Autonomous Enterprise</span>
+        <h1 class="slide-title slide-title--hero">The AI Agent<br>Playbook</h1>
+        <div class="cover-flourish">
+            <div class="cf-rule"></div>
+            <div class="cf-mark">&#10086;</div>
+            <div class="cf-rule"></div>
+        </div>
+        <p class="slide-subtitle" style="font-size:1.3rem;max-width:640px;margin:0 auto 28px">For businesses ready to move from <em>experimental</em> AI to operational infrastructure that drives profitability, growth, and durable competitive advantage.</p>
+        <div style="margin-top:36px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.95rem;opacity:0.75;letter-spacing:1px">Prepared by Ari Vivekanandarajah</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.85rem;opacity:0.55;margin-top:6px">First Edition · April 2026</div>
+    </div>
+</div>
+
+<!-- ========== 2. READINESS SELF-ASSESSMENT ========== -->
+<div class="slide slide--paper">
+    <div class="page-header">
+        <span class="ph-left">An Invitation</span>
+        <span>Self-Assessment</span>
+    </div>
+    <div class="chapter-ribbon">Start Here</div>
+    <div class="slide-content">
+        <div class="eyebrow"><span class="eyebrow-num">i</span> Open the Book</div>
+        <h2 class="slide-title">Is your business <em style="font-family:'Cormorant Garamond',serif">ready</em> for AI agents?</h2>
+        <p class="slide-text drop-cap">Answer these ten honestly. Mark each <strong>Yes</strong>, <strong>Maybe</strong>, or <strong>No</strong>: your readiness score updates live in the gauge below. The questions are not about technology; they are about the operational and organisational signals that determine whether agentic AI will actually deliver ROI in your business.</p>
+        <div class="two-columns" style="gap:24px">
+            <div>
+                <div class="ws-item"><span class="ws-num">1</span><span class="ws-title">Can you name three repetitive tasks that cost you 5+ hours each week?</span><div class="score-row" data-rq="1"><button class="score-btn btn-yes" data-score="2">Yes</button><button class="score-btn btn-maybe" data-score="1">Maybe</button><button class="score-btn btn-no" data-score="0">No</button></div></div>
+                <div class="ws-item"><span class="ws-num">2</span><span class="ws-title">Do your core systems (CRM, email, billing) have APIs or integration access?</span><div class="score-row" data-rq="2"><button class="score-btn btn-yes" data-score="2">Yes</button><button class="score-btn btn-maybe" data-score="1">Maybe</button><button class="score-btn btn-no" data-score="0">No</button></div></div>
+                <div class="ws-item"><span class="ws-num">3</span><span class="ws-title">Is your customer data clean enough to act on without human review?</span><div class="score-row" data-rq="3"><button class="score-btn btn-yes" data-score="2">Yes</button><button class="score-btn btn-maybe" data-score="1">Maybe</button><button class="score-btn btn-no" data-score="0">No</button></div></div>
+                <div class="ws-item"><span class="ws-num">4</span><span class="ws-title">Have you defined measurable baselines for the processes you want to automate?</span><div class="score-row" data-rq="4"><button class="score-btn btn-yes" data-score="2">Yes</button><button class="score-btn btn-maybe" data-score="1">Maybe</button><button class="score-btn btn-no" data-score="0">No</button></div></div>
+                <div class="ws-item"><span class="ws-num">5</span><span class="ws-title">Is leadership prepared to fund a 6&ndash;12 month deployment journey?</span><div class="score-row" data-rq="5"><button class="score-btn btn-yes" data-score="2">Yes</button><button class="score-btn btn-maybe" data-score="1">Maybe</button><button class="score-btn btn-no" data-score="0">No</button></div></div>
+            </div>
+            <div>
+                <div class="ws-item"><span class="ws-num">6</span><span class="ws-title">Can you tolerate occasional agent errors with human-in-loop safeguards?</span><div class="score-row" data-rq="6"><button class="score-btn btn-yes" data-score="2">Yes</button><button class="score-btn btn-maybe" data-score="1">Maybe</button><button class="score-btn btn-no" data-score="0">No</button></div></div>
+                <div class="ws-item"><span class="ws-num">7</span><span class="ws-title">Does your team have the appetite to learn prompt engineering basics?</span><div class="score-row" data-rq="7"><button class="score-btn btn-yes" data-score="2">Yes</button><button class="score-btn btn-maybe" data-score="1">Maybe</button><button class="score-btn btn-no" data-score="0">No</button></div></div>
+                <div class="ws-item"><span class="ws-num">8</span><span class="ws-title">Are your data privacy and compliance obligations clearly documented?</span><div class="score-row" data-rq="8"><button class="score-btn btn-yes" data-score="2">Yes</button><button class="score-btn btn-maybe" data-score="1">Maybe</button><button class="score-btn btn-no" data-score="0">No</button></div></div>
+                <div class="ws-item"><span class="ws-num">9</span><span class="ws-title">Do you have ownership of the process you want to automate end-to-end?</span><div class="score-row" data-rq="9"><button class="score-btn btn-yes" data-score="2">Yes</button><button class="score-btn btn-maybe" data-score="1">Maybe</button><button class="score-btn btn-no" data-score="0">No</button></div></div>
+                <div class="ws-item"><span class="ws-num">10</span><span class="ws-title">Are you willing to treat AI agents as digital workers, not magic boxes?</span><div class="score-row" data-rq="10"><button class="score-btn btn-yes" data-score="2">Yes</button><button class="score-btn btn-maybe" data-score="1">Maybe</button><button class="score-btn btn-no" data-score="0">No</button></div></div>
+            </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:28px;margin-top:22px;align-items:center" id="readinessPanel">
+            <div class="gauge-wrap">
+                <svg class="gauge-svg" viewBox="0 0 240 150">
+                    <path d="M 20 120 A 100 100 0 0 1 220 120" fill="none" stroke="rgba(11,26,36,0.12)" stroke-width="14" stroke-linecap="round"/>
+                    <path id="rGaugeFill" d="M 20 120 A 100 100 0 0 1 20.001 119.999" fill="none" stroke="#46B646" stroke-width="14" stroke-linecap="round"/>
+                    <text x="120" y="108" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="38" font-weight="700" id="rGaugeScore" fill="#0B1A24">0</text>
+                    <text x="120" y="132" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" letter-spacing="2" fill="rgba(11,26,36,0.55)">OF 20</text>
+                </svg>
+                <div class="gauge-rating" id="rRating">-</div>
+                <div class="gauge-hint">Readiness Score</div>
+            </div>
+            <div>
+                <div class="marginalia">
+                    <span class="mar-label">How to read your score</span>
+                    <strong>16&ndash;20 &middot; Agent-Ready.</strong> You can deploy real automations within 30 days. Skip straight to Part 3.<br>
+                    <strong>11&ndash;15 &middot; Foundation Phase.</strong> Spend a fortnight cleaning data and documenting one process, then begin.<br>
+                    <strong>6&ndash;10 &middot; Pre-Agent Work.</strong> Address integrations and governance before you spend a dollar on agent software.<br>
+                    <strong>0&ndash;5 &middot; Build the Plumbing First.</strong> Use this playbook to plan, not to deploy.
+                </div>
+                <div style="text-align:right"><button class="reset-btn" id="resetReadiness">Reset score</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="page-footer"><div class="pf-rule"></div><span class="pf-num">2</span><div class="pf-rule"></div></div>
+</div>
+
+<!-- ========== 3. TABLE OF CONTENTS ========== -->
+<div class="slide slide--paper">
+    <div class="page-header">
+        <span class="ph-left">Contents</span>
+        <span>The Twelve Parts</span>
+    </div>
+    <div class="slide-content">
+        <div class="eyebrow"><span class="eyebrow-num">ii</span> Table of Contents</div>
+        <h2 class="slide-title">The Twelve Parts</h2>
+        <p class="slide-subtitle">A journey from strategic case to operational reality, turn to any chapter at will.</p>
+        <ul class="toc-list" id="tocList">
+            <li data-target="4"><span class="toc-part">Part I</span><span class="toc-title">The Business Case for AI Agents</span><span class="toc-page">4</span></li>
+            <li data-target="9"><span class="toc-part">Part II</span><span class="toc-title">The Asset Inventory: Mapping Business Functions</span><span class="toc-page">9</span></li>
+            <li data-target="14"><span class="toc-part">Part III</span><span class="toc-title">The Implementation Playbook</span><span class="toc-page">14</span></li>
+            <li data-target="19"><span class="toc-part">Part IV</span><span class="toc-title">The Measurement Framework &amp; ROI Calculator</span><span class="toc-page">19</span></li>
+            <li data-target="21"><span class="toc-part">Part V</span><span class="toc-title">The Scaling Roadmap</span><span class="toc-page">21</span></li>
+            <li data-target="23"><span class="toc-part">Part VI</span><span class="toc-title">Industry-Specific Playbooks</span><span class="toc-page">23</span></li>
+            <li data-target="24"><span class="toc-part">Part VII</span><span class="toc-title">Vendor Landscape &amp; Platform Selection</span><span class="toc-page">24</span></li>
+            <li data-target="26"><span class="toc-part">Part VIII</span><span class="toc-title">AI Agent Design Principles</span><span class="toc-page">26</span></li>
+            <li data-target="27"><span class="toc-part">Part IX</span><span class="toc-title">Ethics and Governance</span><span class="toc-page">27</span></li>
+            <li data-target="28"><span class="toc-part">Part X</span><span class="toc-title">The Agentic Data Strategy</span><span class="toc-page">28</span></li>
+            <li data-target="29"><span class="toc-part">Part XI</span><span class="toc-title">Financial Modelling for AI Agents</span><span class="toc-page">29</span></li>
+            <li data-target="30"><span class="toc-part">Part XII</span><span class="toc-title">Common Failure Modes: A Risk Check</span><span class="toc-page">30</span></li>
+        </ul>
+    </div>
+    <div class="page-footer"><div class="pf-rule"></div><span class="pf-num">3</span><div class="pf-rule"></div></div>
+</div>
+
+<!-- ========== 4. PART I OPENER ========== -->
+<div class="slide slide--ink">
+    <div class="slide-content">
+        <div class="part-page">
+            <div class="part-num">Part&nbsp;the&nbsp;First</div>
+            <div class="part-ornament"><div class="po-rule"></div><div class="po-mark"></div><div class="po-rule"></div></div>
+            <h2 class="part-title">The Business<br>Case for AI Agents</h2>
+            <div class="part-ornament"><div class="po-rule"></div><div class="po-mark"></div><div class="po-rule"></div></div>
+            <p class="part-blurb"><em>Why agentic AI is a profitability lever, not merely a productivity tool, and the competitive cost of falling behind.</em></p>
+        </div>
+    </div>
+    <div class="page-footer"><div class="pf-rule"></div><span class="pf-num">4</span><div class="pf-rule"></div></div>
+</div>
+
+<!-- ========== 5. The Shift to Agentic AI ========== -->
+<div class="slide slide--paper">
+    <div class="page-header">
+        <span class="ph-left">Part I &middot; 1.1</span>
+        <span>The Shift to Agentic AI</span>
+    </div>
+    <div class="chapter-ribbon">Chapter 1</div>
+    <div class="slide-content">
+        <div class="eyebrow"><span class="eyebrow-num">i</span> Chapter One</div>
+        <h2 class="slide-title">From Generative <em>to</em> Agentic</h2>
+        <p class="slide-text drop-cap">Standard generative AI is reactive, it waits for a human command to summarise, write, or answer. AI agents are <strong>proactive</strong>. They connect to business systems via APIs, make autonomous decisions based on real-time data, and execute multi-step workflows without constant human intervention. The shift from "AI as an assistant" to "AI as a digital worker" fundamentally rewires how businesses think about technology investment, workforce planning, and risk.</p>
+        <div class="stat-grid">
+            <div class="stat-card"><div class="stat-number">40%</div><div class="stat-label">of enterprise apps will include task-specific agents by 2026, up from less than 5% in 2025 (Gartner)</div></div>
+            <div class="stat-card"><div class="stat-number">1,445%</div><div class="stat-label">surge in enterprise inquiries about multi-agent systems between Q1 2024 and Q2 2025</div></div>
+            <div class="stat-card"><div class="stat-number">17%</div><div class="stat-label">of total AI value already attributable to agents in 2025, projected to reach 29% by 2028 (BCG)</div></div>
+            <div class="stat-card"><div class="stat-number">88%</div><div class="stat-label">of agentic AI early adopters already report positive ROI on their generative AI investments</div></div>
+        </div>
+        <div class="pull-quote">Agentic AI isn't a future concept, it's already reshaping workflows and redefining roles. Companies should view it as the next step in scaling AI, not as the starting point.<cite>Amanda Luther, BCG</cite></div>
+    </div>
+    <div class="page-footer"><div class="pf-rule"></div><span class="pf-num">5</span><div class="pf-rule"></div></div>
+</div>
+
+<!-- ========== 6. Profit-per-Employee & Value Gap ========== -->
+<div class="slide slide--ink">
+    <div class="page-header">
+        <span class="ph-left">Part I &middot; 1.2 &ndash; 1.3</span>
+        <span>The Workforce Multiplier</span>
+    </div>
+    <div class="chapter-ribbon">Chapter 1</div>
+    <div class="slide-content">
+        <div class="eyebrow"><span class="eyebrow-num">ii</span> The Compounding Gap</div>
+        <h2 class="slide-title">Profit per Employee, <em>elevated</em></h2>
+        <p class="slide-text drop-cap">For lean and scaling businesses, the most critical metric is revenue per headcount. AI agents are the ultimate workforce multiplier, when a single knowledge worker is augmented by a team of specialised agents, output increases exponentially. This is not about replacing the workforce; it is about <strong>elevating it</strong> from drudgery to strategic work.</p>
+        <div class="two-columns spread-binding">
+            <div>
+                <h3 class="display-serif" style="font-size:1.3rem;margin-bottom:10px;color:var(--gold-light);font-style:italic">The Multiplier Effect</h3>
+                <ul class="slide-list">
+                    <li>Customer support agents using AI tools manage <strong>13.8% more inquiries</strong> per hour</li>
+                    <li>Workers using generative AI are <strong>33% more productive</strong> each hour they use it</li>
+                    <li>AI-using sales teams report a <strong>15% boost</strong> in conversion rates</li>
+                    <li>Salespeople using AI/ML tools close <strong>45% more deals</strong></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="display-serif" style="font-size:1.3rem;margin-bottom:10px;color:var(--gold-light);font-style:italic">The Value Gap Widens</h3>
+                <ul class="slide-list">
+                    <li>Future-built firms plan to spend <strong>2&times; more</strong> on AI than laggards</li>
+                    <li>They expect <strong>2&times; the revenue increase</strong> and 40% greater cost reduction</li>
+                    <li><strong>1.7&times;</strong> revenue growth and <strong>3.6&times;</strong> three-year TSR vs. trailing peers</li>
+                    <li><strong>74%</strong> of organisations report ROI within the first year of deployment</li>
+                </ul>
+            </div>
+        </div>
+        <div class="marginalia">
+            <span class="mar-label">The Cost of Delay</span>
+            Delaying agentic AI does not just mean missing efficiency gains, it means ceding competitive advantage and market share to AI-first competitors who deploy this year. Each quarter without an agent strategy is a quarter your closest competitor is compounding theirs.
+        </div>
+    </div>
+    <div class="page-footer"><div class="pf-rule"></div><span class="pf-num">6</span><div class="pf-rule"></div></div>
+</div>
+
+<!-- ========== 7. Before/After SMB (book spread) ========== -->
+<div class="slide slide--paper">
+    <div class="page-header">
+        <span class="ph-left">Part I &middot; 1.4</span>
+        <span>The SMB Transformation</span>
+    </div>
+    <div class="chapter-ribbon">Chapter 1</div>
+    <div class="slide-content">
+        <div class="eyebrow"><span class="eyebrow-num">iii</span> A Tale of Two Founders</div>
+        <h2 class="slide-title">Before <em>&amp;</em> After <em style="opacity:0.7">a $200/mo agent stack</em></h2>
+        <p class="slide-subtitle">Imagine a boutique accounting firm, a marketing agency, or a specialty consultancy. Both columns describe the same business, one week apart, after deploying three small purpose-built agents.</p>
+        <div class="two-columns spread-binding" style="gap:48px">
+            <div>
+                <h3 class="display-serif" style="font-size:1.5rem;color:var(--burgundy);font-style:italic;margin-bottom:14px">Before</h3>
+                <div class="ws-item" style="border-left-color:#E74C3C;background:rgba(231,76,60,0.06)">
+                    <span class="ws-title">The Inbox Trap</span>
+                    <div class="ws-text" style="padding-left:0;margin-top:4px">2 hours daily manually reading, categorising, and replying to generic emails.</div>
+                </div>
+                <div class="ws-item" style="border-left-color:#E74C3C;background:rgba(231,76,60,0.06)">
+                    <span class="ws-title">The Leaky Funnel</span>
+                    <div class="ws-text" style="padding-left:0;margin-top:4px">Inbound leads sit 6&ndash;12 hours. By the time the founder replies, <strong>40% have contacted a competitor</strong>.</div>
+                </div>
+                <div class="ws-item" style="border-left-color:#E74C3C;background:rgba(231,76,60,0.06)">
+                    <span class="ws-title">The Proposal Bottleneck</span>
+                    <div class="ws-text" style="padding-left:0;margin-top:4px">45 minutes per quote, pulling data from three spreadsheets. Proposals delayed by days.</div>
+                </div>
+            </div>
+            <div>
+                <h3 class="display-serif" style="font-size:1.5rem;color:var(--color-primary-dark);font-style:italic;margin-bottom:14px">After</h3>
+                <div class="ws-item" style="border-left-color:var(--color-primary);background:rgba(70,182,70,0.08)">
+                    <span class="ws-title">Inbox Triaged Automatically</span>
+                    <div class="ws-text" style="padding-left:0;margin-top:4px">Agent reads, categorises, drafts replies for VIP clients, archives noise. Founder spends <strong>15 minutes</strong> reviewing drafts.</div>
+                </div>
+                <div class="ws-item" style="border-left-color:var(--color-primary);background:rgba(70,182,70,0.08)">
+                    <span class="ws-title">5-Minute Lead Response</span>
+                    <div class="ws-text" style="padding-left:0;margin-top:4px">Agent researches the prospect, drafts a hyper-personalised reply addressing their specific need, and sends within <strong>5 minutes</strong>.</div>
+                </div>
+                <div class="ws-item" style="border-left-color:var(--color-primary);background:rgba(70,182,70,0.08)">
+                    <span class="ws-title">Quotes Sent Instantly</span>
+                    <div class="ws-text" style="padding-left:0;margin-top:4px">Agent reads the request, pulls pricing from a connected database, generates a professional PDF and emails it, with zero manual data entry.</div>
+                </div>
+            </div>
+        </div>
+        <div class="pull-quote" style="margin-top:14px">This is not a future concept. This is a highly accessible reality that fundamentally changes the profitability profile of a small business <em>this quarter</em>.</div>
+    </div>
+    <div class="page-footer"><div class="pf-rule"></div><span class="pf-num">7</span><div class="pf-rule"></div></div>
+</div>
+
+<!-- ========== 8. The Economics ========== -->
+<div class="slide slide--ink">
+    <div class="page-header">
+        <span class="ph-left">Part I &middot; 1.5</span>
+        <span>The Economics of Deployment</span>
+    </div>
+    <div class="chapter-ribbon">Chapter 1</div>
+    <div class="slide-content">
+        <div class="eyebrow"><span class="eyebrow-num">iv</span> The Economics</div>
+        <h2 class="slide-title">Where the value <em>concentrates</em></h2>
+        <p class="slide-text drop-cap">The financial case is compelling when viewed through the lens of traditional enterprise automation. Early adopters report substantial returns, often exceeding the ROI of traditional automation projects. Critically, value is not isolated to one department: 70% of AI's potential value concentrates in core business functions, sales and marketing, manufacturing, supply chain, and pricing.</p>
+        <table class="slide-table">
+            <thead><tr><th>Function</th><th>Primary Lever</th><th>Typical Time-to-Value</th></tr></thead>
+            <tbody>
+                <tr><td>Sales &amp; Marketing</td><td>Conversion lift, lead response time</td><td>30&ndash;60 days</td></tr>
+                <tr><td>Customer Support</td><td>Cost deflection, resolution time</td><td>45&ndash;90 days</td></tr>
+                <tr><td>Back-office (Finance, Ops, HR)</td><td>FTE-equivalent savings</td><td>60&ndash;120 days</td></tr>
+                <tr><td>Supply Chain &amp; Inventory</td><td>Holding cost &amp; stockout reduction</td><td>90&ndash;180 days</td></tr>
+                <tr><td>Compliance &amp; Audit</td><td>Cost-of-compliance, fine avoidance</td><td>90&ndash;180 days</td></tr>
+            </tbody>
+        </table>
+        <div class="marginalia">
+            <span class="mar-label">Rule of thumb</span>
+            A successful enterprise deployment should aim for a break-even point within <strong>6 to 12 months</strong>. SMBs deploying $200&ndash;$500/month stacks can break even in 30 days simply by reclaiming founder hours.
+        </div>
+    </div>
+    <div class="page-footer"><div class="pf-rule"></div><span class="pf-num">8</span><div class="pf-rule"></div></div>
+</div>
+
+<!-- ========== 9. PART II OPENER ========== -->
+<div class="slide slide--paper">
+    <div class="slide-content">
+        <div class="part-page">
+            <div class="part-num">Part&nbsp;the&nbsp;Second</div>
+            <div class="part-ornament"><div class="po-rule"></div><div class="po-mark"></div><div class="po-rule"></div></div>
+            <h2 class="part-title">The Asset<br>Inventory</h2>
+            <div class="part-ornament"><div class="po-rule"></div><div class="po-mark"></div><div class="po-rule"></div></div>
+            <p class="part-blurb"><em>A field-guide to where AI agents drive profitability across the four core business engines: revenue generation, cost reduction, customer retention, and decision intelligence.</em></p>
+        </div>
+    </div>
+    <div class="page-footer"><div class="pf-rule"></div><span class="pf-num">9</span><div class="pf-rule"></div></div>
+</div>
+
+<!-- ========== 10. Revenue Generation Assets ========== -->
+<div class="slide slide--ink">
+    <div class="page-header">
+        <span class="ph-left">Part II &middot; 2.1</span>
+        <span>Top-Line Growth</span>
+    </div>
+    <div class="chapter-ribbon">Revenue</div>
+    <div class="slide-content">
+        <div class="eyebrow"><span class="eyebrow-num">i</span> Revenue Generation</div>
+        <h2 class="slide-title">Agents that <em>grow</em> the top line</h2>
+        <p class="slide-text drop-cap">McKinsey estimates that agentic AI will power more than <strong>60% of the increased value</strong> AI generates in marketing and sales. Deploy agents at the top of the funnel and you do not just shorten the sales cycle, you compress it.</p>
+        <div class="icon-grid">
+            <div class="icon-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-light)" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+                <div class="icon-box-title">AI Sales Agents</div>
+                <div class="icon-box-text">Lead enrichment, intent scoring, hyper-personalised outreach. <strong>15% conversion lift</strong>, up to 30% lead conversion uplift, 45% more deals closed.</div>
+            </div>
+            <div class="icon-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-light)" stroke-width="2"><path d="M3 3h18v18H3zM3 9h18M9 21V9"/></svg>
+                <div class="icon-box-title">Upsell &amp; Cross-sell Engines</div>
+                <div class="icon-box-text">Autonomous merchandisers testing combinations and dynamic pricing in real time to maximise AOV and LTV.</div>
+            </div>
+            <div class="icon-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-light)" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                <div class="icon-box-title">Conversational Commerce</div>
+                <div class="icon-box-text">Digital concierges that guide buyers through complex purchases, answer product questions, and actively reduce cart abandonment.</div>
+            </div>
+        </div>
+        <div class="marginalia">
+            <span class="mar-label">SMB shortcut</span>
+            Connect Zapier to your website contact form. When a new inquiry arrives, ChatGPT researches the prospect, drafts a specific follow-up, and leaves it in your drafts folder. Five-minute response time, no sales hire required.
+        </div>
+    </div>
+    <div class="page-footer"><div class="pf-rule"></div><span class="pf-num">10</span><div class="pf-rule"></div></div>
+</div>
+
+<!-- ========== 11. Cost Reduction Assets ========== -->
+<div class="slide slide--paper">
+    <div class="page-header">
+        <span class="ph-left">Part II &middot; 2.2</span>
+        <span>Bottom-Line Protection</span>
+    </div>
+    <div class="chapter-ribbon">Cost</div>
+    <div class="slide-content">
+        <div class="eyebrow"><span class="eyebrow-num">ii</span> Cost Reduction</div>
+        <h2 class="slide-title">Agents that <em>protect</em> margin</h2>
+        <p class="slide-text drop-cap">The fastest path to improved profitability is often through rigorous cost reduction. AI agents excel in environments characterised by high-volume, rules-based tasks, understanding queries, accessing backend systems, and executing actions to resolve issues without human intervention. By 2029, Gartner predicts AI agents will autonomously resolve <strong>80% of common customer service issues</strong>.</p>
+        <div class="two-columns spread-binding">
+            <div>
+                <div class="pull-quote" style="margin-top:0">Klarna's AI assistant handled routine queries across 23 markets in 35+ languages. Resolution time fell from 11 minutes to <strong>under 2 minutes</strong>. Repeat inquiries fell 25%. Estimated $40M USD profit improvement in 2024, equivalent to <strong>700 full-time agents</strong>.<cite>OpenAI &middot; Klarna case study</cite></div>
+            </div>
+            <div>
+                <div class="pull-quote" style="margin-top:0">JPMorgan deployed COiN: 12,000 commercial credit agreements parsed annually, 150 critical data attributes extracted per document, a process that previously consumed <strong>360,000 lawyer-hours</strong> per year. Error rates dropped 80%.<cite>Contract Intelligence at scale</cite></div>
+            </div>
+        </div>
+        <h3 class="display-serif" style="font-size:1.4rem;margin-top:6px;color:var(--burgundy);font-style:italic">Where the wins concentrate</h3>
+        <ul class="slide-list">
+            <li><strong>Customer Support Automation</strong>: tier-1 resolution without escalation</li>
+            <li><strong>Back-office Process Agents</strong>: data entry, invoice processing, reconciliation, reporting</li>
+            <li><strong>HR &amp; Onboarding Agents</strong>: routine HR inquiries, new-hire setup, time-to-productivity</li>
+            <li><strong>Internal Knowledge Retrieval</strong>: replacing "where is that policy doc?" with instant grounded answers</li>
+        </ul>
+    </div>
+    <div class="page-footer"><div class="pf-rule"></div><span class="pf-num">11</span><div class="pf-rule"></div></div>
+</div>
+
+<!-- ========== 12. Retention & Decision Intelligence ========== -->
+<div class="slide slide--ink">
+    <div class="page-header">
+        <span class="ph-left">Part II &middot; 2.3 &ndash; 2.4</span>
+        <span>Retention &amp; Decisions</span>
+    </div>
+    <div class="chapter-ribbon">Retention</div>
+    <div class="slide-content">
+        <div class="eyebrow"><span class="eyebrow-num">iii</span> Retention &amp; Decisions</div>
+        <h2 class="slide-title">Agents that <em>compound</em> value</h2>
+        <p class="slide-text drop-cap">Acquiring a new customer is significantly more expensive than retaining an existing one. Better decisions made faster lead to compounding profitability. Agents are uniquely positioned to monitor behavioural signals, identify at-risk customers before they cancel, and orchestrate complex operational decisions across data sources humans simply cannot read fast enough.</p>
+        <div class="icon-grid">
+            <div class="icon-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-light)" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                <div class="icon-box-title">Churn Prediction</div>
+                <div class="icon-box-text">Behavioural signals flagged before cancellation. Automating just <strong>20% of support tickets</strong> can lift repeat purchase rates by <strong>8 points</strong> within 28 days.</div>
+            </div>
+            <div class="icon-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-light)" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1v-6h3zM3 19a2 2 0 0 0 2 2h1v-6H3z"/></svg>
+                <div class="icon-box-title">Voice-of-Customer</div>
+                <div class="icon-box-text">Continuously synthesise reviews, support tickets, social, and surveys. Surface systemic issues before they cost revenue.</div>
+            </div>
+            <div class="icon-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-light)" stroke-width="2"><path d="M3 3h18v18H3z"/><path d="M9 9h6v6H9z"/></svg>
+                <div class="icon-box-title">Supply Chain Agents</div>
+                <div class="icon-box-text">Walmart's agent autonomously replenishes across 4,700 stores. General Mills' optimisation system produced <strong>$20M+ in savings</strong> since FY24.</div>
+            </div>
+            <div class="icon-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-light)" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                <div class="icon-box-title">Code Modernisation</div>
+                <div class="icon-box-text">Morgan Stanley's DevGen.AI reviewed <strong>9M+ lines of legacy code</strong>, saving ~280,000 developer hours.</div>
+            </div>
+        </div>
+    </div>
+    <div class="page-footer"><div class="pf-rule"></div><span class="pf-num">12</span><div class="pf-rule"></div></div>
+</div>
+
+<!-- ========== 13. PART III OPENER ========== -->
+<div class="slide slide--paper">
+    <div class="slide-content">
+        <div class="part-page">
+            <div class="part-num">Part&nbsp;the&nbsp;Third</div>
+            <div class="part-ornament"><div class="po-rule"></div><div class="po-mark"></div><div class="po-rule"></div></div>
+            <h2 class="part-title">The Implementation<br>Playbook</h2>
+            <div class="part-ornament"><div class="po-rule"></div><div class="po-mark"></div><div class="po-rule"></div></div>
+            <p class="part-blurb"><em>A practical guide to moving from pilot to production-grade deployment, with two parallel rollouts: the 90-hour plan for SMBs and the 30-60-90 day plan for enterprises.</em></p>
+        </div>
+    </div>
+    <div class="page-footer"><div class="pf-rule"></div><span class="pf-num">13</span><div class="pf-rule"></div></div>
+</div>
+
+<!-- ========== 14. SMB 90-Hour Plan (ACTIVITY) ========== -->
+<div class="slide slide--ink">
+    <div class="page-header">
+        <span class="ph-left">Part III &middot; 3.1.a</span>
+        <span>Activity &middot; The 90-Hour Plan</span>
+    </div>
+    <div class="chapter-ribbon">SMB Rollout</div>
+    <div class="slide-content">
+        <div class="eyebrow"><span class="eyebrow-num">a</span> Activity: SMB Rollout</div>
+        <h2 class="slide-title">The 90-Hour Plan <em style="opacity:0.7">,  rapid value, no engineers</em></h2>
+        <p class="slide-text">Tick off each milestone as you complete it. Your weekly hours-saved estimate updates live. The goal is rapid value creation without complex engineering.</p>
+        <div class="timeline" id="smbTimeline">
+            <div class="timeline-item" data-smb="1" data-hours="3">
+                <div class="timeline-title">Week 1 &middot; The Single-Task Agent</div>
+                <div class="timeline-text">Identify the single most repetitive task (sorting emails, scheduling meetings). Deploy one purpose-built agent (Reclaim.ai, Tidio Lyro). Do not attempt to automate a multi-step process yet. <strong>Goal: save 2&ndash;3 hours this week.</strong></div>
+                <div class="timeline-check"><button class="check-pill" data-smb-btn="1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Mark complete</button></div>
+            </div>
+            <div class="timeline-item" data-smb="2" data-hours="5">
+                <div class="timeline-title">Week 2&ndash;3 &middot; Connect Two Tools</div>
+                <div class="timeline-text">Move to a workflow requiring data movement between two tools. Use Zapier or Make.com to connect a web form to your CRM and email. Have the agent draft a reply to new leads, leaving it in drafts for review, a Human-in-the-Loop pattern.</div>
+                <div class="timeline-check"><button class="check-pill" data-smb-btn="2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Mark complete</button></div>
+            </div>
+            <div class="timeline-item" data-smb="3" data-hours="10">
+                <div class="timeline-title">Month 2 &middot; Move to Full Autonomy</div>
+                <div class="timeline-text">Once you trust the agent's output, remove the manual review step. Deploy a second agent in a different domain (e.g. website customer support). <strong>Goal: 10+ hours saved per week.</strong></div>
+                <div class="timeline-check"><button class="check-pill" data-smb-btn="3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Mark complete</button></div>
+            </div>
+            <div class="timeline-item" data-smb="4" data-hours="15">
+                <div class="timeline-title">Month 3 &middot; Stack a Third Specialist</div>
+                <div class="timeline-text">Add a third agent in a high-leverage area, proposal generation, meeting notes, or back-office reconciliation. Begin measuring cost deflection alongside hours saved.</div>
+                <div class="timeline-check"><button class="check-pill" data-smb-btn="4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Mark complete</button></div>
+            </div>
+        </div>
+        <div class="ssf">
+            <span class="ssf-label">Hours Saved / Week</span>
+            <div class="ssf-track"><div class="ssf-fill" id="smbBar" style="width:0%"></div></div>
+            <span class="ssf-count" id="smbHours">0</span><span class="ssf-count"><em>&nbsp;/ 15+</em></span>
+        </div>
+    </div>
+    <div class="page-footer"><div class="pf-rule"></div><span class="pf-num">14</span><div class="pf-rule"></div></div>
+</div>
+
+<!-- ========== 15. Enterprise 30-60-90 (ACTIVITY) ========== -->
+<div class="slide slide--paper">
+    <div class="page-header">
+        <span class="ph-left">Part III &middot; 3.1.b</span>
+        <span>Activity &middot; The 30-60-90 Day Plan</span>
+    </div>
+    <div class="chapter-ribbon">Enterprise</div>
+    <div class="slide-content">
+        <div class="eyebrow"><span class="eyebrow-num">b</span> Activity: Enterprise Rollout</div>
+        <h2 class="slide-title">The 30-60-90 <em>Day Plan</em></h2>
+        <p class="slide-text">For larger organisations, the focus is on integration, compliance, and controlled scaling. Mark each action item as it lands. Your phase completion updates the rollout meter below.</p>
+        <div class="timeline" id="entTimeline">
+            <div class="timeline-item" data-ent="1">
+                <div class="timeline-title">Days 1&ndash;30 &middot; Pilot &amp; Proof of Concept</div>
+                <div class="timeline-text">Identify one well-defined internal process (knowledge retrieval or HR onboarding assistant). Define clear success metrics. Deploy to a small pilot group. Gather daily feedback in a controlled, internal-only environment.</div>
+                <div class="timeline-check"><button class="check-pill" data-ent-btn="1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Phase complete</button></div>
+            </div>
+            <div class="timeline-item" data-ent="2">
+                <div class="timeline-title">Days 31&ndash;60 &middot; Integration &amp; Workflow Automation</div>
+                <div class="timeline-text">Connect agents to core systems (CRM, ERP, ticketing) via APIs. Expand the pilot to a full department. Begin multi-step workflows, sales agent autonomously updating CRM after customer interaction.</div>
+                <div class="timeline-check"><button class="check-pill" data-ent-btn="2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Phase complete</button></div>
+            </div>
+            <div class="timeline-item" data-ent="3">
+                <div class="timeline-title">Days 61&ndash;90 &middot; Scaling &amp; Autonomous Execution</div>
+                <div class="timeline-text">Deploy to the full organisation or customer base. Implement monitoring and governance protocols. Roll out external-facing agents (conversational commerce, automated outreach). Establish a feedback loop for continuous improvement.</div>
+                <div class="timeline-check"><button class="check-pill" data-ent-btn="3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Phase complete</button></div>
+            </div>
+        </div>
+        <div class="ssf">
+            <span class="ssf-label">Rollout Progress</span>
+            <div class="ssf-track"><div class="ssf-fill" id="entBar" style="width:0%"></div></div>
+            <span class="ssf-count" id="entPct">0%</span>
+        </div>
+    </div>
+    <div class="page-footer"><div class="pf-rule"></div><span class="pf-num">15</span><div class="pf-rule"></div></div>
+</div>
+
+<!-- ========== 16. Agent Stack Architecture ========== -->
+<div class="slide slide--ink">
+    <div class="page-header">
+        <span class="ph-left">Part III &middot; 3.2</span>
+        <span>Agent Stack Architecture</span>
+    </div>
+    <div class="chapter-ribbon">Architecture</div>
+    <div class="slide-content">
+        <div class="eyebrow"><span class="eyebrow-num">c</span> The Three Layers</div>
+        <h2 class="slide-title">The Agent Stack <em>,  in three layers</em></h2>
+        <p class="slide-text drop-cap">Building a robust agent ecosystem requires more than deploying a single AI model. It demands a comprehensive architecture supporting multi-agent orchestration, secure data access, and continuous learning. The most useful mental model: think of agents in three vertical layers, plus a horizontal governance plane that wraps all three.</p>
+        <table class="slide-table">
+            <thead><tr><th>Layer</th><th>Function</th><th>SMB Stack</th><th>Enterprise Stack</th></tr></thead>
+            <tbody>
+                <tr><td><strong>Reasoning ("The Brain")</strong></td><td>Decision logic &amp; language understanding</td><td>ChatGPT Plus, Claude Pro</td><td>Foundation models (GPT-4o, Claude 4, Gemini, Llama)</td></tr>
+                <tr><td><strong>Automation ("The Hands")</strong></td><td>Cross-tool action &amp; workflow orchestration</td><td>Zapier, Make.com</td><td>LangChain, AutoGen, CrewAI, Salesforce Agentforce</td></tr>
+                <tr><td><strong>Data ("The Memory")</strong></td><td>Persistent context &amp; retrieval</td><td>HubSpot Free, Notion</td><td>Data lake + Vector DB (Pinecone, Weaviate) with RAG</td></tr>
+                <tr><td><strong>Governance (wrapper)</strong></td><td>IAM, audit, observability, escalation</td><td>Manual review of drafts</td><td>Machine-to-machine IAM, audit trails, confidence gates</td></tr>
+            </tbody>
+        </table>
+        <div class="marginalia">
+            <span class="mar-label">Human-in-the-loop, always</span>
+            Klarna's experience is instructive: after deploying a highly successful AI agent, they reintroduced human agents for complex emotional queries. A hybrid model <strong>outperformed full automation</strong> on total output volume. Design escalation paths from day one.
+        </div>
+    </div>
+    <div class="page-footer"><div class="pf-rule"></div><span class="pf-num">16</span><div class="pf-rule"></div></div>
+</div>
+
+<!-- ========== 17. Mitigating Agentic Risks ========== -->
+<div class="slide slide--paper">
+    <div class="page-header">
+        <span class="ph-left">Part III &middot; 3.3</span>
+        <span>Mitigating Agentic Risks</span>
+    </div>
+    <div class="chapter-ribbon">Security</div>
+    <div class="slide-content">
+        <div class="eyebrow"><span class="eyebrow-num">d</span> Novel Risks, New Controls</div>
+        <h2 class="slide-title">Securing the <em>digital workforce</em></h2>
+        <p class="slide-text drop-cap">Agentic AI introduces novel security risks that transcend traditional cybersecurity concerns. McKinsey identifies four classes of risk unique to agentic systems that every implementation team should map against their deployment before going live.</p>
+        <div class="two-columns spread-binding">
+            <div>
+                <div class="ws-item"><span class="ws-title">Chained Vulnerabilities</span><div class="ws-text" style="padding-left:0;margin-top:4px">A flaw in one agent cascades across tasks to other agents, amplifying the original risk through the orchestration layer.</div></div>
+                <div class="ws-item"><span class="ws-title">Cross-Agent Task Escalation</span><div class="ws-text" style="padding-left:0;margin-top:4px">Malicious agents exploit trust mechanisms between cooperating agents to gain unauthorised privileges.</div></div>
+            </div>
+            <div>
+                <div class="ws-item"><span class="ws-title">Synthetic-Identity Risk</span><div class="ws-text" style="padding-left:0;margin-top:4px">Adversaries forge or impersonate agent identities to bypass machine-to-machine trust mechanisms.</div></div>
+                <div class="ws-item"><span class="ws-title">Untraceable Data Leakage</span><div class="ws-text" style="padding-left:0;margin-top:4px">Autonomous agents exchanging data without human oversight obscure leaks and can evade traditional audit tooling.</div></div>
+            </div>
+        </div>
+        <div class="pull-quote">Treat every agent as a digital identity with specific, least-privilege permissions. Continuous monitoring of agent behaviour, robust access controls, and regular security audits are not optional, they are the operating system of agentic deployment.</div>
+    </div>
+    <div class="page-footer"><div class="pf-rule"></div><span class="pf-num">17</span><div class="pf-rule"></div></div>
+</div>
+
+<!-- ========== 18. PART IV OPENER ========== -->
+<div class="slide slide--ink">
+    <div class="slide-content">
+        <div class="part-page">
+            <div class="part-num">Part&nbsp;the&nbsp;Fourth</div>
+            <div class="part-ornament"><div class="po-rule"></div><div class="po-mark"></div><div class="po-rule"></div></div>
+            <h2 class="part-title">The Measurement<br>Framework</h2>
+            <div class="part-ornament"><div class="po-rule"></div><div class="po-mark"></div><div class="po-rule"></div></div>
+            <p class="part-blurb"><em>The four KPIs that prove ROI, and a live calculator to model your own deployment's profitability profile.</em></p>
+        </div>
+    </div>
+    <div class="page-footer"><div class="pf-rule"></div><span class="pf-num">18</span><div class="pf-rule"></div></div>
+</div>
+
+<!-- ========== 19. Agent ROI Calculator (ACTIVITY) ========== -->
+<div class="slide slide--paper">
+    <div class="page-header">
+        <span class="ph-left">Part IV &middot; 4.1</span>
+        <span>Activity &middot; The ROI Calculator</span>
+    </div>
+    <div class="chapter-ribbon">Calculator</div>
+    <div class="slide-content">
+        <div class="eyebrow"><span class="eyebrow-num">e</span> Activity: Agent ROI Calculator</div>
+        <h2 class="slide-title">Your <em>Agent ROI</em>, modelled live</h2>
+        <p class="slide-text">Drop in numbers from your own business. The four results below recalculate as you type, cost deflection, payback period, twelve-month ROI, and projected annual margin lift. All inputs are private to your browser.</p>
+        <div class="two-columns" style="gap:28px;align-items:start">
+            <div class="calc-box">
+                <h3 class="display-serif" style="font-size:1.3rem;margin-bottom:14px;color:var(--burgundy);font-style:italic">Your inputs</h3>
+                <div class="calc-row">
+                    <label>Weekly hours the agent saves<small>across all team members</small></label>
+                    <input class="calc-input" type="number" id="roi-hours" value="20" min="0" step="1">
+                </div>
+                <div class="calc-row">
+                    <label>Fully-loaded hourly cost ($)<small>salary + overhead per hour</small></label>
+                    <input class="calc-input" type="number" id="roi-rate" value="65" min="0" step="1">
+                </div>
+                <div class="calc-row">
+                    <label>Agent platform &amp; tokens / month ($)<small>subscription + API usage</small></label>
+                    <input class="calc-input" type="number" id="roi-monthly" value="450" min="0" step="10">
+                </div>
+                <div class="calc-row">
+                    <label>One-time integration cost ($)<small>setup, prompts, data prep</small></label>
+                    <input class="calc-input" type="number" id="roi-setup" value="8000" min="0" step="100">
+                </div>
+                <div class="calc-row">
+                    <label>Additional revenue per month ($)<small>from faster lead response &amp; upsell</small></label>
+                    <input class="calc-input" type="number" id="roi-revenue" value="4800" min="0" step="100">
+                </div>
+                <div style="text-align:right;margin-top:8px"><button class="reset-btn" id="resetROI">Reset to defaults</button></div>
+            </div>
+            <div>
+                <div class="calc-results">
+                    <div class="calc-result"><div class="calc-result-value" id="roi-savings">$0</div><div class="calc-result-label">Monthly net savings</div></div>
+                    <div class="calc-result"><div class="calc-result-value" id="roi-payback">-</div><div class="calc-result-label">Payback period</div></div>
+                    <div class="calc-result"><div class="calc-result-value" id="roi-pct">0%</div><div class="calc-result-label">12-month ROI</div></div>
+                    <div class="calc-result"><div class="calc-result-value" id="roi-annual">$0</div><div class="calc-result-label">Annual margin lift</div></div>
+                </div>
+                <div class="marginalia" style="margin-top:18px">
+                    <span class="mar-label">The four ROI KPIs</span>
+                    <strong>1. Cost Deflection Rate</strong>:% of tasks fully resolved by the agent.<br>
+                    <strong>2. Time-to-Resolution (TTR)</strong>: how much faster the process completes.<br>
+                    <strong>3. Revenue Influenced</strong>: new revenue attributable to agent actions.<br>
+                    <strong>4. Margin Improvement</strong>: the ultimate output: (labour saved + revenue lift) &minus; total cost.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-footer"><div class="pf-rule"></div><span class="pf-num">19</span><div class="pf-rule"></div></div>
+</div>
+
+<!-- ========== 20. Tracking & Reporting ========== -->
+<div class="slide slide--ink">
+    <div class="page-header">
+        <span class="ph-left">Part IV &middot; 4.2</span>
+        <span>Tracking &amp; Reporting</span>
+    </div>
+    <div class="chapter-ribbon">Measurement</div>
+    <div class="slide-content">
+        <div class="eyebrow"><span class="eyebrow-num">f</span> What you measure, you compound</div>
+        <h2 class="slide-title">Baselines &amp; <em>continuous monitoring</em></h2>
+        <p class="slide-text drop-cap">Before deploying any agent, measure current performance. Without a clear pre-AI baseline, it is impossible to accurately assess impact. If a business does not know its current time-to-resolution, it cannot prove its AI agent has improved it, and stakeholders will assume the worst.</p>
+        <h3 class="display-serif" style="font-size:1.4rem;color:var(--gold-light);font-style:italic;margin-top:6px">Set these baselines first</h3>
+        <ul class="slide-list">
+            <li>Average <strong>time-to-resolution</strong> for the process you're automating (hours per ticket / lead / invoice)</li>
+            <li>Current <strong>cost per transaction</strong> (FTE time &times; loaded rate, plus tooling)</li>
+            <li>Current <strong>throughput</strong> (transactions per week per FTE)</li>
+            <li>Current <strong>error rate</strong> on the manual process (so you have a defensible accuracy comparison)</li>
+            <li>Current <strong>customer satisfaction</strong> (CSAT, NPS, or first-contact resolution) on the affected journey</li>
+        </ul>
+        <div class="pull-quote">Continuous monitoring is your early warning system. A sudden drop in agent accuracy, a spike in escalations, or a cost-per-action creep all show up in real-time dashboards days before anyone files a ticket about it.</div>
+    </div>
+    <div class="page-footer"><div class="pf-rule"></div><span class="pf-num">20</span><div class="pf-rule"></div></div>
+</div>
+
+<!-- ========== 21. PART V OPENER ========== -->
+<div class="slide slide--paper">
+    <div class="slide-content">
+        <div class="part-page">
+            <div class="part-num">Part&nbsp;the&nbsp;Fifth</div>
+            <div class="part-ornament"><div class="po-rule"></div><div class="po-mark"></div><div class="po-rule"></div></div>
+            <h2 class="part-title">The Scaling<br>Roadmap</h2>
+            <div class="part-ornament"><div class="po-rule"></div><div class="po-mark"></div><div class="po-rule"></div></div>
+            <p class="part-blurb"><em>From isolated deployments to a fully orchestrated, AI-native enterprise, the cultural, operational, and strategic shifts required to sustain profitability through agents.</em></p>
+        </div>
+    </div>
+    <div class="page-footer"><div class="pf-rule"></div><span class="pf-num">21</span><div class="pf-rule"></div></div>
+</div>
+
+<!-- ========== 22. Culture & Future ========== -->
+<div class="slide slide--ink">
+    <div class="page-header">
+        <span class="ph-left">Part V &middot; 5.1 &ndash; 5.3</span>
+        <span>Culture, Cross-functional Orchestration &amp; the 2030 Outlook</span>
+    </div>
+    <div class="chapter-ribbon">Scaling</div>
+    <div class="slide-content">
+        <div class="eyebrow"><span class="eyebrow-num">i</span> Beyond the Pilot</div>
+        <h2 class="slide-title">Building an <em>AI-first</em> culture</h2>
+        <p class="slide-text drop-cap">The successful scaling of AI agents is as much a cultural challenge as a technical one. 80% of organisations using generative AI report saving time and money, but the most significant barrier to scaling remains workforce alignment and change management, not the technology itself.</p>
+        <div class="two-columns spread-binding">
+            <div>
+                <h3 class="display-serif" style="font-size:1.3rem;color:var(--gold-light);font-style:italic">Change Management</h3>
+                <p class="slide-text" style="font-size:0.92rem">Frame agents as workforce multipliers, not replacements. Implement transparent communication strategies detailing exactly what tasks agents will handle. Highlight stories where agents have reduced burnout and elevated job satisfaction. Without buy-in, the ROI never materialises, people will work around the agents.</p>
+                <h3 class="display-serif" style="font-size:1.3rem;color:var(--gold-light);font-style:italic;margin-top:14px">Cross-Functional Orchestration</h3>
+                <p class="slide-text" style="font-size:0.92rem">The true power of agentic AI emerges when agents across departments collaborate, sales agent identifies a new enterprise client, supply chain agent adjusts forecasts, legal agent drafts contracts. A single intelligent operational flow replaces three departmental hand-offs.</p>
+            </div>
+            <div>
+                <h3 class="display-serif" style="font-size:1.3rem;color:var(--gold-light);font-style:italic">Upskilling Strategy</h3>
+                <p class="slide-text" style="font-size:0.92rem">Invest in training that teaches employees to <strong>collaborate</strong> with agents: prompt engineering basics, AI tool familiarity, interpreting agent-generated insights, and managing autonomous systems. The goal is "superagency", humans amplified, not displaced.</p>
+                <h3 class="display-serif" style="font-size:1.3rem;color:var(--gold-light);font-style:italic;margin-top:14px">The 2030 Outlook</h3>
+                <p class="slide-text" style="font-size:0.92rem">By 2030, the most profitable businesses will operate as <strong>autonomous enterprises</strong>: routine operations, supply chain logistics, and basic customer interactions handled entirely by AI agents, overseen by human strategists. Multi-agent systems will become standard infrastructure.</p>
+            </div>
+        </div>
+    </div>
+    <div class="page-footer"><div class="pf-rule"></div><span class="pf-num">22</span><div class="pf-rule"></div></div>
+</div>
+
+<!-- ========== 23. Industry Playbook Picker (ACTIVITY) ========== -->
+<div class="slide slide--paper">
+    <div class="page-header">
+        <span class="ph-left">Part VI</span>
+        <span>Activity &middot; Industry Playbook</span>
+    </div>
+    <div class="chapter-ribbon">Industry</div>
+    <div class="slide-content">
+        <div class="eyebrow"><span class="eyebrow-num">i</span> Activity: Industry Playbook</div>
+        <h2 class="slide-title">Choose your <em>industry</em></h2>
+        <p class="slide-text">Each vertical has unique regulatory, operational, and customer dynamics. Tap a tab below to load the relevant agent strategy, the highest-ROI implementation, and the regulatory guardrails you must build around it.</p>
+        <div class="industry-tabs" id="industryTabs">
+            <button class="industry-tab active" data-ind="health">Healthcare</button>
+            <button class="industry-tab" data-ind="finance">Financial Services</button>
+            <button class="industry-tab" data-ind="retail">Retail &amp; Ecommerce</button>
+            <button class="industry-tab" data-ind="manuf">Manufacturing &amp; Logistics</button>
+        </div>
+
+        <div class="industry-pane active" data-pane="health">
+            <h3 class="display-serif" style="font-size:1.5rem;font-style:italic;color:var(--burgundy);margin-bottom:10px">Healthcare &amp; Life Sciences</h3>
+            <p class="slide-text" style="margin-bottom:12px">A dual mandate: improve patient outcomes while managing costs in an environment of severe staffing shortages. Agents remove administrative burden, not clinical judgment.</p>
+            <div class="ws-item"><span class="ws-title">Clinical Documentation Agent</span><div class="ws-text" style="padding-left:0;margin-top:4px">Audits consultation audio (with consent), extracts medical information, auto-generates structured notes into the EHR. <strong>42% reduction in documentation time</strong> per provider.</div></div>
+            <div class="ws-item"><span class="ws-title">Patient Triage &amp; Navigation</span><div class="ws-text" style="padding-left:0;margin-top:4px">Conversational triage, appointment scheduling, insurance verification. Reduces no-show rates and ensures clinical time is used efficiently.</div></div>
+            <div class="marginalia"><span class="mar-label">Regulatory</span>Strict adherence to HIPAA (or regional equivalents) plus robust data anonymisation protocols. Every patient-facing agent must be auditable end-to-end.</div>
+        </div>
+
+        <div class="industry-pane" data-pane="finance">
+            <h3 class="display-serif" style="font-size:1.5rem;font-style:italic;color:var(--burgundy);margin-bottom:10px">Financial Services &amp; Banking</h3>
+            <p class="slide-text" style="margin-bottom:12px">Highly regulated environments where accuracy, speed, and risk mitigation are paramount. Agents focus on compliance, fraud detection, and hyper-personalised wealth management.</p>
+            <div class="ws-item"><span class="ws-title">Autonomous Compliance &amp; Audit</span><div class="ws-text" style="padding-left:0;margin-top:4px">Continuous monitoring of transactions against fraud patterns and regulatory watchlists. Auto-compiles Suspicious Activity Reports and routes them to compliance officers.</div></div>
+            <div class="ws-item"><span class="ws-title">Wealth Management Co-Pilots</span><div class="ws-text" style="padding-left:0;margin-top:4px">Morgan Stanley's wealth advisor agent saw <strong>98% voluntary adoption</strong>. Prepares meeting briefings, generates notes, syncs to CRM, drafts follow-ups.</div></div>
+            <div class="marginalia"><span class="mar-label">Regulatory</span>Audit trails are non-negotiable. Every agent action must be traceable for examiner review, tool calls, data accessed, and reasoning all logged.</div>
+        </div>
+
+        <div class="industry-pane" data-pane="retail">
+            <h3 class="display-serif" style="font-size:1.5rem;font-style:italic;color:var(--burgundy);margin-bottom:10px">Retail &amp; Ecommerce</h3>
+            <p class="slide-text" style="margin-bottom:12px">Profitability is driven by inventory optimisation, customer acquisition costs, and customer lifetime value. Agents operate across the entire value chain, from supply to sale.</p>
+            <div class="ws-item"><span class="ws-title">Hyper-Personalised Marketing Agents</span><div class="ws-text" style="padding-left:0;margin-top:4px">Analyse browsing history, past purchases, current cart. Generate unique promotional offers delivered via the customer's preferred channel at the optimal time of day. Lower CAC, higher conversion.</div></div>
+            <div class="ws-item"><span class="ws-title">Dynamic Pricing &amp; Merchandising</span><div class="ws-text" style="padding-left:0;margin-top:4px">Monitor competitor websites and internal stock levels. When competitors sell out, automatically raise price to maximise margin while remaining competitive.</div></div>
+            <div class="marginalia"><span class="mar-label">Regulatory</span>Disclose AI-driven personalisation where required (e.g. EU AI Act). Maintain explainability for pricing decisions in markets that mandate it.</div>
+        </div>
+
+        <div class="industry-pane" data-pane="manuf">
+            <h3 class="display-serif" style="font-size:1.5rem;font-style:italic;color:var(--burgundy);margin-bottom:10px">Manufacturing &amp; Logistics</h3>
+            <p class="slide-text" style="margin-bottom:12px">Asset-heavy industries focused on predictive maintenance, supply chain resilience, and operational efficiency. Downtime costs thousands per minute, agents predict and prevent it.</p>
+            <div class="ws-item"><span class="ws-title">Predictive Maintenance Agents</span><div class="ws-text" style="padding-left:0;margin-top:4px">Ingest continuous IoT sensor data (vibration, temperature, acoustic). Compare against historical failure models. Schedule maintenance during planned downtime, before catastrophic failure.</div></div>
+            <div class="ws-item"><span class="ws-title">Supply Chain Orchestration</span><div class="ws-text" style="padding-left:0;margin-top:4px">A network of agents monitoring weather, geopolitics, and supplier performance. On disruption: negotiate with secondary suppliers, re-route logistics, update production schedules autonomously.</div></div>
+            <div class="marginalia"><span class="mar-label">Regulatory</span>Safety-critical systems require deterministic guardrails. Agents may recommend but humans approve any change with physical-world consequences.</div>
+        </div>
+    </div>
+    <div class="page-footer"><div class="pf-rule"></div><span class="pf-num">23</span><div class="pf-rule"></div></div>
+</div>
+
+<!-- ========== 24. PART VII: Vendor Categories ========== -->
+<div class="slide slide--ink">
+    <div class="page-header">
+        <span class="ph-left">Part VII &middot; 7.1</span>
+        <span>Vendor Landscape</span>
+    </div>
+    <div class="chapter-ribbon">Vendors</div>
+    <div class="slide-content">
+        <div class="eyebrow"><span class="eyebrow-num">i</span> Vendor Landscape</div>
+        <h2 class="slide-title">Four <em>categories</em>, four budgets</h2>
+        <p class="slide-text drop-cap">For enterprise buyers, selecting the right platform dictates speed of deployment, total cost of ownership, and long-term scalability. The 2025&ndash;2026 vendor landscape divides into four categories, each suiting a different business size and capability profile.</p>
+        <table class="slide-table">
+            <thead><tr><th>Category</th><th>Examples</th><th>Best For</th><th>Indicative Cost</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1. SMB No-Code Stack</strong></td><td>Zapier, ChatGPT Plus, Reclaim.ai, Tidio Lyro, HubSpot Free</td><td>Under 50 employees, rapid value, no engineering</td><td>$0&ndash;$500 / month</td></tr>
+                <tr><td><strong>2. Foundation Model APIs</strong></td><td>OpenAI (GPT-4o/o1), Anthropic (Claude), Google (Gemini), Meta (Llama)</td><td>Custom, proprietary agents with in-house engineering</td><td>Token-based, scales with usage</td></tr>
+                <tr><td><strong>3. Orchestration Frameworks</strong></td><td>LangChain, AutoGen, CrewAI, Semantic Kernel</td><td>Developer teams building multi-agent workflows</td><td>Open source + infra costs</td></tr>
+                <tr><td><strong>4. Enterprise Low-Code Platforms</strong></td><td>Salesforce Agentforce, ServiceNow AI Agents, Microsoft Copilot Studio, MindStudio</td><td>Standardised processes, citizen-developer enablement</td><td>$75K&ndash;$500K+ enterprise builds</td></tr>
+            </tbody>
+        </table>
+        <div class="marginalia">
+            <span class="mar-label">Beyond marketing hype</span>
+            When evaluating commercial platforms, score them on four axes: <strong>(1) Integration ecosystem</strong>: pre-built connectors to your stack; <strong>(2) Governance &amp; security</strong>: access controls, audit logs, VPC deployment; <strong>(3) Observability</strong>: can you trace the agent's reasoning when it errs?; <strong>(4) Multi-model support</strong>: can you route tasks to the cheapest model that meets the bar?
+        </div>
+    </div>
+    <div class="page-footer"><div class="pf-rule"></div><span class="pf-num">24</span><div class="pf-rule"></div></div>
+</div>
+
+<!-- ========== 25. Build vs Buy Decision Matrix (ACTIVITY) ========== -->
+<div class="slide slide--paper">
+    <div class="page-header">
+        <span class="ph-left">Part VII &middot; 7.2</span>
+        <span>Activity &middot; Build vs Buy vs Orchestrate</span>
+    </div>
+    <div class="chapter-ribbon">Decide</div>
+    <div class="slide-content">
+        <div class="eyebrow"><span class="eyebrow-num">ii</span> Activity: The Decision Matrix</div>
+        <h2 class="slide-title">Build, Buy, <em>or</em> Orchestrate?</h2>
+        <p class="slide-text">Drag each slider toward your reality. The verdict at the bottom updates live with the recommendation that fits your profile, off-the-shelf platform, custom build, or multi-agent orchestration.</p>
+        <div class="calc-box">
+            <div class="slider-row">
+                <label>Time pressure<small>days vs. quarters available</small></label>
+                <input class="range-input" type="range" min="0" max="10" value="5" data-bb="time">
+                <div class="range-val" id="bb-time-val">5</div>
+            </div>
+            <div class="slider-row">
+                <label>Engineering capacity<small>internal talent depth</small></label>
+                <input class="range-input" type="range" min="0" max="10" value="5" data-bb="eng">
+                <div class="range-val" id="bb-eng-val">5</div>
+            </div>
+            <div class="slider-row">
+                <label>Workflow uniqueness<small>generic process vs. proprietary edge</small></label>
+                <input class="range-input" type="range" min="0" max="10" value="5" data-bb="unique">
+                <div class="range-val" id="bb-unique-val">5</div>
+            </div>
+            <div class="slider-row">
+                <label>Budget headroom<small>$10K vs. $500K+</small></label>
+                <input class="range-input" type="range" min="0" max="10" value="5" data-bb="budget">
+                <div class="range-val" id="bb-budget-val">5</div>
+            </div>
+            <div class="slider-row">
+                <label>Number of agents needed<small>one specialist vs. a coordinated swarm</small></label>
+                <input class="range-input" type="range" min="0" max="10" value="5" data-bb="count">
+                <div class="range-val" id="bb-count-val">5</div>
+            </div>
+            <div class="verdict v-buy" id="bbVerdict">
+                <div class="verdict-title" id="bbTitle">Lean toward Buy</div>
+                <div class="verdict-text" id="bbText">An off-the-shelf platform like Salesforce Agentforce or ServiceNow AI Agents will deliver the fastest path to ROI for your profile.</div>
+            </div>
+        </div>
+    </div>
+    <div class="page-footer"><div class="pf-rule"></div><span class="pf-num">25</span><div class="pf-rule"></div></div>
+</div>
+
+<!-- ========== 26. PART VIII: Design Principles ========== -->
+<div class="slide slide--ink">
+    <div class="page-header">
+        <span class="ph-left">Part VIII</span>
+        <span>Design Principles</span>
+    </div>
+    <div class="chapter-ribbon">Design</div>
+    <div class="slide-content">
+        <div class="eyebrow"><span class="eyebrow-num">i</span> Four Design Principles</div>
+        <h2 class="slide-title">Designing agents that <em>actually work</em></h2>
+        <p class="slide-text drop-cap">Designing an effective agent requires a shift in mindset from traditional software development. Agents are probabilistic, not deterministic. They require clear boundaries, specific goals, and robust error handling. The four principles below separate agents that ship and scale from those that quietly get pulled out of production.</p>
+        <div class="two-columns spread-binding">
+            <div>
+                <h3 class="display-serif" style="font-size:1.3rem;color:var(--gold-light);font-style:italic">1. Narrow Scope</h3>
+                <p class="slide-text" style="font-size:0.92rem">An agent designed to "manage customer support" will fail. An agent designed to "process return requests for footwear under $50" will likely succeed. Break processes into their smallest component tasks; orchestrate narrow agents together.</p>
+                <h3 class="display-serif" style="font-size:1.3rem;color:var(--gold-light);font-style:italic;margin-top:14px">2. System Prompt as Architecture</h3>
+                <p class="slide-text" style="font-size:0.92rem">The system prompt is the foundational architecture. Include <strong>role definition</strong>, <strong>primary objective</strong>, <strong>available tools</strong>, and <strong>strict constraints</strong> ("you must never estimate, if not stated, output 'Data Unavailable'").</p>
+            </div>
+            <div>
+                <h3 class="display-serif" style="font-size:1.3rem;color:var(--gold-light);font-style:italic">3. Graceful Degradation</h3>
+                <p class="slide-text" style="font-size:0.92rem">Implement strict confidence thresholds. If the agent's confidence in its action falls below your threshold, escalate to a human with a summary of its reasoning. This builds trust, not just safety.</p>
+                <h3 class="display-serif" style="font-size:1.3rem;color:var(--gold-light);font-style:italic;margin-top:14px">4. Continuous Evaluation</h3>
+                <p class="slide-text" style="font-size:0.92rem">Deployment is the start, not the end. Run the agent regularly against a "golden dataset" of known inputs and desired outputs. Measure accuracy, latency, cost per execution. When drift appears, update the prompt or integrations.</p>
+            </div>
+        </div>
+    </div>
+    <div class="page-footer"><div class="pf-rule"></div><span class="pf-num">26</span><div class="pf-rule"></div></div>
+</div>
+
+<!-- ========== 27. PART IX: Ethics & Governance ========== -->
+<div class="slide slide--paper">
+    <div class="page-header">
+        <span class="ph-left">Part IX</span>
+        <span>Ethics &amp; Governance</span>
+    </div>
+    <div class="chapter-ribbon">Governance</div>
+    <div class="slide-content">
+        <div class="eyebrow"><span class="eyebrow-num">i</span> Ethics &amp; Governance</div>
+        <h2 class="slide-title">Just because an agent <em>can</em>, should it?</h2>
+        <p class="slide-text drop-cap">As agents move from advisory to autonomous execution, the ethical implications become exponentially more complex. A profitable AI strategy is inextricably linked to a responsible one, ethical failures in agentic systems lead to catastrophic brand damage and regulatory penalties that erase years of ROI.</p>
+        <h3 class="display-serif" style="font-size:1.4rem;color:var(--burgundy);font-style:italic">The AI Ethics Board</h3>
+        <p class="slide-text" style="font-size:0.95rem">Cross-functional, legal, compliance, cybersecurity, operations, customer experience. Not solely an IT function. Their mandate: review proposed agent use cases against ethical guidelines and risk appetite, and implement strict approval gates. A customer-facing agent that negotiates pricing requires significantly higher scrutiny than an internal agent summarising helpdesk articles.</p>
+        <div class="two-columns spread-binding">
+            <div>
+                <h3 class="display-serif" style="font-size:1.3rem;color:var(--burgundy);font-style:italic">Algorithmic Bias</h3>
+                <ul class="slide-list" style="margin:6px 0">
+                    <li><strong>Data Auditing</strong>: rigorously audit training data and real-time accessed data for historical biases</li>
+                    <li><strong>Fairness Metrics</strong>: establish mathematical definitions of fairness for sensitive use cases</li>
+                    <li><strong>Human-in-Loop for sensitive decisions</strong>: employment, financial status, healthcare</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="display-serif" style="font-size:1.3rem;color:var(--burgundy);font-style:italic">Transparency &amp; Explainability</h3>
+                <ul class="slide-list" style="margin:6px 0">
+                    <li><strong>Audit trails</strong>: every API call, every data point, every reasoning step logged</li>
+                    <li><strong>Tool-call logs &amp; decision traces</strong>: mandatory for any platform you procure</li>
+                    <li><strong>Customer transparency</strong>: never let an agent masquerade as a human; disclosure is non-negotiable</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="page-footer"><div class="pf-rule"></div><span class="pf-num">27</span><div class="pf-rule"></div></div>
+</div>
+
+<!-- ========== 28. PART X: Data Strategy ========== -->
+<div class="slide slide--ink">
+    <div class="page-header">
+        <span class="ph-left">Part X</span>
+        <span>The Agentic Data Strategy</span>
+    </div>
+    <div class="chapter-ribbon">Data</div>
+    <div class="slide-content">
+        <div class="eyebrow"><span class="eyebrow-num">i</span> The Data Foundation</div>
+        <h2 class="slide-title">No data plumbing, <em>no agents</em></h2>
+        <p class="slide-text drop-cap">An AI agent is only as intelligent, accurate, and profitable as the data it can access. The most sophisticated orchestration framework will fail if it is built on siloed, unstructured, or inaccurate data. Preparing the data infrastructure is the prerequisite to agentic deployment, not an afterthought to be fixed later.</p>
+        <div class="two-columns spread-binding">
+            <div>
+                <h3 class="display-serif" style="font-size:1.3rem;color:var(--gold-light);font-style:italic">Breaking Down Silos</h3>
+                <p class="slide-text" style="font-size:0.92rem">Build secure, low-latency API connections between core business systems. A customer support agent cannot resolve a billing dispute if it has Zendesk access but cannot query Stripe or the ERP. Centralise structured and unstructured data into a data lake or warehouse, one source of truth for agents to query.</p>
+            </div>
+            <div>
+                <h3 class="display-serif" style="font-size:1.3rem;color:var(--gold-light);font-style:italic">Unstructured Data &amp; RAG</h3>
+                <p class="slide-text" style="font-size:0.92rem">The vast majority of enterprise knowledge, contracts, emails, Slack, PDFs, call transcripts, is unstructured. Implement <strong>Retrieval-Augmented Generation (RAG)</strong>: text becomes embeddings stored in a vector database. When the agent needs context, it retrieves the most relevant passages and grounds its response in them, drastically reducing hallucinations.</p>
+            </div>
+        </div>
+        <div class="pull-quote">Apply the principle of least privilege. A marketing agent does not need (and must not have) access to employee salary data or unencrypted credit card numbers. Treat every agent as a digital identity with specific, documented permissions.</div>
+    </div>
+    <div class="page-footer"><div class="pf-rule"></div><span class="pf-num">28</span><div class="pf-rule"></div></div>
+</div>
+
+<!-- ========== 29. PART XI: Financial Modelling ========== -->
+<div class="slide slide--paper">
+    <div class="page-header">
+        <span class="ph-left">Part XI</span>
+        <span>Financial Modelling</span>
+    </div>
+    <div class="chapter-ribbon">Finance</div>
+    <div class="slide-content">
+        <div class="eyebrow"><span class="eyebrow-num">i</span> Modelling the Deployment</div>
+        <h2 class="slide-title">Total Cost <em>of Ownership</em></h2>
+        <p class="slide-text drop-cap">The initial software license or development cost is only a fraction of TCO. A comprehensive financial model must account for three layers of cost and three layers of return, and the cost-of-failure category that often catches first-time builders off guard.</p>
+        <div class="two-columns spread-binding">
+            <div>
+                <h3 class="display-serif" style="font-size:1.3rem;color:var(--burgundy);font-style:italic">The Three Cost Layers</h3>
+                <ul class="slide-list" style="font-size:0.9rem;margin:6px 0">
+                    <li><strong>Implementation &amp; Integration</strong>: API development, data preparation, change management</li>
+                    <li><strong>Ongoing OpEx</strong>: inference (tokens), platform subscriptions, monitoring &amp; maintenance</li>
+                    <li><strong>Cost of Failure</strong>: human escalations, error remediation (refunds, legal review of hallucinations)</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="display-serif" style="font-size:1.3rem;color:var(--burgundy);font-style:italic">The Three Return Layers</h3>
+                <ul class="slide-list" style="font-size:0.9rem;margin:6px 0">
+                    <li><strong>Hard Cost Savings</strong>: FTE-equivalent hours saved, vendor consolidation</li>
+                    <li><strong>Soft Cost Savings</strong>: reduced TTR (e.g. 4 hours of lawyer time freed per contract)</li>
+                    <li><strong>Revenue Generation</strong>: conversion lift, churn reduction, LTV uplift</li>
+                </ul>
+            </div>
+        </div>
+        <div class="marginalia">
+            <span class="mar-label">Break-even target</span>
+            Given the rapid deployment capability of modern agent platforms, a successful enterprise deployment should aim for break-even within <strong>6 to 12 months</strong>. SMB deployments often break even within 30&ndash;60 days simply from founder hours reclaimed.
+        </div>
+    </div>
+    <div class="page-footer"><div class="pf-rule"></div><span class="pf-num">29</span><div class="pf-rule"></div></div>
+</div>
+
+<!-- ========== 30. PART XII: Failure Modes Risk Check (ACTIVITY) ========== -->
+<div class="slide slide--ink">
+    <div class="page-header">
+        <span class="ph-left">Part XII</span>
+        <span>Activity &middot; Failure Mode Risk Check</span>
+    </div>
+    <div class="chapter-ribbon">Risk Check</div>
+    <div class="slide-content">
+        <div class="eyebrow"><span class="eyebrow-num">i</span> Activity: Failure Mode Risk Check</div>
+        <h2 class="slide-title">The four ways <em>deployments fail</em></h2>
+        <p class="slide-text">Despite the potential, many early enterprise deployments fail to deliver ROI. For each failure mode below, answer the three diagnostic questions. Your risk indicator (Low / Medium / High) updates live to flag where your deployment is most exposed.</p>
+        <div id="failureModes">
+            <div class="fm-card" data-fm="1">
+                <div class="fm-title">1. The "God Agent" Fallacy</div>
+                <div class="fm-desc">A single monolithic agent designed to handle a vast array of unrelated tasks. Overly complex prompts lead to confusion, hallucination, and unpredictable behaviour. Impossible to test or debug.</div>
+                <div class="fm-question">Does any single agent in your plan span more than 3 unrelated tasks?</div>
+                <div class="score-row" data-fmq="1-1"><button class="score-btn btn-no" data-score="0">No</button><button class="score-btn btn-maybe" data-score="1">Somewhat</button><button class="score-btn btn-yes" data-score="2">Yes</button></div>
+                <div class="fm-question" style="margin-top:8px">Is the system prompt for any agent over 1,000 words?</div>
+                <div class="score-row" data-fmq="1-2"><button class="score-btn btn-no" data-score="0">No</button><button class="score-btn btn-maybe" data-score="1">Maybe</button><button class="score-btn btn-yes" data-score="2">Yes</button></div>
+                <div class="fm-question" style="margin-top:8px">Are you avoiding orchestration in favour of one big agent?</div>
+                <div class="score-row" data-fmq="1-3"><button class="score-btn btn-no" data-score="0">No</button><button class="score-btn btn-maybe" data-score="1">Maybe</button><button class="score-btn btn-yes" data-score="2">Yes</button></div>
+                <span class="fm-risk" id="fmRisk1">Risk: Low</span>
+            </div>
+            <div class="fm-card" data-fm="2">
+                <div class="fm-title">2. Garbage In, Garbage Out</div>
+                <div class="fm-desc">Agents are completely dependent on the data they access. Connected to a CRM full of duplicates, outdated contacts, conflicting fields, the agent will execute on that flawed data, at scale.</div>
+                <div class="fm-question">Has your CRM or core data been cleansed in the last 90 days?</div>
+                <div class="score-row" data-fmq="2-1"><button class="score-btn btn-yes" data-score="0">Yes</button><button class="score-btn btn-maybe" data-score="1">Somewhat</button><button class="score-btn btn-no" data-score="2">No</button></div>
+                <div class="fm-question" style="margin-top:8px">Do you have a single source of truth for the data the agent will access?</div>
+                <div class="score-row" data-fmq="2-2"><button class="score-btn btn-yes" data-score="0">Yes</button><button class="score-btn btn-maybe" data-score="1">Partly</button><button class="score-btn btn-no" data-score="2">No</button></div>
+                <div class="fm-question" style="margin-top:8px">Are duplicate-record and freshness checks automated?</div>
+                <div class="score-row" data-fmq="2-3"><button class="score-btn btn-yes" data-score="0">Yes</button><button class="score-btn btn-maybe" data-score="1">Partly</button><button class="score-btn btn-no" data-score="2">No</button></div>
+                <span class="fm-risk" id="fmRisk2">Risk: Low</span>
+            </div>
+            <div class="fm-card" data-fm="3">
+                <div class="fm-title">3. Neglecting Human-in-the-Loop</div>
+                <div class="fm-desc">Assuming full autonomy from day one. Agents inevitably encounter edge cases. Without escalation, the agent fails silently, hallucinates, or executes the wrong action, at machine speed.</div>
+                <div class="fm-question">Is there a confidence threshold below which the agent must escalate?</div>
+                <div class="score-row" data-fmq="3-1"><button class="score-btn btn-yes" data-score="0">Yes</button><button class="score-btn btn-maybe" data-score="1">Planned</button><button class="score-btn btn-no" data-score="2">No</button></div>
+                <div class="fm-question" style="margin-top:8px">Are there human reviewers assigned to handle escalations day one?</div>
+                <div class="score-row" data-fmq="3-2"><button class="score-btn btn-yes" data-score="0">Yes</button><button class="score-btn btn-maybe" data-score="1">Partly</button><button class="score-btn btn-no" data-score="2">No</button></div>
+                <div class="fm-question" style="margin-top:8px">Is every agent action audit-loggable for after-the-fact review?</div>
+                <div class="score-row" data-fmq="3-3"><button class="score-btn btn-yes" data-score="0">Yes</button><button class="score-btn btn-maybe" data-score="1">Partly</button><button class="score-btn btn-no" data-score="2">No</button></div>
+                <span class="fm-risk" id="fmRisk3">Risk: Low</span>
+            </div>
+            <div class="fm-card" data-fm="4">
+                <div class="fm-title">4. Ignoring Change Management</div>
+                <div class="fm-desc">Deploying the technology is the easy part. The failure to manage the human element is where projects stall. If the workforce does not trust or use the agents, ROI never materialises.</div>
+                <div class="fm-question">Have end-users been involved in design and testing?</div>
+                <div class="score-row" data-fmq="4-1"><button class="score-btn btn-yes" data-score="0">Yes</button><button class="score-btn btn-maybe" data-score="1">Partly</button><button class="score-btn btn-no" data-score="2">No</button></div>
+                <div class="fm-question" style="margin-top:8px">Is there a clear training plan for collaborating with agents?</div>
+                <div class="score-row" data-fmq="4-2"><button class="score-btn btn-yes" data-score="0">Yes</button><button class="score-btn btn-maybe" data-score="1">Drafted</button><button class="score-btn btn-no" data-score="2">No</button></div>
+                <div class="fm-question" style="margin-top:8px">Has leadership communicated how this benefits the workforce?</div>
+                <div class="score-row" data-fmq="4-3"><button class="score-btn btn-yes" data-score="0">Yes</button><button class="score-btn btn-maybe" data-score="1">Partly</button><button class="score-btn btn-no" data-score="2">No</button></div>
+                <span class="fm-risk" id="fmRisk4">Risk: Low</span>
+            </div>
+        </div>
+        <div style="text-align:right;margin-top:10px"><button class="reset-btn" id="resetFM">Reset risk check</button></div>
+    </div>
+    <div class="page-footer"><div class="pf-rule"></div><span class="pf-num">30</span><div class="pf-rule"></div></div>
+</div>
+
+<!-- ========== 31. About / CTA ========== -->
+<div class="slide slide--paper">
+    <div class="page-header">
+        <span class="ph-left">Closing</span>
+        <span>The Next Step</span>
+    </div>
+    <div class="slide-content" style="text-align:center;max-width:780px;margin:0 auto">
+        <div class="eyebrow" style="justify-content:center"><span class="eyebrow-num">fin</span> The Final Word</div>
+        <h2 class="slide-title">The playbook <em>is in your hands</em></h2>
+        <div class="part-ornament"><div class="po-rule"></div><div class="po-mark"></div><div class="po-rule"></div></div>
+        <img src="ari.png" alt="Ari Vivekanandarajah" style="width:140px;height:140px;border-radius:50%;object-fit:cover;margin:16px auto 18px;border:3px solid var(--gold);box-shadow:0 8px 32px rgba(182,138,60,0.30);display:block">
+        <h3 class="display-serif" style="font-size:1.7rem;font-style:italic;color:var(--burgundy);margin-bottom:6px">Ari Vivekanandarajah</h3>
+        <a href="https://www.linkedin.com/in/arisuthan/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;color:#0A66C2;text-decoration:none;font-size:0.92rem;font-weight:600;margin-bottom:18px;padding:8px 18px;background:rgba(10,102,194,0.10);border-radius:50px;transition:all 0.3s" onmouseover="this.style.background='rgba(10,102,194,0.2)'" onmouseout="this.style.background='rgba(10,102,194,0.10)'">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            Connect on LinkedIn
+        </a>
+        <p class="slide-text" style="max-width:640px;margin:0 auto 18px;font-size:0.96rem">Ari is a seasoned digital strategy professional with over two decades helping Australian businesses translate emerging technology into commercial outcomes. He specialises in turning AI, automation, and web performance data into plain-English decisions that increase revenue and reduce operational friction.</p>
+        <div class="pull-quote" style="font-size:1.1rem;margin:18px 0 26px">The businesses that will lead their industries in 2030 are the ones making deliberate, structured investments in agentic AI <em>today</em>.</div>
+        <p style="opacity:0.7;font-size:0.88rem;margin-bottom:14px;font-family:'Cormorant Garamond',serif;font-style:italic">Ready to translate this playbook into a deployment plan for your business?</p>
+        <a href="https://hypeinsight.com/website-emergency-contact-us/?utm_source=lead_magnet&utm_medium=guide&utm_campaign=ai_agent_playbook" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:linear-gradient(135deg,var(--burgundy),#5d1f1f);color:#F6EFDD;padding:14px 38px;border-radius:50px;font-size:1rem;font-weight:600;text-decoration:none;letter-spacing:1px;box-shadow:0 4px 20px rgba(139,46,46,0.35);transition:all 0.3s ease;font-family:'Cormorant Garamond',serif;font-style:italic" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(139,46,46,0.5)'" onmouseout="this.style.transform='none';this.style.boxShadow='0 4px 20px rgba(139,46,46,0.35)'">Book a Strategy Conversation &rarr;</a>
+    </div>
+    <div class="page-footer"><div class="pf-rule"></div><span class="pf-num">31</span><div class="pf-rule"></div></div>
+</div>
+
+<!-- ========== 32. References ========== -->
+<div class="slide slide--ink">
+    <div class="page-header">
+        <span class="ph-left">Appendix</span>
+        <span>References</span>
+    </div>
+    <div class="slide-content">
+        <div class="eyebrow"><span class="eyebrow-num">app</span> References &amp; Sources</div>
+        <h2 class="slide-title">Sources &amp; <em>Further Reading</em></h2>
+        <ul class="slide-list" style="font-size:0.85rem">
+            <li>[1] Gartner. <em>40% of Enterprise Apps Will Feature Task-Specific AI Agents by 2026.</em></li>
+            <li>[2] Boston Consulting Group. <em>AI Leaders Outpace Laggards with Double the Revenue Growth and 40% More Cost Savings.</em></li>
+            <li>[3] McKinsey &amp; Company. <em>The State of AI: Global Survey 2025.</em></li>
+            <li>[4] Plivo. <em>AI Agent Statistics for 2025: Adoption, ROI, Performance &amp; More.</em></li>
+            <li>[5] McKinsey &amp; Company. <em>Agents for Growth: Turning AI Promise into Impact.</em></li>
+            <li>[6] Datagrid. <em>Statistics on AI Agents for Sales.</em></li>
+            <li>[7] McKinsey &amp; Company. <em>Deploying Agentic AI with Safety and Security: A Playbook for Technology Leaders.</em></li>
+            <li>[8] Google Cloud. <em>ROI of AI 2025.</em></li>
+            <li>[9] OpenAI. <em>Klarna's AI Assistant Does the Work of 700 Full-Time Agents.</em></li>
+            <li>[10] McKinsey &amp; Company. <em>AI: Work Partnerships Between People, Agents, and Robots.</em></li>
+        </ul>
+        <div class="part-ornament" style="margin-top:36px"><div class="po-rule"></div><div class="po-mark"></div><div class="po-rule"></div></div>
+        <p style="text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;opacity:0.7;font-size:1rem;margin-top:18px">,  The End , </p>
+    </div>
+    <div class="page-footer"><div class="pf-rule"></div><span class="pf-num">32</span><div class="pf-rule"></div></div>
+</div>
+
+</div><!-- /slider-track -->
+</div><!-- /slider-container -->
+</div><!-- /stage -->
+
+<div class="nav-controls">
+    <button class="nav-btn" id="prevBtn" aria-label="Previous page"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+    <div class="nav-info">
+        <span class="nav-chapter" id="navChapter">Cover</span>
+        <span class="nav-divider">&middot;</span>
+        <span class="slide-counter" id="slideCounter">1 of 32</span>
+    </div>
+    <button class="nav-btn" id="nextBtn" aria-label="Next page"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+</div>
+
+<script>
+// ===================== PAGE TURNER =====================
+const sliderTrack = document.getElementById('sliderTrack');
+const slides = document.querySelectorAll('.slide');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const navChapterEl = document.getElementById('navChapter');
+const slideCounterEl = document.getElementById('slideCounter');
+const progressBar = document.getElementById('progressBar');
+let currentSlide = 0;
+const totalSlides = slides.length;
+
+function updateSlider() {
+    sliderTrack.classList.add('is-turning');
+    sliderTrack.style.transform = 'translateX(-' + (currentSlide * 100) + 'vw)';
+    slideCounterEl.textContent = 'page ' + (currentSlide + 1) + ' of ' + totalSlides;
+    progressBar.style.width = (((currentSlide + 1) / totalSlides) * 100) + '%';
+    prevBtn.disabled = currentSlide === 0;
+    nextBtn.disabled = currentSlide === totalSlides - 1;
+    slides.forEach(function(s, i) { s.classList.toggle('active', i === currentSlide); });
+    // Set nav chapter from ribbon or page header
+    var ribbon = slides[currentSlide].querySelector('.chapter-ribbon');
+    var phLeft = slides[currentSlide].querySelector('.page-header .ph-left');
+    if (ribbon) navChapterEl.textContent = ribbon.textContent.trim();
+    else if (phLeft) navChapterEl.textContent = phLeft.textContent.trim();
+    else navChapterEl.textContent = currentSlide === 0 ? 'Cover' : 'The Playbook';
+    setTimeout(function(){ sliderTrack.classList.remove('is-turning'); }, 900);
+}
+function nextSlide() { if (currentSlide < totalSlides - 1) { currentSlide++; updateSlider(); } }
+function prevSlide() { if (currentSlide > 0) { currentSlide--; updateSlider(); } }
+function goTo(n) { if (n >= 0 && n < totalSlides) { currentSlide = n; updateSlider(); } }
+
+prevBtn.addEventListener('click', prevSlide);
+nextBtn.addEventListener('click', nextSlide);
+document.addEventListener('keydown', function(e) {
+    if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+});
+var touchX = 0;
+document.addEventListener('touchstart', function(e) { touchX = e.changedTouches[0].screenX; }, { passive: true });
+document.addEventListener('touchend', function(e) {
+    var d = touchX - e.changedTouches[0].screenX;
+    if (Math.abs(d) > 50) { if (d > 0) nextSlide(); else prevSlide(); }
+}, { passive: true });
+var scrollLock = false;
+document.addEventListener('wheel', function(e) {
+    if (scrollLock) return;
+    var sc = slides[currentSlide].querySelector('.slide-content');
+    if (sc) {
+        var atTop = sc.scrollTop === 0;
+        var atBot = sc.scrollTop + sc.clientHeight >= sc.scrollHeight - 1;
+        if ((e.deltaY > 0 && !atBot) || (e.deltaY < 0 && !atTop)) return;
+    }
+    scrollLock = true;
+    if (e.deltaY > 0) nextSlide(); else prevSlide();
+    setTimeout(function() { scrollLock = false; }, 800);
+}, { passive: true });
+
+// TOC click
+document.querySelectorAll('#tocList li').forEach(function(li) {
+    li.addEventListener('click', function() {
+        var t = parseInt(li.dataset.target, 10);
+        // Targets in TOC are 1-based page numbers; slide index = page - 1
+        if (!isNaN(t)) goTo(t - 1);
+    });
+});
+
+// ===================== READINESS GAUGE =====================
+var readiness = {};
+function arcPath(p) {
+    if (p <= 0.001) return 'M 20 120 A 100 100 0 0 1 20.001 119.999';
+    if (p >= 0.999) return 'M 20 120 A 100 100 0 1 1 219.999 120';
+    var a = (1 - p) * Math.PI;
+    var ex = (120 + 100 * Math.cos(a)).toFixed(2);
+    var ey = (120 - 100 * Math.sin(a)).toFixed(2);
+    return 'M 20 120 A 100 100 0 ' + (p > 0.5 ? 1 : 0) + ' 1 ' + ex + ' ' + ey;
+}
+function tierColor(score, max) {
+    var p = score / max;
+    if (p >= 0.80) return '#46B646';
+    if (p >= 0.55) return '#00A9BA';
+    if (p >= 0.30) return '#E67E22';
+    return '#E74C3C';
+}
+function readinessRating(s) {
+    if (s >= 16) return { label: 'Agent-Ready', color: '#46B646' };
+    if (s >= 11) return { label: 'Foundation Phase', color: '#00A9BA' };
+    if (s >= 6)  return { label: 'Pre-Agent Work', color: '#E67E22' };
+    return { label: 'Build the Plumbing', color: '#E74C3C' };
+}
+function refreshReadiness() {
+    var total = 0;
+    for (var k in readiness) total += readiness[k];
+    var fill = document.getElementById('rGaugeFill');
+    var txt  = document.getElementById('rGaugeScore');
+    if (fill && txt) {
+        fill.setAttribute('d', arcPath(total / 20));
+        fill.setAttribute('stroke', tierColor(total, 20));
+        txt.textContent = total;
+    }
+    var rEl = document.getElementById('rRating');
+    if (rEl) {
+        if (total > 0) { var r = readinessRating(total); rEl.textContent = r.label; rEl.style.color = r.color; }
+        else { rEl.textContent = '-'; rEl.style.color = ''; }
+    }
+}
+document.querySelectorAll('.score-row[data-rq]').forEach(function(row) {
+    row.addEventListener('click', function(e) {
+        var btn = e.target.closest('.score-btn');
+        if (!btn) return;
+        row.querySelectorAll('.score-btn').forEach(function(b){ b.classList.remove('btn-active'); });
+        btn.classList.add('btn-active');
+        readiness[row.dataset.rq] = parseInt(btn.dataset.score, 10);
+        refreshReadiness();
+        saveState();
+    });
+});
+document.getElementById('resetReadiness').addEventListener('click', function() {
+    readiness = {};
+    document.querySelectorAll('.score-row[data-rq] .score-btn').forEach(function(b){ b.classList.remove('btn-active'); });
+    refreshReadiness();
+    saveState();
+});
+
+// ===================== SMB TIMELINE =====================
+var smbState = {};
+function refreshSMB() {
+    var total = 0;
+    document.querySelectorAll('#smbTimeline .timeline-item').forEach(function(it) {
+        var id = it.dataset.smb;
+        if (smbState[id]) {
+            it.classList.add('done');
+            total += parseInt(it.dataset.hours, 10);
+        } else {
+            it.classList.remove('done');
+        }
+    });
+    var bar = document.getElementById('smbBar');
+    var hrs = document.getElementById('smbHours');
+    if (bar) bar.style.width = Math.min(100, (total / 15) * 100) + '%';
+    if (bar) bar.style.background = tierColor(total, 20);
+    if (hrs) hrs.textContent = total;
+}
+document.querySelectorAll('[data-smb-btn]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        var id = btn.dataset.smbBtn;
+        smbState[id] = !smbState[id];
+        btn.classList.toggle('active', !!smbState[id]);
+        refreshSMB();
+        saveState();
+    });
+});
+
+// ===================== ENTERPRISE TIMELINE =====================
+var entState = {};
+function refreshENT() {
+    var done = 0;
+    document.querySelectorAll('#entTimeline .timeline-item').forEach(function(it) {
+        var id = it.dataset.ent;
+        if (entState[id]) { it.classList.add('done'); done++; }
+        else it.classList.remove('done');
+    });
+    var pct = Math.round((done / 3) * 100);
+    var bar = document.getElementById('entBar');
+    var lbl = document.getElementById('entPct');
+    if (bar) { bar.style.width = pct + '%'; bar.style.background = tierColor(done, 3); }
+    if (lbl) lbl.textContent = pct + '%';
+}
+document.querySelectorAll('[data-ent-btn]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        var id = btn.dataset.entBtn;
+        entState[id] = !entState[id];
+        btn.classList.toggle('active', !!entState[id]);
+        refreshENT();
+        saveState();
+    });
+});
+
+// ===================== ROI CALCULATOR =====================
+function fmt(n) {
+    if (!isFinite(n)) return '-';
+    var sign = n < 0 ? '-' : '';
+    var abs = Math.abs(Math.round(n));
+    return sign + '$' + abs.toLocaleString();
+}
+function refreshROI() {
+    var hours   = parseFloat(document.getElementById('roi-hours').value)   || 0;
+    var rate    = parseFloat(document.getElementById('roi-rate').value)    || 0;
+    var monthly = parseFloat(document.getElementById('roi-monthly').value) || 0;
+    var setup   = parseFloat(document.getElementById('roi-setup').value)   || 0;
+    var revenue = parseFloat(document.getElementById('roi-revenue').value) || 0;
+
+    var laborSavedMonthly = hours * rate * 4.33;
+    var grossMonthlyBenefit = laborSavedMonthly + revenue;
+    var netMonthlySavings = grossMonthlyBenefit - monthly;
+    var paybackMonths = netMonthlySavings > 0 ? (setup / netMonthlySavings) : Infinity;
+    var year1Total = (grossMonthlyBenefit * 12) - (monthly * 12) - setup;
+    var year1Investment = (monthly * 12) + setup;
+    var roiPct = year1Investment > 0 ? (year1Total / year1Investment) * 100 : 0;
+
+    document.getElementById('roi-savings').textContent = fmt(netMonthlySavings);
+    document.getElementById('roi-payback').textContent = isFinite(paybackMonths) ? (paybackMonths < 1 ? '< 1 mo' : Math.round(paybackMonths * 10) / 10 + ' mo') : '-';
+    document.getElementById('roi-pct').textContent = (roiPct >= 0 ? '+' : '') + Math.round(roiPct) + '%';
+    document.getElementById('roi-annual').textContent = fmt(year1Total);
+}
+['roi-hours','roi-rate','roi-monthly','roi-setup','roi-revenue'].forEach(function(id) {
+    document.getElementById(id).addEventListener('input', function() { refreshROI(); saveState(); });
+});
+document.getElementById('resetROI').addEventListener('click', function() {
+    document.getElementById('roi-hours').value   = 20;
+    document.getElementById('roi-rate').value    = 65;
+    document.getElementById('roi-monthly').value = 450;
+    document.getElementById('roi-setup').value   = 8000;
+    document.getElementById('roi-revenue').value = 4800;
+    refreshROI();
+    saveState();
+});
+
+// ===================== INDUSTRY TABS =====================
+document.querySelectorAll('#industryTabs .industry-tab').forEach(function(tab) {
+    tab.addEventListener('click', function() {
+        document.querySelectorAll('#industryTabs .industry-tab').forEach(function(t){ t.classList.remove('active'); });
+        tab.classList.add('active');
+        var ind = tab.dataset.ind;
+        document.querySelectorAll('.industry-pane').forEach(function(p) { p.classList.remove('active'); });
+        var pane = document.querySelector('.industry-pane[data-pane="' + ind + '"]');
+        if (pane) pane.classList.add('active');
+    });
+});
+
+// ===================== BUILD VS BUY DECISION =====================
+var bb = { time: 5, eng: 5, unique: 5, budget: 5, count: 5 };
+function refreshBB() {
+    document.querySelectorAll('[data-bb]').forEach(function(r) {
+        bb[r.dataset.bb] = parseInt(r.value, 10);
+        var v = document.getElementById('bb-' + r.dataset.bb + '-val');
+        if (v) v.textContent = r.value;
+    });
+    // Scoring:
+    //  Buy score: time pressure HIGH + eng LOW + unique LOW + budget LOW + count LOW
+    //  Build:    time LOW + eng HIGH + unique HIGH + budget HIGH + count LOW-MED
+    //  Orchestrate: time MID + eng MID-HIGH + unique MID + budget MID + count HIGH
+    var buyScore = bb.time + (10 - bb.eng) + (10 - bb.unique) + (10 - bb.budget) + (10 - bb.count);
+    var buildScore = (10 - bb.time) + bb.eng + bb.unique + bb.budget + Math.max(0, 5 - Math.abs(bb.count - 5));
+    var orchScore = (5 - Math.abs(bb.time - 5)) + bb.eng + (5 - Math.abs(bb.unique - 5)) + bb.budget + bb.count;
+
+    var verdict = document.getElementById('bbVerdict');
+    var title = document.getElementById('bbTitle');
+    var text = document.getElementById('bbText');
+    verdict.classList.remove('v-buy','v-build','v-orch');
+
+    if (buyScore >= buildScore && buyScore >= orchScore) {
+        verdict.classList.add('v-buy');
+        title.textContent = 'Buy off-the-shelf';
+        text.textContent = 'You need speed, your workflow is reasonably standard, and engineering capacity is limited. Start with platforms like Salesforce Agentforce, ServiceNow AI Agents, Microsoft Copilot Studio, or Zapier AI. Fastest path to ROI.';
+    } else if (buildScore >= orchScore) {
+        verdict.classList.add('v-build');
+        title.textContent = 'Build custom';
+        text.textContent = 'Your workflow is genuinely unique, you have engineering depth, and budget supports a 3–6 month build. Develop on foundational models (Claude, GPT-4o, Gemini) with LangChain or AutoGen. Your competitive moat lives in this code.';
+    } else {
+        verdict.classList.add('v-orch');
+        title.textContent = 'Orchestrate multiple agents';
+        text.textContent = 'You need several specialised agents working together. Build the orchestration layer in-house (CrewAI, AutoGen, Semantic Kernel) while buying off-the-shelf agents for standardised tasks. The hybrid model wins at scale.';
+    }
+}
+document.querySelectorAll('[data-bb]').forEach(function(r) {
+    r.addEventListener('input', function(){ refreshBB(); saveState(); });
+});
+
+// ===================== FAILURE MODE RISK CHECK =====================
+var fmState = {};
+function refreshFM() {
+    [1,2,3,4].forEach(function(fm) {
+        var total = 0, answered = 0;
+        for (var q = 1; q <= 3; q++) {
+            var k = fm + '-' + q;
+            if (fmState[k] !== undefined) { total += fmState[k]; answered++; }
+        }
+        var risk = document.getElementById('fmRisk' + fm);
+        if (!risk) return;
+        risk.classList.remove('show','r-low','r-med','r-high');
+        if (answered === 0) return;
+        risk.classList.add('show');
+        if (total <= 1) { risk.classList.add('r-low'); risk.textContent = 'Risk: Low'; }
+        else if (total <= 3) { risk.classList.add('r-med'); risk.textContent = 'Risk: Medium'; }
+        else { risk.classList.add('r-high'); risk.textContent = 'Risk: High'; }
+    });
+}
+document.querySelectorAll('.score-row[data-fmq]').forEach(function(row) {
+    row.addEventListener('click', function(e) {
+        var btn = e.target.closest('.score-btn');
+        if (!btn) return;
+        row.querySelectorAll('.score-btn').forEach(function(b){ b.classList.remove('btn-active'); });
+        btn.classList.add('btn-active');
+        fmState[row.dataset.fmq] = parseInt(btn.dataset.score, 10);
+        refreshFM();
+        saveState();
+    });
+});
+document.getElementById('resetFM').addEventListener('click', function() {
+    fmState = {};
+    document.querySelectorAll('.score-row[data-fmq] .score-btn').forEach(function(b){ b.classList.remove('btn-active'); });
+    document.querySelectorAll('.fm-risk').forEach(function(r){ r.classList.remove('show','r-low','r-med','r-high'); });
+    saveState();
+});
+
+// ===================== PERSISTENCE =====================
+function saveState() {
+    try {
+        localStorage.setItem('aiagent_v1', JSON.stringify({
+            readiness: readiness,
+            smb: smbState,
+            ent: entState,
+            roi: {
+                hours: document.getElementById('roi-hours').value,
+                rate: document.getElementById('roi-rate').value,
+                monthly: document.getElementById('roi-monthly').value,
+                setup: document.getElementById('roi-setup').value,
+                revenue: document.getElementById('roi-revenue').value
+            },
+            bb: bb,
+            fm: fmState
+        }));
+    } catch(e) {}
+}
+function loadState() {
+    try {
+        var data = JSON.parse(localStorage.getItem('aiagent_v1') || 'null');
+        if (!data) return;
+        if (data.readiness) {
+            readiness = data.readiness;
+            Object.keys(readiness).forEach(function(k) {
+                var row = document.querySelector('.score-row[data-rq="' + k + '"]');
+                if (!row) return;
+                row.querySelectorAll('.score-btn').forEach(function(b) {
+                    b.classList.toggle('btn-active', parseInt(b.dataset.score, 10) === readiness[k]);
+                });
+            });
+        }
+        if (data.smb) {
+            smbState = data.smb;
+            Object.keys(smbState).forEach(function(id) {
+                var b = document.querySelector('[data-smb-btn="' + id + '"]');
+                if (b && smbState[id]) b.classList.add('active');
+            });
+        }
+        if (data.ent) {
+            entState = data.ent;
+            Object.keys(entState).forEach(function(id) {
+                var b = document.querySelector('[data-ent-btn="' + id + '"]');
+                if (b && entState[id]) b.classList.add('active');
+            });
+        }
+        if (data.roi) {
+            ['hours','rate','monthly','setup','revenue'].forEach(function(k) {
+                if (data.roi[k] !== undefined) document.getElementById('roi-' + k).value = data.roi[k];
+            });
+        }
+        if (data.bb) {
+            Object.keys(data.bb).forEach(function(k) {
+                var input = document.querySelector('[data-bb="' + k + '"]');
+                if (input) input.value = data.bb[k];
+            });
+        }
+        if (data.fm) {
+            fmState = data.fm;
+            Object.keys(fmState).forEach(function(k) {
+                var row = document.querySelector('.score-row[data-fmq="' + k + '"]');
+                if (!row) return;
+                row.querySelectorAll('.score-btn').forEach(function(b) {
+                    b.classList.toggle('btn-active', parseInt(b.dataset.score, 10) === fmState[k]);
+                });
+            });
+        }
+    } catch(e) {}
+}
+
+// Init
+loadState();
+refreshReadiness();
+refreshSMB();
+refreshENT();
+refreshROI();
+refreshBB();
+refreshFM();
+updateSlider();
+</script>
+</body>
+</html>
