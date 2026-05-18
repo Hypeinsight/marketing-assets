@@ -374,14 +374,163 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .slider-track.is-turning .slide { transition: filter 0.45s ease; }
         .slider-track.is-turning .slide.active { filter: brightness(1); }
 
-        @media (max-width: 768px) {
-            .slide { padding: 60px 30px 100px; }
-            .page-header, .page-footer { left: 30px; right: 30px; }
-            .nav-btn { width: 34px; height: 34px; }
-            .nav-info { padding: 0 10px; gap: 7px; }
-            .calc-row { grid-template-columns: 1fr; }
-            .slider-row { grid-template-columns: 1fr; gap: 8px; }
-            .chapter-ribbon { font-size: 0.6rem; padding: 7px 12px; }
+        /* ===== Responsive: tablet ===== */
+        @media (max-width: 900px) {
+            .slide { padding: 60px 40px 100px; }
+            .page-header, .page-footer { left: 40px; right: 40px; }
+            .slide-content { padding: 0 8px; }
+            .chapter-ribbon { top: 90px; font-size: 0.65rem; padding: 7px 14px; letter-spacing: 2px; }
+            .stat-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; }
+            .icon-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+            .calc-results { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+            #readinessPanel { grid-template-columns: 1fr !important; gap: 18px !important; }
+            .part-num { margin-bottom: 22px; letter-spacing: 3px; font-size: 1.15rem; }
+            .part-ornament { margin: 16px 0 20px; }
+            .part-ornament .po-rule { flex-basis: 60px; }
+        }
+
+        /* ===== Responsive: phone ===== */
+        @media (max-width: 640px) {
+            .slide { padding: 54px 20px 88px; }
+            .page-header { top: 18px; left: 20px; right: 20px; font-size: 0.6rem; letter-spacing: 2px; }
+            .page-header .ph-left { font-size: 0.75rem; }
+            /* Hide page-footer on phone — nav controls already show page X of Y */
+            .page-footer { display: none; }
+            .slide-content { padding: 0 4px; }
+            /* Chapter ribbon: smaller, tighter to the edge */
+            .chapter-ribbon { top: 70px; font-size: 0.58rem; padding: 5px 10px 5px 8px; letter-spacing: 1.5px; }
+            .chapter-ribbon::before { left: -6px; width: 6px; }
+            /* Typography downsizing */
+            .slide-title { font-size: clamp(1.7rem, 7vw, 2.4rem); margin-bottom: 14px; }
+            .slide-title--hero { font-size: clamp(2.4rem, 11vw, 3.4rem); }
+            .slide-subtitle { font-size: clamp(0.92rem, 3.6vw, 1.05rem); margin-bottom: 18px; }
+            .slide-text { font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; }
+            .drop-cap::first-letter { font-size: 3.4rem; padding: 4px 9px 0 0; }
+            .eyebrow { font-size: 0.66rem; letter-spacing: 2.5px; gap: 10px; margin-bottom: 10px; }
+            .eyebrow::before, .eyebrow::after { width: 18px; }
+            .eyebrow .eyebrow-num { font-size: 0.9rem; }
+            /* Cover */
+            .slide--cover::after { inset: 14px; }
+            .slide--cover::before { inset: 22px; }
+            .cover-badge { padding: 7px 16px; font-size: 0.62rem; letter-spacing: 3px; margin-bottom: 22px; }
+            .cover-flourish { gap: 14px; margin: 22px 0; }
+            .cover-flourish .cf-rule { flex-basis: 50px; }
+            /* Stat & icon grids */
+            .stat-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 18px 0; }
+            .stat-card { padding: 16px 10px; }
+            .stat-number { font-size: 2rem; }
+            .stat-label { font-size: 0.72rem; line-height: 1.35; }
+            .icon-grid { grid-template-columns: 1fr; gap: 10px; }
+            .icon-box { padding: 18px 16px; }
+            .icon-box-title { font-size: 1.1rem; }
+            .icon-box-text { font-size: 0.84rem; }
+            /* Layout grids */
+            .two-columns { gap: 18px !important; }
+            .calc-row { grid-template-columns: 1fr; gap: 6px; margin-bottom: 14px; }
+            .calc-row label { font-size: 0.88rem; }
+            .calc-input { padding: 12px 14px; font-size: 1rem; min-height: 44px; }
+            .slider-row { grid-template-columns: 1fr; gap: 6px; margin-bottom: 18px; }
+            .slider-row label { font-size: 0.88rem; }
+            .range-input { height: 8px; }
+            .range-input::-webkit-slider-thumb { width: 26px; height: 26px; }
+            .range-input::-moz-range-thumb { width: 26px; height: 26px; }
+            .range-val { font-size: 1.1rem; text-align: left; }
+            .calc-results { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .calc-result { padding: 12px 8px; }
+            .calc-result-value { font-size: 1.5rem; }
+            .calc-result-label { font-size: 0.65rem; letter-spacing: 1px; }
+            .calc-box { padding: 18px 16px; }
+            /* Tables: horizontal scroll for tight columns */
+            .slide-table { font-size: 0.82rem; display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; white-space: nowrap; }
+            .slide-table th, .slide-table td { padding: 10px 12px; }
+            /* Pull-quote / marginalia / lists */
+            .pull-quote { font-size: 1.05rem; padding: 14px 16px; margin: 16px 0; }
+            .pull-quote cite { font-size: 0.72rem; margin-top: 9px; }
+            .marginalia { padding: 12px 14px; font-size: 0.95rem; margin: 14px 0; }
+            .marginalia .mar-label { font-size: 0.64rem; letter-spacing: 2px; }
+            .slide-list li { font-size: 0.93rem; padding: 7px 0 7px 22px; }
+            /* Score buttons & checks — 44px touch targets */
+            .score-row { gap: 6px; }
+            .score-btn { padding: 10px 14px; min-height: 40px; font-size: 0.82rem; flex: 1 1 auto; min-width: 80px; }
+            .check-pill { padding: 9px 14px; min-height: 38px; font-size: 0.8rem; }
+            /* Worksheet items */
+            .ws-item { padding: 12px 14px; }
+            .ws-item .ws-num { min-width: 26px; height: 26px; line-height: 26px; font-size: 0.78rem; margin-right: 8px; }
+            .ws-title { font-size: 0.92rem; }
+            .ws-text { font-size: 0.84rem; padding-left: 0; margin-top: 6px; }
+            /* Timeline */
+            .timeline { padding-left: 30px; }
+            .timeline::before { left: 9px; }
+            .timeline-item::before { left: -25px; width: 10px; height: 10px; }
+            .timeline-title { font-size: 1.05rem; }
+            .timeline-text { font-size: 0.85rem; }
+            /* Industry tabs — horizontal scroll */
+            .industry-tabs { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 4px; gap: 6px; scrollbar-width: thin; }
+            .industry-tab { flex: 0 0 auto; padding: 10px 16px; font-size: 0.95rem; min-height: 42px; }
+            /* TOC */
+            .toc-list li { font-size: 1rem; padding: 8px 0; flex-wrap: wrap; }
+            .toc-part { font-size: 0.72rem; letter-spacing: 2px; min-width: 60px; }
+            .toc-title { padding: 0 10px; font-size: 0.95rem; }
+            /* Section score footer */
+            .ssf { padding: 10px 14px; gap: 9px; flex-wrap: wrap; }
+            .ssf-label { font-size: 0.72rem; min-width: 0; flex: 1 1 100%; margin-bottom: 4px; }
+            /* Part divider pages */
+            .part-page { padding: 0 8px; }
+            .part-title { font-size: clamp(2rem, 8.5vw, 3rem); }
+            .part-blurb { font-size: 0.95rem; }
+            /* Failure mode cards */
+            .fm-card { padding: 14px 16px; }
+            .fm-title { font-size: 1.1rem; }
+            .fm-desc { font-size: 0.83rem; }
+            .fm-question { font-size: 0.83rem; }
+            /* Nav */
+            .nav-controls { bottom: 14px; padding: 5px; gap: 0; }
+            .nav-btn { width: 38px; height: 38px; }
+            .nav-info { padding: 0 10px; gap: 6px; }
+            .nav-chapter { font-size: 0.85rem; max-width: 130px; overflow: hidden; text-overflow: ellipsis; }
+            .slide-counter { font-size: 0.72rem; }
+            /* Progress bar slightly thicker for visibility */
+            .progress-container { height: 3px; }
+            /* Gauge sizing */
+            .gauge-svg { max-width: 220px; }
+            .gauge-rating { font-size: 1.4rem; }
+            /* Reset btns */
+            .reset-btn { padding: 8px 14px; min-height: 36px; font-size: 0.72rem; }
+        }
+
+        /* ===== Responsive: small phone ===== */
+        @media (max-width: 480px) {
+            .slide { padding: 50px 14px 80px; }
+            .page-header { left: 14px; right: 14px; }
+            .slide-content { padding: 0 2px; }
+            .chapter-ribbon { font-size: 0.55rem; padding: 4px 8px 4px 6px; top: 60px; }
+            .slide-title { font-size: clamp(1.55rem, 7.6vw, 2.1rem); }
+            .slide-title--hero { font-size: clamp(2.2rem, 12vw, 3rem); }
+            .drop-cap::first-letter { font-size: 3rem; padding: 3px 8px 0 0; }
+            .stat-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+            .stat-card { padding: 14px 8px; }
+            .stat-number { font-size: 1.7rem; }
+            .calc-results { grid-template-columns: 1fr 1fr; }
+            .calc-result-value { font-size: 1.3rem; }
+            .toc-part { min-width: 52px; font-size: 0.66rem; }
+            .toc-title { font-size: 0.88rem; }
+            .toc-page { font-size: 0.82rem; }
+            .pull-quote { font-size: 0.98rem; padding: 12px 14px; border-left-width: 2px; border-right-width: 2px; }
+            .marginalia { font-size: 0.9rem; padding: 11px 13px; }
+            .nav-chapter { max-width: 100px; }
+            .part-title { font-size: clamp(1.85rem, 9.2vw, 2.4rem); }
+        }
+
+        /* ===== Landscape on phones: tighten vertical ===== */
+        @media (max-height: 520px) and (orientation: landscape) {
+            .slide { padding: 36px 50px 62px; }
+            .page-header { top: 12px; }
+            .nav-controls { bottom: 8px; padding: 4px; }
+            .nav-btn { width: 32px; height: 32px; }
+            .slide-title { font-size: clamp(1.5rem, 4vw, 2rem); margin-bottom: 10px; }
+            .slide-title--hero { font-size: clamp(1.8rem, 5vw, 2.6rem); }
+            .drop-cap::first-letter { font-size: 2.8rem; }
+            .chapter-ribbon { top: 50px; }
         }
     </style>
 </head>
