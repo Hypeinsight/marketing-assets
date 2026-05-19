@@ -678,6 +678,74 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
         .linkedin-link:hover { background: rgba(10,102,194,0.24); }
 
+        /* ====== Technology logo strip ====== */
+        .tech-block {
+            margin-top: 44px;
+            padding: 40px 36px;
+            background: rgba(246,239,221,0.04);
+            border: 1px solid rgba(246,239,221,0.14);
+            border-radius: 10px;
+            position: relative;
+        }
+        .tech-block::before {
+            content: ''; position: absolute; top: -1px; left: 36px; width: 60px; height: 2px;
+            background: var(--gold);
+        }
+        .section--paper .tech-block {
+            background: rgba(11,26,36,0.03);
+            border-color: var(--rule);
+        }
+        .tech-row {
+            margin-bottom: 28px;
+        }
+        .tech-row:last-child { margin-bottom: 0; }
+        .tech-row-label {
+            display: flex; align-items: center; gap: 18px;
+            font-size: 0.66rem; letter-spacing: 3.5px; text-transform: uppercase;
+            font-weight: 700; opacity: 0.55;
+            margin-bottom: 18px;
+            font-family: 'Inter', sans-serif;
+        }
+        .tech-row-label::after {
+            content: ''; flex: 1; height: 1px; background: currentColor; opacity: 0.30;
+        }
+        .tech-row-label em {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-size: 0.95rem; letter-spacing: 1px; text-transform: none;
+            opacity: 0.85; font-weight: 500;
+        }
+        .tech-grid {
+            display: flex; flex-wrap: wrap;
+            gap: 14px 36px; align-items: center;
+        }
+        .tech-item {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1.02rem;
+            letter-spacing: 0.2px;
+            color: var(--paper-cream);
+            opacity: 0.78;
+            transition: opacity 0.25s ease, color 0.25s ease, transform 0.25s ease;
+            white-space: nowrap;
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 4px 0;
+        }
+        .section--paper .tech-item { color: var(--ink-dark); opacity: 0.72; }
+        .tech-item:hover {
+            opacity: 1; color: var(--gold-light); transform: translateY(-1px);
+        }
+        .section--paper .tech-item:hover { color: var(--burgundy); }
+        .tech-item .tech-mark {
+            display: inline-block; width: 6px; height: 6px;
+            background: var(--gold); border-radius: 50%; opacity: 0.6;
+        }
+        .section--paper .tech-item .tech-mark { background: var(--burgundy); opacity: 0.5; }
+        .tech-footnote {
+            text-align: center; margin-top: 32px;
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-size: 0.92rem; opacity: 0.65; letter-spacing: 0.5px;
+        }
+
         /* ====== Reveal on scroll ====== */
         .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
         .reveal.in { opacity: 1; transform: translateY(0); }
@@ -729,6 +797,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             .hp-num { font-size: 1.75rem; }
             .hp-num small { font-size: 0.55rem; letter-spacing: 2px; }
             .hp-text { font-size: 0.85rem; }
+            .tech-block { padding: 28px 22px; margin-top: 36px; }
+            .tech-block::before { left: 22px; width: 44px; }
+            .tech-row-label { font-size: 0.62rem; letter-spacing: 2.5px; gap: 12px; margin-bottom: 14px; }
+            .tech-row-label em { font-size: 0.85rem; }
+            .tech-grid { gap: 12px 24px; }
+            .tech-item { font-size: 0.94rem; }
+            .tech-footnote { font-size: 0.85rem; margin-top: 24px; }
             .cap-item { grid-template-columns: auto 1fr; gap: 14px; padding: 18px 18px; }
             .cap-outcome { grid-column: 1 / -1; justify-self: start; }
             .cap-num { font-size: 1.6rem; min-width: 36px; }
@@ -1010,6 +1085,58 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="stack-layer-tag">Wrapper</div>
             </div>
         </div>
+
+        <!-- Technologies we work with -->
+        <div class="section-header reveal" style="max-width: 760px; margin: 70px auto 0;">
+            <span class="eyebrow"><span class="eyebrow-num">v &middot; ii</span> Built on the modern AI stack</span>
+            <h3 style="font-size: clamp(1.6rem, 2.8vw, 2.2rem); font-style: italic; font-weight: 500;">The technologies <em class="italic-h" style="font-style: italic;">we ship with</em></h3>
+            <p class="lead" style="font-size: clamp(1rem, 1.6vw, 1.2rem); margin-top: 12px;">We are model-agnostic and platform-agnostic by design. The right tool depends on the task, the data, and the constraints, so our practice is fluent across the leading vendors at every layer of the stack.</p>
+        </div>
+        <div class="tech-block reveal">
+            <div class="tech-row">
+                <div class="tech-row-label">Layer 01 &middot; <em>Reasoning</em></div>
+                <div class="tech-grid">
+                    <span class="tech-item"><span class="tech-mark"></span>OpenAI</span>
+                    <span class="tech-item"><span class="tech-mark"></span>Anthropic Claude</span>
+                    <span class="tech-item"><span class="tech-mark"></span>Google Gemini</span>
+                    <span class="tech-item"><span class="tech-mark"></span>Meta Llama</span>
+                    <span class="tech-item"><span class="tech-mark"></span>Mistral</span>
+                </div>
+            </div>
+            <div class="tech-row">
+                <div class="tech-row-label">Layer 02 &middot; <em>Orchestration &amp; automation</em></div>
+                <div class="tech-grid">
+                    <span class="tech-item"><span class="tech-mark"></span>LangChain</span>
+                    <span class="tech-item"><span class="tech-mark"></span>LangGraph</span>
+                    <span class="tech-item"><span class="tech-mark"></span>AutoGen</span>
+                    <span class="tech-item"><span class="tech-mark"></span>CrewAI</span>
+                    <span class="tech-item"><span class="tech-mark"></span>Zapier</span>
+                    <span class="tech-item"><span class="tech-mark"></span>Make</span>
+                    <span class="tech-item"><span class="tech-mark"></span>n8n</span>
+                </div>
+            </div>
+            <div class="tech-row">
+                <div class="tech-row-label">Layer 03 &middot; <em>Data &amp; retrieval</em></div>
+                <div class="tech-grid">
+                    <span class="tech-item"><span class="tech-mark"></span>Pinecone</span>
+                    <span class="tech-item"><span class="tech-mark"></span>Weaviate</span>
+                    <span class="tech-item"><span class="tech-mark"></span>Hugging Face</span>
+                    <span class="tech-item"><span class="tech-mark"></span>Supabase</span>
+                    <span class="tech-item"><span class="tech-mark"></span>Snowflake</span>
+                </div>
+            </div>
+            <div class="tech-row">
+                <div class="tech-row-label">Wrapper &middot; <em>Enterprise agent platforms</em></div>
+                <div class="tech-grid">
+                    <span class="tech-item"><span class="tech-mark"></span>Salesforce Agentforce</span>
+                    <span class="tech-item"><span class="tech-mark"></span>Microsoft Copilot Studio</span>
+                    <span class="tech-item"><span class="tech-mark"></span>ServiceNow AI Agents</span>
+                    <span class="tech-item"><span class="tech-mark"></span>HubSpot AI</span>
+                    <span class="tech-item"><span class="tech-mark"></span>MindStudio</span>
+                </div>
+            </div>
+        </div>
+        <p class="tech-footnote">All trademarks belong to their respective owners. We are an independent practice, not a reseller.</p>
     </div>
 </section>
 
