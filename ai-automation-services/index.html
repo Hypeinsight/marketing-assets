@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W7QL5263');</script>
+<!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hype Insight builds AI agents, automations, and agentic systems that move brands from experiment to operational infrastructure — measurable ROI, designed to ship this quarter.">
+    <title>AI &amp; Automation Services — Hype Insight</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Hype Insight brand */
+            --color-primary: #46B646;
+            --color-primary-dark: #3a9a3a;
+            --color-secondary: #00A9BA;
+            --color-accent: #FFCB2B;
+            --color-blue: #1372D3;
+            --color-dark: #02202E;
+            /* Editorial flip-book palette (matches AI Agent Playbook) */
+            --paper-cream: #F6EFDD;
+            --paper-cream-2: #EFE6CE;
+            --paper-edge: #D9CDA8;
+            --ink-dark: #0B1A24;
+            --ink-dark-2: #16283A;
+            --gold: #B68A3C;
+            --gold-light: #D9B45C;
+            --burgundy: #8B2E2E;
+            --burgundy-2: #6E2222;
+            --rule: rgba(11,26,36,0.18);
+            --rule-dark: rgba(246,239,221,0.22);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--ink-dark);
+            background: var(--paper-cream);
+            line-height: 1.6;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ====== Section base ====== */
+        .section {
+            padding: 110px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        .section--paper {
+            background:
+                radial-gradient(circle at 16% 8%, rgba(255,255,255,0.55) 0%, transparent 35%),
+                radial-gradient(circle at 88% 92%, rgba(180,150,90,0.07) 0%, transparent 40%),
+                linear-gradient(180deg, var(--paper-cream) 0%, var(--paper-cream-2) 100%);
+            color: var(--ink-dark);
+        }
+        .section--ink {
+            background:
+                radial-gradient(circle at 78% 18%, rgba(0,169,186,0.10) 0%, transparent 45%),
+                radial-gradient(circle at 12% 90%, rgba(70,182,70,0.10) 0%, transparent 45%),
+                linear-gradient(180deg, var(--ink-dark) 0%, var(--ink-dark-2) 100%);
+            color: var(--paper-cream);
+        }
+        .section--paper::before, .section--ink::before {
+            /* Subtle paper grain texture */
+            content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.4;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.62  0 0 0 0 0.55  0 0 0 0 0.39  0 0 0 0.08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+            mix-blend-mode: multiply;
+        }
+        .section--ink::before {
+            opacity: 0.28; mix-blend-mode: overlay;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.95  0 0 0 0 0.82  0 0 0 0.10 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+        }
+        .section-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ====== Typography ====== */
+        .display-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+        h1, h2, h3, h4 { font-family: 'Cormorant Garamond', Georgia, serif; line-height: 1.1; letter-spacing: -0.01em; }
+        h1 { font-size: clamp(2.4rem, 5.4vw, 4.6rem); font-weight: 600; }
+        h2 { font-size: clamp(2rem, 4.2vw, 3.4rem); font-weight: 600; }
+        h3 { font-size: clamp(1.4rem, 2.4vw, 1.95rem); font-weight: 600; }
+        h4 { font-size: 1.25rem; font-weight: 600; }
+        .italic-h { font-style: italic; font-weight: 500; }
+        p { font-size: 1.02rem; line-height: 1.75; opacity: 0.92; margin-bottom: 16px; }
+        .lead { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1.1rem, 1.9vw, 1.5rem); line-height: 1.55; opacity: 0.92; max-width: 760px; }
+        .section--paper strong { color: var(--burgundy); font-weight: 600; }
+        .section--ink strong { color: var(--gold-light); font-weight: 600; }
+
+        /* Drop cap */
+        .drop-cap::first-letter {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 4.4rem; font-weight: 700; float: left; line-height: 0.86;
+            padding: 6px 12px 0 0; color: var(--burgundy);
+        }
+        .section--ink .drop-cap::first-letter { color: var(--gold-light); }
+
+        /* ====== Eyebrows & ornaments ====== */
+        .eyebrow {
+            display: inline-flex; align-items: center; gap: 14px;
+            font-size: 0.74rem; letter-spacing: 4px; text-transform: uppercase;
+            font-weight: 700; margin-bottom: 18px; color: var(--burgundy);
+        }
+        .section--ink .eyebrow { color: var(--gold-light); }
+        .eyebrow::before { content: ''; width: 36px; height: 1px; background: currentColor; opacity: 0.55; }
+        .eyebrow .eyebrow-num {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-size: 1.05rem; letter-spacing: 0.5px; text-transform: none; opacity: 0.85;
+        }
+
+        .ornament {
+            display: flex; align-items: center; justify-content: center; gap: 18px;
+            margin: 22px 0 28px;
+        }
+        .ornament .o-rule { flex: 0 0 80px; height: 1px; background: currentColor; opacity: 0.45; }
+        .ornament .o-mark { width: 8px; height: 8px; border: 1px solid currentColor; transform: rotate(45deg); opacity: 0.7; }
+
+        /* ====== Hero ====== */
+        .hero {
+            background:
+                radial-gradient(circle at 30% 25%, rgba(70,182,70,0.18) 0%, transparent 50%),
+                radial-gradient(circle at 75% 80%, rgba(0,169,186,0.18) 0%, transparent 55%),
+                linear-gradient(160deg, #0d2231 0%, #0b1a24 50%, #050b12 100%);
+            color: var(--paper-cream);
+            padding: 130px 24px 110px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: ''; position: absolute; inset: 32px; border: 1px solid rgba(246,239,221,0.16); pointer-events: none;
+        }
+        .hero::before {
+            content: ''; position: absolute; inset: 44px; border: 1px solid rgba(246,239,221,0.08); pointer-events: none;
+        }
+        .hero-inner {
+            max-width: 1180px; margin: 0 auto; position: relative; z-index: 2;
+            display: grid; grid-template-columns: 1.4fr 1fr; gap: 60px; align-items: center;
+        }
+        .hero-badge {
+            display: inline-block; padding: 8px 22px;
+            border: 1px solid var(--gold); color: var(--gold-light);
+            font-size: 0.72rem; letter-spacing: 4px; text-transform: uppercase; font-weight: 700;
+            margin-bottom: 32px;
+        }
+        .hero h1 {
+            font-size: clamp(2.6rem, 5.6vw, 4.6rem);
+            margin-bottom: 22px;
+        }
+        .hero h1 em { font-style: italic; color: var(--gold-light); font-weight: 500; }
+        .hero-sub {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-size: clamp(1.1rem, 1.8vw, 1.4rem); line-height: 1.55;
+            margin-bottom: 32px; opacity: 0.92; max-width: 600px;
+        }
+        .hero-flourish { display: flex; align-items: center; gap: 18px; margin: 28px 0 32px; }
+        .hero-flourish .hf-rule { flex: 0 0 70px; height: 1px; background: var(--gold); opacity: 0.7; }
+        .hero-flourish .hf-mark { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--gold-light); font-size: 1.2rem; }
+        .hero-cta-row { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 8px; }
+        .hero-meta {
+            margin-top: 36px; font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-size: 0.92rem; opacity: 0.65; letter-spacing: 1px;
+        }
+
+        /* Hero visual (right column) */
+        .hero-visual {
+            position: relative; aspect-ratio: 1 / 1.05; max-width: 380px; margin-left: auto;
+        }
+        .hero-card {
+            position: absolute; padding: 22px 24px;
+            background: rgba(246,239,221,0.06);
+            backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(246,239,221,0.16);
+            border-radius: 10px;
+            box-shadow: 0 18px 50px rgba(0,0,0,0.4);
+        }
+        .hero-card .hc-eyebrow {
+            font-size: 0.62rem; letter-spacing: 3px; text-transform: uppercase;
+            font-weight: 700; color: var(--gold-light); margin-bottom: 8px;
+        }
+        .hero-card .hc-num {
+            font-family: 'Cormorant Garamond', serif; font-size: 2.4rem;
+            font-weight: 700; line-height: 1; color: var(--paper-cream);
+            margin-bottom: 4px;
+        }
+        .hero-card .hc-label { font-size: 0.78rem; opacity: 0.75; line-height: 1.35; }
+        .hero-card.hc-1 { top: 4%; left: 0; width: 64%; transform: rotate(-3deg); }
+        .hero-card.hc-2 { top: 30%; right: 0; width: 60%; transform: rotate(2deg); }
+        .hero-card.hc-3 { bottom: 6%; left: 12%; width: 70%; transform: rotate(-1deg); }
+
+        /* ====== Buttons ====== */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            padding: 14px 30px; border-radius: 50px; text-decoration: none;
+            font-weight: 600; font-size: 0.96rem; letter-spacing: 0.3px;
+            transition: all 0.28s cubic-bezier(0.22,1,0.36,1);
+            border: none; cursor: pointer; font-family: inherit;
+            white-space: nowrap;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            color: #fff;
+            box-shadow: 0 6px 24px rgba(70,182,70,0.35);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 32px rgba(70,182,70,0.5);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: var(--paper-cream);
+            border: 1.5px solid rgba(246,239,221,0.45);
+        }
+        .btn-secondary:hover {
+            border-color: var(--gold-light);
+            color: var(--gold-light);
+            background: rgba(217,180,92,0.08);
+        }
+        .btn-outline-ink {
+            background: transparent;
+            color: var(--burgundy);
+            border: 1.5px solid var(--burgundy);
+        }
+        .btn-outline-ink:hover {
+            background: var(--burgundy);
+            color: var(--paper-cream);
+            transform: translateY(-2px);
+        }
+        .btn-ghost-paper {
+            background: transparent;
+            color: var(--ink-dark);
+            border: 1.5px solid rgba(11,26,36,0.3);
+        }
+        .btn-ghost-paper:hover {
+            border-color: var(--ink-dark);
+            background: rgba(11,26,36,0.06);
+        }
+        .btn svg { width: 14px; height: 14px; }
+
+        /* ====== Stat band ====== */
+        .stat-band {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            margin-top: 56px;
+            border-top: 1px solid var(--rule);
+            border-bottom: 1px solid var(--rule);
+        }
+        .section--ink .stat-band { border-color: var(--rule-dark); }
+        .stat-band-item {
+            padding: 32px 26px; text-align: center;
+            border-right: 1px solid var(--rule);
+            position: relative;
+        }
+        .section--ink .stat-band-item { border-right-color: var(--rule-dark); }
+        .stat-band-item:last-child { border-right: none; }
+        .stat-band-item::before {
+            content: ''; position: absolute; top: -1px; left: 30%; right: 30%; height: 2px;
+            background: var(--gold);
+        }
+        .stat-band-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.4rem, 4.4vw, 3.2rem);
+            font-weight: 700; line-height: 1;
+            color: var(--burgundy); margin-bottom: 10px;
+        }
+        .section--ink .stat-band-num { color: var(--gold-light); }
+        .stat-band-label {
+            font-size: 0.84rem; opacity: 0.78; line-height: 1.45;
+            max-width: 220px; margin: 0 auto;
+        }
+
+        /* ====== Card grid (services / value areas) ====== */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+            margin-top: 44px;
+        }
+        .card-grid--three { grid-template-columns: repeat(3, 1fr); }
+        .card-grid--four { grid-template-columns: repeat(4, 1fr); }
+        .v-card {
+            background: rgba(11,26,36,0.04);
+            border: 1px solid var(--rule);
+            border-radius: 8px;
+            padding: 32px 28px;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+        }
+        .section--ink .v-card { background: rgba(246,239,221,0.04); border-color: var(--rule-dark); }
+        .v-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 40px rgba(11,26,36,0.10);
+        }
+        .section--ink .v-card:hover { box-shadow: 0 14px 40px rgba(0,0,0,0.4); }
+        .v-card::before {
+            content: ''; position: absolute; top: -1px; left: 28px; width: 48px; height: 2px;
+            background: var(--gold);
+        }
+        .v-card-icon {
+            width: 44px; height: 44px; margin-bottom: 18px;
+            color: var(--burgundy); display: flex; align-items: center; justify-content: center;
+        }
+        .section--ink .v-card-icon { color: var(--gold-light); }
+        .v-card-icon svg { width: 100%; height: 100%; }
+        .v-card-title {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-size: 1.55rem; font-weight: 600; margin-bottom: 10px;
+            color: var(--burgundy);
+        }
+        .section--ink .v-card-title { color: var(--gold-light); }
+        .v-card-text { font-size: 0.94rem; line-height: 1.65; opacity: 0.88; margin-bottom: 14px; }
+        .v-card-metric {
+            display: inline-block; padding: 5px 12px;
+            background: rgba(70,182,70,0.12); color: var(--color-primary-dark);
+            border-radius: 50px; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.3px;
+            border: 1px solid rgba(70,182,70,0.25);
+        }
+        .section--ink .v-card-metric {
+            background: rgba(70,182,70,0.18); color: #90d990; border-color: rgba(70,182,70,0.35);
+        }
+
+        /* ====== Method timeline (4 stages) ====== */
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            margin-top: 48px;
+            position: relative;
+        }
+        .method-grid::before {
+            content: '';
+            position: absolute; top: 38px; left: 12%; right: 12%; height: 2px;
+            background: linear-gradient(90deg, transparent 0%, var(--gold) 8%, var(--gold) 92%, transparent 100%);
+            opacity: 0.55;
+            z-index: 0;
+        }
+        .method-step {
+            padding: 0 18px; text-align: center; position: relative; z-index: 1;
+        }
+        .method-dot {
+            width: 78px; height: 78px; border-radius: 50%;
+            background: var(--paper-cream); border: 2px solid var(--gold);
+            box-shadow: 0 0 0 8px var(--paper-cream), 0 6px 18px rgba(11,26,36,0.10);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 22px;
+            font-family: 'Cormorant Garamond', serif; font-size: 2.1rem; font-weight: 700;
+            color: var(--burgundy); font-style: italic;
+        }
+        .section--ink .method-dot {
+            background: var(--ink-dark); color: var(--gold-light);
+            box-shadow: 0 0 0 8px var(--ink-dark), 0 6px 18px rgba(0,0,0,0.4);
+        }
+        .method-label {
+            font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase;
+            font-weight: 700; opacity: 0.6; margin-bottom: 8px;
+        }
+        .method-title {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-weight: 600; font-size: 1.45rem;
+            color: var(--burgundy); margin-bottom: 12px;
+        }
+        .section--ink .method-title { color: var(--gold-light); }
+        .method-text { font-size: 0.9rem; line-height: 1.65; opacity: 0.88; }
+
+        /* ====== Before/After spread ====== */
+        .spread {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+            margin-top: 40px; position: relative;
+        }
+        .spread::before {
+            content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
+            background: linear-gradient(180deg, transparent, var(--rule) 20%, var(--rule) 80%, transparent);
+        }
+        .section--ink .spread::before {
+            background: linear-gradient(180deg, transparent, var(--rule-dark) 20%, var(--rule-dark) 80%, transparent);
+        }
+        .spread-side h3 {
+            font-style: italic; font-size: 1.6rem; margin-bottom: 18px;
+        }
+        .spread-side.before-h3 h3 { color: #b03a3a; }
+        .spread-side.after-h3 h3 { color: var(--color-primary-dark); }
+        .section--ink .spread-side.before-h3 h3 { color: #f08278; }
+        .section--ink .spread-side.after-h3 h3 { color: #88e088; }
+        .ws-item {
+            padding: 16px 18px; border-radius: 0 6px 6px 0; margin-bottom: 10px;
+            font-size: 0.92rem; line-height: 1.55;
+        }
+        .ws-item--bad {
+            background: rgba(231,76,60,0.06);
+            border-left: 3px solid #E74C3C;
+        }
+        .section--ink .ws-item--bad { background: rgba(231,76,60,0.12); }
+        .ws-item--good {
+            background: rgba(70,182,70,0.07);
+            border-left: 3px solid var(--color-primary);
+        }
+        .section--ink .ws-item--good { background: rgba(70,182,70,0.12); }
+        .ws-item strong { display: block; margin-bottom: 4px; font-weight: 700; }
+        .section--ink .ws-item strong { color: var(--paper-cream); }
+
+        /* ====== Pull quote ====== */
+        .pull-quote {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-size: clamp(1.3rem, 2.4vw, 1.8rem); line-height: 1.45;
+            padding: 28px 32px; margin: 40px 0;
+            border-left: 3px solid var(--burgundy);
+            border-right: 3px solid var(--burgundy);
+            max-width: 860px;
+        }
+        .section--ink .pull-quote { border-color: var(--gold); }
+        .pull-quote cite {
+            display: block; font-style: normal; font-size: 0.78rem;
+            letter-spacing: 2px; text-transform: uppercase; opacity: 0.65;
+            margin-top: 14px; font-family: 'Inter', sans-serif; font-weight: 600;
+        }
+
+        /* ====== Marginalia ====== */
+        .marginalia {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            padding: 18px 22px; background: rgba(182,138,60,0.08);
+            border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0;
+            margin: 24px 0; font-size: 1.05rem; line-height: 1.55;
+        }
+        .section--ink .marginalia { background: rgba(217,180,92,0.10); }
+        .marginalia .mar-label {
+            display: block; font-family: 'Inter', sans-serif; font-style: normal;
+            font-size: 0.68rem; letter-spacing: 3px; text-transform: uppercase;
+            font-weight: 700; color: var(--gold); margin-bottom: 6px;
+        }
+
+        /* ====== Stack diagram (3-layer architecture) ====== */
+        .stack-diagram {
+            display: flex; flex-direction: column; gap: 14px;
+            max-width: 720px; margin: 40px auto;
+        }
+        .stack-layer {
+            padding: 24px 28px; border-radius: 10px;
+            background: rgba(246,239,221,0.06);
+            border: 1px solid rgba(246,239,221,0.18);
+            display: grid; grid-template-columns: auto 1fr auto; gap: 22px; align-items: center;
+            transition: transform 0.3s ease;
+        }
+        .stack-layer:hover { transform: translateX(4px); }
+        .stack-layer-num {
+            width: 48px; height: 48px; border-radius: 50%;
+            background: var(--gold); color: var(--ink-dark);
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+        .stack-layer-title {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-size: 1.35rem; font-weight: 600; color: var(--gold-light);
+            margin-bottom: 4px;
+        }
+        .stack-layer-text { font-size: 0.92rem; opacity: 0.85; line-height: 1.5; }
+        .stack-layer-tag {
+            font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase;
+            font-weight: 700; opacity: 0.65; padding: 4px 12px;
+            border: 1px solid rgba(246,239,221,0.25); border-radius: 50px;
+        }
+
+        /* ====== Lead magnet feature ====== */
+        .lm-feature {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 50px;
+            align-items: center;
+            padding: 56px 50px;
+            background:
+                linear-gradient(135deg, rgba(139,46,46,0.08), rgba(182,138,60,0.10));
+            border: 1px solid rgba(139,46,46,0.18);
+            border-radius: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+        .lm-feature::before {
+            content: ''; position: absolute; top: 0; left: 32px; width: 80px; height: 3px;
+            background: var(--gold);
+        }
+        .lm-feature-text h3 {
+            font-style: italic; font-size: 2.2rem; margin-bottom: 14px;
+            color: var(--burgundy);
+        }
+        .lm-feature-text p { font-size: 0.98rem; }
+        .lm-features-list {
+            list-style: none; margin: 18px 0 24px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 8px 18px;
+        }
+        .lm-features-list li {
+            font-size: 0.9rem; line-height: 1.5; padding-left: 22px; position: relative;
+        }
+        .lm-features-list li::before {
+            content: '§'; position: absolute; left: 0; top: 0;
+            color: var(--gold); font-family: 'Cormorant Garamond', serif; font-weight: 700;
+        }
+        .lm-mockup {
+            position: relative; aspect-ratio: 1 / 1.15; max-width: 360px; margin-left: auto;
+        }
+        .lm-cover {
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(circle at 30% 25%, rgba(70,182,70,0.20) 0%, transparent 50%),
+                radial-gradient(circle at 75% 80%, rgba(0,169,186,0.18) 0%, transparent 55%),
+                linear-gradient(160deg, #0d2231 0%, #0b1a24 50%, #050b12 100%);
+            border-radius: 6px;
+            box-shadow:
+                0 22px 60px rgba(11,26,36,0.35),
+                inset 6px 0 12px rgba(0,0,0,0.4);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 50px 30px;
+            color: var(--paper-cream);
+            text-align: center;
+            border: 1px solid rgba(246,239,221,0.10);
+        }
+        .lm-cover::before {
+            content: ''; position: absolute; inset: 14px; border: 1px solid rgba(246,239,221,0.18);
+            border-radius: 3px; pointer-events: none;
+        }
+        .lm-cover-badge {
+            display: inline-block; padding: 5px 14px;
+            border: 1px solid var(--gold); color: var(--gold-light);
+            font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase;
+            font-weight: 700; margin-bottom: 20px;
+        }
+        .lm-cover h4 {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-size: 2rem; font-weight: 500; line-height: 1; margin-bottom: 8px;
+        }
+        .lm-cover .lm-cover-sub {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-size: 0.85rem; opacity: 0.7; letter-spacing: 1px;
+        }
+        .lm-cover .lm-cover-flourish {
+            display: flex; align-items: center; gap: 14px; margin: 18px 0;
+        }
+        .lm-cover .lm-cover-flourish .rule {
+            flex: 0 0 50px; height: 1px; background: var(--gold); opacity: 0.7;
+        }
+        .lm-cover .lm-cover-flourish .mark {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            color: var(--gold-light); font-size: 1.2rem;
+        }
+
+        /* ====== Capability tabs ====== */
+        .cap-list {
+            list-style: none; margin-top: 40px; display: flex; flex-direction: column;
+            gap: 12px;
+        }
+        .cap-item {
+            display: grid; grid-template-columns: auto 1fr auto; gap: 22px; align-items: center;
+            padding: 22px 26px;
+            background: rgba(11,26,36,0.03);
+            border: 1px solid var(--rule);
+            border-left: 4px solid var(--gold);
+            border-radius: 0 8px 8px 0;
+            transition: all 0.3s ease;
+        }
+        .cap-item:hover {
+            background: rgba(182,138,60,0.06);
+            transform: translateX(4px);
+        }
+        .cap-num {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-size: 2rem; font-weight: 700; color: var(--burgundy);
+            line-height: 1; min-width: 48px;
+        }
+        .cap-content h4 {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-size: 1.35rem; font-weight: 600; margin-bottom: 4px;
+            color: var(--burgundy);
+        }
+        .cap-content p { font-size: 0.92rem; line-height: 1.55; opacity: 0.88; margin: 0; }
+        .cap-outcome {
+            font-size: 0.78rem; letter-spacing: 0.3px; padding: 6px 14px;
+            background: rgba(70,182,70,0.12); color: var(--color-primary-dark);
+            border-radius: 50px; font-weight: 600; white-space: nowrap;
+            border: 1px solid rgba(70,182,70,0.25);
+        }
+
+        /* ====== Section header ====== */
+        .section-header { text-align: center; max-width: 820px; margin: 0 auto; }
+        .section-header .eyebrow { justify-content: center; }
+        .section-header .lead { margin: 16px auto 0; }
+
+        /* ====== Final CTA ====== */
+        .final-cta {
+            text-align: center; max-width: 820px; margin: 0 auto;
+        }
+        .final-cta .author-photo {
+            width: 132px; height: 132px; border-radius: 50%; object-fit: cover;
+            margin: 28px auto 22px;
+            border: 3px solid var(--gold);
+            box-shadow: 0 10px 36px rgba(182,138,60,0.32);
+        }
+        .final-cta h2 em { font-style: italic; color: var(--gold-light); font-weight: 500; }
+        .final-cta-name {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-size: 1.5rem; font-weight: 600; margin-bottom: 4px;
+            color: var(--gold-light);
+        }
+        .final-cta-role {
+            font-size: 0.84rem; letter-spacing: 2px; text-transform: uppercase;
+            opacity: 0.65; margin-bottom: 20px;
+        }
+        .final-cta-bio { max-width: 620px; margin: 0 auto 28px; font-size: 0.96rem; }
+        .linkedin-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            color: #4a9eff; text-decoration: none;
+            font-size: 0.9rem; font-weight: 500;
+            padding: 8px 18px; background: rgba(10,102,194,0.14);
+            border-radius: 50px; transition: all 0.3s; margin-bottom: 30px;
+        }
+        .linkedin-link:hover { background: rgba(10,102,194,0.24); }
+
+        /* ====== Footer (light) ====== */
+        .page-footer {
+            background: var(--ink-dark);
+            color: var(--paper-cream);
+            padding: 36px 24px;
+            text-align: center;
+            font-size: 0.85rem; opacity: 0.7;
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+        }
+
+        /* ====== Reveal on scroll ====== */
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal.in { opacity: 1; transform: translateY(0); }
+
+        /* ====== Responsive ====== */
+        @media (max-width: 1024px) {
+            .hero-inner { grid-template-columns: 1fr; gap: 50px; }
+            .hero-visual { margin: 0 auto; max-width: 320px; }
+            .card-grid--four { grid-template-columns: repeat(2, 1fr); }
+            .method-grid { grid-template-columns: repeat(2, 1fr); row-gap: 40px; }
+            .method-grid::before { display: none; }
+            .stat-band { grid-template-columns: repeat(2, 1fr); }
+            .stat-band-item:nth-child(2) { border-right: none; }
+            .stat-band-item:nth-child(1), .stat-band-item:nth-child(2) { border-bottom: 1px solid var(--rule); }
+            .section--ink .stat-band-item:nth-child(1), .section--ink .stat-band-item:nth-child(2) { border-bottom-color: var(--rule-dark); }
+            .lm-feature { grid-template-columns: 1fr; gap: 36px; padding: 44px 36px; }
+            .lm-mockup { margin: 0 auto; }
+        }
+
+        @media (max-width: 768px) {
+            .section { padding: 80px 22px; }
+            .hero { padding: 90px 22px 80px; }
+            .hero::after { inset: 18px; }
+            .hero::before { inset: 28px; }
+            .hero-flourish .hf-rule { flex-basis: 40px; }
+            .hero-cta-row { flex-direction: column; align-items: stretch; }
+            .hero-cta-row .btn { width: 100%; }
+            .btn { padding: 14px 22px; font-size: 0.9rem; min-height: 48px; }
+            .card-grid, .card-grid--three, .card-grid--four { grid-template-columns: 1fr; gap: 16px; }
+            .v-card { padding: 26px 22px; }
+            .spread { grid-template-columns: 1fr; gap: 28px; }
+            .spread::before { display: none; }
+            .stack-layer { grid-template-columns: auto 1fr; gap: 14px; padding: 18px 20px; }
+            .stack-layer-tag { display: none; }
+            .stack-layer-num { width: 40px; height: 40px; font-size: 1.15rem; }
+            .stack-layer-title { font-size: 1.15rem; }
+            .stack-layer-text { font-size: 0.88rem; }
+            .pull-quote { font-size: 1.15rem; padding: 20px 22px; margin: 28px 0; }
+            .marginalia { padding: 14px 16px; font-size: 0.95rem; }
+            .drop-cap::first-letter { font-size: 3.4rem; padding: 4px 9px 0 0; }
+            .lm-features-list { grid-template-columns: 1fr; }
+            .lm-feature { padding: 32px 22px; }
+            .lm-mockup { max-width: 280px; }
+            .lm-cover { padding: 36px 22px; }
+            .lm-cover h4 { font-size: 1.7rem; }
+            .cap-item { grid-template-columns: auto 1fr; gap: 14px; padding: 18px 18px; }
+            .cap-outcome { grid-column: 1 / -1; justify-self: start; }
+            .cap-num { font-size: 1.6rem; min-width: 36px; }
+            .method-dot { width: 64px; height: 64px; font-size: 1.7rem; box-shadow: 0 0 0 6px var(--paper-cream), 0 6px 18px rgba(11,26,36,0.10); }
+            .section--ink .method-dot { box-shadow: 0 0 0 6px var(--ink-dark), 0 6px 18px rgba(0,0,0,0.4); }
+            .stat-band-num { font-size: 2.2rem; }
+            .stat-band-label { font-size: 0.78rem; }
+        }
+
+        @media (max-width: 480px) {
+            .section { padding: 70px 18px; }
+            .hero { padding: 80px 18px 70px; }
+            .stat-band { grid-template-columns: 1fr; }
+            .stat-band-item { border-right: none !important; border-bottom: 1px solid var(--rule); }
+            .section--ink .stat-band-item { border-bottom-color: var(--rule-dark); }
+            .stat-band-item:last-child { border-bottom: none; }
+            .lm-feature { padding: 28px 18px; }
+            .hero-card { padding: 14px 16px; }
+            .hero-card .hc-num { font-size: 1.8rem; }
+            .hero-card .hc-label { font-size: 0.72rem; }
+        }
+    </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W7QL5263"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- ========== HERO ========== -->
+<section class="hero" id="top">
+    <div class="hero-inner">
+        <div>
+            <span class="hero-badge">AI &amp; Automation Services</span>
+            <h1>From AI experiments <em>to operational infrastructure.</em></h1>
+            <div class="hero-flourish">
+                <div class="hf-rule"></div>
+                <div class="hf-mark">&#10086;</div>
+                <div class="hf-rule"></div>
+            </div>
+            <p class="hero-sub">We design and deploy AI agents, automations, and orchestrated agentic systems for brands that want their digital workforce live this quarter, with measurable returns, not next year with a slide deck.</p>
+            <div class="hero-cta-row">
+                <a class="btn btn-primary" href="https://hypeinsight.com/website-emergency-contact-us/?utm_source=ai_services&amp;utm_medium=hero&amp;utm_campaign=ai_automation_landing">
+                    Book a Strategy Conversation
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+                <a class="btn btn-secondary" href="../ai-agent-guide/">
+                    Read the Free Playbook
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                </a>
+            </div>
+            <div class="hero-meta">A Hype Insight service practice &middot; Australia-based, globally deployed</div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-card hc-1">
+                <div class="hc-eyebrow">Cost Deflection</div>
+                <div class="hc-num">80%</div>
+                <div class="hc-label">of common service issues will be agent-resolved by 2029</div>
+            </div>
+            <div class="hero-card hc-2">
+                <div class="hc-eyebrow">Time to Value</div>
+                <div class="hc-num">74%</div>
+                <div class="hc-label">of organisations achieve ROI inside the first year of deployment</div>
+            </div>
+            <div class="hero-card hc-3">
+                <div class="hc-eyebrow">Productivity Lift</div>
+                <div class="hc-num">+33%</div>
+                <div class="hc-label">average hourly output gain for knowledge workers paired with AI</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SECTION 1: THE SHIFT ========== -->
+<section class="section section--paper">
+    <div class="section-inner">
+        <div class="section-header reveal">
+            <span class="eyebrow"><span class="eyebrow-num">i</span> The shift, in plain terms</span>
+            <h2>Generative AI <em class="italic-h">made you faster.</em><br>Agentic AI does the work.</h2>
+            <p class="lead">Standard generative AI is reactive. It waits for a human to prompt it. Agents are proactive: they connect to your systems, decide based on real-time data, and execute multi-step work without supervision. The unlock for brands is no longer "AI as an assistant" but "AI as a digital worker" that ships value continuously.</p>
+        </div>
+        <div class="stat-band reveal">
+            <div class="stat-band-item">
+                <div class="stat-band-num">40%</div>
+                <div class="stat-band-label">of enterprise applications will include integrated task-specific agents by the close of 2026</div>
+            </div>
+            <div class="stat-band-item">
+                <div class="stat-band-num">1,445%</div>
+                <div class="stat-band-label">surge in enterprise inquiries about multi-agent systems in five quarters</div>
+            </div>
+            <div class="stat-band-item">
+                <div class="stat-band-num">2&times;</div>
+                <div class="stat-band-label">the revenue growth posted by AI-leading firms versus their slower-moving competitors</div>
+            </div>
+            <div class="stat-band-item">
+                <div class="stat-band-num">88%</div>
+                <div class="stat-band-label">of agentic-AI early adopters already report positive ROI on their investments</div>
+            </div>
+        </div>
+        <div class="pull-quote reveal" style="margin: 56px auto 0;">
+            The performance gap between brands that operationalise agents and those that experiment is widening every quarter. The window to establish competitive advantage is narrowing fast.
+            <cite>The thesis behind this practice</cite>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SECTION 2: WHERE AGENTS DRIVE PROFITABILITY ========== -->
+<section class="section section--ink">
+    <div class="section-inner">
+        <div class="section-header reveal">
+            <span class="eyebrow"><span class="eyebrow-num">ii</span> The four engines of value</span>
+            <h2>Where agents <em class="italic-h">actually pay back</em></h2>
+            <p class="lead">Across every business size and vertical, agentic value concentrates in four engines. Knowing which engine your business needs most is the first decision in any deployment plan.</p>
+        </div>
+        <div class="card-grid card-grid--four reveal">
+            <div class="v-card">
+                <div class="v-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+                <div class="v-card-title">Revenue<br>Generation</div>
+                <p class="v-card-text">Sales agents that enrich leads, score intent, and reply with hyper-personalised follow-ups in minutes. Conversational commerce that reduces cart abandonment. Upsell engines that move autonomously.</p>
+                <span class="v-card-metric">+15% sales conversion lift</span>
+            </div>
+            <div class="v-card">
+                <div class="v-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                <div class="v-card-title">Cost<br>Reduction</div>
+                <p class="v-card-text">Tier-one support automation. Back-office process agents that handle data entry, reconciliation, and reporting at near-perfect accuracy. HR and onboarding agents that compress time-to-productivity.</p>
+                <span class="v-card-metric">Up to 80% ticket deflection</span>
+            </div>
+            <div class="v-card">
+                <div class="v-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+                <div class="v-card-title">Customer<br>Retention</div>
+                <p class="v-card-text">Churn-prediction agents that catch at-risk customers from behavioural signals weeks before cancellation. Voice-of-customer synthesis across reviews, support, and survey data. Proactive re-engagement at scale.</p>
+                <span class="v-card-metric">+8pt repeat-purchase rate</span>
+            </div>
+            <div class="v-card">
+                <div class="v-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg></div>
+                <div class="v-card-title">Decision<br>Intelligence</div>
+                <p class="v-card-text">Inventory and supply chain agents that monitor signals and reorder autonomously. Pricing agents that test elasticity in real time. Document-intelligence agents that compress weeks of analyst review into seconds.</p>
+                <span class="v-card-metric">$20M+ saved per program</span>
+            </div>
+        </div>
+        <div class="marginalia reveal" style="max-width: 880px; margin: 44px auto 0;">
+            <span class="mar-label">A note on prioritisation</span>
+            The fastest path to ROI is rarely the most strategic engine, and the most strategic engine is rarely the fastest to ship. The first conversation we have with any client is about sequencing: which engine wins this quarter, which builds the moat for next year.
+        </div>
+    </div>
+</section>
+
+<!-- ========== SECTION 3: THE METHOD ========== -->
+<section class="section section--paper">
+    <div class="section-inner">
+        <div class="section-header reveal">
+            <span class="eyebrow"><span class="eyebrow-num">iii</span> The Hype Insight method</span>
+            <h2>How we deploy agents <em class="italic-h">that ship and scale</em></h2>
+            <p class="lead">A four-stage practice. Every engagement begins with the same first question: what does measurable success look like at week 4, week 12, and week 52? The answers shape everything that follows.</p>
+        </div>
+        <div class="method-grid reveal">
+            <div class="method-step">
+                <div class="method-dot">i</div>
+                <div class="method-label">Stage One</div>
+                <div class="method-title">Diagnose</div>
+                <p class="method-text">An audit of where agents will return the most value in your business. Process inventory, integration map, baseline metrics, and a sequenced opportunity backlog.</p>
+            </div>
+            <div class="method-step">
+                <div class="method-dot">ii</div>
+                <div class="method-label">Stage Two</div>
+                <div class="method-title">Design</div>
+                <p class="method-text">Architecture, data plumbing, and prompt engineering. We pick the right model, the right orchestration layer, and the right human-in-the-loop pattern for each agent.</p>
+            </div>
+            <div class="method-step">
+                <div class="method-dot">iii</div>
+                <div class="method-label">Stage Three</div>
+                <div class="method-title">Deploy</div>
+                <p class="method-text">First agent live within 30 days. Pilot group, golden-dataset evaluation, confidence-threshold escalation, audit trails. Production-grade from day one, not "we'll harden it later".</p>
+            </div>
+            <div class="method-step">
+                <div class="method-dot">iv</div>
+                <div class="method-label">Stage Four</div>
+                <div class="method-title">Scale</div>
+                <p class="method-text">Multi-agent orchestration across departments. Continuous evaluation against drift. Governance, observability, and the cultural change management that determines whether ROI lasts.</p>
+            </div>
+        </div>
+        <div class="pull-quote reveal" style="margin: 56px auto 0;">
+            The biggest cause of agent-project failure is not technology. It is scope. We build a swarm of small, sharp, accountable agents, not a single "God Agent" trying to manage everything.
+            <cite>Principle #1 of our design practice</cite>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SECTION 4: A TRANSFORMATION ========== -->
+<section class="section section--ink">
+    <div class="section-inner">
+        <div class="section-header reveal">
+            <span class="eyebrow"><span class="eyebrow-num">iv</span> A glimpse of the change</span>
+            <h2>The same business, <em class="italic-h">two weeks later</em></h2>
+            <p class="lead">Both columns describe the same boutique consultancy, marketing agency, or accounting firm. The difference is one week of work and roughly $200 per month in tooling. The transformation is not theoretical; it is mundane, repeatable, and immediate.</p>
+        </div>
+        <div class="spread reveal">
+            <div class="spread-side before-h3">
+                <h3>Before</h3>
+                <div class="ws-item ws-item--bad">
+                    <strong>The Inbox Trap</strong>
+                    Two hours a day reading, categorising, and replying to generic emails. Most of it is ritual, none of it is strategy.
+                </div>
+                <div class="ws-item ws-item--bad">
+                    <strong>The Leaky Funnel</strong>
+                    Inbound leads sit six to twelve hours before a reply. By then, 40% of prospects have contacted a competitor.
+                </div>
+                <div class="ws-item ws-item--bad">
+                    <strong>The Proposal Bottleneck</strong>
+                    45 minutes per quote, pulled from three different spreadsheets. Quotes go out days late, sometimes never.
+                </div>
+            </div>
+            <div class="spread-side after-h3">
+                <h3>After</h3>
+                <div class="ws-item ws-item--good">
+                    <strong>Inbox Triaged Automatically</strong>
+                    An agent reads, categorises, drafts VIP replies, archives noise. The founder reviews drafts for 15 minutes a day.
+                </div>
+                <div class="ws-item ws-item--good">
+                    <strong>Five-Minute Lead Response</strong>
+                    Form submitted &rarr; agent researches prospect &rarr; drafts hyper-personalised reply addressing their need &rarr; sent inside five minutes.
+                </div>
+                <div class="ws-item ws-item--good">
+                    <strong>Quotes Sent Instantly</strong>
+                    Agent reads the request, pulls pricing from the connected database, generates a professional PDF, emails it. Zero manual data entry.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SECTION 5: THE STACK ========== -->
+<section class="section section--ink" style="padding-top: 0; margin-top: -40px;">
+    <div class="section-inner">
+        <div class="section-header reveal">
+            <span class="eyebrow"><span class="eyebrow-num">v</span> The architecture, demystified</span>
+            <h2>Every robust agent stack <em class="italic-h">is three layers, one wrapper</em></h2>
+            <p class="lead">We build with this mental model every time. Skipping a layer is the single most common reason agent deployments hit a wall in production.</p>
+        </div>
+        <div class="stack-diagram reveal">
+            <div class="stack-layer">
+                <div class="stack-layer-num">1</div>
+                <div>
+                    <div class="stack-layer-title">The Brain &middot; Reasoning</div>
+                    <div class="stack-layer-text">Foundation models that interpret language, make decisions, and explain reasoning. GPT, Claude, Gemini, Llama. Picked per task on cost and capability.</div>
+                </div>
+                <div class="stack-layer-tag">Layer 1</div>
+            </div>
+            <div class="stack-layer">
+                <div class="stack-layer-num">2</div>
+                <div>
+                    <div class="stack-layer-title">The Hands &middot; Automation</div>
+                    <div class="stack-layer-text">Workflow orchestration that connects systems and executes multi-step actions. Zapier, Make.com, LangChain, AutoGen, Agentforce, depending on scale.</div>
+                </div>
+                <div class="stack-layer-tag">Layer 2</div>
+            </div>
+            <div class="stack-layer">
+                <div class="stack-layer-num">3</div>
+                <div>
+                    <div class="stack-layer-title">The Memory &middot; Data &amp; Retrieval</div>
+                    <div class="stack-layer-text">Vector databases, RAG pipelines, and the data lake that grounds the agent. Without this layer, agents hallucinate. With it, they cite.</div>
+                </div>
+                <div class="stack-layer-tag">Layer 3</div>
+            </div>
+            <div class="stack-layer" style="background: rgba(217,180,92,0.08); border-color: rgba(217,180,92,0.30);">
+                <div class="stack-layer-num" style="background: var(--gold-light);">+</div>
+                <div>
+                    <div class="stack-layer-title">The Wrapper &middot; Governance</div>
+                    <div class="stack-layer-text">Machine-to-machine IAM, audit logs, confidence thresholds, escalation paths. The discipline that makes everything else trustworthy enough to scale.</div>
+                </div>
+                <div class="stack-layer-tag">Wrapper</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SECTION 6: WHAT WE BUILD ========== -->
+<section class="section section--paper">
+    <div class="section-inner">
+        <div class="section-header reveal">
+            <span class="eyebrow"><span class="eyebrow-num">vi</span> What we build with clients</span>
+            <h2>The agents and automations <em class="italic-h">we ship</em></h2>
+            <p class="lead">Every engagement is bespoke, but most fall into one of these patterns. We design around outcomes (hours reclaimed, conversion lifted, cost deflected), never around features for their own sake.</p>
+        </div>
+        <ul class="cap-list reveal">
+            <li class="cap-item">
+                <div class="cap-num">01</div>
+                <div class="cap-content">
+                    <h4>Sales Acceleration Agents</h4>
+                    <p>Lead enrichment, intent scoring, hyper-personalised outbound, automated follow-up cadences. Inbound replies inside five minutes, every time.</p>
+                </div>
+                <span class="cap-outcome">Faster pipeline velocity</span>
+            </li>
+            <li class="cap-item">
+                <div class="cap-num">02</div>
+                <div class="cap-content">
+                    <h4>Customer Support Automation</h4>
+                    <p>Conversational tier-one resolution across product, billing, and shipping. Integrated with your backend so the agent acts, not just answers.</p>
+                </div>
+                <span class="cap-outcome">Lower cost-per-ticket</span>
+            </li>
+            <li class="cap-item">
+                <div class="cap-num">03</div>
+                <div class="cap-content">
+                    <h4>Back-Office Process Agents</h4>
+                    <p>Data entry, invoice processing, reconciliation, internal reporting. Auditable, low-error, and quietly running 24/7 in the background.</p>
+                </div>
+                <span class="cap-outcome">Hours reclaimed per week</span>
+            </li>
+            <li class="cap-item">
+                <div class="cap-num">04</div>
+                <div class="cap-content">
+                    <h4>Decision Intelligence Layers</h4>
+                    <p>Agents that read across silos to inform pricing, inventory, marketing-spend allocation, and operational decisions in real time.</p>
+                </div>
+                <span class="cap-outcome">Better calls, faster</span>
+            </li>
+            <li class="cap-item">
+                <div class="cap-num">05</div>
+                <div class="cap-content">
+                    <h4>Retention &amp; Voice-of-Customer Agents</h4>
+                    <p>Churn-signal detection, proactive intervention flows, continuous synthesis of reviews, tickets, social, and survey data into action.</p>
+                </div>
+                <span class="cap-outcome">Higher LTV</span>
+            </li>
+            <li class="cap-item">
+                <div class="cap-num">06</div>
+                <div class="cap-content">
+                    <h4>Multi-Agent Orchestration</h4>
+                    <p>Where it matters most: agents that hand off to each other across sales, support, ops, and finance. The autonomous enterprise pattern at small and large scale.</p>
+                </div>
+                <span class="cap-outcome">Compounding leverage</span>
+            </li>
+            <li class="cap-item">
+                <div class="cap-num">07</div>
+                <div class="cap-content">
+                    <h4>AI Readiness &amp; Governance</h4>
+                    <p>For brands not ready to deploy yet: an audit of where you are, what to fix first, and a 90-day plan for the foundation work that makes future agents safe and effective.</p>
+                </div>
+                <span class="cap-outcome">A roadmap, not regret</span>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<!-- ========== SECTION 7: LEAD MAGNET ========== -->
+<section class="section section--ink">
+    <div class="section-inner">
+        <div class="section-header reveal">
+            <span class="eyebrow"><span class="eyebrow-num">vii</span> Start with the playbook</span>
+            <h2>The AI Agent Playbook <em class="italic-h">for businesses</em></h2>
+        </div>
+        <div class="lm-feature reveal" style="margin-top: 44px;">
+            <div class="lm-feature-text">
+                <h3>A 32-page interactive guide. <br>Seven activities. Yours, free.</h3>
+                <p>The complete playbook we use as the conceptual foundation for every client engagement. Twelve parts covering strategy, asset inventory, implementation, measurement, scaling, industry-specific playbooks, vendor selection, design principles, ethics, data strategy, financial modelling, and the failure modes that derail most deployments.</p>
+                <ul class="lm-features-list">
+                    <li>Agent-readiness self-assessment</li>
+                    <li>SMB 90-hour rollout plan</li>
+                    <li>Enterprise 30-60-90 day plan</li>
+                    <li>Live Agent ROI calculator</li>
+                    <li>Build-vs-buy decision matrix</li>
+                    <li>Industry playbook picker</li>
+                    <li>Failure-mode risk check</li>
+                    <li>Saves progress as you read</li>
+                </ul>
+                <a class="btn btn-primary" href="../ai-agent-guide/" style="margin-top: 6px;">
+                    Open the Playbook
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+            </div>
+            <div class="lm-mockup">
+                <div class="lm-cover">
+                    <span class="lm-cover-badge">A Playbook</span>
+                    <h4>The AI Agent<br>Playbook</h4>
+                    <div class="lm-cover-flourish">
+                        <div class="rule"></div><div class="mark">&#10086;</div><div class="rule"></div>
+                    </div>
+                    <div class="lm-cover-sub">For the Autonomous Enterprise</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SECTION 8: WHAT GOOD LOOKS LIKE ========== -->
+<section class="section section--paper">
+    <div class="section-inner">
+        <div class="section-header reveal">
+            <span class="eyebrow"><span class="eyebrow-num">viii</span> What separates good from great</span>
+            <h2>The principles we <em class="italic-h">refuse to compromise on</em></h2>
+            <p class="lead">If you are evaluating any partner, vendor, or internal team to build agentic AI for your brand, ask them about these four. Every honest answer should be "yes, of course".</p>
+        </div>
+        <div class="card-grid reveal">
+            <div class="v-card">
+                <div class="v-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/></svg></div>
+                <div class="v-card-title">Narrow scope, always</div>
+                <p class="v-card-text">No "God Agents". Every agent has one job, one clear success metric, and a system prompt under 1,000 words. Complexity comes from orchestration, never from one bloated agent trying to do everything.</p>
+            </div>
+            <div class="v-card">
+                <div class="v-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-6 0v4"/><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/></svg></div>
+                <div class="v-card-title">Human-in-the-loop by design</div>
+                <p class="v-card-text">Confidence thresholds wired into every agent from day one. Below the threshold, the agent escalates with a summary of its reasoning. Trust is built incrementally, not assumed.</p>
+            </div>
+            <div class="v-card">
+                <div class="v-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+                <div class="v-card-title">Continuous evaluation</div>
+                <p class="v-card-text">Deployment is the start, not the end. Every agent we ship has a golden-dataset evaluation pipeline. We measure accuracy, latency, and cost per execution weekly, and update when drift appears.</p>
+            </div>
+            <div class="v-card">
+                <div class="v-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+                <div class="v-card-title">Auditability, top to bottom</div>
+                <p class="v-card-text">Every tool call, every data point accessed, every reasoning step logged. Not "we'll add observability later". The audit trail is not a feature; it is the operating system.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SECTION 9: FINAL CTA / ABOUT ========== -->
+<section class="section section--ink">
+    <div class="section-inner">
+        <div class="final-cta reveal">
+            <span class="eyebrow" style="justify-content:center"><span class="eyebrow-num">ix</span> The next move</span>
+            <h2>Let's talk about <em class="italic-h">your first agent.</em></h2>
+            <div class="ornament"><div class="o-rule"></div><div class="o-mark"></div><div class="o-rule"></div></div>
+            <img class="author-photo" src="ari.png" alt="Ari Vivekanandarajah">
+            <div class="final-cta-name">Ari Vivekanandarajah</div>
+            <div class="final-cta-role">Lead Strategist &middot; Hype Insight</div>
+            <a class="linkedin-link" href="https://www.linkedin.com/in/arisuthan/" target="_blank" rel="noopener noreferrer">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#4a9eff"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                Connect on LinkedIn
+            </a>
+            <p class="final-cta-bio">Two decades helping Australian and global brands translate emerging technology into commercial outcomes. The Hype Insight AI &amp; Automation practice is built around a single conviction: the brands that will lead their industries in 2030 are the ones making deliberate, structured investments in agentic AI today.</p>
+            <div class="pull-quote" style="border-color: var(--gold); max-width: 700px; margin: 0 auto 36px; font-size: 1.3rem;">
+                We do not sell pilots that go nowhere. Every engagement starts with a measurable outcome and ends with a system you own.
+            </div>
+            <div class="hero-cta-row" style="justify-content: center;">
+                <a class="btn btn-primary" href="https://hypeinsight.com/website-emergency-contact-us/?utm_source=ai_services&amp;utm_medium=final_cta&amp;utm_campaign=ai_automation_landing">
+                    Book a Strategy Conversation
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+                <a class="btn btn-secondary" href="../ai-agent-guide/">
+                    Read the Playbook First
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="page-footer">
+    Hype Insight &middot; AI &amp; Automation Services &middot; hypeinsight.com
+</footer>
+
+<script>
+// Reveal-on-scroll
+var revealEls = document.querySelectorAll('.reveal');
+var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(function(el) { io.observe(el); });
+</script>
+</body>
+</html>
