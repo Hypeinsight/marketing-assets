@@ -173,31 +173,63 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             font-size: 0.92rem; opacity: 0.65; letter-spacing: 1px;
         }
 
-        /* Hero visual (right column) */
+        /* Hero visual (right column) — single editorial panel */
         .hero-visual {
-            position: relative; aspect-ratio: 1 / 1.05; max-width: 380px; margin-left: auto;
+            position: relative; max-width: 420px; margin-left: auto; width: 100%;
         }
-        .hero-card {
-            position: absolute; padding: 22px 24px;
-            background: rgba(246,239,221,0.06);
-            backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-            border: 1px solid rgba(246,239,221,0.16);
-            border-radius: 10px;
-            box-shadow: 0 18px 50px rgba(0,0,0,0.4);
+        .hero-panel {
+            background: rgba(246,239,221,0.05);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(246,239,221,0.18);
+            border-radius: 6px;
+            padding: 30px 32px 26px;
+            position: relative;
+            box-shadow: 0 18px 50px rgba(0,0,0,0.30);
         }
-        .hero-card .hc-eyebrow {
-            font-size: 0.62rem; letter-spacing: 3px; text-transform: uppercase;
-            font-weight: 700; color: var(--gold-light); margin-bottom: 8px;
+        .hero-panel::before {
+            content: ''; position: absolute; top: -1px; left: 28px; right: 28px; height: 2px;
+            background: var(--gold);
         }
-        .hero-card .hc-num {
-            font-family: 'Cormorant Garamond', serif; font-size: 2.4rem;
-            font-weight: 700; line-height: 1; color: var(--paper-cream);
-            margin-bottom: 4px;
+        .hero-panel-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.66rem; letter-spacing: 3.5px; text-transform: uppercase;
+            font-weight: 700; color: var(--gold-light);
+            text-align: center; margin-bottom: 6px;
         }
-        .hero-card .hc-label { font-size: 0.78rem; opacity: 0.75; line-height: 1.35; }
-        .hero-card.hc-1 { top: 4%; left: 0; width: 64%; transform: rotate(-3deg); }
-        .hero-card.hc-2 { top: 30%; right: 0; width: 60%; transform: rotate(2deg); }
-        .hero-card.hc-3 { bottom: 6%; left: 12%; width: 70%; transform: rotate(-1deg); }
+        .hero-panel-title {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-size: 1.35rem; font-weight: 600; text-align: center;
+            color: var(--paper-cream); margin-bottom: 18px;
+            padding-bottom: 18px; border-bottom: 1px solid rgba(246,239,221,0.14);
+        }
+        .hero-panel-row {
+            display: grid; grid-template-columns: 110px 1fr; gap: 20px; align-items: baseline;
+            padding: 13px 0;
+            border-bottom: 1px solid rgba(246,239,221,0.08);
+        }
+        .hero-panel-row:last-of-type { border-bottom: none; padding-bottom: 4px; }
+        .hp-num {
+            font-family: 'Cormorant Garamond', serif; font-weight: 700;
+            font-size: 2.1rem; line-height: 1;
+            color: var(--gold-light);
+        }
+        .hp-num small {
+            display: block; font-size: 0.6rem; letter-spacing: 2.5px; text-transform: uppercase;
+            font-family: 'Inter', sans-serif; font-weight: 600; opacity: 0.55; margin-top: 5px;
+        }
+        .hp-text {
+            font-size: 0.9rem; line-height: 1.5; opacity: 0.88;
+        }
+        .hero-panel-flourish {
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+            margin-top: 18px; padding-top: 16px;
+            border-top: 1px solid rgba(246,239,221,0.14);
+        }
+        .hero-panel-flourish .rule { flex: 0 0 42px; height: 1px; background: var(--gold); opacity: 0.65; }
+        .hero-panel-flourish .mark {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            color: var(--gold-light); font-size: 1.1rem;
+        }
 
         /* ====== Buttons ====== */
         .btn {
@@ -505,7 +537,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             color: var(--gold); font-family: 'Cormorant Garamond', serif; font-weight: 700;
         }
         .lm-mockup {
-            position: relative; aspect-ratio: 1 / 1.15; max-width: 360px; margin-left: auto;
+            position: relative; aspect-ratio: 1 / 1.18; max-width: 340px; margin-left: auto;
+            perspective: 1200px;
+        }
+        .lm-mockup::before {
+            /* Pages stack edge (right side of book) */
+            content: ''; position: absolute; top: 6%; bottom: 6%; right: -6px; width: 8px;
+            background: linear-gradient(90deg, rgba(0,0,0,0.30) 0%, rgba(217,180,92,0.20) 100%);
+            border-radius: 0 3px 3px 0;
+            transform: skewY(-2deg);
+            z-index: 0;
+        }
+        .lm-mockup::after {
+            /* Soft floor shadow under the book */
+            content: ''; position: absolute; left: 10%; right: 6%; bottom: -22px; height: 30px;
+            background: radial-gradient(ellipse at center, rgba(11,26,36,0.45) 0%, transparent 70%);
+            filter: blur(4px);
+            z-index: 0;
         }
         .lm-cover {
             position: absolute; inset: 0;
@@ -513,16 +561,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 radial-gradient(circle at 30% 25%, rgba(70,182,70,0.20) 0%, transparent 50%),
                 radial-gradient(circle at 75% 80%, rgba(0,169,186,0.18) 0%, transparent 55%),
                 linear-gradient(160deg, #0d2231 0%, #0b1a24 50%, #050b12 100%);
-            border-radius: 6px;
+            border-radius: 4px 6px 6px 4px;
             box-shadow:
-                0 22px 60px rgba(11,26,36,0.35),
-                inset 6px 0 12px rgba(0,0,0,0.4);
+                0 28px 60px rgba(11,26,36,0.40),
+                0 4px 14px rgba(11,26,36,0.25),
+                inset 8px 0 14px rgba(0,0,0,0.45),
+                inset -1px 0 0 rgba(217,180,92,0.20);
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             padding: 50px 30px;
             color: var(--paper-cream);
             text-align: center;
             border: 1px solid rgba(246,239,221,0.10);
+            transform: rotateY(-8deg);
+            transform-origin: left center;
+            transition: transform 0.6s cubic-bezier(0.22,1,0.36,1);
+            z-index: 1;
         }
+        .lm-mockup:hover .lm-cover { transform: rotateY(-3deg); }
         .lm-cover::before {
             content: ''; position: absolute; inset: 14px; border: 1px solid rgba(246,239,221,0.18);
             border-radius: 3px; pointer-events: none;
@@ -623,16 +678,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
         .linkedin-link:hover { background: rgba(10,102,194,0.24); }
 
-        /* ====== Footer (light) ====== */
-        .page-footer {
-            background: var(--ink-dark);
-            color: var(--paper-cream);
-            padding: 36px 24px;
-            text-align: center;
-            font-size: 0.85rem; opacity: 0.7;
-            font-family: 'Cormorant Garamond', serif; font-style: italic;
-        }
-
         /* ====== Reveal on scroll ====== */
         .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
         .reveal.in { opacity: 1; transform: translateY(0); }
@@ -640,7 +685,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         /* ====== Responsive ====== */
         @media (max-width: 1024px) {
             .hero-inner { grid-template-columns: 1fr; gap: 50px; }
-            .hero-visual { margin: 0 auto; max-width: 320px; }
+            .hero-visual { margin: 0 auto; max-width: 460px; }
             .card-grid--four { grid-template-columns: repeat(2, 1fr); }
             .method-grid { grid-template-columns: repeat(2, 1fr); row-gap: 40px; }
             .method-grid::before { display: none; }
@@ -676,8 +721,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             .lm-features-list { grid-template-columns: 1fr; }
             .lm-feature { padding: 32px 22px; }
             .lm-mockup { max-width: 280px; }
-            .lm-cover { padding: 36px 22px; }
+            .lm-cover { padding: 36px 22px; transform: rotateY(-4deg); }
             .lm-cover h4 { font-size: 1.7rem; }
+            .hero-panel { padding: 24px 22px 22px; }
+            .hero-panel-title { font-size: 1.2rem; margin-bottom: 14px; padding-bottom: 14px; }
+            .hero-panel-row { grid-template-columns: 90px 1fr; gap: 14px; padding: 10px 0; }
+            .hp-num { font-size: 1.75rem; }
+            .hp-num small { font-size: 0.55rem; letter-spacing: 2px; }
+            .hp-text { font-size: 0.85rem; }
             .cap-item { grid-template-columns: auto 1fr; gap: 14px; padding: 18px 18px; }
             .cap-outcome { grid-column: 1 / -1; justify-self: start; }
             .cap-num { font-size: 1.6rem; min-width: 36px; }
@@ -732,20 +783,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="hero-meta">A Hype Insight service practice &middot; Australia-based, globally deployed</div>
         </div>
         <div class="hero-visual">
-            <div class="hero-card hc-1">
-                <div class="hc-eyebrow">Cost Deflection</div>
-                <div class="hc-num">80%</div>
-                <div class="hc-label">of common service issues will be agent-resolved by 2029</div>
-            </div>
-            <div class="hero-card hc-2">
-                <div class="hc-eyebrow">Time to Value</div>
-                <div class="hc-num">74%</div>
-                <div class="hc-label">of organisations achieve ROI inside the first year of deployment</div>
-            </div>
-            <div class="hero-card hc-3">
-                <div class="hc-eyebrow">Productivity Lift</div>
-                <div class="hc-num">+33%</div>
-                <div class="hc-label">average hourly output gain for knowledge workers paired with AI</div>
+            <div class="hero-panel">
+                <div class="hero-panel-label">A typical engagement</div>
+                <div class="hero-panel-title">In numbers</div>
+                <div class="hero-panel-row">
+                    <div class="hp-num">30<small>days</small></div>
+                    <div class="hp-text">to first agent live in production with measurable baseline</div>
+                </div>
+                <div class="hero-panel-row">
+                    <div class="hp-num">+33<small>percent</small></div>
+                    <div class="hp-text">average productivity lift for workers paired with AI</div>
+                </div>
+                <div class="hero-panel-row">
+                    <div class="hp-num">80<small>percent</small></div>
+                    <div class="hp-text">cost deflection target for tier-one customer service work</div>
+                </div>
+                <div class="hero-panel-row">
+                    <div class="hp-num">74<small>percent</small></div>
+                    <div class="hp-text">of organisations see ROI inside the first year of deployment</div>
+                </div>
+                <div class="hero-panel-flourish">
+                    <div class="rule"></div><div class="mark">&#10086;</div><div class="rule"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -1126,11 +1185,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
     </div>
 </section>
-
-<!-- ========== FOOTER ========== -->
-<footer class="page-footer">
-    Hype Insight &middot; AI &amp; Automation Services &middot; hypeinsight.com
-</footer>
 
 <script>
 // Reveal-on-scroll
