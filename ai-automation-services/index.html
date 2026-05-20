@@ -641,35 +641,207 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .section-header .eyebrow { justify-content: center; }
         .section-header .lead { margin: 16px auto 0; }
 
-        /* ====== Final CTA ====== */
-        .final-cta {
-            text-align: center; max-width: 820px; margin: 0 auto;
+        /* ====== Contact form ====== */
+        .contact-grid {
+            display: grid; grid-template-columns: 1fr 1.2fr; gap: 56px;
+            align-items: start; margin-top: 44px;
+            text-align: left;
         }
-        .final-cta .author-photo {
-            width: 132px; height: 132px; border-radius: 50%; object-fit: cover;
-            margin: 28px auto 22px;
+        .contact-side .cs-photo {
+            width: 110px; height: 110px; border-radius: 50%; object-fit: cover;
             border: 3px solid var(--gold);
-            box-shadow: 0 10px 36px rgba(182,138,60,0.32);
+            box-shadow: 0 8px 28px rgba(182,138,60,0.30);
+            margin-bottom: 20px;
         }
-        .final-cta h2 em { font-style: italic; color: var(--gold-light); font-weight: 500; }
-        .final-cta-name {
+        .contact-side .cs-name {
             font-family: 'Cormorant Garamond', serif; font-style: italic;
             font-size: 1.5rem; font-weight: 600; margin-bottom: 4px;
             color: var(--gold-light);
         }
-        .final-cta-role {
-            font-size: 0.84rem; letter-spacing: 2px; text-transform: uppercase;
-            opacity: 0.65; margin-bottom: 20px;
+        .contact-side .cs-role {
+            font-size: 0.74rem; letter-spacing: 2px; text-transform: uppercase;
+            opacity: 0.62; margin-bottom: 14px; font-weight: 600;
         }
-        .final-cta-bio { max-width: 620px; margin: 0 auto 28px; font-size: 0.96rem; }
-        .linkedin-link {
+        .contact-side .cs-bio {
+            font-size: 0.94rem; opacity: 0.85; line-height: 1.65;
+            margin: 14px 0 18px;
+        }
+        .contact-side .cs-linkedin {
             display: inline-flex; align-items: center; gap: 8px;
             color: #4a9eff; text-decoration: none;
-            font-size: 0.9rem; font-weight: 500;
-            padding: 8px 18px; background: rgba(10,102,194,0.14);
-            border-radius: 50px; transition: all 0.3s; margin-bottom: 30px;
+            font-size: 0.88rem; font-weight: 500;
+            padding: 8px 16px; background: rgba(10,102,194,0.14);
+            border-radius: 50px; transition: background 0.3s;
+            margin-bottom: 24px;
         }
-        .linkedin-link:hover { background: rgba(10,102,194,0.24); }
+        .contact-side .cs-linkedin:hover { background: rgba(10,102,194,0.24); }
+        .contact-side .what-next {
+            list-style: none; margin: 0; padding: 22px 0 0;
+            border-top: 1px solid rgba(246,239,221,0.14);
+        }
+        .contact-side .what-next-label {
+            font-size: 0.66rem; letter-spacing: 3px; text-transform: uppercase;
+            font-weight: 700; color: var(--gold-light); opacity: 0.9;
+            margin-bottom: 10px;
+        }
+        .contact-side .what-next li {
+            padding: 7px 0 7px 24px; position: relative;
+            font-size: 0.94rem; line-height: 1.55;
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            opacity: 0.92;
+        }
+        .contact-side .what-next li::before {
+            content: '§'; position: absolute; left: 0; top: 6px;
+            color: var(--gold); font-family: 'Cormorant Garamond', serif;
+            font-weight: 700; font-style: normal; font-size: 1.05rem;
+        }
+
+        .contact-form {
+            background: rgba(246,239,221,0.04);
+            border: 1px solid rgba(246,239,221,0.18);
+            border-radius: 8px;
+            padding: 36px 38px;
+            position: relative;
+        }
+        .contact-form::before {
+            content: ''; position: absolute; top: -1px; left: 32px; right: 32px; height: 2px;
+            background: var(--gold);
+        }
+        .form-heading {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-size: 1.45rem; font-weight: 600; color: var(--gold-light);
+            margin-bottom: 6px;
+        }
+        .form-sub {
+            font-size: 0.88rem; opacity: 0.75; margin-bottom: 22px;
+            line-height: 1.5;
+        }
+        .form-row {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;
+        }
+        .form-row--single { grid-template-columns: 1fr; }
+        .field {
+            display: flex; flex-direction: column; gap: 6px;
+        }
+        .field label {
+            font-size: 0.7rem; letter-spacing: 1.5px; text-transform: uppercase;
+            font-weight: 600; opacity: 0.7; font-family: 'Inter', sans-serif;
+        }
+        .field label .req { color: var(--gold-light); }
+        .field input,
+        .field textarea {
+            background: rgba(0,0,0,0.22);
+            border: 1px solid rgba(246,239,221,0.18);
+            border-radius: 4px;
+            padding: 12px 14px;
+            color: var(--paper-cream);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.96rem;
+            transition: border-color 0.25s, background 0.25s;
+            min-height: 46px;
+            width: 100%;
+        }
+        .field input::placeholder, .field textarea::placeholder { color: rgba(246,239,221,0.35); }
+        .field input:focus,
+        .field textarea:focus {
+            outline: none;
+            border-color: var(--gold-light);
+            background: rgba(0,0,0,0.32);
+        }
+        .field textarea { min-height: 110px; resize: vertical; line-height: 1.5; }
+        .field.invalid input,
+        .field.invalid textarea {
+            border-color: rgba(231,76,60,0.6);
+        }
+        .field-error {
+            font-size: 0.74rem; color: #e58a8a; opacity: 0; margin-top: 2px;
+            transition: opacity 0.2s;
+        }
+        .field.invalid .field-error { opacity: 1; }
+
+        .radio-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+        }
+        .radio-grid label {
+            display: flex; align-items: center; gap: 10px; cursor: pointer;
+            padding: 11px 14px;
+            border: 1px solid rgba(246,239,221,0.18);
+            border-radius: 4px;
+            transition: all 0.25s;
+            font-size: 0.88rem; letter-spacing: 0;
+            text-transform: none; font-weight: 500;
+            opacity: 0.95; color: var(--paper-cream);
+        }
+        .radio-grid label:hover {
+            border-color: var(--gold-light);
+            background: rgba(217,180,92,0.06);
+        }
+        .radio-grid input[type=radio] {
+            appearance: none; -webkit-appearance: none;
+            width: 16px; height: 16px;
+            border: 2px solid rgba(246,239,221,0.40);
+            border-radius: 50%;
+            margin: 0; position: relative;
+            flex-shrink: 0; transition: all 0.2s;
+            background: transparent;
+        }
+        .radio-grid input[type=radio]:checked { border-color: var(--gold-light); }
+        .radio-grid input[type=radio]:checked::after {
+            content: ''; position: absolute;
+            top: 2px; left: 2px; right: 2px; bottom: 2px;
+            background: var(--gold-light); border-radius: 50%;
+        }
+        .radio-grid label.is-checked {
+            border-color: var(--gold-light);
+            background: rgba(217,180,92,0.10);
+        }
+
+        .form-submit-row {
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 16px;
+            margin-top: 26px;
+            padding-top: 22px;
+            border-top: 1px solid rgba(246,239,221,0.10);
+        }
+        .privacy-note {
+            font-size: 0.78rem; opacity: 0.6; line-height: 1.5;
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            flex: 1; min-width: 180px; max-width: 280px;
+        }
+        .form-submit-btn { min-width: 200px; }
+        .form-submit-btn:disabled {
+            opacity: 0.65; cursor: not-allowed;
+            transform: none !important; box-shadow: 0 4px 14px rgba(70,182,70,0.20);
+        }
+
+        .form-success {
+            display: none;
+            text-align: center; padding: 36px 24px;
+        }
+        .form-success.show { display: block; animation: fadePane 0.4s ease; }
+        .form-success .check-icon {
+            width: 64px; height: 64px; margin: 0 auto 22px;
+            border-radius: 50%; background: rgba(70,182,70,0.18);
+            border: 2px solid var(--color-primary);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--color-primary);
+        }
+        .form-success .check-icon svg { width: 32px; height: 32px; }
+        .form-success h4 {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-size: 1.7rem; margin-bottom: 12px; color: var(--gold-light);
+        }
+        .form-success p { font-size: 0.96rem; opacity: 0.88; max-width: 360px; margin: 0 auto 22px; }
+        .form-success .reset-link {
+            background: none; border: 1px solid rgba(246,239,221,0.25);
+            color: var(--paper-cream); padding: 8px 18px;
+            border-radius: 50px; font-size: 0.82rem; cursor: pointer;
+            font-family: inherit; transition: all 0.25s;
+        }
+        .form-success .reset-link:hover {
+            border-color: var(--gold-light); color: var(--gold-light);
+        }
+        @keyframes fadePane { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
         /* ====== Technology logo strip ====== */
         .tech-block {
@@ -797,6 +969,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             .tech-grid { gap: 12px 24px; }
             .tech-item { font-size: 0.94rem; }
             .tech-footnote { font-size: 0.85rem; margin-top: 24px; }
+            .contact-grid { grid-template-columns: 1fr; gap: 36px; margin-top: 32px; }
+            .contact-side { text-align: center; }
+            .contact-side .cs-photo { margin: 0 auto 18px; }
+            .contact-side .what-next { text-align: left; max-width: 380px; margin: 0 auto; }
+            .contact-form { padding: 28px 22px; }
+            .contact-form::before { left: 22px; right: 22px; }
+            .form-row { grid-template-columns: 1fr; gap: 14px; }
+            .radio-grid { grid-template-columns: 1fr; }
+            .form-submit-row { flex-direction: column; align-items: stretch; }
+            .form-submit-btn { width: 100%; }
+            .privacy-note { max-width: 100%; text-align: center; }
             .cap-item { grid-template-columns: auto 1fr; gap: 14px; padding: 18px 18px; }
             .cap-outcome { grid-column: 1 / -1; justify-self: start; }
             .cap-num { font-size: 1.6rem; min-width: 36px; }
@@ -839,7 +1022,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
             <p class="hero-sub">We design and deploy AI agents, automations, and orchestrated agentic systems for brands that want their digital workforce live this quarter, with measurable returns, not next year with a slide deck.</p>
             <div class="hero-cta-row">
-                <a class="btn btn-primary" href="https://hypeinsight.com/website-emergency-contact-us/?utm_source=ai_services&amp;utm_medium=hero&amp;utm_campaign=ai_automation_landing">
+                <a class="btn btn-primary" href="#contact" data-utm-source="hero">
                     Book a Strategy Conversation
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                 </a>
@@ -1275,39 +1458,118 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 </section>
 
-<!-- ========== SECTION 9: FINAL CTA / ABOUT ========== -->
-<section class="section section--ink">
+<!-- ========== SECTION 9: CONTACT FORM ========== -->
+<section class="section section--ink" id="contact">
     <div class="section-inner">
-        <div class="final-cta reveal">
-            <span class="eyebrow" style="justify-content:center"><span class="eyebrow-num">ix</span> The next move</span>
+        <div class="section-header reveal">
+            <span class="eyebrow"><span class="eyebrow-num">ix</span> The next move</span>
             <h2>Let's talk about <em class="italic-h">your first agent.</em></h2>
             <div class="ornament"><div class="o-rule"></div><div class="o-mark"></div><div class="o-rule"></div></div>
-            <img class="author-photo" src="ari.png" alt="Ari Vivekanandarajah">
-            <div class="final-cta-name">Ari Vivekanandarajah</div>
-            <div class="final-cta-role">Lead Strategist &middot; Hype Insight</div>
-            <a class="linkedin-link" href="https://www.linkedin.com/in/arisuthan/" target="_blank" rel="noopener noreferrer">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="#4a9eff"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                Connect on LinkedIn
-            </a>
-            <p class="final-cta-bio">Two decades helping Australian and global brands translate emerging technology into commercial outcomes. The Hype Insight AI &amp; Automation practice is built around a single conviction: the brands that will lead their industries in 2030 are the ones making deliberate, structured investments in agentic AI today.</p>
-            <div class="pull-quote" style="border-color: var(--gold); max-width: 700px; margin: 0 auto 36px; font-size: 1.3rem;">
-                We do not sell pilots that go nowhere. Every engagement starts with a measurable outcome and ends with a system you own.
+            <p class="lead" style="margin: 0 auto;">A 30-minute conversation, no pitch. Tell us where you are and what you're trying to do; we'll tell you honestly whether agents are the answer, and if so, what the smallest meaningful first move looks like.</p>
+        </div>
+
+        <div class="contact-grid reveal">
+            <div class="contact-side">
+                <img class="cs-photo" src="ari.png" alt="Ari Vivekanandarajah">
+                <div class="cs-name">Ari Vivekanandarajah</div>
+                <div class="cs-role">Lead Strategist &middot; Hype Insight</div>
+                <a class="cs-linkedin" href="https://www.linkedin.com/in/arisuthan/" target="_blank" rel="noopener noreferrer">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#4a9eff"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    Connect on LinkedIn
+                </a>
+                <p class="cs-bio">Two decades helping Australian and global brands translate emerging technology into commercial outcomes. We do not sell pilots that go nowhere &mdash; every engagement starts with a measurable outcome and ends with a system you own.</p>
+                <ul class="what-next">
+                    <li class="what-next-label">What happens next</li>
+                    <li>You hear from Ari directly within one business day</li>
+                    <li>First call is 30 minutes, no slides, no pitch</li>
+                    <li>If we're not the right fit, we'll say so honestly</li>
+                </ul>
             </div>
-            <div class="hero-cta-row" style="justify-content: center;">
-                <a class="btn btn-primary" href="https://hypeinsight.com/website-emergency-contact-us/?utm_source=ai_services&amp;utm_medium=final_cta&amp;utm_campaign=ai_automation_landing">
-                    Book a Strategy Conversation
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                </a>
-                <a class="btn btn-secondary" href="../ai-agent-guide/">
-                    Read the Playbook First
-                </a>
+
+            <form class="contact-form" id="contactForm" novalidate>
+                <div class="form-heading">Send us a note</div>
+                <p class="form-sub">Required fields marked with <span style="color: var(--gold-light)">*</span>. We never share your details, ever.</p>
+
+                <div class="form-row">
+                    <div class="field" data-field="name">
+                        <label for="cf-name">Your name <span class="req">*</span></label>
+                        <input id="cf-name" name="name" type="text" autocomplete="name" required>
+                        <div class="field-error">Please tell us your name.</div>
+                    </div>
+                    <div class="field" data-field="email">
+                        <label for="cf-email">Email <span class="req">*</span></label>
+                        <input id="cf-email" name="email" type="email" autocomplete="email" required>
+                        <div class="field-error">Please enter a valid email.</div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="field" data-field="company">
+                        <label for="cf-company">Company or brand</label>
+                        <input id="cf-company" name="company" type="text" autocomplete="organization">
+                    </div>
+                    <div class="field" data-field="phone">
+                        <label for="cf-phone">Phone (optional)</label>
+                        <input id="cf-phone" name="phone" type="tel" autocomplete="tel">
+                    </div>
+                </div>
+
+                <div class="form-row form-row--single">
+                    <div class="field" data-field="stage">
+                        <label>Where are you on the journey?</label>
+                        <div class="radio-grid">
+                            <label><input type="radio" name="stage" value="exploring"> Exploring concepts</label>
+                            <label><input type="radio" name="stage" value="use_case"> Have a specific use case</label>
+                            <label><input type="radio" name="stage" value="piloting"> Already piloting agents</label>
+                            <label><input type="radio" name="stage" value="scaling"> Scaling deployments</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row form-row--single">
+                    <div class="field" data-field="message">
+                        <label for="cf-message">What are you trying to do?</label>
+                        <textarea id="cf-message" name="message" rows="4" placeholder="A few sentences on the workflow, team, or outcome you have in mind."></textarea>
+                    </div>
+                </div>
+
+                <!-- Hidden UTM &amp; source fields (auto-populated from URL) -->
+                <input type="hidden" name="source_page" value="ai-automation-services">
+                <input type="hidden" name="utm_source" id="utm-source">
+                <input type="hidden" name="utm_medium" id="utm-medium">
+                <input type="hidden" name="utm_campaign" id="utm-campaign">
+
+                <div class="form-submit-row">
+                    <div class="privacy-note">Your message goes straight to Ari. Privacy respected, no list, no spam.</div>
+                    <button type="submit" class="btn btn-primary form-submit-btn" id="formSubmitBtn">
+                        Send my enquiry
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </button>
+                </div>
+            </form>
+
+            <div class="contact-form form-success" id="formSuccess">
+                <div class="check-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                </div>
+                <h4>Thanks &mdash; we received your note.</h4>
+                <p>Ari will reply within one business day. While you wait, the playbook is yours to browse.</p>
+                <button class="reset-link" type="button" id="formReset">Send another message</button>
+                <div style="margin-top: 28px;">
+                    <a class="btn btn-secondary" href="../ai-agent-guide/">
+                        Open the Playbook
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 <script>
-// Reveal-on-scroll
+// ===== Reveal-on-scroll =====
 var revealEls = document.querySelectorAll('.reveal');
 var io = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
@@ -1318,6 +1580,118 @@ var io = new IntersectionObserver(function(entries) {
     });
 }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 revealEls.forEach(function(el) { io.observe(el); });
+
+// ===== UTM auto-population =====
+(function() {
+    var params = new URLSearchParams(window.location.search);
+    var src = params.get('utm_source') || '';
+    var med = params.get('utm_medium') || '';
+    var cmp = params.get('utm_campaign') || '';
+    var srcEl = document.getElementById('utm-source');
+    var medEl = document.getElementById('utm-medium');
+    var cmpEl = document.getElementById('utm-campaign');
+    if (srcEl) srcEl.value = src;
+    if (medEl) medEl.value = med;
+    if (cmpEl) cmpEl.value = cmp;
+})();
+
+// ===== Radio styling helper (highlight selected card) =====
+document.querySelectorAll('.radio-grid input[type=radio]').forEach(function(r) {
+    r.addEventListener('change', function() {
+        var name = r.name;
+        document.querySelectorAll('.radio-grid input[name="' + name + '"]').forEach(function(rr) {
+            rr.closest('label').classList.toggle('is-checked', rr.checked);
+        });
+    });
+});
+
+// ===== Form submission =====
+var contactForm = document.getElementById('contactForm');
+var formSuccess = document.getElementById('formSuccess');
+var submitBtn   = document.getElementById('formSubmitBtn');
+
+function validateField(field) {
+    var input = field.querySelector('input, textarea');
+    if (!input) return true;
+    var valid = true;
+    if (input.required && !input.value.trim()) valid = false;
+    if (input.type === 'email' && input.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) valid = false;
+    field.classList.toggle('invalid', !valid);
+    return valid;
+}
+
+if (contactForm) {
+    contactForm.querySelectorAll('.field input, .field textarea').forEach(function(inp) {
+        inp.addEventListener('blur', function() {
+            var field = inp.closest('.field');
+            if (field) validateField(field);
+        });
+        inp.addEventListener('input', function() {
+            var field = inp.closest('.field');
+            if (field && field.classList.contains('invalid')) validateField(field);
+        });
+    });
+
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var allValid = true;
+        contactForm.querySelectorAll('.field').forEach(function(f) {
+            if (!validateField(f)) allValid = false;
+        });
+        if (!allValid) {
+            var firstInvalid = contactForm.querySelector('.field.invalid input, .field.invalid textarea');
+            if (firstInvalid) firstInvalid.focus();
+            return;
+        }
+
+        submitBtn.disabled = true;
+        var originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = 'Sending…';
+
+        // ----- Backend wiring -----
+        // Replace the block below with your actual submission logic.
+        // Common options:
+        //   1. fetch('/wp-json/contact-form-7/v1/contact-forms/XXX/feedback', { method: 'POST', body: new FormData(contactForm) })
+        //   2. fetch('https://hypeinsight.com/your-form-endpoint', { method: 'POST', body: new FormData(contactForm) })
+        //   3. Use a HubSpot Forms embed (replace this whole <form> with HubSpot's snippet).
+        // The simulated success below ensures the UI works out-of-the-box.
+
+        var formData = new FormData(contactForm);
+        var payload = {};
+        formData.forEach(function(v, k) { payload[k] = v; });
+
+        // Push to dataLayer for GTM tracking
+        if (window.dataLayer) {
+            window.dataLayer.push({
+                event: 'ai_services_contact_submit',
+                source_page: payload.source_page || 'ai-automation-services',
+                stage: payload.stage || ''
+            });
+        }
+
+        // Simulated success (replace with real submission)
+        setTimeout(function() {
+            contactForm.style.display = 'none';
+            formSuccess.classList.add('show');
+            formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+        }, 700);
+    });
+}
+
+// Reset to a fresh form
+var formResetBtn = document.getElementById('formReset');
+if (formResetBtn) {
+    formResetBtn.addEventListener('click', function() {
+        contactForm.reset();
+        contactForm.querySelectorAll('.field.invalid').forEach(function(f) { f.classList.remove('invalid'); });
+        contactForm.querySelectorAll('.radio-grid label.is-checked').forEach(function(l) { l.classList.remove('is-checked'); });
+        formSuccess.classList.remove('show');
+        contactForm.style.display = '';
+        contactForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+}
 </script>
 </body>
 </html>
