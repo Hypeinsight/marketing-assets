@@ -10,8 +10,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Hype Insight builds AI agents, automations, and agentic systems that move brands from experiment to operational infrastructure — measurable ROI, designed to ship this quarter.">
-    <title>AI &amp; Automation Services — Hype Insight</title>
+    <meta name="description" content="Hype Insight builds AI agents, automations, and agentic systems that move brands from experiment to operational infrastructure. Measurable ROI, designed to ship this quarter.">
+    <title>AI &amp; Automation Services | Hype Insight</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -173,7 +173,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             font-size: 0.92rem; opacity: 0.65; letter-spacing: 1px;
         }
 
-        /* Hero visual (right column) — single editorial panel */
+        /* Hero visual (right column): single editorial panel */
         .hero-visual {
             position: relative; max-width: 420px; margin-left: auto; width: 100%;
         }
@@ -641,6 +641,137 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .section-header .eyebrow { justify-content: center; }
         .section-header .lead { margin: 16px auto 0; }
 
+        /* ====== Readiness activity ====== */
+        .readiness-layout {
+            display: grid; grid-template-columns: 1.35fr 1fr; gap: 44px;
+            margin-top: 44px; align-items: start;
+        }
+        .rd-questions { display: grid; gap: 14px; }
+        .rd-q {
+            padding: 22px 24px;
+            background: rgba(11,26,36,0.03);
+            border: 1px solid var(--rule);
+            border-left: 3px solid var(--gold);
+            border-radius: 0 6px 6px 0;
+            transition: background 0.25s, border-color 0.25s;
+            position: relative;
+        }
+        .rd-q.answered {
+            background: rgba(70,182,70,0.05);
+            border-left-color: var(--color-primary);
+        }
+        .rd-q-num {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-size: 1.1rem; font-weight: 700; color: var(--burgundy);
+            margin-bottom: 4px; letter-spacing: 0.5px;
+        }
+        .rd-q-text {
+            font-size: 0.98rem; line-height: 1.55; margin-bottom: 14px;
+            font-weight: 500; color: var(--ink-dark);
+        }
+        .rd-q-row { display: flex; gap: 8px; }
+        .rd-btn {
+            flex: 1; padding: 10px 14px; border-radius: 4px; border: 1px solid;
+            font-size: 0.85rem; font-weight: 600; cursor: pointer;
+            transition: all 0.2s ease; font-family: inherit; background: transparent;
+            min-height: 42px; letter-spacing: 0.2px;
+        }
+        .rd-btn.btn-yes {
+            border-color: rgba(70,182,70,0.45); color: rgba(40,140,40,0.95);
+        }
+        .rd-btn.btn-yes:hover, .rd-btn.btn-yes.active {
+            background: var(--color-primary); border-color: var(--color-primary);
+            color: white; box-shadow: 0 2px 10px rgba(70,182,70,0.30);
+        }
+        .rd-btn.btn-maybe {
+            border-color: rgba(230,126,34,0.45); color: rgba(180,90,15,0.95);
+        }
+        .rd-btn.btn-maybe:hover, .rd-btn.btn-maybe.active {
+            background: #E67E22; border-color: #E67E22;
+            color: white; box-shadow: 0 2px 10px rgba(230,126,34,0.30);
+        }
+        .rd-btn.btn-no {
+            border-color: rgba(231,76,60,0.45); color: rgba(180,50,40,0.95);
+        }
+        .rd-btn.btn-no:hover, .rd-btn.btn-no.active {
+            background: #E74C3C; border-color: #E74C3C;
+            color: white; box-shadow: 0 2px 10px rgba(231,76,60,0.30);
+        }
+
+        .rd-verdict {
+            background:
+                radial-gradient(circle at 75% 18%, rgba(0,169,186,0.10) 0%, transparent 50%),
+                radial-gradient(circle at 15% 90%, rgba(70,182,70,0.10) 0%, transparent 50%),
+                linear-gradient(160deg, var(--ink-dark) 0%, var(--ink-dark-2) 100%);
+            color: var(--paper-cream);
+            border-radius: 8px; padding: 36px 32px;
+            position: sticky; top: 24px;
+            border: 1px solid rgba(246,239,221,0.14);
+            box-shadow: 0 14px 40px rgba(11,26,36,0.20);
+        }
+        .rd-verdict::before {
+            content: ''; position: absolute; top: -1px; left: 32px; right: 32px; height: 2px;
+            background: var(--gold);
+        }
+        .rd-verdict-eyebrow {
+            font-size: 0.66rem; letter-spacing: 3.5px; text-transform: uppercase;
+            font-weight: 700; opacity: 0.7; margin-bottom: 6px; color: var(--gold-light);
+            text-align: center; font-family: 'Inter', sans-serif;
+        }
+        .rd-gauge-wrap { display: flex; justify-content: center; margin: 8px 0; }
+        .rd-gauge { width: 100%; max-width: 230px; }
+        .rd-progress {
+            text-align: center; font-size: 0.78rem; opacity: 0.55;
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            letter-spacing: 0.5px; margin-bottom: 6px;
+        }
+        .rd-tier {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-size: 1.55rem; font-weight: 600; text-align: center;
+            color: var(--gold-light); margin-bottom: 12px;
+            transition: color 0.4s; line-height: 1.2;
+        }
+        .rd-tier.tier-placeholder { color: rgba(246,239,221,0.55); font-size: 1.05rem; font-weight: 500; }
+        .rd-recommendation {
+            font-size: 0.94rem; line-height: 1.65; opacity: 0.88;
+            text-align: center; padding-top: 16px;
+            border-top: 1px solid rgba(246,239,221,0.14);
+        }
+        .rd-cta-row {
+            display: flex; flex-direction: column; gap: 10px;
+            margin-top: 20px;
+        }
+        .rd-cta-row:empty { margin-top: 0; }
+        .rd-cta-row .btn { width: 100%; padding: 12px 22px; font-size: 0.92rem; }
+        .rd-cta-row .btn-secondary { color: var(--paper-cream); border-color: rgba(246,239,221,0.45); }
+        .rd-cta-row .btn-secondary:hover { color: var(--gold-light); border-color: var(--gold-light); }
+
+        .rd-reset-row { text-align: center; margin-top: 18px; }
+        .rd-reset-link {
+            background: none; border: 1px solid rgba(246,239,221,0.18);
+            color: rgba(246,239,221,0.55); padding: 6px 14px;
+            border-radius: 50px; font-size: 0.72rem; cursor: pointer;
+            font-family: inherit; font-weight: 500; letter-spacing: 1px;
+            text-transform: uppercase; transition: all 0.25s;
+        }
+        .rd-reset-link:hover {
+            border-color: #E74C3C; color: #E74C3C;
+        }
+
+        @media (max-width: 1024px) {
+            .readiness-layout { grid-template-columns: 1fr; gap: 32px; }
+            .rd-verdict { position: static; }
+        }
+        @media (max-width: 640px) {
+            .rd-q { padding: 16px 18px; }
+            .rd-q-text { font-size: 0.92rem; }
+            .rd-btn { font-size: 0.8rem; padding: 9px 10px; }
+            .rd-verdict { padding: 26px 22px; }
+            .rd-gauge { max-width: 180px; }
+            .rd-tier { font-size: 1.3rem; }
+            .rd-recommendation { font-size: 0.88rem; }
+        }
+
         /* ====== Contact form ====== */
         .contact-grid {
             display: grid; grid-template-columns: 1fr 1.2fr; gap: 56px;
@@ -802,7 +933,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             background: rgba(217,180,92,0.10);
         }
 
-        /* Honeypot — completely hidden from real users + screen readers */
+        /* Honeypot: completely hidden from real users + screen readers */
         .hp-field {
             position: absolute !important;
             left: -10000px !important;
@@ -1488,11 +1619,98 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 </section>
 
-<!-- ========== SECTION 9: CONTACT FORM ========== -->
+<!-- ========== SECTION 9: READINESS ACTIVATION ========== -->
+<section class="section section--paper" id="readiness">
+    <div class="section-inner">
+        <div class="section-header reveal">
+            <span class="eyebrow"><span class="eyebrow-num">ix</span> Find out where you stand</span>
+            <h2>Are you ready for <em class="italic-h">agents?</em></h2>
+            <p class="lead">Six honest questions, the same ones we open every client conversation with. Mark each Yes, Maybe, or No and watch the recommendation panel update in real time. Your answers stay in your browser, nothing is sent.</p>
+        </div>
+
+        <div class="readiness-layout reveal">
+            <div class="rd-questions">
+                <div class="rd-q" data-q="1">
+                    <div class="rd-q-num">01</div>
+                    <div class="rd-q-text">Can you name three repetitive tasks costing your team five or more hours each week?</div>
+                    <div class="rd-q-row" data-rq="1">
+                        <button type="button" class="rd-btn btn-yes" data-score="2">Yes</button>
+                        <button type="button" class="rd-btn btn-maybe" data-score="1">Maybe</button>
+                        <button type="button" class="rd-btn btn-no" data-score="0">No</button>
+                    </div>
+                </div>
+                <div class="rd-q" data-q="2">
+                    <div class="rd-q-num">02</div>
+                    <div class="rd-q-text">Do your core systems (CRM, email, billing) have APIs or some form of integration access?</div>
+                    <div class="rd-q-row" data-rq="2">
+                        <button type="button" class="rd-btn btn-yes" data-score="2">Yes</button>
+                        <button type="button" class="rd-btn btn-maybe" data-score="1">Maybe</button>
+                        <button type="button" class="rd-btn btn-no" data-score="0">No</button>
+                    </div>
+                </div>
+                <div class="rd-q" data-q="3">
+                    <div class="rd-q-num">03</div>
+                    <div class="rd-q-text">Is your customer or operational data clean enough to act on without manual review?</div>
+                    <div class="rd-q-row" data-rq="3">
+                        <button type="button" class="rd-btn btn-yes" data-score="2">Yes</button>
+                        <button type="button" class="rd-btn btn-maybe" data-score="1">Maybe</button>
+                        <button type="button" class="rd-btn btn-no" data-score="0">No</button>
+                    </div>
+                </div>
+                <div class="rd-q" data-q="4">
+                    <div class="rd-q-num">04</div>
+                    <div class="rd-q-text">Have you defined measurable baselines for the process you want to improve?</div>
+                    <div class="rd-q-row" data-rq="4">
+                        <button type="button" class="rd-btn btn-yes" data-score="2">Yes</button>
+                        <button type="button" class="rd-btn btn-maybe" data-score="1">Maybe</button>
+                        <button type="button" class="rd-btn btn-no" data-score="0">No</button>
+                    </div>
+                </div>
+                <div class="rd-q" data-q="5">
+                    <div class="rd-q-num">05</div>
+                    <div class="rd-q-text">Is leadership prepared to fund a 6 to 12 month deployment journey, not a one-off pilot?</div>
+                    <div class="rd-q-row" data-rq="5">
+                        <button type="button" class="rd-btn btn-yes" data-score="2">Yes</button>
+                        <button type="button" class="rd-btn btn-maybe" data-score="1">Maybe</button>
+                        <button type="button" class="rd-btn btn-no" data-score="0">No</button>
+                    </div>
+                </div>
+                <div class="rd-q" data-q="6">
+                    <div class="rd-q-num">06</div>
+                    <div class="rd-q-text">Can you tolerate occasional agent errors when human-in-the-loop safeguards are in place?</div>
+                    <div class="rd-q-row" data-rq="6">
+                        <button type="button" class="rd-btn btn-yes" data-score="2">Yes</button>
+                        <button type="button" class="rd-btn btn-maybe" data-score="1">Maybe</button>
+                        <button type="button" class="rd-btn btn-no" data-score="0">No</button>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="rd-verdict">
+                <div class="rd-verdict-eyebrow">Your verdict</div>
+                <div class="rd-gauge-wrap">
+                    <svg class="rd-gauge" viewBox="0 0 240 160">
+                        <path d="M 20 120 A 100 100 0 0 1 220 120" fill="none" stroke="rgba(246,239,221,0.15)" stroke-width="14" stroke-linecap="round"/>
+                        <path id="rdGaugeFill" d="M 20 120 A 100 100 0 0 1 20.001 119.999" fill="none" stroke="#B68A3C" stroke-width="14" stroke-linecap="round"/>
+                        <text x="120" y="108" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="42" font-weight="700" fill="#F6EFDD" id="rdGaugeScore">0</text>
+                        <text x="120" y="132" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" letter-spacing="2.5" fill="rgba(246,239,221,0.55)">OF 12</text>
+                    </svg>
+                </div>
+                <div class="rd-progress" id="rdProgress">Answer six questions to unlock your verdict</div>
+                <div class="rd-tier tier-placeholder" id="rdTier">Awaiting your answers</div>
+                <div class="rd-recommendation" id="rdRec">Six honest yes / maybe / no answers, and we will give you a tailored recommendation plus the smallest meaningful next step for your business.</div>
+                <div class="rd-cta-row" id="rdCta"></div>
+                <div class="rd-reset-row" id="rdResetRow" style="display:none;"><button type="button" class="rd-reset-link" id="rdReset">Reset answers</button></div>
+            </aside>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SECTION 10: CONTACT FORM ========== -->
 <section class="section section--ink" id="contact">
     <div class="section-inner">
         <div class="section-header reveal">
-            <span class="eyebrow"><span class="eyebrow-num">ix</span> The next move</span>
+            <span class="eyebrow"><span class="eyebrow-num">x</span> The next move</span>
             <h2>Let's talk about <em class="italic-h">your first agent.</em></h2>
             <div class="ornament"><div class="o-rule"></div><div class="o-mark"></div><div class="o-rule"></div></div>
             <p class="lead" style="margin: 0 auto;">A 30-minute conversation, no pitch. Tell us where you are and what you're trying to do; we'll tell you honestly whether agents are the answer, and if so, what the smallest meaningful first move looks like.</p>
@@ -1617,6 +1835,172 @@ var io = new IntersectionObserver(function(entries) {
     });
 }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 revealEls.forEach(function(el) { io.observe(el); });
+
+// ===== Readiness activity =====
+(function() {
+    var rdState = {};
+    var RD_MAX = 12;          // 6 questions * 2 max per question
+    var RD_TOTAL_Q = 6;
+
+    function arcPath(p) {
+        if (p <= 0.001) return 'M 20 120 A 100 100 0 0 1 20.001 119.999';
+        if (p >= 0.999) return 'M 20 120 A 100 100 0 1 1 219.999 120';
+        var a = (1 - p) * Math.PI;
+        var ex = (120 + 100 * Math.cos(a)).toFixed(2);
+        var ey = (120 - 100 * Math.sin(a)).toFixed(2);
+        return 'M 20 120 A 100 100 0 ' + (p > 0.5 ? 1 : 0) + ' 1 ' + ex + ' ' + ey;
+    }
+
+    function tierFor(score, answered) {
+        if (answered < RD_TOTAL_Q) return {
+            placeholder: true,
+            label: 'Awaiting your answers',
+            rec: 'Six honest yes / maybe / no answers, and we will give you a tailored recommendation plus the smallest meaningful next step for your business.',
+            cta: [], color: '#B68A3C'
+        };
+        if (score >= 10) return {
+            label: 'Agent-ready',
+            rec: 'You have the foundations to deploy a real agent inside 30 days. Skip the readiness audit. Bring us a single use case and we will scope the smallest version of it that can ship this quarter.',
+            cta: [{ label: 'Book a strategy call', href: '#contact', primary: true }],
+            color: '#46B646'
+        };
+        if (score >= 7) return {
+            label: 'Foundation phase',
+            rec: 'You are close. A fortnight of data tidying and process documentation, then the first agent goes live. Read the playbook first to map the work, then bring us in for the design and build.',
+            cta: [
+                { label: 'Open the playbook', href: '../ai-agent-guide/', primary: true },
+                { label: 'Or talk to us', href: '#contact', primary: false }
+            ],
+            color: '#00A9BA'
+        };
+        if (score >= 4) return {
+            label: 'Pre-agent work',
+            rec: 'Plumbing before agents. Focus the next 30 days on integrations and clean data. We can scope that work as a readiness audit so the agent rollout that follows actually delivers, instead of stalling six weeks in.',
+            cta: [{ label: 'Talk about a readiness audit', href: '#contact', primary: true }],
+            color: '#E67E22'
+        };
+        return {
+            label: 'Strategy first',
+            rec: 'Agents will not solve what you are facing yet. Start with strategy: which processes, which data, which metrics. We can run that as a focused engagement. No agent deployment, just clarity.',
+            cta: [{ label: 'Start with a conversation', href: '#contact', primary: true }],
+            color: '#E74C3C'
+        };
+    }
+
+    function render() {
+        var total = 0, answered = 0;
+        Object.keys(rdState).forEach(function(k) { total += rdState[k]; answered++; });
+        var v = tierFor(total, answered);
+
+        // Gauge
+        var fill = document.getElementById('rdGaugeFill');
+        var scoreText = document.getElementById('rdGaugeScore');
+        if (fill) {
+            fill.setAttribute('d', arcPath(total / RD_MAX));
+            fill.setAttribute('stroke', v.color);
+        }
+        if (scoreText) scoreText.textContent = total;
+
+        // Progress
+        var prog = document.getElementById('rdProgress');
+        if (prog) {
+            if (answered === 0) prog.textContent = 'Answer six questions to unlock your verdict';
+            else if (answered < RD_TOTAL_Q) prog.textContent = answered + ' of ' + RD_TOTAL_Q + ' answered. Keep going.';
+            else prog.textContent = 'All six answered';
+        }
+
+        // Tier label
+        var tierEl = document.getElementById('rdTier');
+        if (tierEl) {
+            tierEl.textContent = v.label;
+            tierEl.classList.toggle('tier-placeholder', !!v.placeholder);
+            tierEl.style.color = v.placeholder ? '' : v.color;
+        }
+
+        // Recommendation
+        var recEl = document.getElementById('rdRec');
+        if (recEl) recEl.textContent = v.rec;
+
+        // CTAs
+        var ctaEl = document.getElementById('rdCta');
+        if (ctaEl) {
+            ctaEl.innerHTML = '';
+            (v.cta || []).forEach(function(c) {
+                var a = document.createElement('a');
+                a.className = 'btn ' + (c.primary ? 'btn-primary' : 'btn-secondary');
+                a.href = c.href;
+                a.textContent = c.label;
+                ctaEl.appendChild(a);
+            });
+        }
+
+        // Reset row
+        var resetRow = document.getElementById('rdResetRow');
+        if (resetRow) resetRow.style.display = answered > 0 ? '' : 'none';
+    }
+
+    function persist() {
+        try { localStorage.setItem('hi_ai_readiness', JSON.stringify(rdState)); } catch(e) {}
+    }
+    function restore() {
+        try {
+            var saved = JSON.parse(localStorage.getItem('hi_ai_readiness') || 'null');
+            if (!saved) return;
+            Object.keys(saved).forEach(function(k) {
+                rdState[k] = saved[k];
+                var row = document.querySelector('.rd-q-row[data-rq="' + k + '"]');
+                if (!row) return;
+                row.querySelectorAll('.rd-btn').forEach(function(b) {
+                    b.classList.toggle('active', parseInt(b.dataset.score, 10) === saved[k]);
+                });
+                var card = row.closest('.rd-q');
+                if (card) card.classList.add('answered');
+            });
+        } catch(e) {}
+    }
+
+    document.querySelectorAll('.rd-q-row').forEach(function(row) {
+        row.addEventListener('click', function(e) {
+            var btn = e.target.closest('.rd-btn');
+            if (!btn) return;
+            row.querySelectorAll('.rd-btn').forEach(function(b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+            rdState[row.dataset.rq] = parseInt(btn.dataset.score, 10);
+            var card = row.closest('.rd-q');
+            if (card) card.classList.add('answered');
+            render();
+            persist();
+
+            // GTM event when all six answered (one-shot per session)
+            var answeredCount = Object.keys(rdState).length;
+            if (answeredCount === RD_TOTAL_Q && !window.__rdCompleteFired && window.dataLayer) {
+                window.__rdCompleteFired = true;
+                var total = 0;
+                Object.keys(rdState).forEach(function(k) { total += rdState[k]; });
+                window.dataLayer.push({
+                    event: 'ai_services_readiness_complete',
+                    readiness_score: total,
+                    readiness_tier: tierFor(total, answeredCount).label
+                });
+            }
+        });
+    });
+
+    var rdResetBtn = document.getElementById('rdReset');
+    if (rdResetBtn) {
+        rdResetBtn.addEventListener('click', function() {
+            rdState = {};
+            document.querySelectorAll('.rd-btn.active').forEach(function(b) { b.classList.remove('active'); });
+            document.querySelectorAll('.rd-q.answered').forEach(function(c) { c.classList.remove('answered'); });
+            window.__rdCompleteFired = false;
+            try { localStorage.removeItem('hi_ai_readiness'); } catch(e) {}
+            render();
+        });
+    }
+
+    restore();
+    render();
+})();
 
 // ===== UTM auto-population =====
 (function() {

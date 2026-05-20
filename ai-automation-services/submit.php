@@ -1,6 +1,6 @@
 <?php
 /**
- * Hype Insight — AI Automation Services contact-form handler
+ * Hype Insight: AI Automation Services contact-form handler
  *
  * Accepts a POST from the inline contact form, validates it, sends an
  * email to the team, and returns JSON so the page can show a clean
@@ -110,7 +110,7 @@ $bodyLines = [
 ];
 $body = implode("\n", $bodyLines);
 
-// Headers — using \r\n per RFC 5322
+// Headers using \r\n per RFC 5322
 $headers  = 'From: ' . FROM_NAME . ' <' . FROM_EMAIL . '>' . "\r\n";
 $headers .= 'Reply-To: ' . $name . ' <' . $email . '>' . "\r\n";
 $headers .= 'Content-Type: text/plain; charset=UTF-8' . "\r\n";
