@@ -802,6 +802,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             background: rgba(217,180,92,0.10);
         }
 
+        /* Honeypot — completely hidden from real users + screen readers */
+        .hp-field {
+            position: absolute !important;
+            left: -10000px !important;
+            top: auto !important;
+            width: 1px !important;
+            height: 1px !important;
+            overflow: hidden !important;
+        }
+
+        /* Inline error banner */
+        .form-error {
+            display: none;
+            margin: 0 0 18px;
+            padding: 12px 16px;
+            background: rgba(231,76,60,0.10);
+            border: 1px solid rgba(231,76,60,0.35);
+            border-left: 3px solid #E74C3C;
+            border-radius: 4px;
+            color: #f0a8a0;
+            font-size: 0.9rem; line-height: 1.5;
+        }
+        .form-error.show { display: block; animation: fadePane 0.3s ease; }
+
         .form-submit-row {
             display: flex; align-items: center; justify-content: space-between;
             flex-wrap: wrap; gap: 16px;
@@ -1492,9 +1516,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </ul>
             </div>
 
-            <form class="contact-form" id="contactForm" novalidate>
+            <form class="contact-form" id="contactForm" action="submit.php" method="POST" novalidate>
                 <div class="form-heading">Send us a note</div>
-                <p class="form-sub">Fill this in and hit send. Your email client will open with the message drafted, ready for you to send. Required fields marked with <span style="color: var(--gold-light)">*</span>.</p>
+                <p class="form-sub">Required fields marked with <span style="color: var(--gold-light)">*</span>. We reply within one business day. Privacy respected, no list, no spam.</p>
+                <div class="form-error" id="formError" role="alert" aria-live="polite"></div>
 
                 <div class="form-row">
                     <div class="field" data-field="name">
@@ -1545,11 +1570,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <input type="hidden" name="utm_medium" id="utm-medium">
                 <input type="hidden" name="utm_campaign" id="utm-campaign">
 
+                <!-- Honeypot: bots fill this in, humans never see it -->
+                <div class="hp-field" aria-hidden="true">
+                    <label for="cf-website">Website (leave blank)</label>
+                    <input id="cf-website" name="website" type="text" tabindex="-1" autocomplete="off">
+                </div>
+
                 <div class="form-submit-row">
                     <div class="privacy-note">Your message goes straight to Ari and the team. Privacy respected, no list, no spam.</div>
                     <button type="submit" class="btn btn-primary form-submit-btn" id="formSubmitBtn">
-                        Open in my email
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        Send my enquiry
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                     </button>
                 </div>
             </form>
@@ -1560,10 +1591,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <polyline points="20 6 9 17 4 12"/>
                     </svg>
                 </div>
-                <h4>Your email is drafted, just hit Send.</h4>
-                <p>Your email client should have just opened with your message ready to go. One more tap on <strong>Send</strong> and it lands with our team. We'll reply within one business day.</p>
-                <p style="font-size: 0.85rem; opacity: 0.7; margin-top: 10px;">Nothing happened? Email us directly at <a id="formFallbackEmail" href="mailto:hello@hypeinsight.com" style="color: var(--gold-light); text-decoration: underline;">hello@hypeinsight.com</a></p>
-                <button class="reset-link" type="button" id="formReset">Start over</button>
+                <h4>Thanks, we received your note.</h4>
+                <p>Someone from the Hype Insight team will reply within one business day. While you wait, the playbook is yours to browse.</p>
+                <button class="reset-link" type="button" id="formReset">Send another message</button>
                 <div style="margin-top: 28px;">
                     <a class="btn btn-secondary" href="../ai-agent-guide/">
                         Open the Playbook
@@ -1639,13 +1669,29 @@ if (contactForm) {
         });
     });
 
-    // ===== Where enquiries should land =====
-    // Change CONTACT_EMAIL to whichever inbox you want submissions to go to.
-    // This is the one configuration point for the form — nothing else to wire up.
-    var CONTACT_EMAIL = 'hello@hypeinsight.com';
+    // ===== Where the form submits to =====
+    // submit.php sits next to index.html. If you embed this HTML at a
+    // different path on hypeinsight.com, update SUBMIT_URL to the
+    // absolute path where submit.php lives (e.g. '/ai-services/submit.php').
+    var SUBMIT_URL = 'submit.php';
+
+    var formErrorBox = document.getElementById('formError');
+
+    function showFormError(msg) {
+        if (!formErrorBox) return;
+        formErrorBox.textContent = msg;
+        formErrorBox.classList.add('show');
+    }
+    function clearFormError() {
+        if (!formErrorBox) return;
+        formErrorBox.textContent = '';
+        formErrorBox.classList.remove('show');
+    }
 
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
+        clearFormError();
+
         var allValid = true;
         contactForm.querySelectorAll('.field').forEach(function(f) {
             if (!validateField(f)) allValid = false;
@@ -1658,69 +1704,46 @@ if (contactForm) {
 
         submitBtn.disabled = true;
         var originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = 'Opening your email…';
+        submitBtn.innerHTML = 'Sending…';
 
-        // Collect form data
         var formData = new FormData(contactForm);
-        var data = {};
-        formData.forEach(function(v, k) { data[k] = (v || '').toString().trim(); });
 
-        // GTM tracking
-        if (window.dataLayer) {
-            window.dataLayer.push({
-                event: 'ai_services_contact_submit',
-                source_page: data.source_page || 'ai-automation-services',
-                stage: data.stage || ''
-            });
-        }
-
-        // Compose mailto with a readable body
-        var stageLabel = ({
-            exploring:  'Exploring concepts',
-            use_case:   'Have a specific use case',
-            piloting:   'Already piloting agents',
-            scaling:    'Scaling deployments'
-        })[data.stage] || '(not specified)';
-
-        var subject = 'New AI services enquiry, ' + (data.name || 'web visitor');
-        var bodyLines = [
-            'Name: '    + (data.name    || ''),
-            'Email: '   + (data.email   || ''),
-            'Company: ' + (data.company || '(not provided)'),
-            'Phone: '   + (data.phone   || '(not provided)'),
-            'Stage: '   + stageLabel,
-            '',
-            'Message:',
-            (data.message || '(none)'),
-            '',
-            '———',
-            'Source page: AI Automation Services landing page',
-            'UTM source: '   + (data.utm_source   || '(direct)'),
-            'UTM medium: '   + (data.utm_medium   || '(none)'),
-            'UTM campaign: ' + (data.utm_campaign || '(none)')
-        ];
-
-        var mailtoUrl = 'mailto:' + CONTACT_EMAIL +
-            '?subject=' + encodeURIComponent(subject) +
-            '&body='    + encodeURIComponent(bodyLines.join('\n'));
-
-        // Trigger the user's email client
-        window.location.href = mailtoUrl;
-
-        // Show our success state so the on-page UX completes
-        setTimeout(function() {
-            // Inject the fallback email address into the success panel
-            var fallbackHost = document.getElementById('formFallbackEmail');
-            if (fallbackHost) {
-                fallbackHost.textContent = CONTACT_EMAIL;
-                fallbackHost.setAttribute('href', 'mailto:' + CONTACT_EMAIL);
+        fetch(SUBMIT_URL, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        })
+        .then(function(res) {
+            return res.json().then(function(data) { return { status: res.status, ok: res.ok, data: data }; })
+                .catch(function() { return { status: res.status, ok: res.ok, data: {} }; });
+        })
+        .then(function(result) {
+            if (result.ok && result.data && result.data.ok) {
+                // GTM conversion event
+                if (window.dataLayer) {
+                    window.dataLayer.push({
+                        event: 'ai_services_contact_submit',
+                        source_page: formData.get('source_page') || 'ai-automation-services',
+                        stage: formData.get('stage') || ''
+                    });
+                }
+                contactForm.style.display = 'none';
+                formSuccess.classList.add('show');
+                formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                var msg = (result.data && result.data.error)
+                    ? result.data.error
+                    : 'Sorry, we could not send your message. Please try again in a moment.';
+                showFormError(msg);
             }
-            contactForm.style.display = 'none';
-            formSuccess.classList.add('show');
-            formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        })
+        .catch(function() {
+            showFormError('Sorry, we could not reach the server. Please check your connection and try again.');
+        })
+        .finally(function() {
             submitBtn.disabled = false;
             submitBtn.innerHTML = originalText;
-        }, 400);
+        });
     });
 }
 
@@ -1731,6 +1754,8 @@ if (formResetBtn) {
         contactForm.reset();
         contactForm.querySelectorAll('.field.invalid').forEach(function(f) { f.classList.remove('invalid'); });
         contactForm.querySelectorAll('.radio-grid label.is-checked').forEach(function(l) { l.classList.remove('is-checked'); });
+        var errBox = document.getElementById('formError');
+        if (errBox) { errBox.textContent = ''; errBox.classList.remove('show'); }
         formSuccess.classList.remove('show');
         contactForm.style.display = '';
         contactForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
