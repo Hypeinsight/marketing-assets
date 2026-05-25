@@ -1162,6 +1162,103 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             .hero-card .hc-num { font-size: 1.8rem; }
             .hero-card .hc-label { font-size: 0.72rem; }
         }
+
+        /* ====== Sub-navigation (AI services page family) ====== */
+        .sub-nav {
+            position: sticky; top: 0; z-index: 50;
+            background: rgba(11,26,36,0.94);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(246,239,221,0.12);
+        }
+        .sub-nav-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 14px 24px;
+            display: flex; align-items: center; gap: 6px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .sub-nav-inner::-webkit-scrollbar { display: none; }
+        .sub-nav-label {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-size: 0.92rem; color: var(--gold-light); opacity: 0.85;
+            white-space: nowrap; margin-right: 12px;
+            padding-right: 16px; border-right: 1px solid rgba(246,239,221,0.20);
+            flex-shrink: 0; font-weight: 500;
+        }
+        .sub-nav-link {
+            padding: 8px 16px; border-radius: 50px;
+            color: rgba(246,239,221,0.72);
+            text-decoration: none;
+            font-size: 0.86rem; font-weight: 500;
+            transition: all 0.25s ease;
+            white-space: nowrap; flex-shrink: 0;
+            border: 1px solid transparent;
+        }
+        .sub-nav-link:hover { background: rgba(246,239,221,0.06); color: var(--paper-cream); }
+        .sub-nav-link.active {
+            background: rgba(217,180,92,0.18); color: var(--gold-light);
+            border-color: rgba(217,180,92,0.40);
+        }
+
+        /* ====== Cross-page nav cards (Other services) ====== */
+        .cross-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;
+            margin-top: 36px;
+        }
+        .cross-card {
+            display: block;
+            padding: 26px 28px;
+            background: rgba(11,26,36,0.04);
+            border: 1px solid var(--rule);
+            border-radius: 8px;
+            text-decoration: none; color: inherit;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .section--ink .cross-card { background: rgba(246,239,221,0.04); border-color: var(--rule-dark); }
+        .cross-card::before {
+            content: ''; position: absolute; top: -1px; left: 28px; width: 36px; height: 2px;
+            background: var(--gold);
+        }
+        .cross-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(11,26,36,0.10);
+            border-color: var(--gold);
+        }
+        .cross-card-label {
+            font-size: 0.66rem; letter-spacing: 3px; text-transform: uppercase;
+            font-weight: 700; opacity: 0.55; margin-bottom: 8px;
+            font-family: 'Inter', sans-serif;
+        }
+        .cross-card h4 {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-size: 1.45rem; font-weight: 600; margin-bottom: 8px;
+            color: var(--burgundy);
+        }
+        .section--ink .cross-card h4 { color: var(--gold-light); }
+        .cross-card-text { font-size: 0.9rem; line-height: 1.55; opacity: 0.82; }
+        .cross-card-arrow {
+            display: inline-flex; align-items: center; gap: 6px;
+            margin-top: 14px; font-size: 0.82rem; font-weight: 600;
+            color: var(--burgundy);
+        }
+        .section--ink .cross-card-arrow { color: var(--gold-light); }
+        .cross-card:hover .cross-card-arrow { gap: 10px; }
+
+        @media (max-width: 1024px) {
+            .cross-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .sub-nav-inner { padding: 10px 16px; gap: 4px; }
+            .sub-nav-label { font-size: 0.85rem; margin-right: 8px; padding-right: 12px; }
+            .sub-nav-link { padding: 7px 13px; font-size: 0.8rem; }
+            .cross-card { padding: 22px 22px; }
+        }
+        @media (max-width: 480px) {
+            .sub-nav-label { display: none; }
+        }
     </style>
 </head>
 <body>
@@ -1169,6 +1266,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W7QL5263"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
+
+<!-- ========== SUB-NAV (AI services page family) ========== -->
+<nav class="sub-nav" aria-label="AI services navigation">
+    <div class="sub-nav-inner">
+        <span class="sub-nav-label">AI &amp; Automation</span>
+        <a href="./" class="sub-nav-link active">Overview</a>
+        <a href="sales-acceleration/" class="sub-nav-link">Sales Acceleration</a>
+        <a href="customer-support/" class="sub-nav-link">Customer Support</a>
+        <a href="decision-intelligence/" class="sub-nav-link">Decision Intelligence</a>
+        <a href="orchestration/" class="sub-nav-link">Multi-Agent Orchestration</a>
+    </div>
+</nav>
 
 <!-- ========== HERO ========== -->
 <section class="hero" id="top">
