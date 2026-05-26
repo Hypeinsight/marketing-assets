@@ -1180,13 +1180,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             scrollbar-width: none;
         }
         .sub-nav-inner::-webkit-scrollbar { display: none; }
-        .sub-nav-label {
-            font-family: 'Cormorant Garamond', serif; font-style: italic;
-            font-size: 0.92rem; color: var(--gold-light); opacity: 0.85;
-            white-space: nowrap; margin-right: 12px;
-            padding-right: 16px; border-right: 1px solid rgba(246,239,221,0.20);
-            flex-shrink: 0; font-weight: 500;
+        .sub-nav-logo {
+            display: flex; align-items: center;
+            flex-shrink: 0; text-decoration: none;
+            margin-right: 14px;
+            padding-right: 18px;
+            border-right: 1px solid rgba(246,239,221,0.20);
+            transition: opacity 0.25s ease;
         }
+        .sub-nav-logo:hover { opacity: 0.85; }
+        .sub-nav-logo img { height: 32px; width: auto; display: block; }
         .sub-nav-link {
             padding: 8px 16px; border-radius: 50px;
             color: rgba(246,239,221,0.72);
@@ -1252,12 +1255,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
         @media (max-width: 768px) {
             .sub-nav-inner { padding: 10px 16px; gap: 4px; }
-            .sub-nav-label { font-size: 0.85rem; margin-right: 8px; padding-right: 12px; }
+            .sub-nav-logo { margin-right: 10px; padding-right: 14px; }
+            .sub-nav-logo img { height: 28px; }
             .sub-nav-link { padding: 7px 13px; font-size: 0.8rem; }
             .cross-card { padding: 22px 22px; }
         }
         @media (max-width: 480px) {
-            .sub-nav-label { display: none; }
+            .sub-nav-logo { margin-right: 8px; padding-right: 10px; }
+            .sub-nav-logo img { height: 24px; }
         }
     </style>
 </head>
@@ -1270,7 +1275,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ========== SUB-NAV (AI services page family) ========== -->
 <nav class="sub-nav" aria-label="AI services navigation">
     <div class="sub-nav-inner">
-        <span class="sub-nav-label">AI &amp; Automation</span>
+        <a href="./" class="sub-nav-logo" aria-label="Hype Insight">
+            <img src="hype-insight-logo.webp" alt="Hype Insight" loading="lazy">
+        </a>
         <a href="./" class="sub-nav-link active">Overview</a>
         <a href="sales-acceleration/" class="sub-nav-link">Sales Acceleration</a>
         <a href="customer-support/" class="sub-nav-link">Customer Support</a>
