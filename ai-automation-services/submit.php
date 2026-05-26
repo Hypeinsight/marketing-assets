@@ -84,8 +84,19 @@ $stageLabels = [
 ];
 $stageLabel = $stageLabels[$stage] ?? '(not specified)';
 
+// ===== Map source page to service label so the team can see which
+// service area the lead came from at a glance in the inbox subject ====
+$serviceLabels = [
+    'sales-acceleration'      => 'Sales Acceleration',
+    'customer-support'        => 'Customer Support',
+    'decision-intelligence'   => 'Decision Intelligence',
+    'orchestration'           => 'Multi-Agent Orchestration',
+    'ai-automation-services'  => 'AI services (overview)',
+];
+$serviceLabel = $serviceLabels[$source_page] ?? 'AI services';
+
 // ===== Build email =====
-$subject = sprintf('New AI services enquiry, %s', $name);
+$subject = sprintf('[%s] New enquiry from %s', $serviceLabel, $name);
 
 $bodyLines = [
     'A new enquiry came in from the AI Automation Services landing page.',
