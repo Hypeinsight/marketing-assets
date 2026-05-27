@@ -605,55 +605,73 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2 class="section-headline">Straight from the source. <em>On camera.</em></h2>
         <p class="lead">Short, unedited testimonials from clients Ari has worked with directly.</p>
 
-        <div class="video-grid">
-            <div class="video-card">
-                <video controls preload="metadata" playsinline>
-                    <source src="https://hypeinsight.com/wp-content/uploads/2026/02/Rick-Solomon-Testimonial-1.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <div class="video-card-meta">
-                    <div class="video-card-name">Rick Solomon</div>
-                    <div class="video-card-role">Client testimonial</div>
+        <div class="video-carousel-wrap" id="videoCarouselWrap">
+            <div class="video-carousel" id="videoCarousel">
+                <div class="video-card">
+                    <span class="video-card-badge">01</span>
+                    <video controls preload="metadata" playsinline>
+                        <source src="https://hypeinsight.com/wp-content/uploads/2026/02/Rick-Solomon-Testimonial-1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-card-meta">
+                        <div class="video-card-name">Rick Solomon</div>
+                        <div class="video-card-role">Client testimonial</div>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <span class="video-card-badge">02</span>
+                    <video controls preload="metadata" playsinline>
+                        <source src="https://hypeinsight.com/wp-content/uploads/2026/05/48f61f8b-066c-4d6f-a3c1-5e1a72659eaa-1.mov" type="video/quicktime">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-card-meta">
+                        <div class="video-card-name">Client testimonial</div>
+                        <div class="video-card-role">On working with Ari</div>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <span class="video-card-badge">03</span>
+                    <video controls preload="metadata" playsinline>
+                        <source src="https://hypeinsight.com/wp-content/uploads/2026/05/f7471335-90be-4320-80b8-fdae8ae58b27-1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-card-meta">
+                        <div class="video-card-name">Client testimonial</div>
+                        <div class="video-card-role">On the engagement</div>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <span class="video-card-badge">04</span>
+                    <video controls preload="metadata" playsinline>
+                        <source src="https://hypeinsight.com/wp-content/uploads/2026/04/IMG_0191.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-card-meta">
+                        <div class="video-card-name">Client testimonial</div>
+                        <div class="video-card-role">Recorded on site</div>
+                    </div>
+                </div>
+                <div class="video-card video-wide">
+                    <span class="video-card-badge">05</span>
+                    <video controls preload="metadata" playsinline>
+                        <source src="https://hypeinsight.com/wp-content/uploads/2026/04/Common-Point.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-card-meta">
+                        <div class="video-card-name">Common Point</div>
+                        <div class="video-card-role">Featured testimonial</div>
+                    </div>
                 </div>
             </div>
-            <div class="video-card">
-                <video controls preload="metadata" playsinline>
-                    <source src="https://hypeinsight.com/wp-content/uploads/2026/05/48f61f8b-066c-4d6f-a3c1-5e1a72659eaa-1.mov" type="video/quicktime">
-                    Your browser does not support the video tag.
-                </video>
-                <div class="video-card-meta">
-                    <div class="video-card-name">Client testimonial</div>
-                    <div class="video-card-role">On working with Ari</div>
-                </div>
-            </div>
-            <div class="video-card">
-                <video controls preload="metadata" playsinline>
-                    <source src="https://hypeinsight.com/wp-content/uploads/2026/05/f7471335-90be-4320-80b8-fdae8ae58b27-1.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <div class="video-card-meta">
-                    <div class="video-card-name">Client testimonial</div>
-                    <div class="video-card-role">On the engagement</div>
-                </div>
-            </div>
-            <div class="video-card">
-                <video controls preload="metadata" playsinline>
-                    <source src="https://hypeinsight.com/wp-content/uploads/2026/04/IMG_0191.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <div class="video-card-meta">
-                    <div class="video-card-name">Client testimonial</div>
-                    <div class="video-card-role">Recorded on site</div>
-                </div>
-            </div>
-            <div class="video-card video-wide" style="grid-column: 1 / -1;">
-                <video controls preload="metadata" playsinline>
-                    <source src="https://hypeinsight.com/wp-content/uploads/2026/04/Common-Point.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <div class="video-card-meta">
-                    <div class="video-card-name">Common Point</div>
-                    <div class="video-card-role">Featured testimonial</div>
+            <div class="carousel-controls">
+                <div class="carousel-counter" data-carousel-counter>1 of 5</div>
+                <div class="carousel-arrows">
+                    <button class="carousel-arrow" data-carousel-prev type="button" aria-label="Previous testimonial">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+                    </button>
+                    <button class="carousel-arrow" data-carousel-next type="button" aria-label="Next testimonial">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                    </button>
                 </div>
             </div>
         </div>
@@ -678,16 +696,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
             </a>
             <a class="authored-card" href="../ecommerce-website-guide/" target="_blank" rel="noopener noreferrer">
-                <div class="authored-cover">Ecommerce Performance &amp; Revenue Guide</div>
+                <div class="authored-cover" style="background:linear-gradient(160deg,#0a3d4f 0%,#02202E 100%);">Ecommerce Performance &amp; Revenue Guide</div>
                 <div class="authored-content">
-                    <div class="authored-label">Diagnostic guide &middot; 31 pages</div>
+                    <div class="authored-label">Diagnostic guide</div>
                     <h3 class="authored-title">The Complete Ecommerce Performance &amp; Revenue Guide</h3>
-                    <p class="authored-summary">A 27-point ecommerce checklist with live scoring, plus a 10-section store-health diagnostic. Identifies where your store is leaking revenue and gives you a live Store Health Score out of 100.</p>
+                    <p class="authored-summary">A 27-point ecommerce checklist with live scoring, plus a 10-section store-health diagnostic. Identifies where your store is leaking revenue and produces a Store Health Score out of 100.</p>
                     <span class="authored-cta">Open the guide &rarr;</span>
                 </div>
             </a>
             <a class="authored-card" href="../complete-website-guide/" target="_blank" rel="noopener noreferrer">
-                <div class="authored-cover">Complete Website Performance Guide</div>
+                <div class="authored-cover" style="background:linear-gradient(160deg,#1a5e2a 0%,#0d3318 100%);">Complete Website Performance Guide</div>
                 <div class="authored-content">
                     <div class="authored-label">Diagnostic workbook</div>
                     <h3 class="authored-title">The Complete Website Performance &amp; Revenue Guide</h3>
@@ -695,8 +713,53 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <span class="authored-cta">Open the guide &rarr;</span>
                 </div>
             </a>
+            <a class="authored-card" href="../hacked-website-survival-guide/" target="_blank" rel="noopener noreferrer">
+                <div class="authored-cover" style="background:linear-gradient(160deg,#8B2E2E 0%,#3a0d0d 100%);">Hacked Website Survival Guide</div>
+                <div class="authored-content">
+                    <div class="authored-label">Recovery playbook</div>
+                    <h3 class="authored-title">The Hacked Website Survival Guide</h3>
+                    <p class="authored-summary">A step-by-step recovery plan for compromised websites, with an interactive security self-assessment and risk scoring. From triage through hardening to long-term defence.</p>
+                    <span class="authored-cta">Open the guide &rarr;</span>
+                </div>
+            </a>
+            <a class="authored-card" href="../ecommerce-hacked-website-guide/" target="_blank" rel="noopener noreferrer">
+                <div class="authored-cover" style="background:linear-gradient(160deg,#6E2222 0%,#2a0a0a 100%);">Ecommerce Hacked Store Survival Guide</div>
+                <div class="authored-content">
+                    <div class="authored-label">Recovery playbook</div>
+                    <h3 class="authored-title">The Ecommerce Hacked Store Survival Guide</h3>
+                    <p class="authored-summary">Recovery guide for compromised ecommerce stores. Covers Magecart, payment skimming, customer data theft, PCI DSS, and payment gateway security in plain English.</p>
+                    <span class="authored-cta">Open the guide &rarr;</span>
+                </div>
+            </a>
+            <a class="authored-card" href="../maximising-event-roi/" target="_blank" rel="noopener noreferrer">
+                <div class="authored-cover" style="background:linear-gradient(160deg,#B68A3C 0%,#6e521c 100%);">Maximising Event ROI</div>
+                <div class="authored-content">
+                    <div class="authored-label">Field guide</div>
+                    <h3 class="authored-title">Maximising Event ROI</h3>
+                    <p class="authored-summary">A comprehensive guide to getting the most out of business events, expos, and trade shows. Pre-event positioning, on-the-floor execution, and the post-event follow-up that turns conversations into pipeline.</p>
+                    <span class="authored-cta">Open the guide &rarr;</span>
+                </div>
+            </a>
+            <a class="authored-card" href="../complete-website-guide/quiz.html" target="_blank" rel="noopener noreferrer">
+                <div class="authored-cover" style="background:linear-gradient(160deg,#46B646 0%,#1f5e1f 100%);">Website Performance &amp; Revenue Quiz</div>
+                <div class="authored-content">
+                    <div class="authored-label">Interactive quiz</div>
+                    <h3 class="authored-title">Website Performance &amp; Revenue Assessment</h3>
+                    <p class="authored-summary">A 3-tab interactive quiz covering the 27-point revenue leak checklist and 10-section health diagnostic. Combined score out of 154 with section-by-section breakdown.</p>
+                    <span class="authored-cta">Take the quiz &rarr;</span>
+                </div>
+            </a>
+            <a class="authored-card" href="../hacked-website-survival-guide/quiz.html" target="_blank" rel="noopener noreferrer">
+                <div class="authored-cover" style="background:linear-gradient(160deg,#E85D2F 0%,#7a2c10 100%);">Website Security Self-Assessment</div>
+                <div class="authored-content">
+                    <div class="authored-label">Interactive quiz</div>
+                    <h3 class="authored-title">Website Security Self-Assessment</h3>
+                    <p class="authored-summary">A 25-question security quiz across 5 dimensions: software, hosting, access, configuration, and monitoring. Score out of 50 with tier ratings per section.</p>
+                    <span class="authored-cta">Take the quiz &rarr;</span>
+                </div>
+            </a>
             <a class="authored-card" href="https://www.youtube.com/@HypeInsightGlobal" target="_blank" rel="noopener noreferrer">
-                <div class="authored-cover" style="background:linear-gradient(160deg,#cc0000 0%,#8a0000 100%);">YouTube Channel</div>
+                <div class="authored-cover" style="background:linear-gradient(160deg,#cc0000 0%,#5a0000 100%);">YouTube Channel</div>
                 <div class="authored-content">
                     <div class="authored-label">Video channel &middot; ongoing</div>
                     <h3 class="authored-title">Hype Insight on YouTube</h3>

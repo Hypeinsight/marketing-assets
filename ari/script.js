@@ -180,6 +180,80 @@
     /* ============ Initial apply on page load ============ */
     applyService(detectService());
 
+    /* ============ Video testimonials carousel ============ */
+    (function setupVideoCarousel() {
+        var carousel = document.getElementById('videoCarousel');
+        var wrap     = document.getElementById('videoCarouselWrap');
+        if (!carousel) return;
+
+        var prevBtn  = document.querySelector('[data-carousel-prev]');
+        var nextBtn  = document.querySelector('[data-carousel-next]');
+        var counter  = document.querySelector('[data-carousel-counter]');
+        var cards    = carousel.querySelectorAll('.video-card');
+
+        function getScrollAmount() {
+            // Scroll by the width of the first card plus the gap
+            var first = cards[0];
+            if (!first) return 320;
+            var cardWidth = first.getBoundingClientRect().width;
+            var cs = getComputedStyle(carousel);
+            var gap = parseFloat(cs.columnGap || cs.gap || 0) || 0;
+            return cardWidth + gap;
+        }
+
+        function whichCardIsFirstVisible() {
+            // Find which card's left edge is closest to (just before) the carousel's scroll position
+            var scrollLeft = carousel.scrollLeft;
+            for (var i = 0; i < cards.length; i++) {
+                var c = cards[i];
+                var left = c.offsetLeft - carousel.offsetLeft;
+                if (left + c.offsetWidth / 2 > scrollLeft) return i;
+            }
+            return cards.length - 1;
+        }
+
+        function updateState() {
+            var max = carousel.scrollWidth - carousel.clientWidth - 1;
+            var atStart = carousel.scrollLeft <= 1;
+            var atEnd   = carousel.scrollLeft >= max;
+            if (prevBtn) prevBtn.disabled = atStart;
+            if (nextBtn) nextBtn.disabled = atEnd;
+            if (wrap) {
+                wrap.dataset.atStart = atStart ? 'true' : 'false';
+                wrap.dataset.atEnd   = atEnd   ? 'true' : 'false';
+            }
+            if (counter) {
+                var idx = whichCardIsFirstVisible();
+                counter.textContent = (idx + 1) + ' of ' + cards.length;
+            }
+        }
+
+        if (prevBtn) prevBtn.addEventListener('click', function() {
+            carousel.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+        });
+        if (nextBtn) nextBtn.addEventListener('click', function() {
+            carousel.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+        });
+
+        // Throttled scroll listener
+        var scrollTimer;
+        carousel.addEventListener('scroll', function() {
+            if (scrollTimer) cancelAnimationFrame(scrollTimer);
+            scrollTimer = requestAnimationFrame(updateState);
+        }, { passive: true });
+
+        // Keyboard support when the carousel is focused
+        carousel.setAttribute('tabindex', '0');
+        carousel.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft')  { e.preventDefault(); if (prevBtn) prevBtn.click(); }
+            if (e.key === 'ArrowRight') { e.preventDefault(); if (nextBtn) nextBtn.click(); }
+        });
+
+        // Initial state, plus update on resize
+        updateState();
+        window.addEventListener('resize', updateState);
+    })();
+
     /* ============ Reveal on scroll ============ */
     var revealEls = document.querySelectorAll('.reveal');
     if ('IntersectionObserver' in window) {
