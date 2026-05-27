@@ -60,10 +60,9 @@
     }
 
     // ---------- submit ----------
-    // The action attribute on the form determines where it POSTs.
-    // Sub-pages set action="../submit.php" so submissions land in
-    // the same PHP handler regardless of which page they came from.
-    var SUBMIT_URL = contactForm.getAttribute('action') || 'submit.php';
+    // The form's action attribute determines where it POSTs (Formspree
+    // endpoint set in the HTML). The JS just reads it and uses it.
+    var SUBMIT_URL = contactForm.getAttribute('action');
 
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -96,7 +95,10 @@
                 .catch(function() { return { status: res.status, ok: res.ok, data: {} }; });
         })
         .then(function(result) {
-            if (result.ok && result.data && result.data.ok) {
+            // Formspree returns HTTP 200 + {ok: true} on success.
+            // On error, status is 4xx and body has either {error: "..."}
+            // or {errors: [{message: "..."}]}.
+            if (result.ok) {
                 if (window.dataLayer) {
                     window.dataLayer.push({
                         event: 'ai_services_contact_submit',
@@ -110,9 +112,14 @@
                     formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }
             } else {
-                var msg = (result.data && result.data.error)
-                    ? result.data.error
-                    : 'Sorry, we could not send your message. Please try again in a moment.';
+                var msg = 'Sorry, we could not send your message. Please try again in a moment.';
+                if (result.data) {
+                    if (result.data.error) {
+                        msg = result.data.error;
+                    } else if (Array.isArray(result.data.errors) && result.data.errors.length) {
+                        msg = result.data.errors.map(function(e) { return e.message || e; }).join(' ');
+                    }
+                }
                 showFormError(msg);
             }
         })

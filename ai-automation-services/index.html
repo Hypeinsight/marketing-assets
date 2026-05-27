@@ -1850,7 +1850,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </ul>
             </div>
 
-            <form class="contact-form" id="contactForm" action="submit.php" method="POST" novalidate>
+            <form class="contact-form" id="contactForm" action="https://formspree.io/f/xbdbpvvk" method="POST" novalidate>
                 <div class="form-heading">Send us a note</div>
                 <p class="form-sub">Required fields marked with <span style="color: var(--gold-light)">*</span>. We reply within one business day. Privacy respected, no list, no spam.</p>
                 <div class="form-error" id="formError" role="alert" aria-live="polite"></div>
@@ -1899,6 +1899,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
 
                 <!-- Hidden UTM &amp; source fields (auto-populated from URL) -->
+                <input type="hidden" name="_subject" value="[AI Services] Overview enquiry">
                 <input type="hidden" name="source_page" value="ai-automation-services">
                 <input type="hidden" name="utm_source" id="utm-source">
                 <input type="hidden" name="utm_medium" id="utm-medium">
@@ -1907,7 +1908,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <!-- Honeypot: bots fill this in, humans never see it -->
                 <div class="hp-field" aria-hidden="true">
                     <label for="cf-website">Website (leave blank)</label>
-                    <input id="cf-website" name="website" type="text" tabindex="-1" autocomplete="off">
+                    <input id="cf-website" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
                 </div>
 
                 <div class="form-submit-row">
@@ -2170,10 +2171,9 @@ if (contactForm) {
     });
 
     // ===== Where the form submits to =====
-    // submit.php sits next to index.html. If you embed this HTML at a
-    // different path on hypeinsight.com, update SUBMIT_URL to the
-    // absolute path where submit.php lives (e.g. '/ai-services/submit.php').
-    var SUBMIT_URL = 'submit.php';
+    // Submissions go to Formspree. The endpoint is set on the <form>
+    // action attribute in the HTML; this script just reads it from there.
+    var SUBMIT_URL = contactForm.getAttribute('action');
 
     var formErrorBox = document.getElementById('formError');
 
@@ -2218,8 +2218,8 @@ if (contactForm) {
                 .catch(function() { return { status: res.status, ok: res.ok, data: {} }; });
         })
         .then(function(result) {
-            if (result.ok && result.data && result.data.ok) {
-                // GTM conversion event
+            // Formspree returns HTTP 200 on success, 4xx on error
+            if (result.ok) {
                 if (window.dataLayer) {
                     window.dataLayer.push({
                         event: 'ai_services_contact_submit',
@@ -2231,9 +2231,14 @@ if (contactForm) {
                 formSuccess.classList.add('show');
                 formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
             } else {
-                var msg = (result.data && result.data.error)
-                    ? result.data.error
-                    : 'Sorry, we could not send your message. Please try again in a moment.';
+                var msg = 'Sorry, we could not send your message. Please try again in a moment.';
+                if (result.data) {
+                    if (result.data.error) {
+                        msg = result.data.error;
+                    } else if (Array.isArray(result.data.errors) && result.data.errors.length) {
+                        msg = result.data.errors.map(function(e) { return e.message || e; }).join(' ');
+                    }
+                }
                 showFormError(msg);
             }
         })

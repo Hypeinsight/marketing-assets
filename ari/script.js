@@ -312,7 +312,34 @@
         formErrorBox.classList.remove('show');
     }
 
-    var SUBMIT_URL = contactForm.getAttribute('action') || 'submit.php';
+    // Submissions go to Formspree, endpoint set on <form action="...">
+    var SUBMIT_URL = contactForm.getAttribute('action');
+
+    // Service label map for dynamic subject lines
+    var SERVICE_LABELS = {
+        'google-ads': 'Google Ads',
+        'hubspot':    'HubSpot & Automation',
+        'ai-agents':  'AI Agents',
+        'seo':        'SEO',
+        'geo':        'GEO',
+        'website':    'Website Design',
+        'multi':      'Multiple'
+    };
+
+    // Before submitting, update _subject hidden field based on the
+    // selected service (from URL query or the form dropdown) so the
+    // team sees the right tag in their inbox.
+    function refreshSubject() {
+        var subjectInput = contactForm.querySelector('input[name="_subject"]');
+        if (!subjectInput) return;
+        var chosen = (contactForm.querySelector('[name="service"]') || {}).value || '';
+        var queried = (contactForm.querySelector('[name="query_service"]') || {}).value || '';
+        var key = chosen || queried;
+        var label = SERVICE_LABELS[key];
+        subjectInput.value = label
+            ? '[Ari Profile / ' + label + '] New enquiry'
+            : '[Ari Profile] New enquiry';
+    }
 
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -327,6 +354,8 @@
             if (firstInvalid) firstInvalid.focus();
             return;
         }
+
+        refreshSubject();
 
         submitBtn.disabled = true;
         var originalText = submitBtn.innerHTML;
@@ -345,7 +374,8 @@
                 .catch(function() { return { status: res.status, ok: res.ok, data: {} }; });
         })
         .then(function(result) {
-            if (result.ok && result.data && result.data.ok) {
+            // Formspree returns HTTP 200 on success, 4xx on error
+            if (result.ok) {
                 if (window.dataLayer) {
                     window.dataLayer.push({
                         event: 'ari_contact_submit',
@@ -360,9 +390,14 @@
                     formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }
             } else {
-                var msg = (result.data && result.data.error)
-                    ? result.data.error
-                    : 'Sorry, we could not send your message. Please try again in a moment.';
+                var msg = 'Sorry, we could not send your message. Please try again in a moment.';
+                if (result.data) {
+                    if (result.data.error) {
+                        msg = result.data.error;
+                    } else if (Array.isArray(result.data.errors) && result.data.errors.length) {
+                        msg = result.data.errors.map(function(e) { return e.message || e; }).join(' ');
+                    }
+                }
                 showFormError(msg);
             }
         })
