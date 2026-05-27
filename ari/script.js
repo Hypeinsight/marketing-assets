@@ -66,6 +66,18 @@
             contactLead: 'A 30-minute conversation about your category, your current visibility in classical search, and what the right first move on AI search looks like.',
             formHeading: 'Send Ari a note about GEO'
         },
+        'content': {
+            label: 'Content',
+            tagline: 'content &amp; editorial strategy',
+            heroAccent: 'Long-form content that earns links, ranks in search, and converts. Articles, lead magnets, sales pages, newsletters, and editorial systems. Ari has authored seven full-length business playbooks. You can browse them further down the page.',
+            workEyebrow: 'Selected content work',
+            workHeadline: 'Content engagements, <em>verified outcomes.</em>',
+            workLead: 'Content strategy that turns into ranked pages, qualified traffic, and authored work that compounds. The case studies below highlight where content carried the win.',
+            featuredCases: ['content'],
+            contactHeadline: 'Talk to Ari about <em>content</em>',
+            contactLead: 'A 30-minute conversation about your category, your existing content, and where the biggest editorial opportunity actually lives.',
+            formHeading: 'Send Ari a note about content'
+        },
         'website': {
             label: 'Website Design',
             tagline: 'website design &amp; build',
@@ -88,14 +100,18 @@
         var key = qs.split('&')[0].split('=')[0];
         // Normalise common aliases
         var aliases = {
-            'googleads':  'google-ads',
-            'ads':        'google-ads',
-            'ppc':        'google-ads',
-            'ai':         'ai-agents',
-            'agents':     'ai-agents',
-            'web':        'website',
-            'design':     'website',
-            'webdesign':  'website'
+            'googleads':       'google-ads',
+            'ads':             'google-ads',
+            'ppc':             'google-ads',
+            'ai':              'ai-agents',
+            'agents':          'ai-agents',
+            'web':             'website',
+            'design':          'website',
+            'webdesign':       'website',
+            'copy':            'content',
+            'copywriting':     'content',
+            'editorial':       'content',
+            'content-strategy':'content'
         };
         key = aliases[key] || key;
         return SERVICES[key] ? key : null;
@@ -322,6 +338,7 @@
         'ai-agents':  'AI Agents',
         'seo':        'SEO',
         'geo':        'GEO',
+        'content':    'Content',
         'website':    'Website Design',
         'multi':      'Multiple'
     };
