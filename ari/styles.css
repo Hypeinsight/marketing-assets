@@ -556,15 +556,6 @@ strong { font-weight: 600; }
     aspect-ratio: 16 / 9;
     object-fit: contain;
 }
-.video-card-meta {
-    padding: 16px 20px;
-}
-.video-card-name {
-    font-family: 'Cormorant Garamond', serif; font-style: italic;
-    font-size: 1.15rem; font-weight: 600; margin-bottom: 4px;
-}
-.section--ink .video-card-name { color: var(--cream); }
-.video-card-role { font-size: 0.76rem; opacity: 0.7; letter-spacing: 1px; }
 .video-card-badge {
     position: absolute; top: 14px; left: 14px;
     background: var(--orange); color: white;
