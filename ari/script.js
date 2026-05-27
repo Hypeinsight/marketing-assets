@@ -196,6 +196,39 @@
     /* ============ Initial apply on page load ============ */
     applyService(detectService());
 
+    /* ============ Video play-button overlays ============ */
+    // Each video starts with an overlay so the file is not fetched on
+    // page load. Click reveals the video and starts playback. Without
+    // this, large videos (the 91MB IMG_0191 in particular) bog down
+    // metadata preload and never become playable.
+    (function setupVideoOverlays() {
+        document.querySelectorAll('.video-card').forEach(function(card) {
+            var overlay = card.querySelector('.video-card-overlay');
+            var video   = card.querySelector('video');
+            if (!overlay || !video) return;
+
+            function activate() {
+                overlay.classList.add('hidden');
+                // Switch to metadata preload now that user opted in
+                video.preload = 'auto';
+                video.load();  // re-evaluate sources with new preload
+                video.play().catch(function() {
+                    // Autoplay may be blocked; user can hit native controls
+                });
+            }
+            overlay.addEventListener('click', activate);
+
+            // If user pauses then plays again with native controls, no-op
+            video.addEventListener('pause', function() {});
+
+            // If the video itself starts via native controls (e.g. tap on
+            // the controls area), hide the overlay too
+            video.addEventListener('play', function() {
+                overlay.classList.add('hidden');
+            });
+        });
+    })();
+
     /* ============ Video testimonials carousel ============ */
     (function setupVideoCarousel() {
         var carousel = document.getElementById('videoCarousel');
