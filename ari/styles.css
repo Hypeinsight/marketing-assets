@@ -444,70 +444,85 @@ strong { font-weight: 600; }
     display: inline-block;
 }
 
-/* Hero metric: the headline win number */
-.case-card-hero {
-    padding: 14px 24px 18px;
-    margin-top: 4px;
+/* Metric table: three rows of name / value / change */
+.case-card-table {
     border-top: 1px solid var(--rule);
-    background:
-        linear-gradient(90deg, rgba(232,93,47,0.04) 0%, transparent 60%);
+    margin-top: 4px;
+    display: flex; flex-direction: column;
+    flex: 1;
 }
-.case-card-hero-value {
-    font-family: 'Bebas Neue', 'Anton', sans-serif;
-    font-size: 2.6rem;
-    line-height: 1;
-    color: var(--orange);
-    letter-spacing: 0.02em;
-    margin-bottom: 6px;
+.case-card-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) auto;
+    gap: 14px;
+    padding: 14px 24px;
+    align-items: center;
+    border-bottom: 1px dashed rgba(11,26,36,0.10);
 }
-.case-card-hero-label {
-    font-size: 0.86rem;
-    color: rgba(11,26,36,0.78);
-    margin-bottom: 10px;
-    line-height: 1.35;
+.case-card-row:last-child { border-bottom: none; }
+.case-card-row.primary {
+    background: linear-gradient(90deg, rgba(139,46,46,0.06) 0%, transparent 80%);
+    border-left: 3px solid var(--burgundy);
+    padding-left: 21px;  /* compensate for the border */
 }
-.case-card-hero-change {
-    display: inline-flex; align-items: center; gap: 5px;
-    font-size: 0.74rem;
-    font-weight: 600;
-    padding: 3px 10px;
-    background: rgba(70,182,70,0.12);
-    color: #2a8a2a;
-    border-radius: 50px;
-    border: 1px solid rgba(70,182,70,0.25);
-    letter-spacing: 0.3px;
-}
-.case-card-hero-change::before { content: '\25B2'; font-size: 0.62rem; }
-.case-card-hero-change.neutral {
-    background: rgba(19,114,211,0.10);
-    color: #1372D3;
-    border-color: rgba(19,114,211,0.25);
-}
-.case-card-hero-change.neutral::before { content: '\2014'; font-size: 0.72rem; }
-
-/* Secondary metrics: 2-up grid */
-.case-card-secondary {
-    padding: 14px 24px 22px;
-    border-top: 1px dashed rgba(11,26,36,0.12);
-    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
-    margin-top: auto;
-}
-.case-card-secondary .sec-item {
-    display: flex; flex-direction: column; gap: 3px;
-}
-.case-card-secondary .sec-name {
+.case-card-row .row-name {
     font-family: 'Inter', sans-serif;
     font-size: 0.66rem;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.6px;
     text-transform: uppercase;
-    color: rgba(11,26,36,0.50);
+    font-weight: 700;
+    color: rgba(11,26,36,0.55);
+    line-height: 1.3;
+}
+.case-card-row .row-value {
+    font-family: 'Bebas Neue', 'Anton', sans-serif;
+    font-size: 1.25rem;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    line-height: 1.05;
+    overflow: hidden; text-overflow: ellipsis;
+}
+.case-card-row.primary .row-value {
+    color: var(--burgundy);
+    font-size: 1.45rem;
+}
+.case-card-row .row-change {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem; font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 50px;
+    border: 1px solid;
+    white-space: nowrap;
+    letter-spacing: 0.2px;
+}
+.case-card-row .row-change.up {
+    color: #2a8a2a;
+    background: rgba(70,182,70,0.12);
+    border-color: rgba(70,182,70,0.30);
+}
+.case-card-row .row-change.up::before {
+    content: '\25B2';
+    font-size: 0.6rem;
+}
+.case-card-row .row-change.stable {
+    color: #1372D3;
+    background: rgba(19,114,211,0.10);
+    border-color: rgba(19,114,211,0.28);
+}
+.case-card-row .row-change.stable::before {
+    content: '\2713';
+    font-size: 0.78rem;
     font-weight: 700;
 }
-.case-card-secondary .sec-value {
-    font-size: 0.86rem;
-    color: var(--ink);
-    font-weight: 600;
-    line-height: 1.25;
+.case-card-row .row-change.down {
+    color: #8C6A2A;
+    background: rgba(182,138,60,0.12);
+    border-color: rgba(182,138,60,0.30);
+}
+.case-card-row .row-change.down::before {
+    content: '\25BC';
+    font-size: 0.6rem;
 }
 
 .case-card[data-hidden="true"] { display: none; }
