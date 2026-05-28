@@ -174,6 +174,71 @@
 })();
 
 /* =================================================================
+   Video testimonial lightbox: clicking any .ai-vcard opens a modal
+   with a shared player that swaps source. Arrow keys + prev/next
+   navigate between videos; ESC and backdrop click close.
+   ================================================================= */
+(function() {
+    var strip  = document.getElementById('aiVideoStrip');
+    var modal  = document.getElementById('aiVideoModal');
+    var player = document.getElementById('aiVideoModalPlayer');
+    if (!strip || !modal || !player) return;
+
+    var closeBtn = modal.querySelector('[data-vmodal-close]');
+    var prevBtn  = modal.querySelector('[data-vmodal-prev]');
+    var nextBtn  = modal.querySelector('[data-vmodal-next]');
+    var counter  = modal.querySelector('[data-vmodal-counter]');
+
+    // Build the master list of unique video sources from the strip
+    var cards = strip.querySelectorAll('.ai-vcard');
+    var sources = [];
+    cards.forEach(function(c) {
+        var s = c.querySelector('video source');
+        sources.push({
+            src:  s ? s.getAttribute('src')  : '',
+            type: s ? s.getAttribute('type') : 'video/mp4'
+        });
+    });
+    var currentIdx = 0;
+
+    function openModal(idx) {
+        currentIdx = (idx + sources.length) % sources.length;
+        var s = sources[currentIdx];
+        player.innerHTML = '<source src="' + s.src + '" type="' + s.type + '">';
+        player.load();
+        modal.removeAttribute('hidden');
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+        if (counter) counter.textContent = (currentIdx + 1) + ' of ' + sources.length;
+        player.play().catch(function() { /* autoplay blocked, ok */ });
+    }
+    function closeModal() {
+        modal.classList.remove('show');
+        modal.setAttribute('hidden', '');
+        document.body.style.overflow = '';
+        player.pause();
+        player.removeAttribute('src');
+        player.load();
+    }
+
+    cards.forEach(function(c) {
+        c.addEventListener('click', function() {
+            openModal(parseInt(c.dataset.videoIdx || '0', 10));
+        });
+    });
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (prevBtn)  prevBtn.addEventListener('click',  function() { openModal(currentIdx - 1); });
+    if (nextBtn)  nextBtn.addEventListener('click',  function() { openModal(currentIdx + 1); });
+    modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', function(e) {
+        if (!modal.classList.contains('show')) return;
+        if (e.key === 'Escape')     closeModal();
+        if (e.key === 'ArrowLeft')  openModal(currentIdx - 1);
+        if (e.key === 'ArrowRight') openModal(currentIdx + 1);
+    });
+})();
+
+/* =================================================================
    Video thumbnail render: forces a non-blank first frame to paint.
    For cross-origin videos, setting currentTime alone often does not
    actually render. The fix: temporarily mute, do play() then pause()

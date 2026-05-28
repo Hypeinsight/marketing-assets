@@ -1205,29 +1205,124 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             border-color: rgba(217,180,92,0.40);
         }
 
-        /* ====== Client voices: testimonials + featured video ====== */
-        .ai-video-feature { margin: 44px auto 0; max-width: 760px; }
-        .ai-video-frame {
+        /* ====== Client voices: video testimonial strip + lightbox modal ====== */
+        .ai-vstrip-wrap { margin: 44px auto 0; max-width: 1200px; }
+        .ai-vstrip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+        @media (max-width: 1024px) { .ai-vstrip { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 640px)  { .ai-vstrip { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 400px)  { .ai-vstrip { grid-template-columns: 1fr; } }
+        .ai-vcard {
+            position: relative; aspect-ratio: 9 / 14;
             background: var(--ink-dark);
-            border: 1px solid rgba(246,239,221,0.18);
-            border-radius: 8px; overflow: hidden;
-            aspect-ratio: 16 / 9;
-            box-shadow: 0 14px 36px rgba(0,0,0,0.30);
-            position: relative;
+            border: 1px solid rgba(246,239,221,0.16);
+            border-radius: 8px; overflow: hidden; cursor: pointer; padding: 0;
+            box-shadow: 0 10px 24px rgba(0,0,0,0.22);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
-        .ai-video-frame::before {
-            content: ''; position: absolute; top: -1px; left: 32px; right: 32px; height: 2px;
-            background: var(--gold); z-index: 2;
+        .section--paper .ai-vcard {
+            background: rgba(11,26,36,0.06);
+            border-color: var(--rule);
+            box-shadow: 0 10px 24px rgba(11,26,36,0.10);
         }
-        .ai-video-frame video {
-            width: 100%; height: 100%; object-fit: contain;
-            background: var(--ink-dark); display: block;
+        .ai-vcard:hover {
+            transform: translateY(-3px); border-color: var(--gold);
+            box-shadow: 0 14px 30px rgba(0,0,0,0.34);
         }
-        .section--paper .ai-video-frame { box-shadow: 0 14px 36px rgba(11,26,36,0.18); }
-        .ai-video-caption {
-            text-align: center;
+        .section--paper .ai-vcard:hover { box-shadow: 0 14px 30px rgba(11,26,36,0.18); }
+        .ai-vcard::before {
+            content: ''; position: absolute; top: -1px; left: 18px; width: 36px; height: 2px;
+            background: var(--gold); z-index: 4;
+        }
+        .ai-vcard video {
+            position: absolute; inset: 0; width: 100%; height: 100%;
+            object-fit: cover; display: block; z-index: 0; background: var(--ink-dark);
+        }
+        .ai-vcard-tint {
+            position: absolute; inset: 0; z-index: 1;
+            background: linear-gradient(180deg, rgba(11,26,36,0.10) 40%, rgba(11,26,36,0.78) 100%);
+            pointer-events: none;
+        }
+        .ai-vcard-num {
+            position: absolute; top: 12px; left: 14px; z-index: 3;
             font-family: 'Cormorant Garamond', serif; font-style: italic;
-            font-size: 0.92rem; opacity: 0.72; margin-top: 14px;
+            color: var(--paper-cream);
+            font-size: 0.85rem; letter-spacing: 0.5px; opacity: 0.85;
+        }
+        .ai-vcard-play {
+            position: absolute; top: 50%; left: 50%; z-index: 3;
+            transform: translate(-50%, -50%);
+            width: 52px; height: 52px; border-radius: 50%;
+            background: rgba(246,239,221,0.94); color: var(--ink-dark);
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.32);
+            transition: transform 0.25s ease, background 0.25s ease;
+        }
+        .ai-vcard:hover .ai-vcard-play {
+            background: var(--gold-light);
+            transform: translate(-50%, -50%) scale(1.08);
+        }
+        .ai-vcard-play svg { width: 20px; height: 20px; margin-left: 3px; }
+        .ai-vstrip-caption {
+            text-align: center; margin-top: 18px;
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-size: 0.92rem; opacity: 0.70;
+        }
+
+        /* Lightbox modal */
+        .ai-vmodal {
+            position: fixed; inset: 0; z-index: 9999;
+            background: rgba(11,26,36,0.92);
+            display: none;
+            align-items: center; justify-content: center;
+            padding: 20px;
+        }
+        .ai-vmodal.show { display: flex; }
+        .ai-vmodal-inner {
+            position: relative; width: 100%; max-width: 900px;
+            background: var(--ink-dark);
+            border: 1px solid rgba(246,239,221,0.20);
+            border-radius: 10px; overflow: hidden;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.55);
+        }
+        .ai-vmodal-inner::before {
+            content: ''; position: absolute; top: -1px; left: 32px; right: 32px; height: 3px;
+            background: var(--gold); z-index: 5;
+        }
+        .ai-vmodal-inner video {
+            width: 100%; max-height: 80vh; background: #000; display: block;
+        }
+        .ai-vmodal-close {
+            position: absolute; top: 12px; right: 12px; z-index: 6;
+            width: 38px; height: 38px; border-radius: 50%;
+            background: rgba(246,239,221,0.92); color: var(--ink-dark);
+            border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.30);
+        }
+        .ai-vmodal-close:hover { background: var(--gold-light); }
+        .ai-vmodal-counter {
+            text-align: center; padding: 10px 0 14px;
+            color: var(--paper-cream);
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-size: 0.92rem; opacity: 0.78;
+        }
+        .ai-vmodal-nav {
+            width: 44px; height: 44px; border-radius: 50%;
+            background: rgba(246,239,221,0.10);
+            color: var(--paper-cream);
+            border: 1px solid rgba(246,239,221,0.30);
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 12px; flex-shrink: 0;
+            transition: background 0.2s ease, border-color 0.2s ease;
+        }
+        .ai-vmodal-nav:hover {
+            background: var(--gold); border-color: var(--gold); color: var(--ink-dark);
+        }
+        @media (max-width: 640px) {
+            .ai-vmodal { padding: 10px; }
+            .ai-vmodal-nav { width: 36px; height: 36px; margin: 0 4px; }
+            .ai-vmodal-close { width: 32px; height: 32px; }
         }
         .ai-trust {
             display: flex; align-items: center; justify-content: center;
@@ -1939,14 +2034,58 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <p class="lead">A sample of feedback from recent engagements. Ari has worked directly with brands across Australia, New Zealand, the United Kingdom, and the United States. These are some of the voices.</p>
         </div>
 
-        <!-- Featured video: the wider, more produced testimonial -->
-        <div class="ai-video-feature reveal">
-            <div class="ai-video-frame">
-                <video controls preload="metadata" playsinline data-thumb-seek="0.5">
-                    <source src="https://hypeinsight.com/wp-content/uploads/2026/04/Common-Point.mp4" type="video/mp4">
-                </video>
+        <!-- Video testimonials: 5-up grid, click to open lightbox -->
+        <div class="ai-vstrip-wrap reveal">
+            <div class="ai-vstrip" id="aiVideoStrip">
+            <button type="button" class="ai-vcard" data-video-idx="0" aria-label="Play testimonial 01">
+                <span class="ai-vcard-num">01</span>
+                <video muted playsinline preload="metadata" data-thumb-seek="0.5"><source src="https://hypeinsight.com/wp-content/uploads/2026/02/Rick-Solomon-Testimonial-1.mp4" type="video/mp4"></video>
+                <span class="ai-vcard-tint"></span>
+                <span class="ai-vcard-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></span>
+            </button>
+            <button type="button" class="ai-vcard" data-video-idx="1" aria-label="Play testimonial 02">
+                <span class="ai-vcard-num">02</span>
+                <video muted playsinline preload="metadata" data-thumb-seek="0.5"><source src="https://hypeinsight.com/wp-content/uploads/2026/05/48f61f8b-066c-4d6f-a3c1-5e1a72659eaa-1.mov" type="video/mp4"></video>
+                <span class="ai-vcard-tint"></span>
+                <span class="ai-vcard-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></span>
+            </button>
+            <button type="button" class="ai-vcard" data-video-idx="2" aria-label="Play testimonial 03">
+                <span class="ai-vcard-num">03</span>
+                <video muted playsinline preload="metadata" data-thumb-seek="0.5"><source src="https://hypeinsight.com/wp-content/uploads/2026/05/f7471335-90be-4320-80b8-fdae8ae58b27-1.mp4" type="video/mp4"></video>
+                <span class="ai-vcard-tint"></span>
+                <span class="ai-vcard-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></span>
+            </button>
+            <button type="button" class="ai-vcard" data-video-idx="3" aria-label="Play testimonial 04">
+                <span class="ai-vcard-num">04</span>
+                <video muted playsinline preload="none" data-thumb-seek="0.5"><source src="https://hypeinsight.com/wp-content/uploads/2026/04/IMG_0191.mp4" type="video/mp4"></video>
+                <span class="ai-vcard-tint"></span>
+                <span class="ai-vcard-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></span>
+            </button>
+            <button type="button" class="ai-vcard" data-video-idx="4" aria-label="Play testimonial 05">
+                <span class="ai-vcard-num">05</span>
+                <video muted playsinline preload="none" data-thumb-seek="0.5"><source src="https://hypeinsight.com/wp-content/uploads/2026/04/Common-Point.mp4" type="video/mp4"></video>
+                <span class="ai-vcard-tint"></span>
+                <span class="ai-vcard-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></span>
+            </button>
             </div>
-            <div class="ai-video-caption">From a recent engagement</div>
+            <p class="ai-vstrip-caption">Short, unedited testimonials. Click any to watch.</p>
+        </div>
+
+        <!-- Lightbox modal: single player swaps source on open -->
+        <div class="ai-vmodal" id="aiVideoModal" role="dialog" aria-modal="true" aria-label="Video testimonial" hidden>
+            <button type="button" class="ai-vmodal-nav ai-vmodal-prev" data-vmodal-prev aria-label="Previous">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <div class="ai-vmodal-inner">
+                <button type="button" class="ai-vmodal-close" data-vmodal-close aria-label="Close">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+                <video id="aiVideoModalPlayer" controls playsinline></video>
+                <div class="ai-vmodal-counter" data-vmodal-counter></div>
+            </div>
+            <button type="button" class="ai-vmodal-nav ai-vmodal-next" data-vmodal-next aria-label="Next">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
         </div>
 
         <!-- Trust band -->
@@ -2226,6 +2365,66 @@ revealEls.forEach(function(el) { io.observe(el); });
         if (card.getAttribute('data-cat') === feature) {
             card.setAttribute('data-promoted', 'true');
         }
+    });
+})();
+
+// ===== Video testimonial lightbox =====
+(function() {
+    var strip  = document.getElementById('aiVideoStrip');
+    var modal  = document.getElementById('aiVideoModal');
+    var player = document.getElementById('aiVideoModalPlayer');
+    if (!strip || !modal || !player) return;
+
+    var closeBtn = modal.querySelector('[data-vmodal-close]');
+    var prevBtn  = modal.querySelector('[data-vmodal-prev]');
+    var nextBtn  = modal.querySelector('[data-vmodal-next]');
+    var counter  = modal.querySelector('[data-vmodal-counter]');
+
+    var cards = strip.querySelectorAll('.ai-vcard');
+    var sources = [];
+    cards.forEach(function(c) {
+        var s = c.querySelector('video source');
+        sources.push({
+            src:  s ? s.getAttribute('src')  : '',
+            type: s ? s.getAttribute('type') : 'video/mp4'
+        });
+    });
+    var currentIdx = 0;
+
+    function openModal(idx) {
+        currentIdx = (idx + sources.length) % sources.length;
+        var s = sources[currentIdx];
+        player.innerHTML = '<source src="' + s.src + '" type="' + s.type + '">';
+        player.load();
+        modal.removeAttribute('hidden');
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+        if (counter) counter.textContent = (currentIdx + 1) + ' of ' + sources.length;
+        player.play().catch(function() {});
+    }
+    function closeModal() {
+        modal.classList.remove('show');
+        modal.setAttribute('hidden', '');
+        document.body.style.overflow = '';
+        player.pause();
+        player.removeAttribute('src');
+        player.load();
+    }
+
+    cards.forEach(function(c) {
+        c.addEventListener('click', function() {
+            openModal(parseInt(c.dataset.videoIdx || '0', 10));
+        });
+    });
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (prevBtn)  prevBtn.addEventListener('click',  function() { openModal(currentIdx - 1); });
+    if (nextBtn)  nextBtn.addEventListener('click',  function() { openModal(currentIdx + 1); });
+    modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', function(e) {
+        if (!modal.classList.contains('show')) return;
+        if (e.key === 'Escape')     closeModal();
+        if (e.key === 'ArrowLeft')  openModal(currentIdx - 1);
+        if (e.key === 'ArrowRight') openModal(currentIdx + 1);
     });
 })();
 
