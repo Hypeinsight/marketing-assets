@@ -122,6 +122,10 @@
         var body = document.body;
         if (!serviceKey || !SERVICES[serviceKey]) {
             body.dataset.service = 'default';
+            // Clear any review promotions from a previous selection
+            document.querySelectorAll('#reviewGrid .review-card').forEach(function(rc) {
+                rc.dataset.promoted = 'false';
+            });
             return;
         }
         body.dataset.service = serviceKey;
@@ -166,6 +170,13 @@
             var tags = (card.dataset.cases || '').split(' ');
             var isMatch = s.featuredCases.some(function(fc) { return tags.indexOf(fc) !== -1; });
             card.dataset.featured = isMatch ? 'true' : 'false';
+        });
+
+        // Subtly promote reviews matching the selected service (orange ring),
+        // without hiding the rest. The masonry layout keeps order.
+        document.querySelectorAll('#reviewGrid .review-card').forEach(function(rc) {
+            var cat = rc.dataset.cat || '';
+            rc.dataset.promoted = (cat === serviceKey) ? 'true' : 'false';
         });
 
         // Pre-fill the contact form service dropdown

@@ -651,6 +651,125 @@ strong { font-weight: 600; }
 .video-carousel-wrap[data-at-start="true"]::before { opacity: 0; }
 .video-carousel-wrap[data-at-end="true"]::after  { opacity: 0; }
 
+/* ============ Verified reviews wall (Upwork-style floating cards) ============ */
+.review-badge {
+    position: relative;
+    text-align: center;
+    background:
+        radial-gradient(circle at 50% 0%, rgba(232,93,47,0.10) 0%, transparent 60%),
+        rgba(246,239,221,0.04);
+    border: 1px solid rgba(246,239,221,0.18);
+    border-radius: 16px;
+    padding: 32px 36px 30px;
+    max-width: 460px;
+    margin: 40px auto 0;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.30);
+}
+.review-badge::before {
+    content: ''; position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+    width: 72px; height: 3px; background: var(--orange);
+}
+.review-badge-stars {
+    color: var(--orange); font-size: 1.4rem; letter-spacing: 6px;
+    line-height: 1;
+}
+.review-badge-rating {
+    font-family: 'Bebas Neue', 'Anton', sans-serif;
+    font-size: 3.4rem; line-height: 1;
+    margin-top: 10px; color: var(--cream);
+    letter-spacing: 0.02em;
+}
+.review-badge-meta {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 1rem; opacity: 0.80; margin-top: 10px;
+    letter-spacing: 0.5px;
+}
+.review-badge-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 18px;
+    padding: 9px 20px;
+    border-radius: 50px;
+    border: 1.5px solid rgba(246,239,221,0.30);
+    color: var(--cream); text-decoration: none;
+    font-size: 0.82rem; font-weight: 600; letter-spacing: 0.5px;
+    transition: all 0.25s ease;
+}
+.review-badge-link:hover { border-color: var(--orange); color: var(--orange); }
+.review-badge-link svg { width: 14px; height: 14px; }
+
+.review-grid {
+    column-count: 4;
+    column-gap: 18px;
+    margin-top: 56px;
+}
+@media (max-width: 1200px) { .review-grid { column-count: 3; } }
+@media (max-width: 880px)  { .review-grid { column-count: 2; } }
+@media (max-width: 540px)  { .review-grid { column-count: 1; } }
+
+.review-card {
+    break-inside: avoid;
+    margin-bottom: 18px;
+    padding: 22px 24px 20px;
+    background: rgba(246,239,221,0.04);
+    border: 1px solid rgba(246,239,221,0.10);
+    border-radius: 10px;
+    box-shadow: 0 6px 22px rgba(0,0,0,0.20);
+    transition: all 0.3s ease;
+    display: block;
+    position: relative;
+}
+.review-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(232,93,47,0.45);
+    box-shadow: 0 14px 38px rgba(0,0,0,0.34);
+}
+.review-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 14px;
+}
+.review-avatar {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+.review-meta { flex: 1; min-width: 0; }
+.review-name {
+    font-weight: 600; font-size: 0.95rem;
+    color: var(--cream);
+    margin-bottom: 2px;
+    line-height: 1.2;
+}
+.review-job {
+    font-size: 0.7rem; opacity: 0.6;
+    line-height: 1.35;
+    overflow: hidden;
+}
+.review-stars {
+    color: var(--orange);
+    font-size: 0.92rem;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+.review-text {
+    font-size: 0.88rem; line-height: 1.6;
+    opacity: 0.92;
+    margin: 0;
+    color: var(--cream);
+}
+
+/* When a query-string service is active, matching reviews can be
+   visually promoted (subtle orange ring) without hiding the rest. */
+.review-card[data-promoted="true"] {
+    border-color: rgba(232,93,47,0.55);
+    box-shadow: 0 8px 26px rgba(232,93,47,0.18), 0 2px 8px rgba(0,0,0,0.20);
+}
+
 /* ============ Authored work ============ */
 .authored-grid {
     display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px;
