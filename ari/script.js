@@ -393,6 +393,29 @@
         var counter  = document.querySelector('[data-modal-counter]');
         if (!strip || !modal || !player) return;
 
+        /* ---- Thumbnail-from-first-frame trick ---------------------
+           preload="metadata" by itself often leaves the video black
+           until the user plays it. Seeking to ~0.5s after metadata
+           loads forces the browser to decode + render a frame, which
+           becomes the visible "thumbnail". Works across modern
+           Chrome / Firefox / Safari and is invisible to the user.
+        ---------------------------------------------------------- */
+        strip.querySelectorAll('video').forEach(function(v) {
+            // Only the first-cycle videos have preload=metadata; the
+            // duplicates have preload=none so we leave those alone
+            if (v.getAttribute('preload') !== 'metadata') return;
+            function seekToFirstFrame() {
+                try {
+                    // 0.5s tends to land on a meaningful frame (avoids
+                    // pure-black opening of some camera apps)
+                    v.currentTime = Math.min(0.5, (v.duration || 1) - 0.1);
+                } catch (e) {}
+            }
+            // Some browsers fire loadedmetadata, others need loadeddata
+            v.addEventListener('loadedmetadata', seekToFirstFrame, { once: true });
+            v.addEventListener('loadeddata',     seekToFirstFrame, { once: true });
+        });
+
         // Build the master list of unique video sources from the first cycle (5 items)
         var items = strip.querySelectorAll('.video-strip-item:not([aria-hidden])');
         var sources = [];
