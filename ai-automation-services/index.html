@@ -2229,21 +2229,32 @@ revealEls.forEach(function(el) { io.observe(el); });
     });
 })();
 
-// ===== Video thumbnail seek (gives the video a meaningful poster) =====
+// ===== Video thumbnail render: force a frame to paint =====
+// Cross-origin videos often stay blank with the bare currentTime trick.
+// Muted play() + immediate pause() forces a real decode + paint cycle.
 (function() {
     document.querySelectorAll('video[data-thumb-seek]').forEach(function(v) {
         var t = parseFloat(v.getAttribute('data-thumb-seek')) || 0.5;
-        function seek() {
-            try {
-                if (v.readyState >= 1 && !isNaN(v.duration) && v.duration > t) {
-                    v.currentTime = t;
-                }
-            } catch (e) {}
+        var wasMuted = v.muted;
+        function render() {
+            try { v.currentTime = t; } catch (e) {}
+            v.muted = true;
+            var p = v.play();
+            if (p && typeof p.then === 'function') {
+                p.then(function() {
+                    v.pause();
+                    try { v.currentTime = t; } catch (e) {}
+                    v.muted = wasMuted;
+                }).catch(function() {
+                    v.muted = wasMuted;
+                });
+            }
         }
         if (v.readyState >= 1) {
-            seek();
+            render();
         } else {
-            v.addEventListener('loadedmetadata', seek, { once: true });
+            v.addEventListener('loadedmetadata', render, { once: true });
+            v.addEventListener('loadeddata',     render, { once: true });
         }
     });
 })();

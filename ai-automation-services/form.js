@@ -174,26 +174,39 @@
 })();
 
 /* =================================================================
-   Video thumbnail seek: jumps the video to a non-blank frame so the
-   poster looks meaningful before the user hits play. Triggered on
-   loadedmetadata so it works even when preload="metadata" only
-   pulls the header.
+   Video thumbnail render: forces a non-blank first frame to paint.
+   For cross-origin videos, setting currentTime alone often does not
+   actually render. The fix: temporarily mute, do play() then pause()
+   on the first metadata event, which forces a real decode + paint.
+   Restores the original muted state afterwards.
    ================================================================= */
 (function() {
-    var vids = document.querySelectorAll('video[data-thumb-seek]');
-    vids.forEach(function(v) {
+    document.querySelectorAll('video[data-thumb-seek]').forEach(function(v) {
         var t = parseFloat(v.getAttribute('data-thumb-seek')) || 0.5;
-        function seek() {
-            try {
-                if (v.readyState >= 1 && !isNaN(v.duration) && v.duration > t) {
-                    v.currentTime = t;
-                }
-            } catch (e) {}
+        var wasMuted = v.muted;
+        function render() {
+            try { v.currentTime = t; } catch (e) {}
+            // Mute (if not already), then play->pause to force frame paint.
+            v.muted = true;
+            var p = v.play();
+            if (p && typeof p.then === 'function') {
+                p.then(function() {
+                    v.pause();
+                    try { v.currentTime = t; } catch (e) {}
+                    // Restore the original muted state once the frame is shown.
+                    // Stays muted by default for these previews (the user un-mutes
+                    // when they hit play via controls).
+                    v.muted = wasMuted;
+                }).catch(function() {
+                    v.muted = wasMuted;
+                });
+            }
         }
         if (v.readyState >= 1) {
-            seek();
+            render();
         } else {
-            v.addEventListener('loadedmetadata', seek, { once: true });
+            v.addEventListener('loadedmetadata', render, { once: true });
+            v.addEventListener('loadeddata',     render, { once: true });
         }
     });
 })();

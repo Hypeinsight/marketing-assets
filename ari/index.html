@@ -511,146 +511,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 </section>
 
-<!-- ========== SERVICE VIDEOS (30 SEC PLACEHOLDERS) ========== -->
+<!-- ========== SERVICE VIDEO (single, swaps by service) ========== -->
 <section class="section section--ink" id="service-videos">
     <div class="section-inner">
         <div class="section-eyebrow"><span class="section-eyebrow-num">04</span> Hear it from Ari</div>
-        <h2 class="section-headline">Thirty seconds <em>on each service.</em></h2>
-        <p class="lead" style="opacity:0.85;">Short, direct videos from Ari on each of the seven service specialisms. Tap one to play. (Placeholders shown below until the recordings land.)</p>
+        <h2 class="section-headline">Thirty seconds <em id="svideoTitleSuffix">on the work.</em></h2>
+        <p class="lead" style="opacity:0.85;" id="svideoLead">A short, direct video from Ari on how he approaches the work. (Placeholder shown until the recording lands.)</p>
 
-        <div class="svideo-grid" id="svideoGrid">
-            <a class="svideo-card" data-svc="google-ads" data-status="placeholder" href="?service=google-ads">
-                <div class="svideo-thumb">
-                    <span class="svideo-thumb-status">Coming soon</span>
-                    <span class="svideo-thumb-duration">0:30</span>
-                    <div class="svideo-thumb-overlay"></div>
-                    <div class="svideo-thumb-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
+        <div class="svideo-single reveal">
+            <div class="svideo-single-frame" id="svideoFrame" data-status="placeholder">
+                <span class="svideo-single-status" id="svideoStatus">Coming soon</span>
+                <span class="svideo-single-duration">0:30</span>
+                <div class="svideo-single-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
+                <div class="svideo-single-meta">
+                    <span class="svideo-single-service" id="svideoServiceLabel">General marketing</span>
+                    <span class="svideo-single-tagline" id="svideoTagline">How Ari thinks. The principles. The discipline. The reason brands keep coming back.</span>
                 </div>
-                <div class="svideo-body">
-                    <span class="svideo-service">Google Ads</span>
-                    <span class="svideo-tagline">Discipline beats budget. Every time.</span>
-                </div>
-            </a>
-            <a class="svideo-card" data-svc="meta-ads" data-status="placeholder" href="?service=meta-ads">
-                <div class="svideo-thumb">
-                    <span class="svideo-thumb-status">Coming soon</span>
-                    <span class="svideo-thumb-duration">0:30</span>
-                    <div class="svideo-thumb-overlay"></div>
-                    <div class="svideo-thumb-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
-                </div>
-                <div class="svideo-body">
-                    <span class="svideo-service">Meta Ads</span>
-                    <span class="svideo-tagline">Targeting plus creative. Get one wrong, the other cannot save you.</span>
-                </div>
-            </a>
-            <a class="svideo-card" data-svc="tiktok-ads" data-status="placeholder" href="?service=tiktok-ads">
-                <div class="svideo-thumb">
-                    <span class="svideo-thumb-status">Coming soon</span>
-                    <span class="svideo-thumb-duration">0:30</span>
-                    <div class="svideo-thumb-overlay"></div>
-                    <div class="svideo-thumb-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
-                </div>
-                <div class="svideo-body">
-                    <span class="svideo-service">TikTok Ads</span>
-                    <span class="svideo-tagline">Native beats polished. Always.</span>
-                </div>
-            </a>
-            <a class="svideo-card" data-svc="linkedin-ads" data-status="placeholder" href="?service=linkedin-ads">
-                <div class="svideo-thumb">
-                    <span class="svideo-thumb-status">Coming soon</span>
-                    <span class="svideo-thumb-duration">0:30</span>
-                    <div class="svideo-thumb-overlay"></div>
-                    <div class="svideo-thumb-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
-                </div>
-                <div class="svideo-body">
-                    <span class="svideo-service">LinkedIn Ads</span>
-                    <span class="svideo-tagline">Expensive per click. Worth it when the offer matches.</span>
-                </div>
-            </a>
-            <a class="svideo-card" data-svc="reddit-ads" data-status="placeholder" href="?service=reddit-ads">
-                <div class="svideo-thumb">
-                    <span class="svideo-thumb-status">Coming soon</span>
-                    <span class="svideo-thumb-duration">0:30</span>
-                    <div class="svideo-thumb-overlay"></div>
-                    <div class="svideo-thumb-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
-                </div>
-                <div class="svideo-body">
-                    <span class="svideo-service">Reddit Ads</span>
-                    <span class="svideo-tagline">Where AI search visibility starts.</span>
-                </div>
-            </a>
-            <a class="svideo-card" data-svc="hubspot" data-status="placeholder" href="?service=hubspot">
-                <div class="svideo-thumb">
-                    <span class="svideo-thumb-status">Coming soon</span>
-                    <span class="svideo-thumb-duration">0:30</span>
-                    <div class="svideo-thumb-overlay"></div>
-                    <div class="svideo-thumb-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
-                </div>
-                <div class="svideo-body">
-                    <span class="svideo-service">HubSpot &amp; Automation</span>
-                    <span class="svideo-tagline">Pragmatic stacks beat platform lock-in.</span>
-                </div>
-            </a>
-            <a class="svideo-card" data-svc="ai-agents" data-status="placeholder" href="?service=ai-agents">
-                <div class="svideo-thumb">
-                    <span class="svideo-thumb-status">Coming soon</span>
-                    <span class="svideo-thumb-duration">0:30</span>
-                    <div class="svideo-thumb-overlay"></div>
-                    <div class="svideo-thumb-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
-                </div>
-                <div class="svideo-body">
-                    <span class="svideo-service">AI Agents</span>
-                    <span class="svideo-tagline">Not magic. Narrow agents, wired with discipline.</span>
-                </div>
-            </a>
-            <a class="svideo-card" data-svc="seo" data-status="placeholder" href="?service=seo">
-                <div class="svideo-thumb">
-                    <span class="svideo-thumb-status">Coming soon</span>
-                    <span class="svideo-thumb-duration">0:30</span>
-                    <div class="svideo-thumb-overlay"></div>
-                    <div class="svideo-thumb-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
-                </div>
-                <div class="svideo-body">
-                    <span class="svideo-service">SEO</span>
-                    <span class="svideo-tagline">Content strategy with technical foundations.</span>
-                </div>
-            </a>
-            <a class="svideo-card" data-svc="geo" data-status="placeholder" href="?service=geo">
-                <div class="svideo-thumb">
-                    <span class="svideo-thumb-status">Coming soon</span>
-                    <span class="svideo-thumb-duration">0:30</span>
-                    <div class="svideo-thumb-overlay"></div>
-                    <div class="svideo-thumb-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
-                </div>
-                <div class="svideo-body">
-                    <span class="svideo-service">GEO</span>
-                    <span class="svideo-tagline">SEO, when the judges are language models.</span>
-                </div>
-            </a>
-            <a class="svideo-card" data-svc="content" data-status="placeholder" href="?service=content">
-                <div class="svideo-thumb">
-                    <span class="svideo-thumb-status">Coming soon</span>
-                    <span class="svideo-thumb-duration">0:30</span>
-                    <div class="svideo-thumb-overlay"></div>
-                    <div class="svideo-thumb-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
-                </div>
-                <div class="svideo-body">
-                    <span class="svideo-service">Content</span>
-                    <span class="svideo-tagline">The cheapest moat a business can build.</span>
-                </div>
-            </a>
-            <a class="svideo-card" data-svc="website" data-status="placeholder" href="?service=website">
-                <div class="svideo-thumb">
-                    <span class="svideo-thumb-status">Coming soon</span>
-                    <span class="svideo-thumb-duration">0:30</span>
-                    <div class="svideo-thumb-overlay"></div>
-                    <div class="svideo-thumb-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
-                </div>
-                <div class="svideo-body">
-                    <span class="svideo-service">Website Design</span>
-                    <span class="svideo-tagline">Brochures look nice. Salespeople convert.</span>
-                </div>
-            </a>
+            </div>
+        </div>
+
+        <div class="svideo-other reveal">
+            <span class="svideo-other-label">Or jump to a video on</span>
+            <div class="svideo-other-chips" id="svideoOtherChips">
+                <a class="svideo-other-chip" data-svc="general"      href="./">General</a>
+                <a class="svideo-other-chip" data-svc="google-ads"   href="?service=google-ads">Google Ads</a>
+                <a class="svideo-other-chip" data-svc="meta-ads"     href="?service=meta-ads">Meta</a>
+                <a class="svideo-other-chip" data-svc="tiktok-ads"   href="?service=tiktok-ads">TikTok</a>
+                <a class="svideo-other-chip" data-svc="linkedin-ads" href="?service=linkedin-ads">LinkedIn</a>
+                <a class="svideo-other-chip" data-svc="reddit-ads"   href="?service=reddit-ads">Reddit</a>
+                <a class="svideo-other-chip" data-svc="hubspot"      href="?service=hubspot">HubSpot</a>
+                <a class="svideo-other-chip" data-svc="ai-agents"    href="?service=ai-agents">AI Agents</a>
+                <a class="svideo-other-chip" data-svc="seo"          href="?service=seo">SEO</a>
+                <a class="svideo-other-chip" data-svc="geo"          href="?service=geo">GEO</a>
+                <a class="svideo-other-chip" data-svc="content"      href="?service=content">Content</a>
+                <a class="svideo-other-chip" data-svc="website"      href="?service=website">Website</a>
+            </div>
         </div>
     </div>
 </section>
