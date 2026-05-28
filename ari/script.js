@@ -375,96 +375,6 @@
         });
     }
 
-    /* Single service-video card: one tile that swaps content per service.
-       When the recordings land, drop the matching MP4 URL into VIDEO_SRC
-       below and the placeholder gets replaced by an actual <video>. */
-    var VIDEO_COPY = {
-        'google-ads':   { service: 'Google Ads',           line: 'Discipline beats budget. Every time.' },
-        'meta-ads':     { service: 'Meta Ads',             line: 'Targeting plus creative. Get one wrong, the other cannot save you.' },
-        'tiktok-ads':   { service: 'TikTok Ads',           line: 'Native beats polished. Always.' },
-        'linkedin-ads': { service: 'LinkedIn Ads',         line: 'Expensive per click. Worth it when the offer matches.' },
-        'reddit-ads':   { service: 'Reddit Ads',           line: 'Where AI search visibility starts.' },
-        'hubspot':      { service: 'HubSpot & Automation', line: 'Pragmatic stacks beat platform lock-in.' },
-        'ai-agents':    { service: 'AI Agents',            line: 'Not magic. Narrow agents, wired with discipline.' },
-        'seo':          { service: 'SEO',                  line: 'Content strategy with technical foundations.' },
-        'geo':          { service: 'GEO',                  line: 'SEO, when the judges are language models.' },
-        'content':      { service: 'Content',              line: 'The cheapest moat a business can build.' },
-        'website':      { service: 'Website Design',       line: 'Brochures look nice. Salespeople convert.' }
-    };
-    var VIDEO_DEFAULT = {
-        service: 'General marketing',
-        line: 'How Ari thinks. The principles. The discipline. The reason brands keep coming back.'
-    };
-    // When MP4s are ready, fill these. Empty string keeps the placeholder.
-    var VIDEO_SRC = {
-        'general':      '',
-        'google-ads':   '',
-        'meta-ads':     '',
-        'tiktok-ads':   '',
-        'linkedin-ads': '',
-        'reddit-ads':   '',
-        'hubspot':      '',
-        'ai-agents':    '',
-        'seo':          '',
-        'geo':          '',
-        'content':      '',
-        'website':      ''
-    };
-
-    function applySingleServiceVideo(serviceKey) {
-        var titleSuffix = document.getElementById('svideoTitleSuffix');
-        var lead        = document.getElementById('svideoLead');
-        var serviceLbl  = document.getElementById('svideoServiceLabel');
-        var tagline     = document.getElementById('svideoTagline');
-        var frame       = document.getElementById('svideoFrame');
-        var status      = document.getElementById('svideoStatus');
-        if (!frame) return;
-
-        var key   = serviceKey && VIDEO_COPY[serviceKey] ? serviceKey : 'general';
-        var copy  = (key === 'general') ? VIDEO_DEFAULT : VIDEO_COPY[key];
-        var src   = VIDEO_SRC[key] || '';
-
-        if (titleSuffix) titleSuffix.textContent = (key === 'general')
-            ? 'on the work.'
-            : 'on ' + copy.service + '.';
-        if (lead) lead.textContent = (key === 'general')
-            ? 'A short, direct video from Ari on how he approaches the work. (Placeholder shown until the recording lands.)'
-            : 'A short, direct video from Ari on ' + copy.service + '. (Placeholder shown until the recording lands.)';
-        if (serviceLbl) serviceLbl.textContent = copy.service;
-        if (tagline)    tagline.textContent    = copy.line;
-
-        // Swap to real video if we have a source, else show the placeholder
-        var existingVideo = frame.querySelector('video');
-        if (src) {
-            frame.dataset.status = 'live';
-            if (status) status.textContent = 'Watch';
-            if (existingVideo) {
-                var s = existingVideo.querySelector('source');
-                if (s && s.getAttribute('src') !== src) {
-                    s.setAttribute('src', src);
-                    existingVideo.load();
-                }
-            } else {
-                var v = document.createElement('video');
-                v.setAttribute('controls', '');
-                v.setAttribute('playsinline', '');
-                v.setAttribute('preload', 'metadata');
-                v.innerHTML = '<source src="' + src + '" type="video/mp4">';
-                frame.insertBefore(v, frame.firstChild);
-                attachThumbnailSeek(v);
-            }
-        } else {
-            frame.dataset.status = 'placeholder';
-            if (status) status.textContent = 'Coming soon';
-            if (existingVideo) existingVideo.remove();
-        }
-
-        // Highlight matching chip
-        document.querySelectorAll('.svideo-other-chip').forEach(function(chip) {
-            chip.classList.toggle('is-active', chip.dataset.svc === key);
-        });
-    }
-
     /* Forces a non-blank first frame to render for cross-origin videos.
        The bare currentTime trick fails in some browsers (Chrome with
        certain CORS configs); muted play -> immediate pause forces an
@@ -505,8 +415,6 @@
                 rc.dataset.promoted = 'false';
             });
             document.querySelectorAll('.authored-card').forEach(function(c) { c.dataset.promoted = 'false'; });
-            // Reset service-video card to the general state
-            applySingleServiceVideo(null);
             // Clear active pill state
             document.querySelectorAll('.service-pill').forEach(function(p) { p.classList.remove('active'); });
             return;
@@ -567,9 +475,6 @@
         applyDivider(s.divider);
         applyAuthoredPromotion(serviceKey);
 
-        // Swap the single service-video card to match the active service
-        applySingleServiceVideo(serviceKey);
-
         // Pre-fill the contact form service dropdown
         var serviceSelect = document.getElementById('cf-service');
         if (serviceSelect) {
@@ -608,36 +513,6 @@
 
             var workSection = document.getElementById('work');
             if (workSection) workSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-    });
-
-    /* ============ Service-video "or jump to" chip clicks ============
-       Same pushState pattern as the service pills, but scrolls back
-       to the service-video section so the user sees the swap happen.
-    ================================================================ */
-    document.querySelectorAll('.svideo-other-chip').forEach(function(chip) {
-        chip.addEventListener('click', function(e) {
-            e.preventDefault();
-            var newService = chip.dataset.svc;
-            var params;
-            try { params = new URLSearchParams(window.location.search); }
-            catch (err) { params = new URLSearchParams(); }
-
-            params.delete('service');
-            Object.keys(SERVICES).forEach(function(k) { params.delete(k); });
-            Object.keys(ALIASES).forEach(function(k) { params.delete(k); });
-
-            if (newService && newService !== 'general') {
-                params.set('service', newService);
-            }
-
-            var qs  = params.toString();
-            var url = (qs ? '?' + qs : window.location.pathname) + window.location.hash;
-            try { history.pushState({}, '', url); } catch(err) {}
-            applyService(newService === 'general' ? null : newService);
-
-            var vid = document.getElementById('service-videos');
-            if (vid) vid.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
     });
 
