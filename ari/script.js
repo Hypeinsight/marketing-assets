@@ -16,7 +16,17 @@
             featuredCases: ['google-ads'],
             contactHeadline: 'Talk to Ari about <em>Google Ads</em>',
             contactLead: 'A 30-minute conversation, no pitch. Tell Ari about the account, the budget, and the outcome you need; you will get an honest read on whether he is the right person for it.',
-            formHeading: 'Send Ari a note about Google Ads'
+            formHeading: 'Send Ari a note about Google Ads',
+            stats: [
+                ['$20M+', 'in ad spend stewarded across paid search and shopping'],
+                ['+45%', 'more deals closed by sales teams using AI-assisted ad tooling'],
+                ['10→200', 'enquiries per quarter after one combined SEO + ads program'],
+                ['5 min', 'inbound lead response on accounts Ari runs end to end']
+            ],
+            divider: {
+                text: 'Paid search is a craft. The teams who treat it like one out-earn the teams who treat it like a black box.',
+                attr: 'On performance media'
+            }
         },
         'hubspot': {
             label: 'HubSpot',
@@ -28,7 +38,17 @@
             featuredCases: ['hubspot'],
             contactHeadline: 'Talk to Ari about <em>HubSpot &amp; automation</em>',
             contactLead: 'A 30-minute conversation about your current stack, where leads are leaking, and what the smallest meaningful first move looks like.',
-            formHeading: 'Send Ari a note about HubSpot'
+            formHeading: 'Send Ari a note about HubSpot',
+            stats: [
+                ['20+', 'years building marketing tech stacks for SMB and mid-market'],
+                ['HubSpot×', 'paired with MailChimp, ActiveCampaign, Klaviyo as needed'],
+                ['Form→', 'tagged, routed, and nurtured automatically'],
+                ['Pragmatic', 'cost discipline, no platform lock-in for its own sake']
+            ],
+            divider: {
+                text: 'The best automation stack is the one you do not have to babysit. Pragmatic beats elegant every single time.',
+                attr: 'On marketing automation'
+            }
         },
         'ai-agents': {
             label: 'AI Agents',
@@ -40,7 +60,17 @@
             featuredCases: [],
             contactHeadline: 'Talk to Ari about <em>AI agents</em>',
             contactLead: 'A 30-minute conversation about your readiness, the use case you have in mind, and the smallest agent that could ship this quarter.',
-            formHeading: 'Send Ari a note about AI agents'
+            formHeading: 'Send Ari a note about AI agents',
+            stats: [
+                ['32 pages', 'of authored AI Agent Playbook with 7 interactive activities'],
+                ['Build vs Buy', 'decision matrix shipped with the practice'],
+                ['SMB→ENT', 'rollout plans from 90-hour SMB to 30-60-90 day enterprise'],
+                ['HITL', 'human-in-the-loop patterns wired in from day one']
+            ],
+            divider: {
+                text: 'Agentic AI is not magic. It is a swarm of small, narrow, accountable agents wired together with discipline.',
+                attr: 'On agentic systems'
+            }
         },
         'seo': {
             label: 'SEO',
@@ -52,7 +82,17 @@
             featuredCases: ['seo'],
             contactHeadline: 'Talk to Ari about <em>SEO</em>',
             contactLead: 'A 30-minute conversation about your category, your existing visibility, and where the biggest organic opportunity actually lives.',
-            formHeading: 'Send Ari a note about SEO'
+            formHeading: 'Send Ari a note about SEO',
+            stats: [
+                ['2.9k→15.7k', 'monthly organic clicks in a single year (Phriendly Phishing)'],
+                ['+119%', 'organic user growth across one B2B SaaS engagement'],
+                ['90k', 'page views on a single deep-dive article (Selerity)'],
+                ['Page 1', 'dominance on 20+ high-intent terms in crowded categories']
+            ],
+            divider: {
+                text: 'SEO is content strategy with technical foundations. Most teams have one or the other. The wins live in both.',
+                attr: 'On organic search'
+            }
         },
         'geo': {
             label: 'GEO',
@@ -64,7 +104,17 @@
             featuredCases: ['seo'],
             contactHeadline: 'Talk to Ari about <em>GEO</em>',
             contactLead: 'A 30-minute conversation about your category, your current visibility in classical search, and what the right first move on AI search looks like.',
-            formHeading: 'Send Ari a note about GEO'
+            formHeading: 'Send Ari a note about GEO',
+            stats: [
+                ['ChatGPT+', 'Perplexity, Claude, Gemini, Google AI Overviews monitored'],
+                ['RAG-ready', 'content structured for LLM retrieval and citation'],
+                ['Schema+', 'structured data that gives LLMs something to cite'],
+                ['Built on', 'two decades of classical SEO foundations']
+            ],
+            divider: {
+                text: 'GEO is SEO with new judges. The judges are language models. The fundamentals still apply.',
+                attr: 'On generative search'
+            }
         },
         'content': {
             label: 'Content',
@@ -76,7 +126,17 @@
             featuredCases: ['content'],
             contactHeadline: 'Talk to Ari about <em>content</em>',
             contactLead: 'A 30-minute conversation about your category, your existing content, and where the biggest editorial opportunity actually lives.',
-            formHeading: 'Send Ari a note about content'
+            formHeading: 'Send Ari a note about content',
+            stats: [
+                ['7+', 'full-length business playbooks authored end to end'],
+                ['90k', 'page views on a single article (Netflix data deep-dive)'],
+                ['7-min', 'average time on page when the content earns it'],
+                ['Editorial', 'systems built for ongoing publishing, not one-off blogs']
+            ],
+            divider: {
+                text: 'Content is the cheapest moat a business can build. It just takes patience and a point of view.',
+                attr: 'On editorial strategy'
+            }
         },
         'website': {
             label: 'Website Design',
@@ -88,44 +148,137 @@
             featuredCases: ['website'],
             contactHeadline: 'Talk to Ari about <em>website design</em>',
             contactLead: 'A 30-minute conversation about the site you have today, the outcome you need it to produce, and what a sensible rebuild or redesign actually looks like.',
-            formHeading: 'Send Ari a note about website design'
+            formHeading: 'Send Ari a note about website design',
+            stats: [
+                ['40+', 'website and product designs shipped from wireframe to launch'],
+                ['SaaS→ECOM', 'experience across SaaS, e-commerce, B2B, healthcare, finance'],
+                ['Figma+', 'design system, prototype, and developer handoff included'],
+                ['CRO', 'baked into the design, not retrofitted after launch']
+            ],
+            divider: {
+                text: 'A site that does not convert is a brochure. A site that converts is a salesperson. Design accordingly.',
+                attr: 'On website design'
+            }
         }
     };
 
-    /* ============ Detect query string ============ */
+    /* ============ Detect service from query string ============
+       Supports three patterns, in priority order:
+       1. ?service=google-ads&utm_source=google&utm_campaign=...
+          (canonical: explicit param, plays nicely with UTMs)
+       2. ?google-ads&utm_source=google
+          (bare flag, anywhere in the query string)
+       3. Aliased shortcuts: ?ads, ?ppc, ?web, ?copy etc.
+
+       Ignores all reserved UTM params (utm_source, utm_medium,
+       utm_campaign, utm_term, utm_content, gclid, fbclid, etc.)
+       so paid-search and paid-social campaign URLs do not collide
+       with the service-selector logic.
+    ============================================================= */
+    var ALIASES = {
+        'googleads':       'google-ads',
+        'ads':             'google-ads',
+        'ppc':             'google-ads',
+        'ai':              'ai-agents',
+        'agents':          'ai-agents',
+        'web':             'website',
+        'design':          'website',
+        'webdesign':       'website',
+        'copy':            'content',
+        'copywriting':     'content',
+        'editorial':       'content',
+        'content-strategy':'content'
+    };
+    function normalise(k) {
+        k = (k || '').toLowerCase().trim();
+        return ALIASES[k] || k;
+    }
+    // Params we never treat as a service flag, even if alone in the URL
+    var RESERVED = {
+        'utm_source': 1, 'utm_medium': 1, 'utm_campaign': 1,
+        'utm_term': 1, 'utm_content': 1, 'utm_id': 1,
+        'gclid': 1, 'fbclid': 1, 'msclkid': 1, 'gad_source': 1,
+        'ref': 1, 'source': 1, 'campaign': 1, 'medium': 1,
+        '_ga': 1, '_gl': 1, 'mc_cid': 1, 'mc_eid': 1
+    };
+
     function detectService() {
-        var qs = window.location.search.replace(/^\?/, '').toLowerCase();
-        if (!qs) return null;
-        // First segment before & is the service
-        var key = qs.split('&')[0].split('=')[0];
-        // Normalise common aliases
-        var aliases = {
-            'googleads':       'google-ads',
-            'ads':             'google-ads',
-            'ppc':             'google-ads',
-            'ai':              'ai-agents',
-            'agents':          'ai-agents',
-            'web':             'website',
-            'design':          'website',
-            'webdesign':       'website',
-            'copy':            'content',
-            'copywriting':     'content',
-            'editorial':       'content',
-            'content-strategy':'content'
-        };
-        key = aliases[key] || key;
-        return SERVICES[key] ? key : null;
+        var params;
+        try { params = new URLSearchParams(window.location.search); }
+        catch (e) { return null; }
+
+        // 1. Explicit ?service=foo wins
+        var explicit = normalise(params.get('service') || '');
+        if (SERVICES[explicit]) return explicit;
+
+        // 2. Scan all keys for a bare service flag (?google-ads&utm_source=...)
+        var found = null;
+        params.forEach(function(_value, key) {
+            if (found) return;
+            var k = key.toLowerCase();
+            if (RESERVED[k]) return;
+            var n = normalise(k);
+            if (SERVICES[n]) found = n;
+        });
+        return found;
     }
 
     /* ============ Apply service personalisation ============ */
+    // Default stats and divider quote, captured once on page load so
+    // we can restore them when the user clears their selection.
+    var DEFAULT_STATS = null;
+    var DEFAULT_QUOTE = null;
+    function captureDefaults() {
+        if (DEFAULT_STATS) return;
+        DEFAULT_STATS = [1,2,3,4].map(function(i) {
+            var num = document.querySelector('[data-stat="num-' + i + '"]');
+            var lbl = document.querySelector('[data-stat="label-' + i + '"]');
+            return num && lbl ? [num.innerHTML, lbl.textContent] : null;
+        });
+        var q = document.getElementById('dividerQuoteText');
+        var a = document.getElementById('dividerQuoteAttr');
+        if (q && a) DEFAULT_QUOTE = { text: q.textContent, attr: a.textContent };
+    }
+
+    function applyStats(stats) {
+        if (!stats || !stats.length) return;
+        stats.forEach(function(pair, idx) {
+            var num = document.querySelector('[data-stat="num-' + (idx+1) + '"]');
+            var lbl = document.querySelector('[data-stat="label-' + (idx+1) + '"]');
+            if (num) num.innerHTML = pair[0];
+            if (lbl) lbl.textContent = pair[1];
+        });
+    }
+    function applyDivider(d) {
+        if (!d) return;
+        var q = document.getElementById('dividerQuoteText');
+        var a = document.getElementById('dividerQuoteAttr');
+        if (q) q.textContent = d.text;
+        if (a) a.textContent = d.attr;
+    }
+    function applyAuthoredPromotion(serviceKey) {
+        document.querySelectorAll('.authored-card').forEach(function(card) {
+            var cat = card.dataset.cat || '';
+            // 'general' cards (YouTube) never get promoted
+            card.dataset.promoted = (cat === serviceKey && cat !== 'general') ? 'true' : 'false';
+        });
+    }
+
     function applyService(serviceKey) {
         var body = document.body;
+        captureDefaults();
         if (!serviceKey || !SERVICES[serviceKey]) {
             body.dataset.service = 'default';
-            // Clear any review promotions from a previous selection
+            // Restore default stats + quote
+            if (DEFAULT_STATS) applyStats(DEFAULT_STATS);
+            if (DEFAULT_QUOTE) applyDivider(DEFAULT_QUOTE);
+            // Clear promotions
             document.querySelectorAll('#reviewGrid .review-card').forEach(function(rc) {
                 rc.dataset.promoted = 'false';
             });
+            document.querySelectorAll('.authored-card').forEach(function(c) { c.dataset.promoted = 'false'; });
+            // Clear active pill state
+            document.querySelectorAll('.service-pill').forEach(function(p) { p.classList.remove('active'); });
             return;
         }
         body.dataset.service = serviceKey;
@@ -179,6 +332,11 @@
             rc.dataset.promoted = (cat === serviceKey) ? 'true' : 'false';
         });
 
+        // Service-specific stats + divider quote + authored-work promotion
+        applyStats(s.stats);
+        applyDivider(s.divider);
+        applyAuthoredPromotion(serviceKey);
+
         // Pre-fill the contact form service dropdown
         var serviceSelect = document.getElementById('cf-service');
         if (serviceSelect) {
@@ -189,16 +347,32 @@
         if (queryServiceHidden) queryServiceHidden.value = serviceKey;
     }
 
-    /* ============ Service pill clicks (smooth swap without full reload) ============ */
+    /* ============ Service pill clicks ============
+       Preserves existing query params (notably UTMs) when swapping
+       service, then updates URL via history.pushState. Uses the
+       canonical ?service=foo form so the result is a clean,
+       shareable URL the team can paste into any context.
+    ============================================================ */
     document.querySelectorAll('.service-pill').forEach(function(pill) {
         pill.addEventListener('click', function(e) {
             e.preventDefault();
             var newService = pill.dataset.service;
-            var url = '?' + newService + window.location.hash;
-            // Update URL without full reload
+            var params;
+            try { params = new URLSearchParams(window.location.search); }
+            catch (err) { params = new URLSearchParams(); }
+
+            // Strip any old service flags (both ?service= and bare ?foo)
+            params.delete('service');
+            Object.keys(SERVICES).forEach(function(k) { params.delete(k); });
+            Object.keys(ALIASES).forEach(function(k) { params.delete(k); });
+
+            // Set the canonical service param
+            params.set('service', newService);
+
+            var url = '?' + params.toString() + window.location.hash;
             try { history.pushState({}, '', url); } catch(err) {}
             applyService(newService);
-            // Scroll to the work section so they see the result of their choice
+
             var workSection = document.getElementById('work');
             if (workSection) workSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
@@ -207,41 +381,110 @@
     /* ============ Initial apply on page load ============ */
     applyService(detectService());
 
-    /* ============ Video play-button overlays ============ */
-    // Each video starts with an overlay so the file is not fetched on
-    // page load. Click reveals the video and starts playback. Without
-    // this, large videos (the 91MB IMG_0191 in particular) bog down
-    // metadata preload and never become playable.
-    (function setupVideoOverlays() {
-        document.querySelectorAll('.video-card').forEach(function(card) {
-            var overlay = card.querySelector('.video-card-overlay');
-            var video   = card.querySelector('video');
-            if (!overlay || !video) return;
+    /* ============ Video testimonials: auto-scrolling strip + lightbox ============ */
+    (function setupVideoStrip() {
+        var strip  = document.getElementById('videoStrip');
+        var modal  = document.getElementById('videoModal');
+        var player = document.getElementById('videoModalPlayer');
+        var toggle = document.querySelector('[data-strip-toggle]');
+        var prev   = document.querySelector('[data-modal-prev]');
+        var next   = document.querySelector('[data-modal-next]');
+        var closeBtn = document.querySelector('[data-modal-close]');
+        var counter  = document.querySelector('[data-modal-counter]');
+        if (!strip || !modal || !player) return;
 
-            function activate() {
-                overlay.classList.add('hidden');
-                // Switch to metadata preload now that user opted in
-                video.preload = 'auto';
-                video.load();  // re-evaluate sources with new preload
-                video.play().catch(function() {
-                    // Autoplay may be blocked; user can hit native controls
-                });
-            }
-            overlay.addEventListener('click', activate);
+        // Build the master list of unique video sources from the first cycle (5 items)
+        var items = strip.querySelectorAll('.video-strip-item:not([aria-hidden])');
+        var sources = [];
+        items.forEach(function(it) {
+            var v = it.querySelector('video source');
+            sources.push({ src: v ? v.getAttribute('src') : '', type: v ? v.getAttribute('type') : 'video/mp4' });
+        });
+        var currentIdx = 0;
 
-            // If user pauses then plays again with native controls, no-op
-            video.addEventListener('pause', function() {});
+        function openModal(idx) {
+            currentIdx = (idx + sources.length) % sources.length;
+            var s = sources[currentIdx];
+            player.innerHTML = '<source src="' + s.src + '" type="' + s.type + '">';
+            player.load();
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+            if (counter) counter.textContent = (currentIdx + 1) + ' of ' + sources.length;
+            // Autoplay with sound off first (modal player has audio on by default)
+            player.play().catch(function() { /* autoplay blocked, user clicks play */ });
+            // Pause the strip while modal is open
+            strip.classList.add('paused');
+        }
+        function closeModal() {
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+            player.pause();
+            player.removeAttribute('src');
+            player.load();
+            strip.classList.remove('paused');
+        }
 
-            // If the video itself starts via native controls (e.g. tap on
-            // the controls area), hide the overlay too
-            video.addEventListener('play', function() {
-                overlay.classList.add('hidden');
+        // Click any strip item to open
+        strip.querySelectorAll('.video-strip-item').forEach(function(it) {
+            it.addEventListener('click', function() {
+                var idx = parseInt(it.dataset.videoIdx || '0', 10);
+                openModal(idx);
             });
+        });
+
+        // Pause/resume toggle for the auto-scroll
+        if (toggle) {
+            toggle.addEventListener('click', function() {
+                var paused = strip.classList.toggle('paused');
+                toggle.querySelector('span').textContent = paused ? 'Resume' : 'Pause';
+                toggle.setAttribute('aria-label', paused ? 'Resume testimonial strip' : 'Pause testimonial strip');
+                var icon = toggle.querySelector('svg');
+                if (icon) {
+                    icon.innerHTML = paused
+                        ? '<polygon points="6 4 20 12 6 20 6 4" fill="currentColor" stroke="none"/>'
+                        : '<rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/>';
+                }
+            });
+        }
+
+        // Modal nav
+        if (prev) prev.addEventListener('click', function() { openModal(currentIdx - 1); });
+        if (next) next.addEventListener('click', function() { openModal(currentIdx + 1); });
+        if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+        // Click backdrop to close
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) closeModal();
+        });
+
+        // ESC to close, arrows to navigate
+        document.addEventListener('keydown', function(e) {
+            if (!modal.classList.contains('show')) return;
+            if (e.key === 'Escape')     closeModal();
+            if (e.key === 'ArrowLeft')  openModal(currentIdx - 1);
+            if (e.key === 'ArrowRight') openModal(currentIdx + 1);
         });
     })();
 
-    /* ============ Video testimonials carousel ============ */
-    (function setupVideoCarousel() {
+    /* ============ Portfolio carousel pause/resume toggle ============ */
+    (function setupPortfolioToggle() {
+        var track  = document.getElementById('portfolioTrack');
+        var toggle = document.querySelector('[data-portfolio-toggle]');
+        if (!track || !toggle) return;
+        toggle.addEventListener('click', function() {
+            var paused = track.classList.toggle('paused');
+            toggle.querySelector('span').textContent = paused ? 'Resume' : 'Pause';
+            var icon = toggle.querySelector('svg');
+            if (icon) {
+                icon.innerHTML = paused
+                    ? '<polygon points="6 4 20 12 6 20 6 4" fill="currentColor" stroke="none"/>'
+                    : '<rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/>';
+            }
+        });
+    })();
+
+    /* ============ Legacy video carousel hook (no-op if removed) ============ */
+    (function legacyVideoCarousel() {
         var carousel = document.getElementById('videoCarousel');
         var wrap     = document.getElementById('videoCarouselWrap');
         if (!carousel) return;
