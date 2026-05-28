@@ -277,6 +277,7 @@
                 rc.dataset.promoted = 'false';
             });
             document.querySelectorAll('.authored-card').forEach(function(c) { c.dataset.promoted = 'false'; });
+            document.querySelectorAll('.svideo-card').forEach(function(c) { c.dataset.promoted = 'false'; });
             // Clear active pill state
             document.querySelectorAll('.service-pill').forEach(function(p) { p.classList.remove('active'); });
             return;
@@ -336,6 +337,11 @@
         applyStats(s.stats);
         applyDivider(s.divider);
         applyAuthoredPromotion(serviceKey);
+
+        // Promote the matching service-video card (orange ring, order -1)
+        document.querySelectorAll('.svideo-card').forEach(function(c) {
+            c.dataset.promoted = (c.dataset.svc === serviceKey) ? 'true' : 'false';
+        });
 
         // Pre-fill the contact form service dropdown
         var serviceSelect = document.getElementById('cf-service');
