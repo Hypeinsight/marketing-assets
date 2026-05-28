@@ -1,29 +1,32 @@
-# Website Design &amp; Build: 30 second video
+# Website Design & Build: 30 second video
 
 **Service:** Website Design
 **Target length:** 30 seconds
-**Word count:** 89
+**Word count:** 90
 
 ## Script
 
-> A website is either a brochure or a salesperson. Brochures look
-> nice. Salespeople convert.
+> Most websites are brochures. The ones that earn revenue are
+> salespeople. For a furniture retailer recovering from a hacked
+> store, we rebuilt the site as the backbone of a multi-platform
+> program: Google, Meta, and Pinterest all driving traffic into a
+> site engineered to convert.
 >
-> The difference isn't budget or animation. It's whether the site
-> is designed around what a buyer needs to decide.
+> My process: map every page to a job it does in the funnel. Strip
+> the rest. Wire the analytics so every interaction is measured.
+> Test the conversion mechanics, not just the design.
 >
-> Clear value proposition above the fold. Trust signals where they
-> matter. Pricing answered without making people ask. CTAs in the
-> right places.
->
-> I've shipped 40-plus websites and the ones that out-perform
-> aren't the prettiest. They're the ones designed around the
-> buyer's decision, not the brand's narrative.
+> Forty-plus builds shipped. Each one designed to sell, not impress.
+
+## What this script proves
+
+- A named recovery case (Furniture Retailer) tied to a concrete
+  outcome (multi-platform program rebuilt around the site)
+- A four-step process that frames design as conversion engineering
+- Volume signal (40+ builds) with a clear discipline statement
 
 ## Visual cues
 
 - Open with light energy; brochure-versus-salesperson is the hook
-- Slight smile on "brochures look nice" so the critique that
-  follows lands as practical rather than dismissive
-- Land "the buyer's decision, not the brand's narrative" as the
-  closing thought; pause briefly, then cut
+- Brief pause between the four process steps
+- Land "designed to sell, not impress" with steady eye-line

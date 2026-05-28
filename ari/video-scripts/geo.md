@@ -2,30 +2,33 @@
 
 **Service:** GEO
 **Target length:** 30 seconds
-**Word count:** 84
+**Word count:** 88
 
 ## Script
 
-> GEO. Generative engine optimisation. What SEO becomes when the
-> judges are ChatGPT, Perplexity, Claude, and Google's AI
-> Overviews.
+> GEO is SEO when the judges are language models. ChatGPT, Claude,
+> Perplexity, and Google's AI Overviews decide what to cite based on
+> signals that overlap with classic SEO but are not identical.
 >
-> The fundamentals don't change. Clear writing. Structured data.
-> Authoritative content. But the optimisation surface does.
+> My process. Audit how your brand currently surfaces inside the
+> major LLMs. Map the prompts your buyer is actually using. Then
+> build the content and citation paths to win those prompts.
 >
-> You're now writing to be cited by a language model, not just
-> clicked by a human.
->
-> Good news: most teams already have the SEO foundations. The GEO
-> layer is what you build on top.
->
-> If you want visibility inside AI search results, that's where
-> we start.
+> It is early days for the discipline. The brands that start now
+> will own the AI search results their competitors are scrambling
+> for in twelve months.
+
+## What this script proves
+
+- Reframes a new term (GEO) by anchoring it to a familiar one (SEO)
+- A three-step process that translates the unfamiliar into work
+  the buyer can specify
+- A clear time horizon for advantage (twelve months) that creates
+  urgency without overpromising
 
 ## Visual cues
 
 - Slight forward energy on "GEO" since most viewers will not have
   heard the term
-- Slow down on "cited by a language model, not just clicked" / it
-  reframes how they think about search
-- Close with confidence, no question lift
+- Slow down on "what to cite" so the reframe lands
+- Close on the twelve-month line with steady eye-line

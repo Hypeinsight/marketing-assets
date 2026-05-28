@@ -2,28 +2,34 @@
 
 **Service:** LinkedIn Ads
 **Target length:** 30 seconds
-**Word count:** 88
+**Word count:** 87
 
 ## Script
 
-> LinkedIn ads cost more per click because the audience is worth
-> more per click. The math only works when the offer matches.
+> LinkedIn is the most expensive paid platform per click, and the
+> only one where targeting individual CFOs and CIOs by name is the
+> baseline. My process: build the target account list with sales,
+> then layer sponsored content, native lead-gen forms, and sponsored
+> InMail in that order.
 >
-> Pitch a 49-dollar SaaS subscription on LinkedIn and you will
-> bankrupt the campaign in a week. Pitch a six-figure enterprise
-> deal where you can name the buying committee by title, and
-> LinkedIn is the best paid channel on earth.
+> We measure pipeline contribution, not impressions. For a UK B2B
+> client I ran Meta and LinkedIn side by side and LinkedIn delivered
+> the closeable leads in a sector most agencies will not touch.
 >
-> Account-based targeting. Lead-gen forms in-platform. Sponsored
-> InMail used surgically.
->
-> If your offer fits, this is the channel. Let us talk about
-> whether it does.
+> Premium CPC, premium audience.
+
+## What this script proves
+
+- Sets the bar (named targeting, pipeline measurement) and shows
+  it backed by a named comparative test
+- A clear sequenced process (account list, sponsored content,
+  lead-gen forms, sponsored InMail)
+- An honest qualifier (LinkedIn only earns its premium when the
+  audience is worth it)
 
 ## Visual cues
 
 - Calm, authoritative delivery from start to finish
-- Pause briefly on "bankrupt the campaign in a week" so the
-  warning lands
-- Close on "Let us talk about whether it does" with steady
-  eye-line and a small affirming nod
+- Brief pause between the process steps so they register
+- Close on "Premium CPC, premium audience" with a small affirming
+  nod

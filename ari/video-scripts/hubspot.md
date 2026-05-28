@@ -1,26 +1,33 @@
-# HubSpot &amp; Marketing Automation: 30 second video
+# HubSpot & Marketing Automation: 30 second video
 
-**Service:** HubSpot &amp; Automation
+**Service:** HubSpot & Automation
 **Target length:** 30 seconds
-**Word count:** 85
+**Word count:** 86
 
 ## Script
 
-> HubSpot is a good tool. But most teams I work with are paying for
-> features they don't use, while the features they actually need
-> aren't wired up at all.
+> Here's a typical HubSpot engagement. For a fintech called Spindle
+> we rebuilt the marketing stack from the ground up: HubSpot for
+> the CRM and workflows, MailChimp for the bulk send, both
+> integrated so form submissions tag and route to the right nurture
+> automatically.
 >
-> Pragmatic stack design matters more than platform choice. Tag
-> your forms by intent. Route leads automatically based on what
-> they downloaded. Use MailChimp or ActiveCampaign for the email
-> sequences if HubSpot's automation tier is too expensive.
+> No platform lock-in. No compromise on what each tool does best.
 >
-> The goal isn't a clean CRM. It's leads that don't sit in a queue
-> waiting for someone to remember they exist.
+> My process is the same every time. Map the customer journey first.
+> Pick the cheapest tool that does the job. Wire the integrations.
+> Then automate the work humans should not be doing.
+
+## What this script proves
+
+- A named, real engagement (Spindle) with a specific stack
+  decision the buyer can verify
+- A four-step process that signals pragmatism over platform sales
+- A clear principle (cheapest tool that does the job) that builds
+  trust on cost discipline
 
 ## Visual cues
 
-- Calm pace; HubSpot people respond well to clarity over hype
-- Slight smile on "It's a good tool" so the critique that follows
-  lands as practical, not negative
-- Hands stay quiet on this one; the message does the work
+- Calm pace; HubSpot buyers respond to clarity over hype
+- Brief pause between the four process steps
+- Land "humans should not be doing" with steady eye-line

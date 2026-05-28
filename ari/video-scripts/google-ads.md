@@ -2,27 +2,31 @@
 
 **Service:** Google Ads
 **Target length:** 30 seconds
-**Word count:** 81
+**Word count:** 88
 
 ## Script
 
-> Most Google Ads accounts I see are doing the right things in the
-> wrong order. Big budgets on broad match. Underdeveloped landing
-> pages. Conversion tracking that misses half the calls and form
-> submissions.
+> Here's the kind of Google Ads work I do. For a financial planning
+> client, we're holding CPCs under five dollars in a sector where
+> ten to fifteen is normal. For a multi-site chiropractor, one
+> location hit a thirty-one percent conversion rate.
 >
-> The fix isn't a new platform. It's discipline. Tight keyword
-> groups. Dedicated landing pages for each ad. Every conversion
-> event measured.
+> The process is the same every time. Audit the conversion tracking
+> first. Restructure the account around tight intent groups.
+> Rebuild the landing pages each ad points to.
 >
-> Do those three things and a thousand-dollar budget out-performs
-> a five-thousand-dollar budget run lazily.
->
-> If you're spending on Google and not sure what's working, that's
-> where I'd start.
+> Once those three are clean, the data tells you where to spend.
+> I don't guess. I measure.
+
+## What this script proves
+
+- Specific outcomes from real, named engagements (Your Vision
+  Financial CPC; Chiro Multi-Site 31% conversion)
+- A repeatable three-step process the buyer can verify
+- A closing position that signals discipline, not vibes
 
 ## Visual cues
 
 - Open on a calm mid-shot, hands visible
-- A small gesture on "discipline" works well
-- Land the close ("that's where I'd start") with steady eye-line
+- Gentle hand gesture on the three-step list
+- Steady eye-line on "I don't guess. I measure."

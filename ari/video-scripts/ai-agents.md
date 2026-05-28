@@ -2,25 +2,35 @@
 
 **Service:** AI Agents
 **Target length:** 30 seconds
-**Word count:** 86
+**Word count:** 89
 
 ## Script
 
-> AI agents aren't magic. They're software workflows with a
-> language model in the loop.
+> Most agent projects fail because they try to build one big agent
+> that does everything. The discipline is the opposite. Narrow
+> agents, scoped tightly, with clean handoffs between them.
 >
-> The brands getting real value have done four things. Picked one
-> narrow problem. Defined success in numbers. Kept a human in the
-> loop for the edge cases. And shipped something small first.
+> I'm building these now for clients across sales acceleration,
+> customer support deflection, and decision intelligence layers.
 >
-> The ones still stuck in pilot purgatory tried to build a god-
-> agent that does everything.
+> The process is always the same. Pick the highest-volume workflow
+> in the business. Scope the agent to one job. Wire it into the
+> systems it needs. Measure deflection or revenue contribution from
+> week one.
 >
-> If you're exploring agents and want a 30-minute conversation
-> about what's realistic in your business, send me a note.
+> If the first agent does not pay back in ninety days, we shipped
+> the wrong agent.
+
+## What this script proves
+
+- Names the most common failure mode (god-agent) and the discipline
+  that prevents it
+- Three specific service patterns Ari is actively shipping
+- A four-step process and a hard ninety-day payback test that
+  signals accountability
 
 ## Visual cues
 
 - Open direct, no smile; this is the most credibility-led video
-- Slight pause after "AI agents aren't magic" lets it land
-- "send me a note" with a light gesture toward the form below
+- Brief pause between the three service patterns
+- Land "we shipped the wrong agent" with steady, owning-it eye-line

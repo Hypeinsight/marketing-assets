@@ -1,9 +1,28 @@
 # Ari profile page: service videos
 
 Eleven 30-second scripts, one per service specialisation on the Ari
-profile page. Each one is written for direct camera delivery: short
-sentences, conversational rhythm, no jargon for its own sake, and
-ending on a clear next-step.
+profile page. Each script is built for the same job: build the
+buyer's confidence in the service inside thirty seconds.
+
+## Script structure
+
+Every script follows the same three-beat shape so they read as a
+series, and so each one earns trust the same way:
+
+1. **Results delivered first.** Open with a specific outcome from
+   a real client engagement (named where possible, anonymised
+   where not). Numbers over adjectives. Verifiable specifics over
+   vibes.
+2. **The process.** Walk through how Ari actually does the work,
+   in three or four steps the buyer could write into a brief.
+   This is the "you could follow along" part.
+3. **A close that lands the discipline.** A single line that
+   names the principle the buyer should expect Ari to hold to.
+   No question lift, no soft sell.
+
+The goal is the same every time: by the end of the thirty seconds,
+the buyer should feel they have already met the person they are
+considering hiring.
 
 ## Target spec
 
@@ -21,9 +40,18 @@ ending on a clear next-step.
 
 - Read once for understanding, then deliver. Reading word-for-word
   on camera always sounds like reading.
+- When you hit a number, slow down by a beat. The specifics are
+  the trust signal; let them register.
 - Keep the tone direct and conversational. Avoid superlatives.
 - Land the final sentence with confidence, not a question lift.
 - One take that flows is better than three takes that are perfect.
+
+## Verify-the-results notes
+
+Every named client and number in these scripts comes from the case
+studies block on the Ari profile page (section "Selected work").
+If any of the numbers shift before recording, update the script
+file first so the delivery and the on-page evidence stay aligned.
 
 ## File naming when you publish
 
