@@ -6,6 +6,94 @@
 
     /* ============ Service map ============ */
     var SERVICES = {
+        'meta-ads': {
+            label: 'Meta Ads',
+            tagline: 'Meta Ads &amp; paid social',
+            heroAccent: 'Performance media on Facebook, Instagram, and Messenger. Audience strategy, creative variants, full-funnel campaigns, Advantage+ at scale. Two decades running paid social for B2C and B2B brands that need creative and targeting working together, not in silos.',
+            workEyebrow: 'Selected Meta Ads work',
+            workHeadline: 'Meta Ads case studies, <em>verified outcomes.</em>',
+            workLead: 'Paid social engagements spanning live events, e-commerce, and B2B industrial. Featured cards highlight Meta-led campaigns first.',
+            featuredCases: ['meta-ads'],
+            contactHeadline: 'Talk to Ari about <em>Meta Ads</em>',
+            contactLead: 'A 30-minute conversation, no pitch. Tell Ari about the account, the creative, and the outcome you need; you will get an honest read on whether he is the right person for it.',
+            formHeading: 'Send Ari a note about Meta Ads',
+            stats: [
+                ['+265%', 'purchases vs prior month on a pre-event sprint (NZ Festival)'],
+                ['$67k', 'revenue at $55 CPA from a single Meta program'],
+                ['Q4 record', 'biggest quarter ever for an e-commerce client on Meta'],
+                ['B2B too', 'GBP 6k Meta program that converted B2B leads (UK Shelters)']
+            ],
+            divider: {
+                text: 'Meta ads work when the creative does. Targeting plus creative is the formula. Get one wrong and the other cannot save you.',
+                attr: 'On paid social'
+            }
+        },
+        'tiktok-ads': {
+            label: 'TikTok Ads',
+            tagline: 'TikTok Ads &amp; short-form video',
+            heroAccent: 'Performance media on TikTok. Spark Ads, native creative briefs, creator collaborations, and full-funnel TikTok Pixel work. Short-form is its own discipline. Native-feeling creative wins; polished broadcast loses.',
+            workEyebrow: 'Selected TikTok work',
+            workHeadline: 'TikTok Ads, <em>built native.</em>',
+            workLead: 'TikTok engagements built around native-feeling creative and Spark Ads. The platform rewards short-form discipline; the campaigns reflect that.',
+            featuredCases: ['tiktok-ads'],
+            contactHeadline: 'Talk to Ari about <em>TikTok Ads</em>',
+            contactLead: 'A 30-minute conversation about your creative, your category, and what a sensible TikTok program actually looks like at your scale.',
+            formHeading: 'Send Ari a note about TikTok Ads',
+            stats: [
+                ['Spark Ads', 'creator-led amplification that out-performs studio creative'],
+                ['Native first', 'briefs written for TikTok, not adapted from elsewhere'],
+                ['Full funnel', 'awareness, consideration, conversion measured via TikTok Pixel'],
+                ['Discipline', 'short form is a craft, not a content type']
+            ],
+            divider: {
+                text: 'TikTok rewards content that looks like TikTok. Brands that paste their YouTube cuts into the platform lose. Brands that brief native creators win.',
+                attr: 'On short-form video'
+            }
+        },
+        'linkedin-ads': {
+            label: 'LinkedIn Ads',
+            tagline: 'LinkedIn Ads &amp; B2B social',
+            heroAccent: 'B2B-grade paid social on LinkedIn. Account-based targeting, sponsored content, lead-gen forms, and InMail at the right cadence. The highest CPC of any major platform; the only one where targeting CFOs and CIOs by name is the baseline expectation.',
+            workEyebrow: 'Selected LinkedIn work',
+            workHeadline: 'LinkedIn Ads, <em>B2B-grade.</em>',
+            workLead: 'LinkedIn programs built around account-based targeting and sponsored content. The platform earns its premium when the audience is worth the premium.',
+            featuredCases: ['linkedin-ads'],
+            contactHeadline: 'Talk to Ari about <em>LinkedIn Ads</em>',
+            contactLead: 'A 30-minute conversation about the accounts you want to win, your sales motion, and whether LinkedIn is the right channel for it (sometimes it is not).',
+            formHeading: 'Send Ari a note about LinkedIn Ads',
+            stats: [
+                ['ABM-ready', 'account-based targeting wired into your sales pipeline'],
+                ['Lead-gen forms', 'native LinkedIn forms that beat redirect-to-landing-page'],
+                ['Sponsored InMail', 'used surgically, never as a spam channel'],
+                ['Premium CPC', 'higher cost per click, justified by the audience quality']
+            ],
+            divider: {
+                text: 'LinkedIn ads cost more per click because the audience is worth more per click. The math only works when the offer matches.',
+                attr: 'On B2B paid social'
+            }
+        },
+        'reddit-ads': {
+            label: 'Reddit Ads',
+            tagline: 'Reddit Ads &amp; community media',
+            heroAccent: 'Performance media on Reddit. High intent, sharp audience, and the rising importance of Reddit as a source for AI search results. Subreddit targeting, native conversation ads, and the discipline of earning attention rather than interrupting it.',
+            workEyebrow: 'Selected Reddit work',
+            workHeadline: 'Reddit Ads, <em>community-aware.</em>',
+            workLead: 'Reddit programs built around subreddit-level targeting and native-feeling ad units. The platform rewards relevance and punishes generic. Done right, it also drives AI-search visibility.',
+            featuredCases: ['reddit-ads'],
+            contactHeadline: 'Talk to Ari about <em>Reddit Ads</em>',
+            contactLead: 'A 30-minute conversation about your category, your audience, and whether the subreddits that matter to you are worth advertising in (sometimes the answer is no).',
+            formHeading: 'Send Ari a note about Reddit Ads',
+            stats: [
+                ['Subreddit-level', 'targeting at the community, not the demographic'],
+                ['AI-search', 'Reddit is the most-cited source by ChatGPT and Perplexity'],
+                ['Native units', 'conversation ads that read as comments, not banners'],
+                ['Earned attention', 'Reddit punishes interruption, rewards relevance']
+            ],
+            divider: {
+                text: 'Reddit is the platform where AI search visibility starts. ChatGPT and Perplexity cite Reddit more than any other source. Show up there, well, and you show up everywhere.',
+                attr: 'On Reddit and AI search'
+            }
+        },
         'google-ads': {
             label: 'Google Ads',
             tagline: 'Google Ads',
@@ -176,14 +264,37 @@
        with the service-selector logic.
     ============================================================= */
     var ALIASES = {
+        // Google Ads
         'googleads':       'google-ads',
         'ads':             'google-ads',
         'ppc':             'google-ads',
+        // Meta
+        'meta':            'meta-ads',
+        'facebook':        'meta-ads',
+        'facebook-ads':    'meta-ads',
+        'fb':              'meta-ads',
+        'fb-ads':          'meta-ads',
+        'instagram':       'meta-ads',
+        'ig':              'meta-ads',
+        'ig-ads':          'meta-ads',
+        // TikTok
+        'tiktok':          'tiktok-ads',
+        'tt':              'tiktok-ads',
+        'tt-ads':          'tiktok-ads',
+        // LinkedIn
+        'linkedin':        'linkedin-ads',
+        'li':              'linkedin-ads',
+        'li-ads':          'linkedin-ads',
+        // Reddit
+        'reddit':          'reddit-ads',
+        // AI
         'ai':              'ai-agents',
         'agents':          'ai-agents',
+        // Website
         'web':             'website',
         'design':          'website',
         'webdesign':       'website',
+        // Content
         'copy':            'content',
         'copywriting':     'content',
         'editorial':       'content',
@@ -649,14 +760,18 @@
 
     // Service label map for dynamic subject lines
     var SERVICE_LABELS = {
-        'google-ads': 'Google Ads',
-        'hubspot':    'HubSpot & Automation',
-        'ai-agents':  'AI Agents',
-        'seo':        'SEO',
-        'geo':        'GEO',
-        'content':    'Content',
-        'website':    'Website Design',
-        'multi':      'Multiple'
+        'google-ads':   'Google Ads',
+        'meta-ads':     'Meta Ads',
+        'tiktok-ads':   'TikTok Ads',
+        'linkedin-ads': 'LinkedIn Ads',
+        'reddit-ads':   'Reddit Ads',
+        'hubspot':      'HubSpot & Automation',
+        'ai-agents':    'AI Agents',
+        'seo':          'SEO',
+        'geo':          'GEO',
+        'content':      'Content',
+        'website':      'Website Design',
+        'multi':        'Multiple'
     };
 
     // Before submitting, update _subject hidden field based on the
