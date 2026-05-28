@@ -1205,6 +1205,114 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             border-color: rgba(217,180,92,0.40);
         }
 
+        /* ====== Client voices: testimonials + featured video ====== */
+        .ai-video-feature { margin: 44px auto 0; max-width: 760px; }
+        .ai-video-frame {
+            background: var(--ink-dark);
+            border: 1px solid rgba(246,239,221,0.18);
+            border-radius: 8px; overflow: hidden;
+            aspect-ratio: 16 / 9;
+            box-shadow: 0 14px 36px rgba(0,0,0,0.30);
+            position: relative;
+        }
+        .ai-video-frame::before {
+            content: ''; position: absolute; top: -1px; left: 32px; right: 32px; height: 2px;
+            background: var(--gold); z-index: 2;
+        }
+        .ai-video-frame video {
+            width: 100%; height: 100%; object-fit: contain;
+            background: var(--ink-dark); display: block;
+        }
+        .section--paper .ai-video-frame { box-shadow: 0 14px 36px rgba(11,26,36,0.18); }
+        .ai-video-caption {
+            text-align: center;
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-size: 0.92rem; opacity: 0.72; margin-top: 14px;
+        }
+        .ai-trust {
+            display: flex; align-items: center; justify-content: center;
+            gap: 22px; flex-wrap: wrap;
+            margin: 36px auto 0; padding: 22px 32px; max-width: 460px;
+            background: rgba(246,239,221,0.05);
+            border: 1px solid rgba(246,239,221,0.16);
+            border-radius: 8px; position: relative;
+        }
+        .ai-trust::before {
+            content: ''; position: absolute; top: -1px; left: 32px; right: 32px; height: 2px;
+            background: var(--gold);
+        }
+        .section--paper .ai-trust { background: rgba(11,26,36,0.03); border-color: var(--rule); }
+        .ai-trust-stars {
+            color: var(--gold-light); font-size: 1.3rem; letter-spacing: 4px; line-height: 1;
+        }
+        .ai-trust-divider {
+            width: 1px; height: 38px; background: rgba(246,239,221,0.20); flex-shrink: 0;
+        }
+        .section--paper .ai-trust-divider { background: rgba(11,26,36,0.15); }
+        .ai-trust-text { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+        .ai-trust-rating {
+            font-family: 'Cormorant Garamond', serif; font-weight: 700;
+            font-size: 2rem; color: var(--gold-light); line-height: 1;
+        }
+        .section--paper .ai-trust-rating { color: var(--burgundy); }
+        .ai-trust-meta {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-size: 0.92rem; opacity: 0.80;
+        }
+        .ai-tgrid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 44px;
+        }
+        @media (max-width: 900px) { .ai-tgrid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .ai-tgrid { grid-template-columns: 1fr; } }
+        .ai-tcard {
+            padding: 24px 26px 22px;
+            background: rgba(246,239,221,0.04);
+            border: 1px solid rgba(246,239,221,0.14);
+            border-radius: 6px;
+            display: flex; flex-direction: column; gap: 14px;
+            transition: all 0.3s ease; position: relative;
+        }
+        .section--paper .ai-tcard { background: rgba(11,26,36,0.03); border-color: var(--rule); }
+        .ai-tcard:hover {
+            border-color: var(--gold); transform: translateY(-2px);
+            box-shadow: 0 10px 26px rgba(0,0,0,0.20);
+        }
+        .section--paper .ai-tcard:hover { box-shadow: 0 10px 26px rgba(11,26,36,0.12); }
+        .ai-tcard[data-promoted="true"] {
+            border-color: var(--gold);
+            background: rgba(182,138,60,0.12); order: -1;
+        }
+        .ai-tcard[data-promoted="true"]::before {
+            content: ''; position: absolute; top: -1px; left: 20px; width: 36px; height: 2px;
+            background: var(--gold);
+        }
+        .section--paper .ai-tcard[data-promoted="true"] { background: rgba(182,138,60,0.10); }
+        .ai-tcard-stars { color: var(--gold-light); font-size: 0.95rem; letter-spacing: 2px; line-height: 1; }
+        .section--paper .ai-tcard-stars { color: var(--gold); }
+        .ai-tcard-text {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-size: 1.02rem; line-height: 1.55; margin: 0;
+            color: var(--paper-cream); flex: 1;
+        }
+        .section--paper .ai-tcard-text { color: var(--ink-dark); }
+        .ai-tcard-attrib {
+            margin-top: auto; padding-top: 14px;
+            border-top: 1px dashed rgba(246,239,221,0.18);
+            display: flex; flex-direction: column; gap: 2px;
+        }
+        .section--paper .ai-tcard-attrib { border-top-color: rgba(11,26,36,0.14); }
+        .ai-tcard-name {
+            font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600;
+            font-size: 1.02rem; color: var(--gold-light); line-height: 1.2;
+        }
+        .section--paper .ai-tcard-name { color: var(--burgundy); }
+        .ai-tcard-context { font-size: 0.74rem; opacity: 0.68; letter-spacing: 0.3px; }
+        @media (max-width: 600px) {
+            .ai-trust { padding: 18px 22px; gap: 14px; }
+            .ai-trust-divider { display: none; }
+            .ai-trust-rating { font-size: 1.7rem; }
+        }
+
         /* ====== Cross-page nav cards (Other services) ====== */
         .cross-grid {
             display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;
@@ -1822,6 +1930,161 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 </section>
 
+<!-- ========== CLIENT VOICES (shared) ========== -->
+<section class="section section--ink" id="testimonials" data-feature="">
+    <div class="section-inner">
+        <div class="section-header reveal">
+            <span class="eyebrow"><span class="eyebrow-num">x</span> What clients say</span>
+            <h2>Direct words from <em class="italic-h">recent clients</em></h2>
+            <p class="lead">A sample of feedback from recent engagements. Ari has worked directly with brands across Australia, New Zealand, the United Kingdom, and the United States. These are some of the voices.</p>
+        </div>
+
+        <!-- Featured video: the wider, more produced testimonial -->
+        <div class="ai-video-feature reveal">
+            <div class="ai-video-frame">
+                <video controls preload="metadata" playsinline data-thumb-seek="0.5">
+                    <source src="https://hypeinsight.com/wp-content/uploads/2026/04/Common-Point.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="ai-video-caption">From a recent engagement</div>
+        </div>
+
+        <!-- Trust band -->
+        <div class="ai-trust reveal">
+            <div class="ai-trust-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="ai-trust-divider"></div>
+            <div class="ai-trust-text">
+                <div class="ai-trust-rating">5.0</div>
+                <div class="ai-trust-meta">across recent client engagements</div>
+            </div>
+        </div>
+
+        <!-- Card grid -->
+        <div class="ai-tgrid reveal" id="aiTestimonialGrid">
+                <article class="ai-tcard" data-cat="decision-intelligence">
+                    <div class="ai-tcard-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="ai-tcard-text">I have worked with Ari for several months and he has helped with marketing strategy, copywriting, go-to-market planning, and has been an amazing person to give me a gut-check on my thinking. He is easy to work with and gets things done on time with quality. More than anything, I get work back from Ari that does not need reworking, which is a true gift.</p>
+                    <div class="ai-tcard-attrib">
+                        <span class="ai-tcard-name">Chris</span>
+                        <span class="ai-tcard-context">Marketing strategy &amp; execution</span>
+                    </div>
+                </article>
+                <article class="ai-tcard" data-cat="decision-intelligence">
+                    <div class="ai-tcard-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="ai-tcard-text">Ari is exceptional in his field and very efficient in how he delivered the tasks. He went above and beyond to incorporate my comments and feedback. His communication was top-notch. Great experience working with him and would recommend him without a doubt.</p>
+                    <div class="ai-tcard-attrib">
+                        <span class="ai-tcard-name">Client</span>
+                        <span class="ai-tcard-context">Business plan &amp; strategy</span>
+                    </div>
+                </article>
+                <article class="ai-tcard" data-cat="decision-intelligence">
+                    <div class="ai-tcard-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="ai-tcard-text">Before I spoke with Ari I was struggling to formulate a strategic marketing plan. After some discussions he was able to put me back on track and gave me very valuable advice and a consultation, which showed me he has in-depth experience with helping implement a marketing strategy. Top notch guy and brilliant advice.</p>
+                    <div class="ai-tcard-attrib">
+                        <span class="ai-tcard-name">Client</span>
+                        <span class="ai-tcard-context">Marketing strategy advisory</span>
+                    </div>
+                </article>
+                <article class="ai-tcard" data-cat="sales-acceleration">
+                    <div class="ai-tcard-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="ai-tcard-text">Ari was fantastic, from start to finish. His understanding of the task, and ability to add value over and above was a stand out. Timely, articulate, strategically orientated and able to get the job done to the highest quality.</p>
+                    <div class="ai-tcard-attrib">
+                        <span class="ai-tcard-name">Client</span>
+                        <span class="ai-tcard-context">SEO &amp; lead generation</span>
+                    </div>
+                </article>
+                <article class="ai-tcard" data-cat="general">
+                    <div class="ai-tcard-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="ai-tcard-text">Ari delivered excellent work, on time, and was exactly what was asked for. I set a pretty tight deadline which Ari met with ease, and communication was very straightforward even though there was a significant time difference between us. I can not fault Ari or his work.</p>
+                    <div class="ai-tcard-attrib">
+                        <span class="ai-tcard-name">Client</span>
+                        <span class="ai-tcard-context">SaaS content strategy</span>
+                    </div>
+                </article>
+                <article class="ai-tcard" data-cat="general">
+                    <div class="ai-tcard-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="ai-tcard-text">Ari is incredible to work with and extremely knowledgable in SEO and digital marketing. All our requests were delivered efficiently and beyond expectations. I can see us working with him more and well into the future.</p>
+                    <div class="ai-tcard-attrib">
+                        <span class="ai-tcard-name">Megan</span>
+                        <span class="ai-tcard-context">SEO collaboration</span>
+                    </div>
+                </article>
+                <article class="ai-tcard" data-cat="sales-acceleration">
+                    <div class="ai-tcard-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="ai-tcard-text">Ari has been fabulous to work with. He is an expert in his field of PPC, Digital and eCommerce. He is highly responsive and detailed. We would definitely hire him again.</p>
+                    <div class="ai-tcard-attrib">
+                        <span class="ai-tcard-name">Rae</span>
+                        <span class="ai-tcard-context">PPC, digital, e-commerce</span>
+                    </div>
+                </article>
+                <article class="ai-tcard" data-cat="customer-support">
+                    <div class="ai-tcard-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="ai-tcard-text">Ari is great to work with. Very experienced, understood our needs and added value along the way. I highly recommend.</p>
+                    <div class="ai-tcard-attrib">
+                        <span class="ai-tcard-name">Pip</span>
+                        <span class="ai-tcard-context">Email automation setup</span>
+                    </div>
+                </article>
+                <article class="ai-tcard" data-cat="decision-intelligence">
+                    <div class="ai-tcard-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="ai-tcard-text">Ari is a go-getter. His application for the role stood out because he did not just tell me to spend money on Facebook and Google ads, and in his first week had us all thinking about a bunch of new stuff we hadn&#x27;t considered. Also a very personable and respectful professional with great communication.</p>
+                    <div class="ai-tcard-attrib">
+                        <span class="ai-tcard-name">Client</span>
+                        <span class="ai-tcard-context">Tourism app launch</span>
+                    </div>
+                </article>
+                <article class="ai-tcard" data-cat="general">
+                    <div class="ai-tcard-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="ai-tcard-text">Great experience. Ari was very knowledgeable in social media and digital marketing. He built a great website for my firm and I could tell that he cares about the job he does for you.</p>
+                    <div class="ai-tcard-attrib">
+                        <span class="ai-tcard-name">Hermie</span>
+                        <span class="ai-tcard-context">Law firm digital</span>
+                    </div>
+                </article>
+                <article class="ai-tcard" data-cat="orchestration">
+                    <div class="ai-tcard-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="ai-tcard-text">Ari did a great job helping us prepare the marketing materials for our company, including the copy writing and design of our website, brochure and other supporting materials. Additionally Ari helped us prepare our client marketing and sales tracking system. I hope to have more work for him soon.</p>
+                    <div class="ai-tcard-attrib">
+                        <span class="ai-tcard-name">Client</span>
+                        <span class="ai-tcard-context">AI chatbot company</span>
+                    </div>
+                </article>
+                <article class="ai-tcard" data-cat="orchestration">
+                    <div class="ai-tcard-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="ai-tcard-text">Ari is a marketing asset you can rely on. He is honest and cares about your company as if it were his own. He exceeded all my expectations. He handled Shopify set up, brainstormed marketing and influencer strategies, and spearheaded the individual needs of those campaigns.</p>
+                    <div class="ai-tcard-attrib">
+                        <span class="ai-tcard-name">Client</span>
+                        <span class="ai-tcard-context">Multi-discipline e-commerce</span>
+                    </div>
+                </article>
+                <article class="ai-tcard" data-cat="general">
+                    <div class="ai-tcard-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="ai-tcard-text">Ari was professional, courteous and patient with me (I am not easy to work with). He was able to change his writing style and redraft his work when we realised I had asked for the wrong tone and formality of message. Very impressed and will hire again.</p>
+                    <div class="ai-tcard-attrib">
+                        <span class="ai-tcard-name">Client</span>
+                        <span class="ai-tcard-context">Brand &amp; value proposition</span>
+                    </div>
+                </article>
+                <article class="ai-tcard" data-cat="sales-acceleration">
+                    <div class="ai-tcard-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="ai-tcard-text">Ari has a great understanding of various digital marketing platforms, and the strategies to reach audiences. Ari helped us implement an ad campaign on both Facebook and Google.</p>
+                    <div class="ai-tcard-attrib">
+                        <span class="ai-tcard-name">Jeff</span>
+                        <span class="ai-tcard-context">Digital marketing strategy</span>
+                    </div>
+                </article>
+                <article class="ai-tcard" data-cat="sales-acceleration">
+                    <div class="ai-tcard-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="ai-tcard-text">10/10 would recommend. Ari was great to work with from the get-go, super communicative, helpful and knowledgeable which was just what we needed as a small start-up getting started with Google Ads.</p>
+                    <div class="ai-tcard-attrib">
+                        <span class="ai-tcard-name">Client</span>
+                        <span class="ai-tcard-context">Google Ads audit</span>
+                    </div>
+                </article>
+        </div>
+    </div>
+</section>
+
 <!-- ========== SECTION 10: CONTACT FORM ========== -->
 <section class="section section--ink" id="contact">
     <div class="section-inner">
@@ -1952,6 +2215,38 @@ var io = new IntersectionObserver(function(entries) {
     });
 }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 revealEls.forEach(function(el) { io.observe(el); });
+
+// ===== Testimonials: promote cards matching data-feature =====
+(function() {
+    var section = document.getElementById('testimonials');
+    if (!section) return;
+    var feature = (section.getAttribute('data-feature') || '').trim();
+    if (!feature) return;
+    section.querySelectorAll('.ai-tcard[data-cat]').forEach(function(card) {
+        if (card.getAttribute('data-cat') === feature) {
+            card.setAttribute('data-promoted', 'true');
+        }
+    });
+})();
+
+// ===== Video thumbnail seek (gives the video a meaningful poster) =====
+(function() {
+    document.querySelectorAll('video[data-thumb-seek]').forEach(function(v) {
+        var t = parseFloat(v.getAttribute('data-thumb-seek')) || 0.5;
+        function seek() {
+            try {
+                if (v.readyState >= 1 && !isNaN(v.duration) && v.duration > t) {
+                    v.currentTime = t;
+                }
+            } catch (e) {}
+        }
+        if (v.readyState >= 1) {
+            seek();
+        } else {
+            v.addEventListener('loadedmetadata', seek, { once: true });
+        }
+    });
+})();
 
 // ===== Readiness activity =====
 (function() {

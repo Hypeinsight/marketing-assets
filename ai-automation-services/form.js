@@ -154,3 +154,46 @@
         });
     } catch (e) {}
 })();
+
+/* =================================================================
+   Testimonials: promote cards whose data-cat matches the section's
+   data-feature attribute. Promoted cards get a gold border and
+   order:-1 so they appear first in the grid.
+   ================================================================= */
+(function() {
+    var section = document.getElementById('testimonials');
+    if (!section) return;
+    var feature = (section.getAttribute('data-feature') || '').trim();
+    if (!feature) return;
+    var cards = section.querySelectorAll('.ai-tcard[data-cat]');
+    cards.forEach(function(card) {
+        if (card.getAttribute('data-cat') === feature) {
+            card.setAttribute('data-promoted', 'true');
+        }
+    });
+})();
+
+/* =================================================================
+   Video thumbnail seek: jumps the video to a non-blank frame so the
+   poster looks meaningful before the user hits play. Triggered on
+   loadedmetadata so it works even when preload="metadata" only
+   pulls the header.
+   ================================================================= */
+(function() {
+    var vids = document.querySelectorAll('video[data-thumb-seek]');
+    vids.forEach(function(v) {
+        var t = parseFloat(v.getAttribute('data-thumb-seek')) || 0.5;
+        function seek() {
+            try {
+                if (v.readyState >= 1 && !isNaN(v.duration) && v.duration > t) {
+                    v.currentTime = t;
+                }
+            } catch (e) {}
+        }
+        if (v.readyState >= 1) {
+            seek();
+        } else {
+            v.addEventListener('loadedmetadata', seek, { once: true });
+        }
+    });
+})();
