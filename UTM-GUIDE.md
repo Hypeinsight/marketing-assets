@@ -55,7 +55,7 @@ exist for handwritten / shared links and analytics readability.
 
 Use these exact values so analytics rolls up consistently across
 campaigns. Lowercase everything, use underscores or hyphens
-consistently (pick one and stick with it — we suggest underscores).
+consistently (pick one and stick with it; we suggest underscores).
 
 ### Google Ads
 
@@ -233,7 +233,7 @@ https://[your-domain]/ari/?utm_source=hypeinsight&utm_medium=email&utm_campaign=
 The AI services pages (`/ai-automation-services/` and its four sub-
 pages: sales-acceleration, customer-support, decision-intelligence,
 orchestration) **do not** use service personalisation via query
-strings — each page IS already a specific service.
+strings. Each page IS already a specific service.
 
 But they **do** capture and forward UTMs to Formspree, so your
 campaign tracking still works end to end. Just append UTMs to the
@@ -300,8 +300,8 @@ still correctly detects `service=seo`, regardless of param order.
   keyword. Don't swap them.
 - **Avoid commas, ampersands, equals signs in values.** They'll
   break URL parsing. Stick to letters, numbers, `_`, `-`, and `.`.
-- **One service per URL.** Don't try `?service=seo&service=content` —
-  the first one wins, the second is ignored.
+- **One service per URL.** Don't try `?service=seo&service=content`,
+  the first one wins and the second is ignored.
 - **Test the URL before paying for clicks.** Paste into a browser,
   check that the page retunes to the right service, then click submit
   on the form and verify the Formspree email subject is correct.
