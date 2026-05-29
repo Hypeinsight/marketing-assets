@@ -239,39 +239,24 @@
 })();
 
 /* =================================================================
-   Video thumbnail render: forces a non-blank first frame to paint.
-   For cross-origin videos, setting currentTime alone often does not
-   actually render. The fix: temporarily mute, do play() then pause()
-   on the first metadata event, which forces a real decode + paint.
-   Restores the original muted state afterwards.
+   Video preview performance: the testimonial cards autoplay muted
+   on loop so they're always "alive" instead of hoping for a frame
+   to render. To keep bandwidth and CPU sane, an IntersectionObserver
+   pauses each video when it scrolls off-screen and resumes when
+   it comes back into view.
    ================================================================= */
 (function() {
-    document.querySelectorAll('video[data-thumb-seek]').forEach(function(v) {
-        var t = parseFloat(v.getAttribute('data-thumb-seek')) || 0.5;
-        var wasMuted = v.muted;
-        function render() {
-            try { v.currentTime = t; } catch (e) {}
-            // Mute (if not already), then play->pause to force frame paint.
-            v.muted = true;
-            var p = v.play();
-            if (p && typeof p.then === 'function') {
-                p.then(function() {
-                    v.pause();
-                    try { v.currentTime = t; } catch (e) {}
-                    // Restore the original muted state once the frame is shown.
-                    // Stays muted by default for these previews (the user un-mutes
-                    // when they hit play via controls).
-                    v.muted = wasMuted;
-                }).catch(function() {
-                    v.muted = wasMuted;
-                });
+    var vids = document.querySelectorAll('.ai-vcard video');
+    if (!vids.length || !('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            var v = entry.target;
+            if (entry.isIntersecting) {
+                if (v.paused) v.play().catch(function() {});
+            } else {
+                if (!v.paused) v.pause();
             }
-        }
-        if (v.readyState >= 1) {
-            render();
-        } else {
-            v.addEventListener('loadedmetadata', render, { once: true });
-            v.addEventListener('loadeddata',     render, { once: true });
-        }
-    });
+        });
+    }, { threshold: 0.15 });
+    vids.forEach(function(v) { io.observe(v); });
 })();

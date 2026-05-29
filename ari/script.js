@@ -375,33 +375,6 @@
         });
     }
 
-    /* Forces a non-blank first frame to render for cross-origin videos.
-       The bare currentTime trick fails in some browsers (Chrome with
-       certain CORS configs); muted play -> immediate pause forces an
-       actual decode + paint cycle. The video is temporarily muted to
-       satisfy autoplay policy, then restored to its original muted
-       state once the frame has rendered. */
-    function attachThumbnailSeek(v) {
-        var wasMuted = v.muted;
-        function render() {
-            var t = Math.min(0.5, (v.duration || 1) - 0.1);
-            try { v.currentTime = t; } catch (e) {}
-            v.muted = true;
-            var p = v.play();
-            if (p && typeof p.then === 'function') {
-                p.then(function() {
-                    v.pause();
-                    try { v.currentTime = t; } catch (e) {}
-                    v.muted = wasMuted;
-                }).catch(function() {
-                    v.muted = wasMuted;
-                });
-            }
-        }
-        v.addEventListener('loadedmetadata', render, { once: true });
-        v.addEventListener('loadeddata',     render, { once: true });
-    }
-
     function applyService(serviceKey) {
         var body = document.body;
         captureDefaults();
@@ -531,19 +504,27 @@
         var counter  = document.querySelector('[data-modal-counter]');
         if (!strip || !modal || !player) return;
 
-        /* ---- Thumbnail-from-first-frame trick ---------------------
-           For cross-origin videos, setting currentTime alone often
-           does not paint a frame to the element. Doing a muted
-           play() then immediate pause() forces the browser to
-           decode + render. Safe because the video stays muted; the
-           user sees a still frame as the "thumbnail".
+        /* ---- Pause off-screen videos for performance --------------
+           The strip videos autoplay muted on loop, so they're always
+           "alive" without needing to render a static thumbnail. To
+           keep CPU and bandwidth sane on long pages, pause anything
+           that scrolls out of view and resume when it comes back.
         ---------------------------------------------------------- */
-        strip.querySelectorAll('video').forEach(function(v) {
-            // Only the first-cycle videos have preload=metadata; the
-            // duplicates have preload=none so we leave those alone
-            if (v.getAttribute('preload') !== 'metadata') return;
-            attachThumbnailSeek(v);
-        });
+        if ('IntersectionObserver' in window) {
+            var stripIO = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    var v = entry.target;
+                    if (entry.isIntersecting) {
+                        if (v.paused) v.play().catch(function() {});
+                    } else {
+                        if (!v.paused) v.pause();
+                    }
+                });
+            }, { threshold: 0.15 });
+            strip.querySelectorAll('video').forEach(function(v) {
+                stripIO.observe(v);
+            });
+        }
 
         // Build the master list of unique video sources from the first cycle (5 items)
         var items = strip.querySelectorAll('.video-strip-item:not([aria-hidden])');

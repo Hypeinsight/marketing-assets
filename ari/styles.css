@@ -1024,7 +1024,7 @@ strong { font-weight: 600; }
 .video-carousel-wrap[data-at-start="true"]::before { opacity: 0; }
 .video-carousel-wrap[data-at-end="true"]::after  { opacity: 0; }
 
-/* ============ Verified reviews wall (Upwork-style floating cards) ============ */
+/* ============ Verified reviews wall (floating cards) ============ */
 .review-badge {
     position: relative;
     text-align: center;
