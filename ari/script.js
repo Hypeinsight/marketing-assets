@@ -375,6 +375,113 @@
         });
     }
 
+    /* ============ Case study carousel ============
+       Single-slide carousel of case studies. Slides have data-cases
+       tags (space-separated). filterCaseCarousel() hides slides whose
+       tags do not intersect with the active service set, then resets
+       to the first visible slide. setupCaseCarousel() wires the next /
+       prev / dot handlers. Both are safe to call before the DOM is
+       ready: they early-return if the carousel is not present.
+    ================================================================= */
+    var caseState = { idx: 0, visible: [] };
+
+    function filterCaseCarousel(featuredCases) {
+        var track = document.getElementById('caseTrack');
+        if (!track) return;
+        var slides = track.querySelectorAll('.case-slide');
+
+        // Two-pass: first work out which slides match, and if the count is
+        // zero, fall back to showing every slide. Better than displaying an
+        // empty carousel for services without case studies (TikTok, Reddit,
+        // AI agents, GEO, Website).
+        var matches = [];
+        slides.forEach(function(slide) {
+            var tags = (slide.dataset.cases || '').split(' ').filter(Boolean);
+            var match;
+            if (!featuredCases || !featuredCases.length) {
+                match = true;
+            } else {
+                match = featuredCases.some(function(fc) { return tags.indexOf(fc) !== -1; });
+            }
+            if (match) matches.push(slide);
+        });
+        var showAll = (matches.length === 0);
+
+        var visible = [];
+        slides.forEach(function(slide) {
+            var show = showAll || matches.indexOf(slide) !== -1;
+            if (show) {
+                slide.removeAttribute('hidden');
+                visible.push(slide);
+            } else {
+                slide.setAttribute('hidden', '');
+                slide.classList.remove('is-current');
+            }
+        });
+        caseState.visible = visible;
+        caseState.idx = 0;
+        renderCaseCarousel();
+    }
+
+    function renderCaseCarousel() {
+        var v = caseState.visible;
+        if (!v.length) return;
+        v.forEach(function(s, i) { s.classList.toggle('is-current', i === caseState.idx); });
+
+        var counter = document.querySelector('[data-case-counter]');
+        if (counter) counter.textContent = (caseState.idx + 1) + ' of ' + v.length;
+
+        var prev = document.querySelector('[data-case-prev]');
+        var next = document.querySelector('[data-case-next]');
+        if (prev) prev.disabled = (caseState.idx === 0);
+        if (next) next.disabled = (caseState.idx === v.length - 1);
+
+        // Rebuild dots
+        var dots = document.getElementById('caseDots');
+        if (dots) {
+            dots.innerHTML = '';
+            v.forEach(function(_, i) {
+                var b = document.createElement('button');
+                b.type = 'button';
+                b.className = 'case-dot' + (i === caseState.idx ? ' is-current' : '');
+                b.setAttribute('role', 'tab');
+                b.setAttribute('aria-label', 'Go to case ' + (i + 1));
+                b.addEventListener('click', function() {
+                    caseState.idx = i;
+                    renderCaseCarousel();
+                });
+                dots.appendChild(b);
+            });
+        }
+    }
+
+    function setupCaseCarousel() {
+        var track = document.getElementById('caseTrack');
+        if (!track) return;
+        // Initial visible set: whatever isn't hidden by the prior filter pass
+        var slides = track.querySelectorAll('.case-slide');
+        var visible = [];
+        slides.forEach(function(s) { if (!s.hasAttribute('hidden')) visible.push(s); });
+        caseState.visible = visible;
+        caseState.idx = 0;
+
+        var prev = document.querySelector('[data-case-prev]');
+        var next = document.querySelector('[data-case-next]');
+        if (prev) prev.addEventListener('click', function() {
+            if (caseState.idx > 0) { caseState.idx -= 1; renderCaseCarousel(); }
+        });
+        if (next) next.addEventListener('click', function() {
+            if (caseState.idx < caseState.visible.length - 1) { caseState.idx += 1; renderCaseCarousel(); }
+        });
+        // Keyboard arrows when the carousel is focused
+        track.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft'  && caseState.idx > 0) { caseState.idx -= 1; renderCaseCarousel(); }
+            if (e.key === 'ArrowRight' && caseState.idx < caseState.visible.length - 1) { caseState.idx += 1; renderCaseCarousel(); }
+        });
+
+        renderCaseCarousel();
+    }
+
     function applyService(serviceKey) {
         var body = document.body;
         captureDefaults();
@@ -388,6 +495,8 @@
                 rc.dataset.promoted = 'false';
             });
             document.querySelectorAll('.authored-card').forEach(function(c) { c.dataset.promoted = 'false'; });
+            // Reset case carousel to show every slide
+            filterCaseCarousel(null);
             // Clear active pill state
             document.querySelectorAll('.service-pill').forEach(function(p) { p.classList.remove('active'); });
             return;
@@ -428,13 +537,8 @@
             p.classList.toggle('active', p.dataset.service === serviceKey);
         });
 
-        // Reorder case cards: matching first as featured
-        var cards = document.querySelectorAll('#caseGrid .case-card');
-        cards.forEach(function(card) {
-            var tags = (card.dataset.cases || '').split(' ');
-            var isMatch = s.featuredCases.some(function(fc) { return tags.indexOf(fc) !== -1; });
-            card.dataset.featured = isMatch ? 'true' : 'false';
-        });
+        // Filter the case-study carousel to matching slides
+        filterCaseCarousel(s.featuredCases);
 
         // Subtly promote reviews matching the selected service (orange ring),
         // without hiding the rest. The masonry layout keeps order.
@@ -484,13 +588,17 @@
             try { history.pushState({}, '', url); } catch(err) {}
             applyService(newService);
 
-            var workSection = document.getElementById('work');
-            if (workSection) workSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // Anchor back to the top of the page (hero), not the work section,
+            // so the visitor sees the personalised hero copy first.
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     });
 
     /* ============ Initial apply on page load ============ */
     applyService(detectService());
+    // Build the carousel only after the initial filter has run, so the
+    // first slide is the matching one for the active service.
+    setupCaseCarousel();
 
     /* ============ Video testimonials: auto-scrolling strip + lightbox ============ */
     (function setupVideoStrip() {
