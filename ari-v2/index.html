@@ -2305,20 +2305,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="form-heading">Pick a time, no pitch</div>
                 <p class="form-sub">Free 30-minute read. Booked through Ari's calendar, confirmed by email.</p>
 
-                <!-- HubSpot Meetings embed slot.
-                     At build time: paste the HubSpot Meetings code snippet for the
-                     "Free 30-min Read" meeting type inside .meetings-iframe-container.
-                     Reference: https://app.hubspot.com/meetings (Embed: Code Snippet).
-                     Until then, this fallback button opens the form below. -->
-                <div class="meetings-iframe-container" data-src="" aria-label="HubSpot Meetings scheduler">
-                    <div class="meetings-fallback">
-                        <p>Calendar loading. If you'd rather not wait, you can skip straight to the message form below.</p>
-                        <a href="#contactForm" class="btn btn-cream-outline" style="background:none;color:var(--cream);border-color:rgba(246,239,221,0.30);">Send a note instead</a>
-                    </div>
-                </div>
-                <!-- The official HubSpot Meetings loader script will be added at deploy:
-                     <script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"></script>
-                -->
+                <!-- Start of Meetings Embed Script -->
+                <div class="meetings-iframe-container" data-src="https://meetings.hubspot.com/ari75?embed=true"></div>
+                <script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"></script>
+                <!-- End of Meetings Embed Script -->
             </div>
 
             <div class="contact-form-divider"><span>Or send a note instead</span></div>

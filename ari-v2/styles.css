@@ -1856,27 +1856,24 @@ strong { font-weight: 600; }
     .lead-magnet { grid-template-columns: 1fr; padding: 28px 24px; gap: 24px; }
 }
 
-/* ============ Contact scheduler placeholder + divider ============ */
+/* ============ Contact scheduler (HubSpot Meetings embed) + divider ============ */
 .contact-scheduler {
     display: flex; flex-direction: column;
     padding: 28px;
 }
+/* The HubSpot embed injects an iframe that sizes itself. Give it a sane
+   min-height so the layout doesn't collapse while the script is loading. */
 .meetings-iframe-container {
     margin-top: 16px;
-    min-height: 320px;
-    background: rgba(246,239,221,0.04);
-    border: 1px dashed rgba(246,239,221,0.22);
+    min-height: 640px;
+    background: var(--cream);
     border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    padding: 28px;
-    text-align: center;
+    overflow: hidden;
 }
-.meetings-fallback p {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    color: var(--cream);
-    opacity: 0.78;
-    margin: 0 0 18px;
+.meetings-iframe-container iframe {
+    width: 100% !important;
+    border: 0;
+    display: block;
 }
 .contact-form-divider {
     display: flex; align-items: center; gap: 18px;
