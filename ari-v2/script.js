@@ -1002,9 +1002,10 @@
      meeting_booked      -> Schedule
    ================================================================= */
 
-/* Site Health Score: AJAX submit + inline success + dataLayer push.
-   Replaces the default form-redirect-to-Formspree behaviour so the
-   visitor stays on the page and we get a chance to fire the event. */
+/* Site Health Score: AJAX submit + dataLayer push + redirect to the
+   scored diagnostic at /site-health-score/. Formspree's auto-reply
+   (configured server-side) sends the visitor a copy of the link by
+   email so they can return to their score later. */
 (function() {
     var form = document.querySelector('.lead-magnet-form');
     if (!form) return;
@@ -1012,12 +1013,17 @@
     var success  = form.querySelector('.lead-magnet-success');
     var fine     = form.querySelector('.lead-magnet-fine');
     var endpoint = form.getAttribute('action');
+    // Where to send the visitor once their email is captured. Using a
+    // root-relative path so it works whether the page lives at /ari-v2/
+    // or under a different mount point.
+    var QUIZ_URL = '/site-health-score/';
 
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         if (!btn) return;
         var emailInput = form.querySelector('input[type="email"]');
-        if (!emailInput || !emailInput.value.trim()) {
+        var email = emailInput ? emailInput.value.trim() : '';
+        if (!email) {
             emailInput && emailInput.focus();
             return;
         }
@@ -1039,19 +1045,20 @@
                     lead_source: 'Site Health Score'
                 });
             }
-            form.reset();
+            // Brief on-screen confirmation in case the redirect is slow
             if (success) {
+                success.textContent = 'Got it. Opening your Site Health Score now…';
                 success.hidden = false;
-                success.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
             if (fine) fine.style.display = 'none';
+            // Pass the email + source so the quiz page can show a
+            // personalised banner and so the visit is attributable
+            var qs = '?source=ari-v2&email=' + encodeURIComponent(email);
+            window.location.href = QUIZ_URL + qs;
         })
         .catch(function() {
             btn.innerHTML = 'Try again';
-        })
-        .finally(function() {
             btn.disabled = false;
-            if (btn.innerHTML === 'Sending&hellip;') btn.innerHTML = original;
         });
     });
 })();
