@@ -358,6 +358,39 @@ window.dataLayer.push({
 });
 ```
 
+**Ari v2 conversion-page additions:**
+
+The conversion-focused variant at `/ari-v2/` adds two more events for
+the lead magnet and the HubSpot Meetings scheduler.
+
+```javascript
+// Fires when the Site Health Score email-capture form is submitted
+window.dataLayer.push({
+    event: 'health_score_submit',
+    source_page: 'ari-v2',
+    lead_source: 'Site Health Score'
+});
+
+// Fires when a visitor completes a booking inside the embedded
+// HubSpot Meetings scheduler (listened for via window postMessage)
+window.dataLayer.push({
+    event: 'meeting_booked',
+    source_page: 'ari-v2',
+    meeting_type: 'free-30-min-read'
+});
+```
+
+**Suggested GTM -> Meta Pixel mapping for the paid traffic loop:**
+
+| dataLayer event       | Meta Pixel standard event |
+|-----------------------|---------------------------|
+| `health_score_submit` | `Lead`                    |
+| `ari_contact_submit`  | `Lead`                    |
+| `meeting_booked`      | `Schedule`                |
+
+Same triggers can fan out to GA4, LinkedIn Insight, TikTok Pixel etc.
+without touching the page code again.
+
 UTM params are not pushed to dataLayer directly because GTM and GA4
 auto-capture them from the URL. They are however written into hidden
 form fields so they land in the Formspree email body for offline

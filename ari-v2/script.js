@@ -980,3 +980,105 @@
     } catch (e) {}
 
 })();
+
+
+/* =================================================================
+   GTM dataLayer pushes for ari-v2 conversion events.
+   Three moments fire, one event each. Wire GTM triggers on the
+   `event` name; from there the same trigger can fan out to Meta
+   Pixel, GA4, LinkedIn Insight, etc. without further code changes.
+
+     | dataLayer event       | Where it fires                      |
+     |-----------------------|-------------------------------------|
+     | health_score_submit   | Site Health Score lead magnet form  |
+     | meeting_booked        | HubSpot Meetings booking confirmed  |
+     | ari_contact_submit    | Main "send a note" contact form     |
+                              (already pushed inside the contact
+                              form handler above, kept untouched)
+
+   Meta Pixel mapping (set inside GTM, not here):
+     health_score_submit -> Lead
+     ari_contact_submit  -> Lead
+     meeting_booked      -> Schedule
+   ================================================================= */
+
+/* Site Health Score: AJAX submit + inline success + dataLayer push.
+   Replaces the default form-redirect-to-Formspree behaviour so the
+   visitor stays on the page and we get a chance to fire the event. */
+(function() {
+    var form = document.querySelector('.lead-magnet-form');
+    if (!form) return;
+    var btn      = form.querySelector('.lead-magnet-btn');
+    var success  = form.querySelector('.lead-magnet-success');
+    var fine     = form.querySelector('.lead-magnet-fine');
+    var endpoint = form.getAttribute('action');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (!btn) return;
+        var emailInput = form.querySelector('input[type="email"]');
+        if (!emailInput || !emailInput.value.trim()) {
+            emailInput && emailInput.focus();
+            return;
+        }
+        var original = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = 'Sending&hellip;';
+
+        fetch(endpoint, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+        })
+        .then(function(res) { return res.ok ? res : Promise.reject(res); })
+        .then(function() {
+            if (window.dataLayer) {
+                window.dataLayer.push({
+                    event: 'health_score_submit',
+                    source_page: 'ari-v2',
+                    lead_source: 'Site Health Score'
+                });
+            }
+            form.reset();
+            if (success) {
+                success.hidden = false;
+                success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            if (fine) fine.style.display = 'none';
+        })
+        .catch(function() {
+            btn.innerHTML = 'Try again';
+        })
+        .finally(function() {
+            btn.disabled = false;
+            if (btn.innerHTML === 'Sending&hellip;') btn.innerHTML = original;
+        });
+    });
+})();
+
+/* HubSpot Meetings: listen for the booking-confirmation postMessage
+   the embed fires when a visitor completes a booking. The HubSpot
+   embed has emitted this signal under a few different shapes over
+   the years, so the listener accepts any of them. */
+(function() {
+    function isBookingMessage(d) {
+        if (!d) return false;
+        if (d === 'meetingBookSucceeded') return true;
+        if (d.meetingBookSucceeded) return true;
+        if (d.eventName === 'meetingBookSucceeded') return true;
+        if (d.meetingsPayload && d.meetingsPayload.bookingResponse) return true;
+        return false;
+    }
+    window.addEventListener('message', function(e) {
+        if (!e.origin || e.origin.indexOf('hubspot') === -1) return;
+        if (!isBookingMessage(e.data)) return;
+        if (window.dataLayer) {
+            window.dataLayer.push({
+                event: 'meeting_booked',
+                source_page: 'ari-v2',
+                meeting_type: 'free-30-min-read'
+            });
+        }
+    });
+})();
+

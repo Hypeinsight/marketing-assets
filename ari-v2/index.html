@@ -15,9 +15,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta property="og:title" content="Ari Vivekanandarajah | Fractional Marketing Advisor">
     <meta property="og:description" content="Two decades. 200+ brands. $20M+ ad spend stewarded. One operator, working with you directly. Book a free 30-minute read.">
     <meta property="og:type" content="website">
-    <!-- Meta Pixel placeholder: drop the real pixel snippet here at deploy time -->
-    <!-- <script>!function(f,b,e,v,n,t,s){...fbq('init','PIXEL_ID');fbq('track','PageView');</script> -->
-    <!-- Events to wire: Lead (Health Score submit), Schedule (free read booked), Purchase (Power Hour paid) -->
+    <!-- Tracking is wired via GTM (container above). Conversion events
+         are pushed to window.dataLayer by script.js; add the Meta Pixel
+         tag inside GTM and trigger it on these dataLayer event names:
+           health_score_submit -> Meta Pixel "Lead"
+           ari_contact_submit  -> Meta Pixel "Lead"
+           meeting_booked      -> Meta Pixel "Schedule"
+         Same triggers can fan out to GA4, LinkedIn, TikTok, etc. -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
