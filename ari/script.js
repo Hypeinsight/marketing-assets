@@ -106,7 +106,7 @@
             contactLead: 'A 30-minute conversation, no pitch. Tell Ari about the account, the budget, and the outcome you need; you will get an honest read on whether he is the right person for it.',
             formHeading: 'Send Ari a note about Google Ads',
             stats: [
-                ['$20M+', 'in ad spend stewarded across paid search and shopping'],
+                ['$30M+', 'in ad spend stewarded across paid search and shopping'],
                 ['+45%', 'more deals closed by sales teams using AI-assisted ad tooling'],
                 ['10→200', 'enquiries per quarter after one combined SEO + ads program'],
                 ['5 min', 'inbound lead response on accounts Ari runs end to end']
