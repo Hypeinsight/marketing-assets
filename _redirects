@@ -1,1 +1,20 @@
-/ https://hypeinsight.com 301
+# Root redirects to the main marketing site
+/                                                       https://hypeinsight.com         301
+
+# Trailing-slash normalisation: any visit without the slash gets a 301
+# to the canonical slash-terminated URL. Lists every directory that has
+# its own index.html so the browser bar shows the canonical path.
+/ari                                                    /ari/                            301
+/ari-v2                                                 /ari-v2/                         301
+/ai-agent-guide                                         /ai-agent-guide/                 301
+/ai-automation-services                                 /ai-automation-services/         301
+/ai-automation-services/sales-acceleration              /ai-automation-services/sales-acceleration/      301
+/ai-automation-services/customer-support                /ai-automation-services/customer-support/        301
+/ai-automation-services/decision-intelligence           /ai-automation-services/decision-intelligence/   301
+/ai-automation-services/orchestration                   /ai-automation-services/orchestration/           301
+/complete-website-guide                                 /complete-website-guide/         301
+/ecommerce-website-guide                                /ecommerce-website-guide/        301
+/ecommerce-hacked-website-guide                         /ecommerce-hacked-website-guide/ 301
+/hacked-website-survival-guide                          /hacked-website-survival-guide/  301
+/maximising-event-roi                                   /maximising-event-roi/           301
+/site-health-score                                      /site-health-score/              301
