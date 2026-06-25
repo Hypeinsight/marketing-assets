@@ -1,20 +1,23 @@
 # Root redirects to the main marketing site
-/                                                       https://hypeinsight.com         301
+/                                                       https://hypeinsight.com         301!
 
-# Trailing-slash normalisation: any visit without the slash gets a 301
-# to the canonical slash-terminated URL. Lists every directory that has
-# its own index.html so the browser bar shows the canonical path.
-/ari                                                    /ari/                            301
-/ari-v2                                                 /ari-v2/                         301
-/ai-agent-guide                                         /ai-agent-guide/                 301
-/ai-automation-services                                 /ai-automation-services/         301
-/ai-automation-services/sales-acceleration              /ai-automation-services/sales-acceleration/      301
-/ai-automation-services/customer-support                /ai-automation-services/customer-support/        301
-/ai-automation-services/decision-intelligence           /ai-automation-services/decision-intelligence/   301
-/ai-automation-services/orchestration                   /ai-automation-services/orchestration/           301
-/complete-website-guide                                 /complete-website-guide/         301
-/ecommerce-website-guide                                /ecommerce-website-guide/        301
-/ecommerce-hacked-website-guide                         /ecommerce-hacked-website-guide/ 301
-/hacked-website-survival-guide                          /hacked-website-survival-guide/  301
-/maximising-event-roi                                   /maximising-event-roi/           301
-/site-health-score                                      /site-health-score/              301
+# Trailing-slash normalisation. The trailing "!" on the status code is
+# the Netlify/Render "force" flag: it makes the redirect fire even when
+# the host would otherwise serve a matching file. Without it, Render
+# serves <dir>/index.html at /<dir> directly, the page loads, but all
+# relative CSS / JS / image paths 404 because the browser resolves them
+# against / rather than /<dir>/.
+/ari                                                    /ari/                            301!
+/ari-v2                                                 /ari-v2/                         301!
+/ai-agent-guide                                         /ai-agent-guide/                 301!
+/ai-automation-services                                 /ai-automation-services/         301!
+/ai-automation-services/sales-acceleration              /ai-automation-services/sales-acceleration/      301!
+/ai-automation-services/customer-support                /ai-automation-services/customer-support/        301!
+/ai-automation-services/decision-intelligence           /ai-automation-services/decision-intelligence/   301!
+/ai-automation-services/orchestration                   /ai-automation-services/orchestration/           301!
+/complete-website-guide                                 /complete-website-guide/         301!
+/ecommerce-website-guide                                /ecommerce-website-guide/        301!
+/ecommerce-hacked-website-guide                         /ecommerce-hacked-website-guide/ 301!
+/hacked-website-survival-guide                          /hacked-website-survival-guide/  301!
+/maximising-event-roi                                   /maximising-event-roi/           301!
+/site-health-score                                      /site-health-score/              301!
