@@ -1857,6 +1857,13 @@ strong { font-weight: 600; }
 }
 
 /* ============ Contact scheduler (HubSpot Meetings embed) + divider ============ */
+/* The contact-grid is a 2-column grid (side + form). The right column
+   now stacks three pieces (scheduler, "or" divider, fallback form),
+   so we wrap them in .contact-stack and let the grid see one child. */
+.contact-stack {
+    display: flex; flex-direction: column;
+    min-width: 0;
+}
 .contact-scheduler {
     display: flex; flex-direction: column;
     padding: 28px;
