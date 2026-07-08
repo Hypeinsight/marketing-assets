@@ -455,6 +455,172 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             color: var(--cream);
             opacity: 0.72;
         }
+
+        /* Hero right-column: portrait + caption card for the chief */
+        .build-chief {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+            align-items: stretch;
+        }
+        .build-chief-photo-wrap {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--ink-2);
+            box-shadow: 0 22px 48px rgba(0,0,0,0.40);
+            border: 1px solid rgba(246,239,221,0.16);
+        }
+        .build-chief-photo {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            object-position: center 20%;
+        }
+        .build-chief-corner-top,
+        .build-chief-corner-bot {
+            position: absolute;
+            width: 44px; height: 44px;
+            pointer-events: none;
+        }
+        .build-chief-corner-top {
+            top: 12px; left: 12px;
+            border-top: 2px solid var(--orange);
+            border-left: 2px solid var(--orange);
+        }
+        .build-chief-corner-bot {
+            bottom: 12px; right: 12px;
+            border-bottom: 2px solid var(--orange);
+            border-right: 2px solid var(--orange);
+        }
+        .build-chief-caption {
+            background: rgba(246,239,221,0.04);
+            border: 1px solid rgba(246,239,221,0.16);
+            border-radius: 10px;
+            padding: 20px 22px;
+            position: relative;
+        }
+        .build-chief-caption::before {
+            content: ''; position: absolute; top: -1px; left: 22px; width: 44px; height: 3px;
+            background: var(--orange);
+        }
+        .build-chief-tag {
+            font-family: 'Bebas Neue', 'Anton', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 3px;
+            color: var(--orange);
+            margin-bottom: 4px;
+        }
+        .build-chief-name {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 600;
+            font-size: 1.55rem;
+            line-height: 1.05;
+            color: var(--cream);
+            margin-bottom: 10px;
+        }
+        .build-chief-line {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 0.98rem;
+            line-height: 1.5;
+            color: var(--cream);
+            opacity: 0.85;
+            margin-bottom: 12px;
+        }
+        .build-chief-meta {
+            display: flex; flex-wrap: wrap; gap: 4px 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.4px;
+            color: var(--cream);
+            opacity: 0.60;
+        }
+        .build-chief-meta span:not(:last-child)::after {
+            content: '·'; margin-left: 10px; color: var(--orange); opacity: 0.6;
+        }
+
+        /* "The operator" section: adapted about-grid pattern */
+        .operator-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.15fr;
+            gap: 56px;
+            align-items: start;
+            margin-top: 44px;
+        }
+        @media (max-width: 1024px) {
+            .operator-grid { grid-template-columns: 1fr; gap: 36px; }
+        }
+        .operator-portrait {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--ink-2);
+            border: 1px solid var(--rule);
+            box-shadow: 0 22px 48px rgba(11,26,36,0.20);
+        }
+        .operator-portrait img {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            object-position: center 20%;
+        }
+        .operator-portrait::before {
+            content: ''; position: absolute; top: -1px; left: 26px; width: 60px; height: 3px;
+            background: var(--orange); z-index: 3;
+        }
+        .operator-text .operator-headline {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 600;
+            font-size: clamp(2rem, 3.5vw, 2.6rem);
+            line-height: 1.05;
+            color: var(--ink);
+            margin-bottom: 22px;
+        }
+        .operator-text .operator-headline em {
+            color: var(--burgundy); font-style: italic;
+        }
+        .operator-text p {
+            font-size: 1.02rem;
+            line-height: 1.75;
+            color: var(--ink);
+            opacity: 0.92;
+            margin-bottom: 16px;
+        }
+        .operator-quote {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 1.35rem;
+            line-height: 1.4;
+            color: var(--burgundy);
+            padding: 20px 24px;
+            border-left: 3px solid var(--orange);
+            background: rgba(232,93,47,0.05);
+            border-radius: 0 6px 6px 0;
+            margin: 24px 0;
+        }
+        .operator-foot {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 0.98rem;
+            color: var(--ink);
+            opacity: 0.78;
+        }
+
+        /* Restore Ari's face to the contact-side */
+        .contact-side .cs-photo {
+            width: 110px; height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center 20%;
+            border: 3px solid var(--orange);
+            box-shadow: 0 8px 28px rgba(232,93,47,0.30);
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -474,7 +640,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="build-hero-grid">
         <div>
-            <div class="build-hero-issue">A specialist practice &middot; <span>Website &amp; Product Builds</span></div>
+            <div class="build-hero-issue">Led by <span>Ari Vivekanandarajah</span> &middot; Website &amp; Product Builds</div>
             <h1 class="build-hero-headline">Websites we build.<br><em>Products we ship.</em></h1>
             <p class="build-hero-accent">Design, engineering, and delivery from a single Sydney-based studio. Forty-plus custom website builds live in production. Our own healthcare micro-SaaS, Arvi Health, in market with paying clinicians. One operator on your account, no agency layers, no offshore hand-offs.</p>
             <div class="hero-cta-row" style="gap: 18px;">
@@ -485,16 +651,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <a class="btn btn-secondary" href="#portfolio">See the portfolio</a>
             </div>
         </div>
-        <aside class="build-hero-panel">
-            <div class="build-hero-panel-eyebrow">The practice</div>
-            <div class="build-hero-panel-title">What you get when you <em>hire us to build.</em></div>
-            <ul>
-                <li>One operator scoping, designing, and shipping the work</li>
-                <li>Figma prototype the whole surface before we write code</li>
-                <li>Custom builds, not templates, unless the template earns its keep</li>
-                <li>Analytics, SEO, and tracking wired in on day one, not after launch</li>
-                <li>You own the code, the design files, and the hosting</li>
-            </ul>
+        <aside class="build-chief">
+            <div class="build-chief-photo-wrap">
+                <img class="build-chief-photo" src="photos/ari.png" alt="Ari Vivekanandarajah">
+                <div class="build-chief-corner-top"></div>
+                <div class="build-chief-corner-bot"></div>
+            </div>
+            <div class="build-chief-caption">
+                <div class="build-chief-tag">The operator</div>
+                <div class="build-chief-name">Ari Vivekanandarajah</div>
+                <div class="build-chief-line">Twenty years across web design, engineering, and shipping. On every build directly, from wireframe to launch, with the Hype Insight team alongside.</div>
+                <div class="build-chief-meta">
+                    <span>40+ builds shipped</span>
+                    <span>Sydney based</span>
+                    <span>Working worldwide</span>
+                </div>
+            </div>
         </aside>
     </div>
 </section>
@@ -683,10 +855,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 </section>
 
+<!-- ========== 03: THE OPERATOR ========== -->
+<section class="section section--paper" id="operator">
+    <div class="section-inner">
+        <div class="section-eyebrow"><span class="section-eyebrow-num">03</span> The operator</div>
+        <h2 class="section-headline">Twenty years of design, engineering, and shipping. <em>In one person.</em></h2>
+        <p class="lead">Every build has Ari on the account directly, from the discovery call to the launch and the weeks after. The Hype Insight team stretches the practice out where it needs the extra hands, but the person who scopes your project is the person who ships it.</p>
+
+        <div class="operator-grid reveal">
+            <div class="operator-portrait">
+                <img src="photos/ari.png" alt="Ari Vivekanandarajah, chief operator">
+            </div>
+            <div class="operator-text">
+                <h3 class="operator-headline">The chief behind the build practice.</h3>
+                <p>Ari started in web design, moved into engineering when browsers were still catching up to CSS, then ran a full-service digital agency for a decade. Websites, apps, product prototypes, marketing systems: he has designed, coded, and shipped all of them, in that order.</p>
+                <p>The thread through every chapter has been the same: take a hard problem (a stalled funnel, a broken website, a product idea that keeps slipping), and ship a working system for it. Not a slide deck. Not a redesign. A build that earns its keep.</p>
+                <p>Under Hype Insight, that practice now sits alongside a wider studio, so scaled projects bring in additional engineers, designers, and marketers when they need to. But every build has one operator on the account personally, on the design tools, on the code, on the launch.</p>
+                <div class="operator-quote">
+                    "Strategy is what gets you noticed. Execution is what gets you paid."
+                </div>
+                <p class="operator-foot">Based in Sydney. Building for clients across Australia, New Zealand, the United Kingdom, and the United States.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- ========== WEBSITE PORTFOLIO ========== -->
 <section class="section section--ink" id="portfolio">
     <div class="section-inner">
-        <div class="section-eyebrow"><span class="section-eyebrow-num">03</span> Website &amp; product design</div>
+        <div class="section-eyebrow"><span class="section-eyebrow-num">04</span> Website &amp; product design</div>
         <h2 class="section-headline">Forty plus builds, <em>from wireframe to launch.</em></h2>
         <p class="lead" style="opacity:0.85;">A selection of website and product design engagements over the past few years. Each link opens the live Figma prototype in a new tab.</p>
 
@@ -1694,7 +1891,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ========== VIDEO TESTIMONIALS ========== -->
 <section class="section section--paper" id="testimonials">
     <div class="section-inner">
-        <div class="section-eyebrow"><span class="section-eyebrow-num">04</span> Video testimonials</div>
+        <div class="section-eyebrow"><span class="section-eyebrow-num">05</span> Video testimonials</div>
         <h2 class="section-headline">Straight from the source. <em>On camera.</em></h2>
         <p class="lead">Short, unedited testimonials from clients Ari has worked with directly.</p>
 
@@ -1794,7 +1991,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ========== VERIFIED REVIEWS WALL ========== -->
 <section class="section section--ink" id="reviews">
     <div class="section-inner">
-        <div class="section-eyebrow"><span class="section-eyebrow-num">05</span> Written reviews</div>
+        <div class="section-eyebrow"><span class="section-eyebrow-num">06</span> Written reviews</div>
         <h2 class="section-headline">Direct words from <em>recent clients.</em></h2>
         <p class="lead" style="opacity:0.85;">Recent feedback from direct client engagements. Ari has worked with hundreds of clients across two decades; the wall below is a current sample of what people say after the work is done.</p>
 
@@ -2016,13 +2213,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ========== CONTACT ========== -->
 <section class="section section--ink" id="contact" style="padding-top:0;">
     <div class="section-inner">
-        <div class="section-eyebrow"><span class="section-eyebrow-num">06</span> Get in touch</div>
+        <div class="section-eyebrow"><span class="section-eyebrow-num">07</span> Get in touch</div>
         <h2 class="section-headline">Book a build call. <em>Bring the brief, no pitch.</em></h2>
         <p class="lead" style="opacity:0.88;">Tell us what you want built. You will get an honest read on scope, timeline, and whether we are the right team for it. If we are not, we will say so and point you somewhere useful.</p>
 
         <div class="contact-grid">
             <div class="contact-side">
-                <div class="cs-name">Talk to Ari and the build team</div>
+                <img class="cs-photo" src="photos/ari.png" alt="Ari Vivekanandarajah">
+                <div class="cs-name">Ari Vivekanandarajah + team</div>
                 <div class="cs-role">Website &middot; Micro-SaaS &middot; Full stack</div>
                 <p class="cs-bio">Ari takes every build call directly. Discovery is one conversation, one written brief, one fixed scope and price back to you within a week. No account managers, no offshore hand-offs.</p>
                 <ul class="what-next">
