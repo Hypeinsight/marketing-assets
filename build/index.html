@@ -348,6 +348,113 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             color: white;
         }
         @media (max-width: 640px) { .build-topbar { padding: 18px 20px; } }
+
+        /* Products grid (below the Arvi featured showcase) */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 60px;
+        }
+        @media (max-width: 1024px) { .products-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 640px)  { .products-grid { grid-template-columns: 1fr; } }
+        .product-card {
+            padding: 26px 26px 22px;
+            background: rgba(246,239,221,0.04);
+            border: 1px solid rgba(246,239,221,0.16);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            position: relative;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--orange);
+            box-shadow: 0 16px 32px rgba(0,0,0,0.28);
+        }
+        .product-card::before {
+            content: ''; position: absolute; top: 0; left: 22px; width: 44px; height: 3px;
+            background: currentColor;
+        }
+        .product-card.tone-orange   { color: var(--orange); }
+        .product-card.tone-cyan     { color: #00A9BA; }
+        .product-card.tone-burgundy { color: var(--burgundy); }
+        .product-card.tone-ink      { color: #6994B3; }
+        .product-card.tone-gold     { color: #D9B45C; }
+        .product-card.tone-cream    { color: var(--cream); }
+        .product-card-top {
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 12px; flex-wrap: wrap;
+        }
+        .product-card-tag {
+            font-family: 'Bebas Neue', 'Anton', sans-serif;
+            font-size: 0.68rem;
+            letter-spacing: 2.4px;
+            color: currentColor;
+            opacity: 0.90;
+        }
+        .product-card-status {
+            display: inline-flex;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 3px;
+        }
+        .product-card-status.live {
+            background: rgba(70,182,70,0.18);
+            color: #6ec86e;
+            border: 1px solid rgba(70,182,70,0.35);
+        }
+        .product-card-status.dev {
+            background: rgba(246,239,221,0.08);
+            color: var(--cream);
+            border: 1px solid rgba(246,239,221,0.22);
+            opacity: 0.80;
+        }
+        .product-card-name {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 600;
+            font-style: italic;
+            font-size: 1.6rem;
+            line-height: 1.1;
+            color: var(--cream);
+            margin: 0;
+        }
+        .product-card-body {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: var(--cream);
+            opacity: 0.86;
+            margin: 0;
+            flex: 1;
+        }
+        .product-card-stack {
+            margin-top: auto;
+            padding-top: 14px;
+            border-top: 1px dashed rgba(246,239,221,0.18);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.74rem;
+            letter-spacing: 0.5px;
+            color: var(--cream);
+            opacity: 0.60;
+        }
+        .products-foot {
+            margin: 44px auto 0;
+            max-width: 780px;
+            text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.02rem;
+            line-height: 1.55;
+            color: var(--cream);
+            opacity: 0.72;
+        }
     </style>
 </head>
 <body>
@@ -431,13 +538,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 </section>
 
-<!-- ========== 02: ARVI HEALTH ========== -->
-<section class="section section--ink" id="arvi">
+<!-- ========== 02: PRODUCTS WE'VE BUILT ========== -->
+<section class="section section--ink" id="products">
     <div class="section-inner">
-        <div class="section-eyebrow"><span class="section-eyebrow-num">02</span> Our own product</div>
-        <h2 class="section-headline">Arvi Health, <em>proof we ship products.</em></h2>
-        <p class="lead" style="opacity:0.88;">Anyone can put "we build SaaS" on a services page. What separates operators from vendors is whether the team has actually shipped and supports a product themselves, in market, with real paying users. This is ours.</p>
+        <div class="section-eyebrow"><span class="section-eyebrow-num">02</span> Products we've built</div>
+        <h2 class="section-headline">Working software, <em>shipped and shippable.</em></h2>
+        <p class="lead" style="opacity:0.88;">Alongside websites, we design and engineer full software. SaaS applications, mobile apps, event-activation games, AI agents, internal tools. Some are commercial and in market; some are activations built for a specific event; some are internal platforms that pay for themselves. All are working software you can walk through on a call.</p>
 
+        <!-- Featured product: Arvi Health with demo video -->
         <div class="arvi-grid">
             <div class="arvi-visual">
                 <video controls preload="metadata" playsinline>
@@ -448,8 +556,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="arvi-logo-wrap">
                     <img class="arvi-logo" src="arvi/arvi-logo.avif" alt="Arvi Health" loading="lazy">
                 </div>
-                <span class="arvi-eyebrow">Healthcare micro-SaaS</span>
-                <h3 class="arvi-title">A voice recording becomes a <em>finished clinical letter.</em></h3>
+                <span class="arvi-eyebrow">Featured &middot; Healthcare micro-SaaS</span>
+                <h3 class="arvi-title">Arvi Health, <em>from voice memo to clinical letter.</em></h3>
                 <p class="arvi-lead">Arvi turns the five-minute voice memo a doctor records after a consultation into a formatted, patient-ready clinical letter. The consult ends; the letter is drafted, reviewed, approved, and sent before the patient reaches the car park.</p>
                 <div class="arvi-facts">
                     <div class="arvi-fact">
@@ -465,9 +573,113 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <div class="arvi-fact-label">Full platform</div>
                     </div>
                 </div>
-                <p class="arvi-lead subtle">Built end to end by the same team you would hire for a website or micro-SaaS engagement. Same tooling, same design language, same shipping cadence. Ask about a full walkthrough on the call.</p>
+                <p class="arvi-lead subtle">One of many. The nine cards below are a curated slice of the wider product portfolio, from event activations to internal tools to AI agent platforms. Ask about any of them on the build call.</p>
             </div>
         </div>
+
+        <!-- Product portfolio grid -->
+        <div class="products-grid reveal">
+            <!-- Manriix Race to Capture -->
+            <article class="product-card tone-orange">
+                <div class="product-card-top">
+                    <span class="product-card-tag">Event activation game</span>
+                    <span class="product-card-status live">Shipped</span>
+                </div>
+                <h3 class="product-card-name">Manriix Race to Capture</h3>
+                <p class="product-card-body">Gamified QR-code activation for the Motor &amp; EV Technology Show 2026. Register, follow, race, record: four challenges, one leaderboard, hundreds of UGC videos for Manriix.</p>
+                <div class="product-card-stack">React 18 &middot; Vite &middot; Node &middot; PostgreSQL &middot; Cloudinary</div>
+            </article>
+
+            <!-- ConstructMind Build Challenge -->
+            <article class="product-card tone-cyan">
+                <div class="product-card-top">
+                    <span class="product-card-tag">Event activation game</span>
+                    <span class="product-card-status live">Shipped</span>
+                </div>
+                <h3 class="product-card-name">ConstructMind Build Challenge</h3>
+                <p class="product-card-body">Interactive build-your-own-project game for PCS 2026. Attendees design a structure, see it costed in real time, and hit the leaderboard. Full stack, from stage-launch to lead capture.</p>
+                <div class="product-card-stack">React &middot; Vite &middot; Node &middot; PostgreSQL</div>
+            </article>
+
+            <!-- Melbourne Motor Show Racing Game -->
+            <article class="product-card tone-burgundy">
+                <div class="product-card-top">
+                    <span class="product-card-tag">Ticket-sales driver</span>
+                    <span class="product-card-status live">Shipped</span>
+                </div>
+                <h3 class="product-card-name">Melbourne Motor Show 2026 Racing</h3>
+                <p class="product-card-body">Sixty-second racing game that hands out a $2 ticket discount code on Facebook share. Target: 100K plays, 50K shares, 10K ticket conversions worth around $500K in revenue.</p>
+                <div class="product-card-stack">Phaser &middot; React &middot; Node &middot; Facebook Share SDK</div>
+            </article>
+
+            <!-- SiteGuardian -->
+            <article class="product-card tone-ink">
+                <div class="product-card-top">
+                    <span class="product-card-tag">Ecommerce mobile app</span>
+                    <span class="product-card-status live">Live</span>
+                </div>
+                <h3 class="product-card-name">SiteGuardian</h3>
+                <p class="product-card-body">Free security co-pilot for ecommerce stores. Seven-signal monitoring backend and a panic-mode mobile app that walks store owners through recovery when the worst happens.</p>
+                <div class="product-card-stack">React Native &middot; Node &middot; Postgres &middot; OAuth &middot; Push</div>
+            </article>
+
+            <!-- Hermes Agent -->
+            <article class="product-card tone-gold">
+                <div class="product-card-top">
+                    <span class="product-card-tag">AI agent platform &middot; For Nous Research</span>
+                    <span class="product-card-status live">Shipped</span>
+                </div>
+                <h3 class="product-card-name">Hermes Agent</h3>
+                <p class="product-card-body">Self-improving AI agent platform for Nous Research. Terminal, Telegram, Discord, Slack, WhatsApp. Skill creation, dialectic memory, six terminal backends including serverless. Six-figure open-source project shipped.</p>
+                <div class="product-card-stack">Python &middot; TUI &middot; Model-agnostic &middot; Multi-platform</div>
+            </article>
+
+            <!-- Site Health Score -->
+            <article class="product-card tone-cream">
+                <div class="product-card-top">
+                    <span class="product-card-tag">Diagnostic tool</span>
+                    <span class="product-card-status live">Live</span>
+                </div>
+                <h3 class="product-card-name">Site Health Score</h3>
+                <p class="product-card-body">27-point scored website diagnostic that ships with every hypeinsight.com lead-magnet flow. Auto-saves scores, benchmarks against category, and routes qualified leads into HubSpot.</p>
+                <div class="product-card-stack">Vanilla JS &middot; LocalStorage &middot; HubSpot API</div>
+            </article>
+
+            <!-- Growth Engine -->
+            <article class="product-card tone-orange">
+                <div class="product-card-top">
+                    <span class="product-card-tag">Marketing automation</span>
+                    <span class="product-card-status dev">Internal</span>
+                </div>
+                <h3 class="product-card-name">Hype Growth Engine</h3>
+                <p class="product-card-body">Multi-brand growth automation platform. Ingests campaign data, runs opportunity scoring, generates weekly briefs. Built for our own client operations, evaluating for productisation.</p>
+                <div class="product-card-stack">Python &middot; Postgres &middot; LLM orchestration</div>
+            </article>
+
+            <!-- Health AI Chatbot -->
+            <article class="product-card tone-cyan">
+                <div class="product-card-top">
+                    <span class="product-card-tag">Vertical AI chatbot</span>
+                    <span class="product-card-status live">Live</span>
+                </div>
+                <h3 class="product-card-name">Health AI Chatbot</h3>
+                <p class="product-card-body">Vertical-specific conversational agent for a healthcare client. Handles triage, appointment booking, and clinical FAQ. Wired to their PMS and their inbound phone tree.</p>
+                <div class="product-card-stack">LangGraph &middot; OpenAI &middot; PMS integration</div>
+            </article>
+
+            <!-- Hype Proposal Generator -->
+            <article class="product-card tone-ink">
+                <div class="product-card-top">
+                    <span class="product-card-tag">Sales tool &middot; Internal</span>
+                    <span class="product-card-status dev">Internal</span>
+                </div>
+                <h3 class="product-card-name">Hype Proposal Generator</h3>
+                <p class="product-card-body">Turns a discovery-call transcript into a fully priced, brand-consistent proposal in under two minutes. Pulls case studies, applies the right pricing tier, exports to PDF and HTML.</p>
+                <div class="product-card-stack">Node &middot; LLM orchestration &middot; PDF pipeline</div>
+            </article>
+        </div>
+
+        <p class="products-foot reveal">Also in the stable: Pricing Compass, Arvi Health Map, Micro Vision Map, HED Visitor Projection, OpenClaw + Ruflo (31-agent sales engine), Google Reviews Embed, Gemini Icon Eraser, and a handful of internal tools we run day to day. Ask on the call if any of them are the closest fit for what you want built.</p>
     </div>
 </section>
 
