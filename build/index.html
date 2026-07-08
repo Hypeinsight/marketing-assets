@@ -10,8 +10,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Custom websites and micro-SaaS products, designed and shipped end to end by Hype Insight. Forty-plus builds in production, our own product Arvi Health live in market, one operator on your account.">
-    <title>Website &amp; Micro-SaaS Builds | Hype Insight</title>
+    <meta name="description" content="Custom websites and micro-SaaS products, designed and shipped by Ari Vivekanandarajah and a small in-house team. Forty-plus builds in production, Arvi Health live in market, one operator on your account.">
+    <title>Ari Vivekanandarajah &middot; Website &amp; Micro-SaaS Builds</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -330,7 +330,37 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             padding: 24px 40px;
             z-index: 40;
         }
-        .build-topbar-logo img { height: 30px; width: auto; display: block; }
+        .build-topbar-logo {
+            display: inline-flex; align-items: baseline; gap: 8px;
+            text-decoration: none;
+        }
+        .build-topbar-mark {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-weight: 700;
+            font-size: 1.7rem;
+            color: var(--orange);
+            line-height: 1;
+        }
+        .build-topbar-word {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-weight: 500;
+            font-size: 1.05rem;
+            color: var(--cream);
+            letter-spacing: 0.3px;
+        }
+        @media (max-width: 640px) { .build-topbar-word { display: none; } }
+        /* Manriix logo is white on transparent, so a subtle dark chip
+           behind it keeps it legible on the ink section too */
+        .manriix-logo {
+            height: 22px !important;
+            max-width: 200px !important;
+            padding: 6px 12px;
+            background: rgba(11,26,36,0.85);
+            border-radius: 4px;
+            border: 1px solid rgba(246,239,221,0.14);
+        }
         .build-topbar-cta {
             font-family: 'Inter', sans-serif;
             font-size: 0.82rem; font-weight: 600;
@@ -632,8 +662,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ========== HERO ========== -->
 <section class="hero" style="min-height: auto;">
     <nav class="build-topbar">
-        <a href="/" class="build-topbar-logo" aria-label="Hype Insight">
-            <img src="hype-insight-logo.webp" alt="Hype Insight">
+        <a href="#" class="build-topbar-logo" aria-label="Ari Vivekanandarajah">
+            <span class="build-topbar-mark">A.</span>
+            <span class="build-topbar-word">Ari Vivekanandarajah</span>
         </a>
         <a class="build-topbar-cta" href="#contact">Book a build call</a>
     </nav>
@@ -660,7 +691,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="build-chief-caption">
                 <div class="build-chief-tag">The operator</div>
                 <div class="build-chief-name">Ari Vivekanandarajah</div>
-                <div class="build-chief-line">Twenty years across web design, engineering, and shipping. On every build directly, from wireframe to launch, with the Hype Insight team alongside.</div>
+                <div class="build-chief-line">Twenty years across web design, engineering, and shipping. On every build directly, from wireframe to launch, with a small in-house team alongside.</div>
                 <div class="build-chief-meta">
                     <span>40+ builds shipped</span>
                     <span>Sydney based</span>
@@ -749,18 +780,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
         </div>
 
+        <!-- Featured product 2: Manriix Race to Capture -->
+        <div class="arvi-grid" style="margin-top: 64px;">
+            <div class="arvi-visual">
+                <video controls preload="metadata" playsinline>
+                    <source src="manriix/manriix-demo.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="arvi-body">
+                <div class="arvi-logo-wrap">
+                    <img class="arvi-logo manriix-logo" src="manriix/manriix-logo.png" alt="Manriix">
+                </div>
+                <span class="arvi-eyebrow">Featured &middot; Event activation game</span>
+                <h3 class="arvi-title">Manriix Race to Capture, <em>a QR code becomes a leaderboard.</em></h3>
+                <p class="arvi-lead">A gamified activation shipped for the Motor &amp; EV Technology Show 2026. Attendees scan a QR, register, follow, race a fifteen-second capture mini-game, then record a hype video for the sponsor. Four challenges, up to seven hundred points, one live leaderboard, hundreds of UGC videos generated for the brand over the weekend.</p>
+                <div class="arvi-facts">
+                    <div class="arvi-fact">
+                        <div class="arvi-fact-value">4 steps</div>
+                        <div class="arvi-fact-label">Register, follow, race, film</div>
+                    </div>
+                    <div class="arvi-fact">
+                        <div class="arvi-fact-value">Live board</div>
+                        <div class="arvi-fact-label">Real-time scoring</div>
+                    </div>
+                    <div class="arvi-fact">
+                        <div class="arvi-fact-value">Full stack</div>
+                        <div class="arvi-fact-label">React + Node + Cloudinary</div>
+                    </div>
+                </div>
+                <p class="arvi-lead subtle">Not just a landing page with a form on it. A full gameplay loop, UGC pipeline, live leaderboard, and CMS-configured challenges, deployed on Render and running the full show weekend.</p>
+            </div>
+        </div>
+
         <!-- Product portfolio grid -->
         <div class="products-grid reveal">
-            <!-- Manriix Race to Capture -->
-            <article class="product-card tone-orange">
-                <div class="product-card-top">
-                    <span class="product-card-tag">Event activation game</span>
-                    <span class="product-card-status live">Shipped</span>
-                </div>
-                <h3 class="product-card-name">Manriix Race to Capture</h3>
-                <p class="product-card-body">Gamified QR-code activation for the Motor &amp; EV Technology Show 2026. Register, follow, race, record: four challenges, one leaderboard, hundreds of UGC videos for Manriix.</p>
-                <div class="product-card-stack">React 18 &middot; Vite &middot; Node &middot; PostgreSQL &middot; Cloudinary</div>
-            </article>
 
             <!-- ConstructMind Build Challenge -->
             <article class="product-card tone-cyan">
@@ -771,17 +824,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <h3 class="product-card-name">ConstructMind Build Challenge</h3>
                 <p class="product-card-body">Interactive build-your-own-project game for PCS 2026. Attendees design a structure, see it costed in real time, and hit the leaderboard. Full stack, from stage-launch to lead capture.</p>
                 <div class="product-card-stack">React &middot; Vite &middot; Node &middot; PostgreSQL</div>
-            </article>
-
-            <!-- Melbourne Motor Show Racing Game -->
-            <article class="product-card tone-burgundy">
-                <div class="product-card-top">
-                    <span class="product-card-tag">Ticket-sales driver</span>
-                    <span class="product-card-status live">Shipped</span>
-                </div>
-                <h3 class="product-card-name">Melbourne Motor Show 2026 Racing</h3>
-                <p class="product-card-body">Sixty-second racing game that hands out a $2 ticket discount code on Facebook share. Target: 100K plays, 50K shares, 10K ticket conversions worth around $500K in revenue.</p>
-                <div class="product-card-stack">Phaser &middot; React &middot; Node &middot; Facebook Share SDK</div>
             </article>
 
             <!-- SiteGuardian -->
@@ -813,7 +855,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <span class="product-card-status live">Live</span>
                 </div>
                 <h3 class="product-card-name">Site Health Score</h3>
-                <p class="product-card-body">27-point scored website diagnostic that ships with every hypeinsight.com lead-magnet flow. Auto-saves scores, benchmarks against category, and routes qualified leads into HubSpot.</p>
+                <p class="product-card-body">27-point scored website diagnostic wired into the lead-magnet flow. Auto-saves scores, benchmarks against category, and routes qualified leads into HubSpot.</p>
                 <div class="product-card-stack">Vanilla JS &middot; LocalStorage &middot; HubSpot API</div>
             </article>
 
@@ -823,7 +865,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <span class="product-card-tag">Marketing automation</span>
                     <span class="product-card-status dev">Internal</span>
                 </div>
-                <h3 class="product-card-name">Hype Growth Engine</h3>
+                <h3 class="product-card-name">Growth Engine</h3>
                 <p class="product-card-body">Multi-brand growth automation platform. Ingests campaign data, runs opportunity scoring, generates weekly briefs. Built for our own client operations, evaluating for productisation.</p>
                 <div class="product-card-stack">Python &middot; Postgres &middot; LLM orchestration</div>
             </article>
@@ -839,19 +881,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="product-card-stack">LangGraph &middot; OpenAI &middot; PMS integration</div>
             </article>
 
-            <!-- Hype Proposal Generator -->
+            <!-- Proposal Generator -->
             <article class="product-card tone-ink">
                 <div class="product-card-top">
                     <span class="product-card-tag">Sales tool &middot; Internal</span>
                     <span class="product-card-status dev">Internal</span>
                 </div>
-                <h3 class="product-card-name">Hype Proposal Generator</h3>
+                <h3 class="product-card-name">Proposal Generator</h3>
                 <p class="product-card-body">Turns a discovery-call transcript into a fully priced, brand-consistent proposal in under two minutes. Pulls case studies, applies the right pricing tier, exports to PDF and HTML.</p>
                 <div class="product-card-stack">Node &middot; LLM orchestration &middot; PDF pipeline</div>
             </article>
+
+            <!-- OpenClaw + Ruflo -->
+            <article class="product-card tone-gold">
+                <div class="product-card-top">
+                    <span class="product-card-tag">Sales engine platform</span>
+                    <span class="product-card-status live">Live</span>
+                </div>
+                <h3 class="product-card-name">OpenClaw + Ruflo</h3>
+                <p class="product-card-body">Thirty-one-agent sales engine that orchestrates outbound, personalisation, and CRM enrichment across brand slugs. The client-facing side (Ruflo) and the runtime (OpenClaw) shipped as one deployable stack.</p>
+                <div class="product-card-stack">Node &middot; LLM orchestration &middot; Multi-agent workflows</div>
+            </article>
         </div>
 
-        <p class="products-foot reveal">Also in the stable: Pricing Compass, Arvi Health Map, Micro Vision Map, HED Visitor Projection, OpenClaw + Ruflo (31-agent sales engine), Google Reviews Embed, Gemini Icon Eraser, and a handful of internal tools we run day to day. Ask on the call if any of them are the closest fit for what you want built.</p>
+        <p class="products-foot reveal">Also in the stable: Pricing Compass, Arvi Health Map, Micro Vision Map, HED Visitor Projection, Google Reviews Embed, Gemini Icon Eraser, plus a handful of internal tools. Ask on the call if any of them are the closest fit for what you want built.</p>
     </div>
 </section>
 
@@ -860,7 +913,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="section-inner">
         <div class="section-eyebrow"><span class="section-eyebrow-num">03</span> The operator</div>
         <h2 class="section-headline">Twenty years of design, engineering, and shipping. <em>In one person.</em></h2>
-        <p class="lead">Every build has Ari on the account directly, from the discovery call to the launch and the weeks after. The Hype Insight team stretches the practice out where it needs the extra hands, but the person who scopes your project is the person who ships it.</p>
+        <p class="lead">Every build has Ari on the account directly, from the discovery call to the launch and the weeks after. The in-house team stretches the practice out where it needs the extra hands, but the person who scopes your project is the person who ships it.</p>
 
         <div class="operator-grid reveal">
             <div class="operator-portrait">
@@ -870,7 +923,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <h3 class="operator-headline">The chief behind the build practice.</h3>
                 <p>Ari started in web design, moved into engineering when browsers were still catching up to CSS, then ran a full-service digital agency for a decade. Websites, apps, product prototypes, marketing systems: he has designed, coded, and shipped all of them, in that order.</p>
                 <p>The thread through every chapter has been the same: take a hard problem (a stalled funnel, a broken website, a product idea that keeps slipping), and ship a working system for it. Not a slide deck. Not a redesign. A build that earns its keep.</p>
-                <p>Under Hype Insight, that practice now sits alongside a wider studio, so scaled projects bring in additional engineers, designers, and marketers when they need to. But every build has one operator on the account personally, on the design tools, on the code, on the launch.</p>
+                <p>That practice sits alongside a wider studio, so scaled projects bring in additional engineers, designers, and marketers when they need to. But every build has one operator on the account personally, on the design tools, on the code, on the launch.</p>
                 <div class="operator-quote">
                     "Strategy is what gets you noticed. Execution is what gets you paid."
                 </div>
