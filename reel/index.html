@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Non-indexed sharing page -->
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="googlebot" content="noindex, nofollow">
+    <title>Client video testimonials</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../ari/styles.css">
+    <style>
+        /* Reel page: minimal chrome, video strip fills the viewport */
+        body { min-height: 100vh; display: flex; flex-direction: column; }
+        .reel-header {
+            text-align: center;
+            padding: 60px 24px 20px;
+            background: var(--cream);
+        }
+        .reel-eyebrow {
+            font-family: 'Bebas Neue', 'Anton', sans-serif;
+            font-size: 0.82rem; letter-spacing: 3px;
+            color: var(--orange);
+            margin-bottom: 14px;
+        }
+        .reel-title {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 600;
+            font-size: clamp(2.2rem, 5vw, 3.6rem);
+            line-height: 1.05;
+            color: var(--ink);
+            margin-bottom: 12px;
+        }
+        .reel-title em { color: var(--burgundy); font-style: italic; }
+        .reel-lead {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.55;
+            color: var(--ink);
+            opacity: 0.8;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+        .reel-strip-section {
+            flex: 1;
+            padding: 40px 0 80px;
+            background: var(--cream);
+        }
+        .reel-foot {
+            text-align: center;
+            padding: 24px;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 0.9rem;
+            color: var(--ink);
+            opacity: 0.5;
+            background: var(--cream);
+        }
+    </style>
+</head>
+<body>
+
+<header class="reel-header">
+    <div class="reel-eyebrow">Client Testimonials</div>
+    <h1 class="reel-title">Straight from the source. <em>On camera.</em></h1>
+    <p class="reel-lead">Short, unedited testimonials from clients I have worked with directly. Click any card to open the full video.</p>
+</header>
+
+<section class="reel-strip-section">
+    <div class="video-strip-wrap">
+        <div class="video-strip" id="videoStrip">
+            <!-- Cycle 1 -->
+            <div class="video-strip-item" data-video-idx="0">
+                <span class="video-strip-item-num">01</span>
+                <video autoplay muted loop playsinline preload="metadata"><source src="/videos/Rick-Solomon-Testimonial-1.mp4" type="video/mp4"></video>
+                <div class="video-strip-item-tint"></div>
+                <div class="video-strip-item-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
+            </div>
+            <div class="video-strip-item" data-video-idx="1">
+                <span class="video-strip-item-num">02</span>
+                <video autoplay muted loop playsinline preload="metadata"><source src="/videos/48f61f8b-066c-4d6f-a3c1-5e1a72659eaa-1.mov" type="video/mp4"></video>
+                <div class="video-strip-item-tint"></div>
+                <div class="video-strip-item-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
+            </div>
+            <div class="video-strip-item" data-video-idx="2">
+                <span class="video-strip-item-num">03</span>
+                <video autoplay muted loop playsinline preload="metadata"><source src="/videos/f7471335-90be-4320-80b8-fdae8ae58b27-1.mp4" type="video/mp4"></video>
+                <div class="video-strip-item-tint"></div>
+                <div class="video-strip-item-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
+            </div>
+            <div class="video-strip-item" data-video-idx="3">
+                <span class="video-strip-item-num">04</span>
+                <video autoplay muted loop playsinline preload="none"><source src="/videos/IMG_0191.mp4" type="video/mp4"></video>
+                <div class="video-strip-item-tint"></div>
+                <div class="video-strip-item-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
+            </div>
+            <div class="video-strip-item" data-video-idx="4">
+                <span class="video-strip-item-num">05</span>
+                <video autoplay muted loop playsinline preload="metadata"><source src="/videos/Common-Point.mp4" type="video/mp4"></video>
+                <div class="video-strip-item-tint"></div>
+                <div class="video-strip-item-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
+            </div>
+            <!-- Cycle 2 (seamless marquee) -->
+            <div class="video-strip-item" data-video-idx="0" aria-hidden="true">
+                <span class="video-strip-item-num">01</span>
+                <video autoplay muted loop playsinline preload="none"><source src="/videos/Rick-Solomon-Testimonial-1.mp4" type="video/mp4"></video>
+                <div class="video-strip-item-tint"></div>
+                <div class="video-strip-item-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
+            </div>
+            <div class="video-strip-item" data-video-idx="1" aria-hidden="true">
+                <span class="video-strip-item-num">02</span>
+                <video autoplay muted loop playsinline preload="none"><source src="/videos/48f61f8b-066c-4d6f-a3c1-5e1a72659eaa-1.mov" type="video/mp4"></video>
+                <div class="video-strip-item-tint"></div>
+                <div class="video-strip-item-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
+            </div>
+            <div class="video-strip-item" data-video-idx="2" aria-hidden="true">
+                <span class="video-strip-item-num">03</span>
+                <video autoplay muted loop playsinline preload="none"><source src="/videos/f7471335-90be-4320-80b8-fdae8ae58b27-1.mp4" type="video/mp4"></video>
+                <div class="video-strip-item-tint"></div>
+                <div class="video-strip-item-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
+            </div>
+            <div class="video-strip-item" data-video-idx="3" aria-hidden="true">
+                <span class="video-strip-item-num">04</span>
+                <video autoplay muted loop playsinline preload="none"><source src="/videos/IMG_0191.mp4" type="video/mp4"></video>
+                <div class="video-strip-item-tint"></div>
+                <div class="video-strip-item-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
+            </div>
+            <div class="video-strip-item" data-video-idx="4" aria-hidden="true">
+                <span class="video-strip-item-num">05</span>
+                <video autoplay muted loop playsinline preload="none"><source src="/videos/Common-Point.mp4" type="video/mp4"></video>
+                <div class="video-strip-item-tint"></div>
+                <div class="video-strip-item-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="video-strip-controls">
+        <button type="button" class="video-strip-toggle" data-strip-toggle aria-label="Pause testimonial strip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg>
+            <span>Pause</span>
+        </button>
+    </div>
+
+    <!-- Lightbox modal -->
+    <div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-label="Video testimonial">
+        <button type="button" class="video-modal-nav video-modal-prev" data-modal-prev aria-label="Previous testimonial">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="video-modal-inner">
+            <button type="button" class="video-modal-close" data-modal-close aria-label="Close">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+            <video id="videoModalPlayer" controls playsinline></video>
+            <div class="video-modal-counter" data-modal-counter></div>
+        </div>
+        <button type="button" class="video-modal-nav video-modal-next" data-modal-next aria-label="Next testimonial">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+    </div>
+</section>
+
+<div class="reel-foot">Private preview. Do not share the URL publicly.</div>
+
+<script src="../ari/script.js"></script>
+</body>
+</html>
