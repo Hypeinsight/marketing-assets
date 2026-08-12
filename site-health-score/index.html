@@ -14,6 +14,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta name="googlebot" content="noindex, nofollow">
     <title>Site Health Score &middot; Free 27-point diagnostic</title>
     <meta name="description" content="A 27-point scored diagnostic for your website. Identify exactly where your site is leaking revenue, and what to fix first. No call required.">
+    <!-- Site study: URL of the Cloudflare Worker that runs /api/study-site.
+         Replace YOURACCT with the actual Cloudflare account subdomain after
+         `wrangler deploy` in hype-insight-new-website/website/analytics/worker.
+         Until this points at a real Worker, site-study pre-fills are silently
+         skipped and the quiz behaves as before. -->
+    <meta name="shs-worker-url" content="https://hype-analytics.YOURACCT.workers.dev">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -284,6 +290,78 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             color: rgba(255,255,255,0.82);
         }
         .shs-personalised-inner p strong { color: white; word-break: break-all; }
+
+        /* --- Site study: loading state + pre-filled-item hint --- */
+        .shs-studying {
+            max-width: 900px;
+            margin: 0 20px 20px;
+            padding: 14px 18px;
+            background: rgba(0,169,186,0.14);
+            border: 1px solid rgba(0,169,186,0.35);
+            border-radius: 8px;
+            color: var(--color-secondary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.92rem;
+        }
+        .shs-studying-inner {
+            display: flex; align-items: center; gap: 12px;
+            max-width: 900px; margin: 0 auto;
+        }
+        .shs-studying-inner p { margin: 0; color: rgba(255,255,255,0.85); }
+        .shs-studying-inner strong { color: white; }
+        .shs-studying-spinner {
+            width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0;
+            border: 2px solid rgba(0,169,186,0.30);
+            border-top-color: var(--color-secondary);
+            animation: shs-spin 0.9s linear infinite;
+        }
+        @keyframes shs-spin { to { transform: rotate(360deg); } }
+        .shs-studying.is-done {
+            background: rgba(70,182,70,0.12);
+            border-color: rgba(70,182,70,0.35);
+        }
+        .shs-studying.is-done .shs-studying-spinner {
+            border: 2px solid var(--color-primary);
+            border-top-color: transparent;
+            animation: none;
+            background: var(--color-primary);
+        }
+
+        /* pre-filled quiz item hint (both Part 1 items and Part 2 questions) */
+        .cl-item.is-prefilled, .diag-q.is-prefilled { position: relative; }
+        .cl-item.is-prefilled::after,
+        .diag-q.is-prefilled::after {
+            content: 'Pre-filled by studying your site \2014 tap any option to override';
+            display: inline-block;
+            margin-top: 8px;
+            padding: 4px 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.5px;
+            color: rgba(70,182,70,0.95);
+            background: rgba(70,182,70,0.12);
+            border-left: 2px solid var(--color-primary);
+            border-radius: 3px;
+        }
+
+        /* End-of-quiz report submission */
+        .report-sent {
+            margin-top: 14px; padding: 12px 16px;
+            background: rgba(70,182,70,0.12);
+            border: 1px solid rgba(70,182,70,0.35);
+            border-radius: 8px;
+            color: var(--color-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.92rem;
+        }
+        .report-sent strong { color: white; }
+        .cta-btn--secondary {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.35);
+            color: white;
+            margin-top: 10px;
+        }
+        .cta-btn--secondary:hover { background: rgba(255,255,255,0.06); }
     </style>
     <!-- Microsoft Clarity -->
     <script type="text/javascript">
@@ -313,6 +391,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="hsp-rating" id="hdrRating">&mdash;</span>
     </div>
 </header>
+
+<!-- Site study: live status while the Worker analyses the visitor's URL. -->
+<div class="shs-studying" id="shsStudying" hidden>
+    <div class="shs-studying-inner">
+        <span class="shs-studying-spinner" aria-hidden="true"></span>
+        <p id="shsStudyingMsg">Studying <strong id="shsStudyingHost">your site</strong>&hellip; we are pre-filling as many quiz items as we can. You can override any answer.</p>
+    </div>
+</div>
 
 <!-- Personalised banner: shown when arriving from a lead magnet that
      forwards name / email / url via URL params. Any subset is fine. -->
@@ -786,6 +872,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <a href="/ari-v2/?utm_source=site-health-score&utm_medium=quiz#contact" class="cta-btn">Book a free 30-minute read with Ari &nbsp;&#8594;</a>
 
+    <button class="cta-btn cta-btn--secondary" id="emailReportBtn" style="display:none;">&#9993; Email me this full report</button>
+    <div class="report-sent" id="reportSent" hidden>Report sent to <strong id="reportSentEmail"></strong>. Ari has been notified.</div>
+
     <button class="reset-btn" id="resetBtn">&#8635; Reset all answers</button>
 
 </main>
@@ -941,6 +1030,210 @@ function switchTab(tabId) {
 
 refreshScores();
 loadScores();
+
+// =====================================================================
+// Site study: call the Cloudflare Worker with the visitor's URL and
+// apply the returned pre-fills to the quiz. Runs once per visit. Silent
+// no-op if the Worker URL is unconfigured or the fetch fails.
+// =====================================================================
+(function() {
+    var params = new URLSearchParams(window.location.search);
+    var studyUrl = params.get('url') || '';
+    try { if (!studyUrl) studyUrl = sessionStorage.getItem('shs_url') || ''; } catch (_) {}
+    if (!studyUrl) return;
+
+    var meta = document.querySelector('meta[name="shs-worker-url"]');
+    var workerUrl = meta ? (meta.getAttribute('content') || '').trim() : '';
+    // Skip if unconfigured (placeholder still in place)
+    if (!workerUrl || workerUrl.indexOf('YOURACCT') !== -1) return;
+
+    // Only study once per visit; skip if the visitor already has saved answers
+    try {
+        if (sessionStorage.getItem('shs_studied') === '1') return;
+        var existing = JSON.parse(localStorage.getItem('wg_v2') || 'null');
+        if (existing && (Object.keys(existing.p1 || {}).length > 3 || Object.keys(existing.p2 || {}).length > 3)) return;
+    } catch (_) {}
+
+    var studyBanner = document.getElementById('shsStudying');
+    var hostEl = document.getElementById('shsStudyingHost');
+    var msgEl = document.getElementById('shsStudyingMsg');
+    if (studyBanner) {
+        try { hostEl.textContent = new URL(studyUrl).hostname.replace(/^www\./, ''); }
+        catch (_) { hostEl.textContent = studyUrl; }
+        studyBanner.hidden = false;
+    }
+
+    var endpoint = workerUrl.replace(/\/$/, '') + '/api/study-site?url=' + encodeURIComponent(studyUrl);
+    fetch(endpoint, { headers: { accept: 'application/json' } })
+        .then(function(r) { return r.ok ? r.json() : null; })
+        .then(function(data) {
+            try { sessionStorage.setItem('shs_studied', '1'); } catch (_) {}
+            if (!data || !data.ok || !data.prefills) {
+                if (studyBanner) studyBanner.hidden = true;
+                return;
+            }
+
+            var appliedCount = 0;
+
+            // Part 1: data-item="N" -> p1 dict
+            var pf1 = data.prefills.p1 || {};
+            Object.keys(pf1).forEach(function(item) {
+                if (p1[item] !== undefined) return; // do not overwrite manual answers
+                var row = document.querySelector('.score-row[data-item="' + item + '"]');
+                if (!row) return;
+                var score = pf1[item];
+                var btn = row.querySelector('.score-btn[data-score="' + score + '"]');
+                if (!btn) return;
+                row.querySelectorAll('.score-btn').forEach(function(b) { b.classList.remove('btn-active'); });
+                btn.classList.add('btn-active');
+                p1[parseInt(item)] = score;
+                var wrap = row.closest('.cl-item'); if (wrap) wrap.classList.add('is-prefilled');
+                appliedCount++;
+            });
+
+            // Part 2: data-qid="s-q" -> p2 dict
+            var pf2 = data.prefills.p2 || {};
+            Object.keys(pf2).forEach(function(qid) {
+                if (p2[qid] !== undefined) return;
+                var row = document.querySelector('.score-row[data-qid="' + qid + '"]');
+                if (!row) return;
+                var score = pf2[qid];
+                var btn = row.querySelector('.score-btn[data-score="' + score + '"]');
+                if (!btn) return;
+                row.querySelectorAll('.score-btn').forEach(function(b) { b.classList.remove('btn-active'); });
+                btn.classList.add('btn-active');
+                p2[qid] = score;
+                var wrap = row.closest('.diag-q'); if (wrap) wrap.classList.add('is-prefilled');
+                appliedCount++;
+            });
+
+            refreshScores();
+            saveScores();
+
+            // Stash the raw study payload for the end-of-quiz submission
+            try { sessionStorage.setItem('shs_study_data', JSON.stringify(data)); } catch (_) {}
+
+            // Update the banner: green tick + count
+            if (studyBanner && msgEl && hostEl) {
+                studyBanner.classList.add('is-done');
+                msgEl.innerHTML = 'Studied <strong>' + hostEl.textContent + '</strong>. '
+                    + 'Pre-filled ' + appliedCount + ' quiz item' + (appliedCount === 1 ? '' : 's')
+                    + '. You can override any answer.';
+                setTimeout(function() { if (studyBanner) studyBanner.hidden = true; }, 12000);
+            }
+        })
+        .catch(function() {
+            try { sessionStorage.setItem('shs_studied', '1'); } catch (_) {}
+            if (studyBanner) studyBanner.hidden = true;
+        });
+})();
+
+// =====================================================================
+// End-of-quiz submission: POST full scored state to Formspree the first
+// time the visitor switches to the Results tab in a session, provided
+// they scored a meaningful chunk of the quiz. Also wired to a manual
+// "Email me this full report" button on the Results tab.
+// =====================================================================
+(function() {
+    var FORMSPREE_ENDPOINT = 'https://formspree.io/f/mkoalwwz';
+
+    function submitReport(force) {
+        try {
+            if (!force && sessionStorage.getItem('shs_report_sent') === '1') return;
+        } catch (_) {}
+
+        var email = '', name = '', url = '';
+        try {
+            email = sessionStorage.getItem('shs_email') || '';
+            name  = sessionStorage.getItem('shs_name')  || '';
+            url   = sessionStorage.getItem('shs_url')   || '';
+        } catch (_) {}
+        if (!email && !name && !url) return;
+
+        var p1Total = Object.keys(p1).reduce(function(s, k) { return s + (parseInt(p1[k]) || 0); }, 0);
+        var p2Total = Object.keys(p2).reduce(function(s, k) { return s + (parseInt(p2[k]) || 0); }, 0);
+        var combined = p1Total + p2Total;
+        var rc = (typeof ratingCombined === 'function') ? ratingCombined(combined) : { label: '' };
+
+        var body = new FormData();
+        body.append('_subject', 'Site Health Score REPORT: ' + (name || 'Anon')
+            + ' | ' + (url || 'no-url')
+            + ' | ' + combined + '/154 (' + rc.label + ')');
+        body.append('email', email);
+        body.append('name', name);
+        body.append('website_url', url);
+        body.append('lead_source', 'Site Health Score - Full Report');
+        body.append('source_page', 'site-health-score');
+        body.append('report_score_combined', String(combined));
+        body.append('report_score_part1', String(p1Total));
+        body.append('report_score_part2', String(p2Total));
+        body.append('report_rating', String(rc.label || ''));
+        body.append('report_p1_answers', JSON.stringify(p1));
+        body.append('report_p2_answers', JSON.stringify(p2));
+        try {
+            var study = JSON.parse(sessionStorage.getItem('shs_study_data') || 'null');
+            if (study) {
+                body.append('study_hostname', String(study.hostname || ''));
+                body.append('study_load_time_ms', String(study.load_time_ms || ''));
+                body.append('study_ttfb_ms', String(study.ttfb_ms || ''));
+                body.append('study_final_url', String(study.final_url || ''));
+            }
+        } catch (_) {}
+
+        return fetch(FORMSPREE_ENDPOINT, {
+            method: 'POST', body: body, headers: { 'Accept': 'application/json' }
+        }).then(function(r) {
+            if (!r.ok) return;
+            try { sessionStorage.setItem('shs_report_sent', '1'); } catch (_) {}
+            var sent = document.getElementById('reportSent');
+            var em = document.getElementById('reportSentEmail');
+            if (em) em.textContent = email;
+            if (sent) sent.hidden = false;
+            if (window.dataLayer) {
+                window.dataLayer.push({
+                    event: 'health_score_report_sent',
+                    report_score: combined,
+                    report_rating: rc.label || ''
+                });
+            }
+        }).catch(function() {});
+    }
+
+    // Auto-fire when the visitor switches to the Results tab, once they have
+    // scored at least 8 items so the report is meaningful.
+    var origSwitch = window.switchTab;
+    window.switchTab = function(tab) {
+        origSwitch(tab);
+        if (tab !== 'results') return;
+        var count = Object.keys(p1).length + Object.keys(p2).length;
+        if (count < 8) return;
+        submitReport(false);
+    };
+
+    // Manual trigger
+    document.addEventListener('DOMContentLoaded', function() {
+        var btn = document.getElementById('emailReportBtn');
+        if (!btn) return;
+        try {
+            if (sessionStorage.getItem('shs_email')) btn.style.display = '';
+        } catch (_) {}
+        btn.addEventListener('click', function() {
+            var orig = btn.textContent;
+            btn.textContent = 'Sending…';
+            btn.disabled = true;
+            var p = submitReport(true);
+            if (p && p.then) {
+                p.then(function() {
+                    btn.textContent = 'Report emailed';
+                    setTimeout(function() { btn.disabled = false; btn.textContent = orig; }, 3000);
+                });
+            } else {
+                btn.disabled = false;
+                btn.textContent = orig;
+            }
+        });
+    });
+})();
 </script>
 </body>
 </html>
