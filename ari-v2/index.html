@@ -265,9 +265,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <p class="lead-magnet-text">A 27-point scored diagnostic that shows exactly where your website or store is leaking revenue, and what to fix first. No call required.</p>
             </div>
             <form class="lead-magnet-form" action="https://formspree.io/f/mkoalwwz" method="POST" data-lead-source="site-health-score">
-                <input type="hidden" name="_subject" value="Site Health Score request &mdash; Ari v2">
+                <input type="hidden" name="_subject" id="lm-subject" value="Site Health Score request &mdash; Ari v2">
                 <input type="hidden" name="lead_source" value="Site Health Score">
+                <input type="hidden" name="source_page" value="ari-v2">
                 <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;">
+                <div class="lead-magnet-field">
+                    <label for="lm-name" class="sr-only">Your name</label>
+                    <input id="lm-name" name="name" type="text" placeholder="Your name" autocomplete="name" required>
+                </div>
+                <div class="lead-magnet-field">
+                    <label for="lm-website" class="sr-only">Website URL you want audited</label>
+                    <input id="lm-website" name="website_url" type="url" placeholder="https://yoursite.com" autocomplete="url" inputmode="url" required>
+                </div>
                 <div class="lead-magnet-field">
                     <label for="lm-email" class="sr-only">Email address</label>
                     <input id="lm-email" name="email" type="email" placeholder="you@yourcompany.com" autocomplete="email" required>
@@ -276,7 +285,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     Get my score
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                 </button>
-                <p class="lead-magnet-fine">One email, scored diagnostic in your inbox within minutes. No list, no spam.</p>
+                <p class="lead-magnet-fine">Name, site, email. Scored diagnostic in your inbox within minutes. No list, no spam.</p>
                 <div class="lead-magnet-success" role="status" aria-live="polite" hidden>Thanks. Check your inbox for the scored diagnostic.</div>
             </form>
         </div>

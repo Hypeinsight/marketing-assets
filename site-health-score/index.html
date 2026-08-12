@@ -314,12 +314,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 </header>
 
-<!-- Personalised banner: shown only when arriving from the ari-v2 lead
-     magnet, where the visitor's email is passed via ?email= -->
+<!-- Personalised banner: shown when arriving from a lead magnet that
+     forwards name / email / url via URL params. Any subset is fine. -->
 <div class="shs-personalised" id="shsPersonalised" hidden>
     <div class="shs-personalised-inner">
         <span class="shs-personalised-tag">Welcome</span>
-        <p>Hi <strong id="shsEmail"></strong> &mdash; your Site Health Score is below. Work through both parts to get your combined rating; scores save automatically as you go. A copy of the link has also been emailed so you can come back later.</p>
+        <p>
+            Hi <strong id="shsName">there</strong>, your Site Health Score for
+            <a id="shsUrl" href="#" target="_blank" rel="noopener noreferrer nofollow">your site</a>
+            is below. Work through both parts to get your combined rating; scores save automatically as you go. A copy of the link has also been sent to <strong id="shsEmail"></strong> so you can come back later.
+        </p>
     </div>
 </div>
 <script>
@@ -327,11 +331,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     try {
         var params = new URLSearchParams(window.location.search);
         var email  = params.get('email');
-        if (!email) return;
+        var name   = params.get('name');
+        var url    = params.get('url');
+        if (!email && !name && !url) return;
+
         var banner = document.getElementById('shsPersonalised');
-        var slot   = document.getElementById('shsEmail');
-        if (slot)   slot.textContent = email;
+        var slotE  = document.getElementById('shsEmail');
+        var slotN  = document.getElementById('shsName');
+        var slotU  = document.getElementById('shsUrl');
+
+        if (slotN && name)  slotN.textContent = name;
+        if (slotE && email) slotE.textContent = email;
+        if (slotU && url) {
+            // Show a friendly hostname on-screen, but keep the full URL as href
+            try {
+                slotU.textContent = new URL(url).hostname.replace(/^www\./, '');
+            } catch (_) {
+                slotU.textContent = url;
+            }
+            slotU.href = url;
+        }
         if (banner) banner.hidden = false;
+
+        // Stash for the (upcoming) site-study + end-of-quiz submission steps
+        try {
+            if (name)  sessionStorage.setItem('shs_name',  name);
+            if (email) sessionStorage.setItem('shs_email', email);
+            if (url)   sessionStorage.setItem('shs_url',   url);
+        } catch (_) {}
     } catch (e) {}
 })();
 </script>

@@ -1021,12 +1021,28 @@
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         if (!btn) return;
-        var emailInput = form.querySelector('input[type="email"]');
-        var email = emailInput ? emailInput.value.trim() : '';
-        if (!email) {
-            emailInput && emailInput.focus();
-            return;
+
+        var nameInput    = form.querySelector('input[name="name"]');
+        var websiteInput = form.querySelector('input[name="website_url"]');
+        var emailInput   = form.querySelector('input[type="email"]');
+        var name    = nameInput    ? nameInput.value.trim()    : '';
+        var website = websiteInput ? websiteInput.value.trim() : '';
+        var email   = emailInput   ? emailInput.value.trim()   : '';
+
+        if (!name)    { nameInput    && nameInput.focus();    return; }
+        if (!website) { websiteInput && websiteInput.focus(); return; }
+        if (!email)   { emailInput   && emailInput.focus();   return; }
+
+        // Normalise URL: prepend https:// if the visitor did not include a scheme
+        if (!/^https?:\/\//i.test(website)) {
+            website = 'https://' + website;
+            if (websiteInput) websiteInput.value = website;
         }
+
+        // Enrich the Formspree subject line so Ari can scan the inbox
+        var subj = form.querySelector('#lm-subject');
+        if (subj) subj.value = 'Site Health Score: ' + name + ' | ' + website;
+
         var original = btn.innerHTML;
         btn.disabled = true;
         btn.innerHTML = 'Sending&hellip;';
@@ -1042,7 +1058,8 @@
                 window.dataLayer.push({
                     event: 'health_score_submit',
                     source_page: 'ari-v2',
-                    lead_source: 'Site Health Score'
+                    lead_source: 'Site Health Score',
+                    site_url: website
                 });
             }
             // Brief on-screen confirmation in case the redirect is slow
@@ -1051,9 +1068,12 @@
                 success.hidden = false;
             }
             if (fine) fine.style.display = 'none';
-            // Pass the email + source so the quiz page can show a
-            // personalised banner and so the visit is attributable
-            var qs = '?source=ari-v2&email=' + encodeURIComponent(email);
+            // Pass name + email + url + source through so the quiz page can
+            // show a personalised banner and eventually study the site.
+            var qs = '?source=ari-v2'
+                   + '&email=' + encodeURIComponent(email)
+                   + '&name='  + encodeURIComponent(name)
+                   + '&url='   + encodeURIComponent(website);
             window.location.href = QUIZ_URL + qs;
         })
         .catch(function() {
