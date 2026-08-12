@@ -641,6 +641,70 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             box-shadow: 0 8px 28px rgba(232,93,47,0.30);
             margin-bottom: 20px;
         }
+        /* --- Calendar embed block on contact section --- */
+        .calendar-book-block {
+            max-width: 780px;
+            margin: 40px auto 24px;
+            padding: 36px 28px 28px;
+            background: var(--cream);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+        }
+        .calendar-book-heading {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+            font-weight: 600;
+            line-height: 1.1;
+            color: var(--ink);
+            text-align: center;
+            margin: 0 0 10px;
+        }
+        .calendar-book-heading em {
+            color: var(--orange);
+            font-style: italic;
+        }
+        .calendar-book-sub {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.05rem;
+            color: var(--ink);
+            opacity: 0.72;
+            text-align: center;
+            max-width: 480px;
+            margin: 0 auto 22px;
+        }
+        .calendar-book-block .meetings-iframe-container {
+            min-height: 640px;
+            background: var(--cream);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .calendar-or-divider {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            max-width: 500px;
+            margin: 12px auto 36px;
+            font-family: 'Bebas Neue', 'Anton', sans-serif;
+            font-size: 0.82rem;
+            letter-spacing: 3px;
+            color: var(--cream);
+            opacity: 0.55;
+        }
+        .calendar-or-divider::before,
+        .calendar-or-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(246,239,221,0.22);
+        }
+        .calendar-or-divider span {
+            text-transform: uppercase;
+        }
+        @media (max-width: 640px) {
+            .calendar-book-block { padding: 28px 18px 22px; margin: 24px 12px 20px; }
+            .calendar-book-block .meetings-iframe-container { min-height: 720px; }
+        }
     </style>
 </head>
 <body>
@@ -2240,6 +2304,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="section-eyebrow"><span class="section-eyebrow-num">07</span> Get in touch</div>
         <h2 class="section-headline">Book a build call. <em>Bring the brief, no pitch.</em></h2>
         <p class="lead" style="opacity:0.88;">Tell us what you want built. You will get an honest read on scope, timeline, and whether we are the right team for it. If we are not, we will say so and point you somewhere useful.</p>
+
+        <!-- Book straight into Ari's calendar -->
+        <div class="calendar-book-block">
+            <h3 class="calendar-book-heading">Book straight into <em>Ari's calendar.</em></h3>
+            <p class="calendar-book-sub">Prefer to skip the form? Pick a 30-minute build call directly. Confirmation lands in your inbox.</p>
+            <!-- Start of Meetings Embed Script -->
+            <div class="meetings-iframe-container" data-src="https://meetings.hubspot.com/ari75?embed=true"></div>
+            <script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"></script>
+            <!-- End of Meetings Embed Script -->
+        </div>
+
+        <div class="calendar-or-divider"><span>Or send a written brief</span></div>
 
         <div class="contact-grid">
             <div class="contact-side">
