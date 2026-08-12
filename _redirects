@@ -12,4 +12,6 @@
 /ecommerce-hacked-website-guide /ecommerce-hacked-website-guide/ 301!
 /hacked-website-survival-guide /hacked-website-survival-guide/ 301!
 /maximising-event-roi /maximising-event-roi/ 301!
-/site-health-score /site-health-score/ 301!
+/site-health-score https://hypeinsight.com/site-health-score/ 301!
+/site-health-score/ https://hypeinsight.com/site-health-score/ 301!
+/site-health-score/* https://hypeinsight.com/site-health-score/:splat 301!

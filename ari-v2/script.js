@@ -1013,10 +1013,11 @@
     var success  = form.querySelector('.lead-magnet-success');
     var fine     = form.querySelector('.lead-magnet-fine');
     var endpoint = form.getAttribute('action');
-    // Where to send the visitor once their email is captured. Using a
-    // root-relative path so it works whether the page lives at /ari-v2/
-    // or under a different mount point.
-    var QUIZ_URL = '/site-health-score/';
+    // Where to send the visitor once their email is captured. The Site
+    // Health Score is now hosted on hypeinsight.com (same origin as the
+    // Cloudflare Worker), so we send visitors straight there rather than
+    // to the legacy marketing-assets copy.
+    var QUIZ_URL = 'https://hypeinsight.com/site-health-score/';
 
     form.addEventListener('submit', function(e) {
         e.preventDefault();
